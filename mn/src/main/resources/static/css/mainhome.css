@@ -1,0 +1,951 @@
+@charset "UTF-8";
+{a태그 밑줄, 색상 제거}
+a{
+    text-decoration : none;
+    color:inherit
+}
+
+body{
+	margin:0;
+	padding:0;
+}
+#header h1{
+	font-size: 55px;
+}
+#header h3{
+	min-width:75px;
+}
+#head2 img{
+	margin-top :10px;
+	width:100px;
+	height:40px;
+}
+#header {
+    background: white;
+    height: 56px; /* 헤더 높이 조정 */  
+	width: 100%; 
+	position: sticky; 
+	top: 0;   
+	z-index: 2; /* 슬라이드 위에 오도록 순서 조정 */
+	padding: 20px 0;
+	border: 2px solid rgb(231, 231, 231);
+    border-style: solid none;
+}
+#headerContent{
+	margin:0px auto; 
+	max-width:1550px;
+	display:flex; 
+	flex-flow:row nowrap;
+	justify-content:space-between;
+	height:67px;
+}
+#main_logo{
+    margin-top:-30px;
+	height:80px ;
+	width:100px;
+}
+#header ul{
+	margin:0px;
+}
+#header li{
+	text-align:center;
+	color:rgb(119, 119, 119);
+	font-weight:bold;
+	height:34px;
+	width:90px;
+	list-style: none;
+	display:inline-block;
+	margin:0px 3px;
+	cursor:pointer;
+	padding:20px 0px;
+}
+#header li:hover{
+	opacity:0.8;
+	border:2px solid rgb(47, 0, 47);
+	border-style:none none solid none;
+}
+#head2 a{						
+	color :rgb(184, 184, 184);
+	text-decoration: none;
+}
+#head2 a:visited { 				
+	color :rgb(184, 184, 184);					
+}
+#head2 a:active {                   
+	color :rgb(184, 184, 184);                    
+}
+.head{
+	display:flex; 
+	flex-flow:row;
+}
+#head1{
+	display:flex;
+	flex-flow:row nowrap;
+}
+
+#titleH3 a{
+	cursor:pointer;
+}
+#titleH4{
+	margin-right:30px;
+}
+/*↑해더 영역----------------------------------------------*/
+
+#explain_img{
+	background-image:url("../img/메인홈메인사진.jpg");
+	background-size:100% 100%;
+	background-repeat:no-repeat;
+	height:650px;
+	display:flex;
+}
+#explain_box{
+	height:150px;
+	width:500px;
+	margin: 253px 0px 0px 140px;
+	color:#353535;
+}
+.explain_title{
+	font-size:40px;
+	font-family: 'Black Han Sans', sans-serif;
+	margin:0px;	
+}
+.explain_subtitle{
+	font-size:15px;
+	font-weight:bold;
+	margin:0px;
+}
+
+/* ↑멍냥존 설명 영역----------------------------------------*/
+#search_div{
+    margin:30px auto;
+    padding:0px;
+    max-width:1520px;
+    height:40px;
+    justify-content:center;
+}
+.search_box{
+	padding: 11px;
+	transform: translate(-85%,-15%);
+	height: 30px;
+	background-color: #fff;
+	border: 4px solid #51e3d4;
+	border-radius: 30px;
+	transition: 0.4s;
+	width:30px;
+	margin-left:1450px;
+}
+.search_box:hover{
+	box-shadow: 0px 0px .5px 1px #51e3d4;
+	width: 282px;
+}
+.search_btn{
+	text-decoration: none;
+	float: right;
+	width: 30px;
+	height: 30px;
+	background-color: #fff;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #51e3d4;
+}
+.search_box:hover > .search_btn{
+	background-color: #fff;
+}
+.search_txt{
+	display: flex;
+	padding: 0;
+	width: 0px;
+	border:none;
+	background: none;
+	outline: none;
+	float: left;
+	font-size: 1rem;
+	line-height: 30px;
+	transition: .4s;
+}
+.search_box:hover > .search_txt{
+	width: 240px;
+	padding: 0 6px;
+}
+/* ↑검색창 버튼영역----------------------------------------*/
+
+#main_div1{
+	background-color:#fedcda;
+	height:500px;
+	width:100%;
+	max-width:1700px;
+	margin:0px auto;
+	display:flex;
+	justify-content: space-between;
+}
+#main a{						
+	text-decoration: none;
+	color:#353535;
+	display:flex;
+	justify-content: center;
+}
+#main a:visited{
+	color:#353535;
+}
+#main a:active{
+	color:#353535;
+}
+#MNpet{
+	height:400px;
+	width:400px;
+  	border-radius: 20px 60px 100px 140px;
+	background-color:white;
+	float:right;
+	margin:auto 0px;
+	margin-left:125px;
+}
+#MNpet img{
+	height:235px;
+    width:348px;
+    margin:37px 25px;
+}
+#register_text{
+	font-size:31px;
+	font-family: 'Black Han Sans', sans-serif;	
+	margin-top:10px;
+}
+#MNdoctor{
+	height:400px;
+	width:400px;
+	border-radius: 20px 60px 100px 140px;
+	background-color:white;
+	margin:auto 0px;
+}
+#MNdoctor img{
+	height:225px;
+	width:350px;
+	margin:47px 27px;	
+}
+#hospital_text{
+	font-size:30px;
+	font-family: 'Black Han Sans', sans-serif;
+	margin:0px;	
+}
+#MNmissing{
+	height:400px;
+	width:400px;
+	border-radius: 20px 60px 100px 140px;
+	background-color:white;
+	float:left;
+	margin:auto 0px;
+	margin-right:125px;
+}
+#MNmissing img{
+	height:319px;
+    width:343px;
+    margin:0px 0px 0px 86px;
+}
+#emergency_text{
+	font-size:30px;
+	font-family: 'Black Han Sans', sans-serif;
+	margin:0px;	
+}
+
+/* ↑ 핑크색 영역------------------------------------------*/
+
+#main_div2 {
+	background-color: #f8fbc9;
+	width: 100%; 
+	height:530px;
+	margin:100px auto;
+	max-width: 1700px;
+	padding: 0px;
+	position: relative; 
+	top: 0px;
+}
+.slide_wrapper img{
+	width: 300px; 
+	height:300px; 
+}
+#show_text{
+	font-size:40px;
+	font-family:'Black Han Sans', sans-serif;
+	display:flex;
+	justify-content: center;
+	width:100%;
+	height:60px;
+}
+#main_div2 li,#main_div3 li{
+	list-style:none;
+}
+.slide_wrapper{
+	position:relative;
+	width:1168px;
+	height:420px;
+	margin:45px auto;
+	overflow:hidden;
+}
+.slides{
+	position:absolute;
+	left:0;
+	top:0;
+}
+.slides.animated{
+	transition: 1s ease-out;	/*ease-out:끝이 좀 느리게*/
+}	
+.slides li{
+	width:300px;
+	height:420px;
+	float:left;
+}
+
+.slides li:not(:last-child){
+	margin-right:80px;
+}
+.controls{
+	display:flex;
+	justify-content: center;
+}
+.prev{
+	padding:20px;
+    margin: -340px 555px -274px 525px;
+    cursor:pointer;
+    width:120px;
+    height:85px;
+}
+.next{
+	padding:20px;
+    margin: -340px 555px;
+    cursor:pointer;
+    width:120px;
+    height:85px;
+}
+.controls img:hover{
+	opacity:0.6;
+}
+#main_div3{
+
+}
+/* ↑ 노란색 영역----------------------------------------*/
+
+#main_div3{
+	background-color:#d9d9d9;
+	height:640px;
+	width:100%;
+	max-width:1700px;
+	margin:0px auto;
+	margin-top:100px;
+	justify-content: center;
+	display:flex;
+}
+#calculator_imgdiv{
+	height:600px;
+}
+#calculator_imgdiv img{
+	height:500px;
+	width:430px;
+	margin: 70px 0px 0px 250px;
+}
+#calculator{
+	height:600px;
+	width:1000px;
+	margin: 50px 0px 0px 90px;
+}
+#calculator_text1 p{
+	font-size:42px;
+	font-family:'Black Han Sans', sans-serif;
+	margin:0px;
+	justify-content: center;
+	display:flex;
+}
+.calculator_subtext{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:10px;
+	justify-content: center;
+	display:flex;	
+}
+#calculator_input{
+	height:235px;
+    width:460px;
+    margin:23px auto;
+    padding:20px;
+    border-radius:20px;
+    background-color:white;
+    justify-content:center;
+    display:flex;
+}
+table{
+	margin:0px auto;
+}
+.sub_title{
+	width:120px;
+	height:60px;
+	margin-right:20px;
+	font-weight:bold;
+}
+.sub_title{
+	width:90px;
+}
+#calculator_input input[type="checkbox"]{
+ 	cursor:pointer;
+}
+#calculator_input input[type="text"]{
+	width:160px;
+	height:50px;
+ 	border:none;
+ 	outline: none;
+ 	cursor:pointer;
+}
+#calculator_input select{
+	width:100px;
+	border:none;
+ 	outline: none;
+ 	cursor:pointer;
+}
+#submit_btn{
+	width:136px;
+ 	height:40px;
+ 	border:none;
+ 	border-radius:20px;
+ 	margin-left:130px;
+ 	cursor:pointer;
+}
+#submit_btn:hover{
+	background-color:#51e3d4;
+}
+#age_result{
+	font-size:50px;
+	font-family:'Black Han Sans', sans-serif;
+	margin:0px;
+	justify-content: center;
+	display:flex;	
+}
+#age_text{
+	font-size:16px;
+	font-weight:bold;
+	display:flex;
+	text-align:center;
+	justify-content: center;
+	margin-top:5px;
+}
+
+
+/*풋터 영역↓--------------------------------------------*/
+#footer{
+	width:100%;
+	background-color:#a5dbdc;
+}
+
+#footer_div1> ul{
+	margin:0px;
+	padding:0px;
+	width:100%;
+	height:50px;
+	font-size:15px;
+	display:flex;
+	justify-content: center;
+}
+#footer_div1> ul > li{
+	float:left;
+	color:gray;	
+	width:150px;
+	height:50px;
+	list-style: none;
+}
+#footer_div1> ul > li>button{
+	border: none;
+	color:gray;
+	background-color:transparent;
+	font-size:15px;
+	font-weight:bold;
+	margin:15px auto;
+	width:150px;	
+}
+#footer_div1> ul > li>button:hover{
+	color:#22126c;
+}
+#footer_div2{
+	width:100%;
+	height:130px;
+}
+#footer_div3{
+	display:flex;
+	width:780px;
+	margin:0px auto;
+	color:gray;
+}
+#footer_img{
+	width:100px;
+	height:70px;
+	color:gray;
+	margin:15px 0px 0px 90px;
+}
+#footertext{
+	width:500px;
+	height:80px;
+	margin:20px auto;
+	color:gray;
+}
+
+
+-------↓병원에 적용할 CSS소스-------------------------------{}
+#write{;cursor:pointer;background:white; padding:10px; border:1px solid black; border-radius:20px;width: 130px;float:right;top:10px}
+#write:hover{background:rgb(222, 222, 222);color:rgb(93, 93, 93);}
+h5{display:inline-block;margin-right:10px}
+
+#toktok{margin:0 auto;max-width:1200px;}
+#tokTitle{margin: 30px 0 0 0;padding:70px 0 0 0;}
+#tok_hr{margin-top:60px;margin-button:10px;height:2px;background:black;border-radius:30px;}
+.myimg_tok{weidth:20px;height:20px;border-radius:100%}
+.tok_content_title{cursor:pointer;font-weight:900;font-size:17px;strong}
+.tok_content_content{cursor:pointer;color:#a4a4a4;font-size:14px}
+.like,.comment,.view{color:#04689d;cursor:pointer}
+label{cursor:pointer}
+.changered{color:#7e1645}
+.blind{display:none}
+
+
+
+
+#main_hospital{margin:10px auto;height:600px;width:1200px;}
+#content_box{height:80%;width:95%;margin: 90px auto;overflow:hidden;}
+#content_container{width:5000px;}
+.content_each{transition: all 1s;position:relative;background: #a5dbdc;border-radius:40px;width:280px;height:450px;border:1px solid black;margin:10px 47px;display:inline-block}
+.content_head{height:80%;text-align:center;background: #cccccc;border-radius:40px;margin:4px}
+.content_foot{text-align:center;cursor:pointer}
+.content_foot:hover{opacity:0.7}
+.region{display:inline-block;color:rgb(168, 168, 168);margin:0}
+.star,.review{cursor:pointer;}
+.star:hover,.review:hover{color:rgb(252, 90, 3)}
+.slide{cursor:pointer;background:none;position:relative;border:none;width:60px;height:60px;font-size:20px ;}
+.hospitalimg{margin-bottom:40px;width:280px;height:260px}
+.hospital_title{font-weight:border;font-size:20px;color:#003515}
+.star{color:#ffff00}
+#slidebtn2{top:-60%;right:-88%}
+#slidebtn1{top:-60%}
+.review{margin-left:10px;color:#005b00}
+
+
+-----------------------------------------------//공지{}
+
+#main_notice{width:800px; margin:30px auto; }
+#notice_search{display:flex;justify-content:space-between;margin-top:60px;margin-bottom:70px}
+#notice_title,#search_input_div{display:inline-block; font-size:40px;height:70px;margin:auto 0}
+#search_input_input{height:25px;font-size:15px;}
+#notice_content>table{width:100%;border-collapse:collapse}
+#notice_content>table>tbody>tr>th{font-size:20px;border-top:2px solid black;border-bottom:2px solid silver}
+#notice_content>table>tbody>tr{height:40px;cursor:pointer;}
+.important_tr{background:#f0fffa}
+
+
+#notice_content>table>tbody>tr>td{padding-left:20px;border:1px solid #e0e0e0; border-style:none none solid none;}
+#notice_content>table>tbody>tr>th:first-child,th:last-child{inline-size:80px}
+
+#opa:hover{opacity:0.5}
+#search_input_input{border-radius:10px}
+#count{text-align:center}
+.pagenum{background:white;border:none;cursor:pointer}
+.pagenum:hover{opacity:0.5}
+------------------------------------------------------------서하누나까{}
+
+.oh{overflow:hidden}
+.opacityall{opacity:0.2;background:gray }
+#other{width:100vw;height:100vw;opacity:0.6;background:gray;position:fixed;z-index:10}
+#logking{z-index:11;position:fixed;top:5vw;right:35vw;background:white;border-radius:60px}
+#log_title{
+	width:100%;
+	
+}  
+h4{cursor:pointer}
+
+#log_titleimg{
+	width: 550px;
+	height:240px;	
+	margin: 10pX auto;
+	padding:40px;
+	display:flex;
+	justify-content:center;
+}
+#log_box{
+	width : 300px;
+	padding: 10px 40px;
+	margin: 10pX auto;
+	height:490px;
+	background-color:white;
+}
+.log_log{
+	width: 92%;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    color: #606060;
+    border: 1px solid #606060;
+    border-radius: 5px;
+}
+#log_btlog{
+	width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #a5dbdc;
+    color: #606060;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#log_btlog:hover {
+    background-color: #fedcda;
+}
+
+#log_join{
+	width:100px;
+	margin: 4px 170px;
+	padding:5px 19px;
+	display:flex;
+	justify-content:right;
+	font-size:16px;
+ 	color:#686868;
+}
+
+-------↓병원에 적용할 CSS소스-------------------------------{}
+#write{;cursor:pointer;background:white; padding:10px; border:1px solid black; border-radius:20px;width: 130px;float:right;top:10px}
+#write:hover{background:rgb(222, 222, 222);color:rgb(93, 93, 93);}
+h5{display:inline-block;margin-right:10px}
+
+#toktok{margin:0 auto;max-width:1200px;}
+#tokTitle{margin: 30px 0 0 0;padding:70px 0 0 0;}
+#tok_hr{margin-top:60px;margin-button:10px;height:2px;background:black;border-radius:30px;}
+.myimg_tok{weidth:20px;height:20px;border-radius:100%}
+.tok_content_title{cursor:pointer;font-weight:900;font-size:17px;strong}
+.tok_content_content{cursor:pointer;color:#a4a4a4;font-size:14px}
+.like,.comment,.view{color:#04689d;cursor:pointer}
+label{cursor:pointer}
+.changered{color:#7e1645}
+.blind{display:none;transition:1s;width:0!important;height:0!important}
+
+
+
+
+#main_hospital{margin:10px auto;height:600px;width:1200px;}
+#content_box{height:80%;width:95%;margin: 90px auto;overflow:hidden;}
+#content_container{width:5000px;}
+.content_each{transition: all 1s;position:relative;background: #a5dbdc;border-radius:40px;width:280px;height:450px;border:1px solid black;margin:10px 47px;display:inline-block}
+.content_head{height:80%;text-align:center;background: #cccccc;border-radius:40px;margin:4px}
+.content_foot{text-align:center;cursor:pointer}
+.content_foot:hover{opacity:0.7}
+.region{display:inline-block;color:rgb(168, 168, 168);margin:0}
+.star,.review{cursor:pointer;}
+.star:hover,.review:hover{color:rgb(252, 90, 3)}
+.slide{cursor:pointer;background:none;position:relative;border:none;width:60px;height:60px;font-size:20px ;}
+.hospitalimg{margin-bottom:40px;width:280px;height:260px}
+.hospital_title{font-weight:border;font-size:20px;color:#003515}
+.star{color:#ffff00}
+#slidebtn2{top:-60%;right:-88%}
+#slidebtn1{top:-60%}
+.review{margin-left:10px;color:#005b00}
+
+-------------병원 each---------------------------------------------{}
+#hos_ctt_main{margin:7vw auto;width:80vw;display:flex;flex-flow:column;}
+#HosCtt_title{dispaly:flex;flex-clow:column}
+#HosCtt_ttl_head{display:flex;flex-flow:row;width:1000px;height:420px; margin:0 auto;}
+#HosCtt_ttl_hd_infor{margin-left:10px}
+#HosCtt_imgdiv{width:60%;}
+#Hos_Ctt_hosimg{width:470px;height:380px;border-radius:20px}
+.HosCtt_serv{display:inline-flex;align-items:center;box-shadow:3px 5px 5px 3px #acacac;width:13vw;height:5vw;border-radius:10px;margin:10px auto;}
+.HosCtt_serv>span{margin:top:}
+.serv_ico{margin:20px 5px;width:2vw;height:2vw;}
+.HosCtt_img{width:50px;height:50px;}
+.HosCtt_p_border{font-weight:bolder;font-size:20px;margin-bottom:0}
+#HosCtt_ttl_hd_infor>p{margin-top:0}
+.HosCtt_content_exp>div>p{margin:0}
+.HosCtt_content_exp{display:flex;align-items:center}
+
+
+
+
+-----------------------------------------------//공지{}
+
+#main_notice{width:800px; margin:30px auto; }
+#notice_search{display:flex;justify-content:space-between;margin-top:60px;margin-bottom:70px}
+#notice_title,#search_input_div{display:inline-block; font-size:40px;height:70px;margin:auto 0}
+#search_input_input{height:25px;font-size:15px;}
+#notice_content>table{width:100%;border-collapse:collapse}
+#notice_content>table>tbody>tr>th{font-size:20px;border-top:2px solid black;border-bottom:2px solid silver}
+#notice_content>table>tbody>tr{height:40px;cursor:pointer;}
+.important_tr{background:#f0fffa}
+
+
+#notice_content>table>tbody>tr>td{padding-left:20px;border:1px solid #e0e0e0; border-style:none none solid none;}
+#notice_content>table>tbody>tr>th:first-child,th:last-child{inline-size:80px}
+
+#opa:hover{opacity:0.5}
+#search_input_input{border-radius:10px}
+#count{text-align:center}
+.pagenum{background:white;border:none;cursor:pointer}
+.pagenum:hover{opacity:0.5}
+----------------------------------------------------서하{}
+.xbutton{
+	width:25px;
+	height:25px;
+	position:absolute;
+	top:2%;
+	left:91%;
+	cursor:pointer;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    color: #7a7a7a;
+    background-color: #fedcda;
+}
+
+#logimg{
+	cursor:pointer;
+}
+
+.oh{
+	overflow:hidden;
+}
+.opacityall{
+	opacity:0.2;
+	background:gray;
+}
+#other{
+	width:5000px;
+	height:2000px;
+	opacity:0.6;
+	background:gray;
+	position:fixed;
+	z-index:10
+}
+
+#log_title{
+	width:100%;	
+}
+  
+h4{
+	cursor:pointer;
+}
+
+#log_titleimg{
+	width: 550px;
+	height:240px;	
+	margin: 10px auto;
+	margin-top:70px;
+	margin-right:10px;
+	padding:24px;
+	
+}
+#log_box{
+	width : 300px;
+	padding: 10px 40px;
+	margin: 0pX auto;
+	height:300px;
+	background-color:white;
+}
+.log_log{
+	width: 92%;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    color: #606060;
+    border: 1px solid #606060;
+    border-radius: 5px;
+}
+#log_btlog{
+	width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #a5dbdc;
+    color: #606060;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#log_btlog:hover {
+    background-color: #fedcda;
+}
+
+#log_join{
+	width:100px;
+	margin: 4px 170px;
+	padding:5px 19px;
+	display:flex;
+	justify-content:right;
+	font-size:16px;
+ 	color:#686868;
+}
+
+--------------------------------------t_member{}
+
+#t_member_join_img{
+	width: 120px;
+    height: 120px;
+    display: block;
+    margin: 0px auto; 
+    margin-top: 0px;
+    margin-bottom: -20px;
+}
+
+#t_member_join{
+	margin-top:-5px;
+}
+
+#t_member_sub{
+	margin-top:-10px;
+}
+
+#t_member_main_head{
+	width :98%;
+	margin:0px auto;
+	background-image:url("../img/발자국1.jpg");
+	background-size:198px 135px;
+	background-repeat: no-repeat;
+	background-position: right center; 
+}
+
+#t_member_main{
+	width: 610px;
+    height: 730px;
+    padding:10px 10px;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+	justify-content: center; 
+    align-items: center;
+    border: 2px solid #adadad;
+    border-radius: 30px;
+    text-align: center;
+    box-sizing: border-box;
+}
+#t_member_jointable{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.t_member_input{
+	width: 235px;
+    padding: 10px 18px;
+    font-size: 14px;
+    border-radius: 20px; 
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+#t_member_chkNotice{
+	margin:0px 100px;
+}
+
+#t_member_birth_year,
+#t_member_birth_month,
+#t_member_birth_day{
+    padding: 10px 23px;
+    font-size: 12px;
+    border-radius: 20px; 
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border-color 0.3s ease;
+    color:#808080;
+}
+
+#t_member_sido1{
+	width:170px;
+	height:38px;
+	margin:0px auto;  
+	font-size: 12px;
+    text-align: center;
+    border-radius: 20px; 
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border-color 0.3s ease;
+    color:#808080;
+}
+#t_member_gugun1{
+	width:100px;
+	height:38px;
+	margin:0px auto;  
+    font-size: 12px;
+    text-align: center;
+    border-radius: 20px; 
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border-color 0.3s ease;
+    color:#808080;	
+}
+
+
+.t_member_input:focus{
+	border-color:#808080; 
+}
+
+.t_member_submit{
+	margin-bottom: 15px;
+    margin-top: 20px;
+    background-color: #fedcda;
+    border: none;
+    border-radius: 10px;
+    color: #808080;
+    font-size: 18px;
+    font-weight:bold;
+    padding: 5px 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.t_member_submit:hover{
+	background-color: #f8fbc9;
+}
+
+
+td{
+	font-weight:bold;
+}  
+#log_join{
+	cursor:pointer;
+}
+
+#main input::placeholder {
+  font-size: 12px; 
+}
+ 
+---------------------------------회원가입창,로그인창 이동및 크기조정{}
+#t_member{
+	transition:1s;
+    margin:auto;
+	z-index:11;
+	top:5vw;
+	right:35vw;
+	background:white;
+	width:600px;
+	height:780px;
+	border-radius:10px;
+}
+#logking{
+	transition:1s;
+	position:fixed;
+	z-index:11;
+	top:5vw;
+	right:35vw;
+	background:white;
+	width:600px;
+	height:780px;
+	border-radius:10px;
+}
+ ----------------------------returnflase클래스 정의, 정규표현식을 불만족할 시 시각적 효과 !important로 덧씌우기 {}
+ .returnfalse{
+ 	border:2px solid red !important;
+ }
+ 
+ 
+
+
+
+
+
+
+
+
+
