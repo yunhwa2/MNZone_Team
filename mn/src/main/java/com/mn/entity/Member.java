@@ -9,7 +9,9 @@ import lombok.ToString;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "member")
@@ -35,12 +37,22 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private MemberRole memberRole;
 
-    public Member createMember(MemberFormDTO memberFormDTO, PasswordEncoder passwordEncoder){
+    public static Member createMember(MemberFormDTO memberFormDTO, PasswordEncoder passwordEncoder){
         Member member = new Member();
+        System.out.println("entitiy.createMember(memberFormDTO:) : " + memberFormDTO);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-ddHHmm");
 
         member.setId(memberFormDTO.getId());
         member.setMemberRole(MemberRole.USER);
-        return null;//수정
+        String password = passwordEncoder.encode(memberFormDTO.getPassword());
+        member.setPassword(password);
+        member.setPh(memberFormDTO.getPh());
+        member.setAddress(memberFormDTO.getSido()+memberFormDTO.getGugun());
+        member.setBirth(LocalDateTime.parse((memberFormDTO.getYear()+"-"+memberFormDTO.getMonth()+"-"+memberFormDTO.getDay()+"0000"),formatter));
+        member.setEmail(memberFormDTO.getEmail());
+        member.setName(memberFormDTO.getName());
+
+        return member;
     }
 
 }

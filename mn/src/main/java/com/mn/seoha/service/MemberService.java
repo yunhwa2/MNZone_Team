@@ -18,7 +18,8 @@ public class MemberService {
     }
 
     public void validateMember(Member member){
-        if(null==memberRepository.findById(member.getId())){
+        if(null!=memberRepository.findById(member.getId())){
+            System.out.println("null!=findById");
             throw new IllegalStateException("존재하는 이메일 입니다.");
         }
     }

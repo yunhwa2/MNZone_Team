@@ -96,8 +96,12 @@ let birthYear=document.getElementById("t_member_birth_year");
 	    isMonthOptionExisted = true
 	    for(let i = 1; i <= 12; i++) {
 	      let MonthOption = document.createElement('option')
-	      MonthOption.setAttribute('value', i)
-	      MonthOption.innerText = i
+	      if(i<10){
+	        MonthOption.setAttribute('value','0'+i)
+	      }else{
+	        MonthOption.setAttribute('value',i)
+	      }
+	      MonthOption.innerText = 0+i
 	      this.appendChild(MonthOption);
 	    }
 	  }
@@ -111,7 +115,12 @@ let birthYear=document.getElementById("t_member_birth_year");
 		  isDayOptionExisted = true
 	    for(let i = 1; i <= 31; i++) {
 	      let DayOption = document.createElement('option')
-	      DayOption.setAttribute('value', i)
+	      if(i<10){
+	        DayOption.setAttribute('value', '0'+i)
+	      }else{
+	        DayOption.setAttribute('value', i)
+	      }
+
 	      DayOption.innerText = i
 	      this.appendChild(DayOption);
 	    }
