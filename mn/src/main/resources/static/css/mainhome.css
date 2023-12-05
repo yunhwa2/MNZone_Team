@@ -1,9 +1,13 @@
 @charset "UTF-8";
-{a태그 밑줄, 색상 제거}
+*{
+    margin:0px;
+    padding:0px;
+}/*브라우저 리셋 : 브라우저마다 여백이 다르므로*/
+
 a{
     text-decoration : none;
     color:inherit
-}
+}/*a태그 밑줄, 색상 제거*/
 
 body{
 	margin:0;
@@ -33,7 +37,7 @@ body{
 }
 #headerContent{
 	margin:0px auto; 
-	max-width:1550px;
+	max-width:1300px;
 	display:flex; 
 	flex-flow:row nowrap;
 	justify-content:space-between;
@@ -93,15 +97,17 @@ body{
 
 #explain_img{
 	background-image:url("../img/메인홈메인사진.jpg");
-	background-size:100% 100%;
+	background-size:80% 100%;
+	background-position:center;
 	background-repeat:no-repeat;
 	height:650px;
 	display:flex;
+	align=center;
 }
 #explain_box{
 	height:150px;
 	width:500px;
-	margin: 253px 0px 0px 140px;
+	margin: 253px 0px 0px 300px;
 	color:#353535;
 }
 .explain_title{
@@ -119,7 +125,7 @@ body{
 #search_div{
     margin:30px auto;
     padding:0px;
-    max-width:1520px;
+    max-width:1300px;
     height:40px;
     justify-content:center;
 }
@@ -132,7 +138,7 @@ body{
 	border-radius: 30px;
 	transition: 0.4s;
 	width:30px;
-	margin-left:1450px;
+	margin-left:1300px;
 }
 .search_box:hover{
 	box-shadow: 0px 0px .5px 1px #51e3d4;
@@ -175,7 +181,7 @@ body{
 	background-color:#fedcda;
 	height:500px;
 	width:100%;
-	max-width:1700px;
+	max-width:1300px;
 	margin:0px auto;
 	display:flex;
 	justify-content: space-between;
@@ -329,7 +335,7 @@ body{
 	background-color:#d9d9d9;
 	height:640px;
 	width:100%;
-	max-width:1700px;
+	max-width:1300px;
 	margin:0px auto;
 	margin-top:100px;
 	justify-content: center;
