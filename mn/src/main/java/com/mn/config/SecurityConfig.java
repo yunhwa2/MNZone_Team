@@ -33,7 +33,7 @@ public class SecurityConfig {
                 //모든 사용자가 인증 없이 접근 가능
                 .mvcMatchers("/css/**","/js/**","/img/**").permitAll()
                 .mvcMatchers("/static/**").permitAll()
-                .mvcMatchers("/","/members/**","/item/**","/images/**").permitAll()
+                .mvcMatchers("/","/members/**","/item/**","/images/**","/notice/**").permitAll()
                 //admin으로 시작하는 경로는 admin만 가능
                 .mvcMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated();
