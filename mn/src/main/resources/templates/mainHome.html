@@ -13,10 +13,10 @@
             <button onclick="logout()" class="xbutton">X</button>
             <img id="log_titleimg" th:src="@{/img/로그인.png}">
         </div>
-        <form id="log_box" name="form1" action="#">
+        <form id="log_box" name="form1" action="/login">
             <input class="log_log" id="log_inputid" name="txtID" type= "text" placeholder="아이디를 입력해주세요.">
             <input class="log_log" id="log_inputpwd" name="txtPwd" type="password" placeholder="비밀번호">
-            <input type="button" id="log_btlog" value="로그인" onclick="Login();">
+            <input type="submit" id="log_btlog" value="로그인" >
 <!--            <span id="log_join" onclick="t_member_signin()">회원가입</span>-->
             <a href="/members/register"><span id="log_join" >회원가입</span></a>
         </form>
@@ -213,7 +213,7 @@
 
         <div id="main_div3">
             <div id="calculator_imgdiv">
-                <img src="img/계산기.png">
+                <img th:src="@{img/계산기.png}">
             </div>
             <div id="calculator">
                 <div id="calculator_text1">

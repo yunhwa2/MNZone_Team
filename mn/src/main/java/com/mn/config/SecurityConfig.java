@@ -21,7 +21,7 @@ public class SecurityConfig {
         http.formLogin()
                 .loginPage("/members/login")//로그인 페이지 설정
                 .defaultSuccessUrl("/")//로그인 성공 시 이동할 url
-                .usernameParameter("email")//로그인시 사용할 이름
+                .usernameParameter("id")//로그인시 사용할 이름
                 .failureUrl("/members/login/error")//로그인 실패 시 보여줄 url
                 .and()//뭉
                 .logout()//logout처리
@@ -33,7 +33,7 @@ public class SecurityConfig {
                 //모든 사용자가 인증 없이 접근 가능
                 .mvcMatchers("/css/**","/js/**","/img/**").permitAll()
                 .mvcMatchers("/static/**").permitAll()
-                .mvcMatchers("/","/members/**","/item/**","/images/**","/notice/**").permitAll()
+                .mvcMatchers("/","/**","/members/**","/item/**","/images/**","/Jiseong/**","/notice").permitAll()
                 //admin으로 시작하는 경로는 admin만 가능
                 .mvcMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated();
