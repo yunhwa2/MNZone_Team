@@ -111,7 +111,7 @@ body{
 	color:#353535;
 }
 .explain_title{
-	font-size:40px;
+	font-size:45px;
 	font-family: 'Black Han Sans', sans-serif;
 	margin:0px;	
 }
@@ -181,7 +181,7 @@ body{
 	background-color:#fedcda;
 	height:500px;
 	width:100%;
-	max-width:1300px;
+	max-width:1400px;
 	margin:0px auto;
 	display:flex;
 	justify-content: space-between;
@@ -199,8 +199,8 @@ body{
 	color:#353535;
 }
 #MNpet{
-	height:400px;
-	width:400px;
+	height:350px;
+	width:350px;
   	border-radius: 20px 60px 100px 140px;
 	background-color:white;
 	float:right;
@@ -208,35 +208,34 @@ body{
 	margin-left:125px;
 }
 #MNpet img{
-	height:235px;
-    width:348px;
+	height:200px;
+    width:320px;
     margin:37px 25px;
 }
 #register_text{
-	font-size:31px;
-	font-family: 'Black Han Sans', sans-serif;	
-	margin-top:10px;
+	font-size:33px;
+	font-family: 'Black Han Sans', sans-serif;
 }
 #MNdoctor{
-	height:400px;
-	width:400px;
+	height:350px;
+	width:350px;
 	border-radius: 20px 60px 100px 140px;
 	background-color:white;
 	margin:auto 0px;
 }
 #MNdoctor img{
-	height:225px;
-	width:350px;
+	height:200px;
+	width:320px;
 	margin:47px 27px;	
 }
 #hospital_text{
-	font-size:30px;
+	font-size:33px;
 	font-family: 'Black Han Sans', sans-serif;
-	margin:0px;	
+	margin:-20px;
 }
 #MNmissing{
-	height:400px;
-	width:400px;
+	height:350px;
+	width:350px;
 	border-radius: 20px 60px 100px 140px;
 	background-color:white;
 	float:left;
@@ -244,14 +243,14 @@ body{
 	margin-right:125px;
 }
 #MNmissing img{
-	height:319px;
-    width:343px;
-    margin:0px 0px 0px 86px;
+	height:310px;
+    width:360px;
+    margin:-13px 0px -15px 86px;
 }
 #emergency_text{
-	font-size:30px;
+	font-size:33px;
 	font-family: 'Black Han Sans', sans-serif;
-	margin:0px;	
+	margin:-6px;
 }
 
 /* ↑ 핑크색 영역------------------------------------------*/
@@ -261,7 +260,7 @@ body{
 	width: 100%; 
 	height:530px;
 	margin:100px auto;
-	max-width: 1700px;
+	max-width: 1400px;
 	padding: 0px;
 	position: relative; 
 	top: 0px;
@@ -277,13 +276,14 @@ body{
 	justify-content: center;
 	width:100%;
 	height:60px;
+	padding-top: 40px;
 }
 #main_div2 li,#main_div3 li{
 	list-style:none;
 }
 .slide_wrapper{
 	position:relative;
-	width:1168px;
+	width:1075px;
 	height:420px;
 	margin:45px auto;
 	overflow:hidden;
@@ -311,14 +311,14 @@ body{
 }
 .prev{
 	padding:20px;
-    margin: -340px 555px -274px 525px;
+    margin: -380px 1070px 0px 0px;
     cursor:pointer;
     width:120px;
     height:85px;
 }
 .next{
 	padding:20px;
-    margin: -340px 555px;
+    margin: -380px 0px;;
     cursor:pointer;
     width:120px;
     height:85px;
@@ -335,7 +335,7 @@ body{
 	background-color:#d9d9d9;
 	height:640px;
 	width:100%;
-	max-width:1300px;
+	max-width:1400px;
 	margin:0px auto;
 	margin-top:100px;
 	justify-content: center;
@@ -347,12 +347,12 @@ body{
 #calculator_imgdiv img{
 	height:500px;
 	width:430px;
-	margin: 70px 0px 0px 250px;
+	margin: 70px 0px 0px 200px;
 }
 #calculator{
 	height:600px;
 	width:1000px;
-	margin: 50px 0px 0px 90px;
+	margin: 50px 70px 0px 10px;
 }
 #calculator_text1 p{
 	font-size:42px;
