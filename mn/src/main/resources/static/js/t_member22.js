@@ -1,7 +1,7 @@
 /**
- * 
+ *
  */
-//비밀번호 확인 
+//비밀번호 확인
 	$(document).ready(function(){
 	    $('#mypass').keyup(function(){
 	      $('#chkNotice').html('');
@@ -11,17 +11,17 @@
 
 	        if($('#mypass').val() != $('#mypasschk').val()){
 	          $('#chkNotice').html('비밀번호 일치하지 않음<br><br>');
-	          $('#chkNotice').attr('color', '#f82a2aa3');
+	          $('#chkNotice').css('color', '#f82a2aa3');
 	        } else{
 	          $('#chkNotice').html('비밀번호 일치함<br><br>');
-	          $('#chkNotice').attr('color', '#199894b3');
+	          $('#chkNotice').css('color', '#199894b3');
 	        }
 
 	    });
 	});
 
 //도시
-	$('document').ready(function() {
+	$(document).ready(function() {
 		 var area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
 		  var area1 = ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
 		   var area2 = ["계양구","남구","남동구","동구","부평구","서구","연수구","중구","강화군","옹진군"];
@@ -50,7 +50,7 @@
 		    $selsido.next().append("<option value=''>구/군 선택</option>");
 		   });
 
-		   
+
 
 		   // 시/도 선택시 구/군 설정
 
@@ -70,12 +70,12 @@
 
 
 		  });
-	
+
 
 //생년월일
 let birthYear=document.getElementById("t_member_birth_year");
 
-	isYearOptionExisted = false;
+	let isYearOptionExisted = false;
 	birthYear.addEventListener('focus', function () {
 	  if(!isYearOptionExisted) {
 	    isYearOptionExisted = true
@@ -90,7 +90,7 @@ let birthYear=document.getElementById("t_member_birth_year");
 
 	let birthMonth=document.getElementById("t_member_birth_month");
 
-	isMonthOptionExisted = false;
+	let isMonthOptionExisted = false;
 	birthMonth.addEventListener('focus', function () {
 	  if(!isMonthOptionExisted) {
 	    isMonthOptionExisted = true
@@ -106,10 +106,10 @@ let birthYear=document.getElementById("t_member_birth_year");
 	    }
 	  }
 	});//select 월 채우기
-	
+
 	let birthDay=document.getElementById("t_member_birth_day");
 
-	isDayOptionExisted = false;
+	let isDayOptionExisted = false;
 	birthDay.addEventListener('focus', function () {
 	  if(!isDayOptionExisted) {
 		  isDayOptionExisted = true
@@ -126,37 +126,37 @@ let birthYear=document.getElementById("t_member_birth_year");
 	    }
 	  }
 	});//select 일 채우기
-	
 
 
-	
-	//Ⅰ.추후에 파일의 input태그 value를 가져오기 위해 접근 방식을 정의 
-/*	
+
+
+	//Ⅰ.추후에 파일의 input태그 value를 가져오기 위해 접근 방식을 정의
+/*
 	function signUpCheck(){
 	let myid = document.getElementById("myid").value                      //파일의 input 태그의 #myid로 접근
-	//let idError=document.getElementById("idError").value 
-	
-	let mypass = document.getElementById("mypass").value 
-	//let pswError=document.getElementById("pswError").value 
-	
-	let myname = document.getElementById("myname").value 
-	//let nameError = document.getElementById("nameError").value 
-	
-	let nickname = document.getElementById("nickname").value 
-	//let nickError = document.getElementById("nickError").value 
-	
-	let birth_year = document.getElementById("birth_year").value 
-	
-	let birth_month = document.getElementById("birth_year").value 
-	
-	let birth_day = document.getElementById("birth_year").value 
-	
-	let myemail = document.getElementById("myemail").value 
-//	let emailError = document.getElementById("emailError").value 
-	
-	let myph = document.getElementById("myph").value 
-	//-----------------------------------------------------	
-	
+	//let idError=document.getElementById("idError").value
+
+	let mypass = document.getElementById("mypass").value
+	//let pswError=document.getElementById("pswError").value
+
+	let myname = document.getElementById("myname").value
+	//let nameError = document.getElementById("nameError").value
+
+	let nickname = document.getElementById("nickname").value
+	//let nickError = document.getElementById("nickError").value
+
+	let birth_year = document.getElementById("birth_year").value
+
+	let birth_month = document.getElementById("birth_year").value
+
+	let birth_day = document.getElementById("birth_year").value
+
+	let myemail = document.getElementById("myemail").value
+//	let emailError = document.getElementById("emailError").value
+
+	let myph = document.getElementById("myph").value
+	//-----------------------------------------------------
+
 	//Ⅱ.정규표현식 정의
 //	const idexamine = /^[A-Za-z0-9]{6,20}$/  // 정규표현식 ex1. 대문자A~Z 소문자a~z 숫자0~9범위 허용, 4글자부터 10글자까지
 	//const passexamine //패스워드 정규표현식 정의 위에 형식으로 직접
@@ -189,33 +189,32 @@ let birthYear=document.getElementById("t_member_birth_year");
 	}
 
 	*/
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
