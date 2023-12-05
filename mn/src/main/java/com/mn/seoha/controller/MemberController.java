@@ -55,10 +55,13 @@ public class MemberController {
             model.addAttribute("errorMessage", e.getMessage());
             return "members/t_login";
         }
+        return "mainHome";
+    }
 
 
-
-
+    @GetMapping(value = "login/error")
+    public String loginErrorPage(Model model){
+        model.addAttribute("memberFormDTO",new MemberFormDTO());
         return "mainHome";
     }
 

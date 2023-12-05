@@ -21,7 +21,7 @@ public class NoticeController {
         noticeFormDTO.setNoticeAuthor(principal.getName());
         model.addAttribute("noticeFormDTO", noticeFormDTO);
 
-        return "Jiseong/notice/newNotice";
+        return "Jiseong/notice/noticeForm";
     }
 
 }

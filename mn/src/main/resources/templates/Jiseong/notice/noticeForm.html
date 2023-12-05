@@ -43,7 +43,7 @@
     </style>
 </th:block>
 
-<div layout:fragment="content1">
+<div layout:fragment="content">
 
     <form role="form" method="post"  th:object="${noticeFormDTO}">
 
@@ -52,6 +52,9 @@
         </p>
 
 
+        <div class="input-group">
+            <span th:text="${noticeAuthor}" th:field="*{noticeAuthor}" class="form-control" ></span>
+        </div>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">제목 : </span>
