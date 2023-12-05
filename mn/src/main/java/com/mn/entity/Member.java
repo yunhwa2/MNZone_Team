@@ -51,6 +51,7 @@ public class Member {
         member.setBirth(LocalDateTime.parse((memberFormDTO.getYear()+"-"+memberFormDTO.getMonth()+"-"+memberFormDTO.getDay()+"0000"),formatter));
         member.setEmail(memberFormDTO.getEmail());
         member.setName(memberFormDTO.getName());
+        member.setNickName(memberFormDTO.getNickName());
 
         return member;
     }

@@ -38,13 +38,25 @@ public class MemberController {
     public String signIn(Model model,@Valid MemberFormDTO memberFormDTO, BindingResult bindingResult){
         System.err.println("memberController.register()진입");
         System.err.println(memberFormDTO);
-        if(bindingResult.hasErrors()){
-            System.err.println("mainhomeerr");
-            return "members/t_member22";
+
+        try{
+            if(bindingResult.hasErrors()){
+                System.err.println("mainhomeerr");
+                return "members/t_member22";
+            }
+            Member member = Member.createMember(memberFormDTO,passwordEncoder);
+            System.err.println(member);
+            Member savedMember = memberService.saveMember(member);
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("MemberController./register 중 예외 발생");
+            model.addAttribute("errorMessage", e.getMessage());
+            return "members/t_login";
         }
-        Member member = Member.createMember(memberFormDTO,passwordEncoder);
-        System.err.println(member);
-        memberService.createMember(member);
+
+
 
 
         return "mainHome";
