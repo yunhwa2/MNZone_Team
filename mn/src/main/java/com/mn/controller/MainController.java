@@ -19,7 +19,7 @@ public class MainController {
     @GetMapping(value = "/notice")
     public String notice(){
         System.err.println("getmapping notice");
-
+        System.out.println("2232332321");
         return "Jiseong/notice/notice." +
                 "";
     }
