@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>멍냥Zone : 내 동물 등록하기</title>
+		<link rel="stylesheet" type="text/css" href="../../../../../../../project/WebContent/css/mypet.css">
+		<script type="text/javascript" src="../../../../../../../project/WebContent/js/jquery-3.7.0.js"></script>
+		<script type="text/javascript" src="../../../../../../../project/WebContent/js/mypet.js"></script>
+		
+	</head>
+	<body>
+	<div id="logodiv">
+		<img id="line" src="../../../../../../../project/WebContent/img/박스캐릭터회색.png" alt="">
+	</div>
+	<div id="container">
+		<div id="header">
+			<div id="title">
+				<img src="../../../../../../../project/WebContent/img/mypet_textlogo.png" alt="">
+			</div>	
+		</div>
+		<div id="main_img">
+			<input id="mypet_img" type="file">
+	        <button id="img-button" onclick="onClickUpload();"><img src="../../../../../../../project/WebContent/img/동물사진추가아이콘.png" alt=""><br>사진 추가하기</button>
+		</div>
+		<form id="main" action="hello" onsubmit="return checknull();">
+			<table>
+				<tr>
+					<td class="sub_title">반려동물</td>
+					<td>
+						<input type="checkbox" id="dog_check" value="dog" name="dccheck" onclick="orCheck(this,'dccheck')">
+						<label>강아지</label>
+					</td>
+					<td>
+						<input type="checkbox" id="cat_check" value="cat" name="dccheck" onclick="orCheck(this,'dccheck')">
+						<label>고양이</label>
+					</td>
+				</tr>
+				<tr>
+					<td class="sub_title">이름</td>
+					<td>
+						<input type="text" id="pet_name" placeholder="이름을 입력하세요" onclick="nameNotEmpty()">
+					</td>
+					<td>
+						<span id="name_lb"></span>
+					</td>
+				</tr>
+				<tr>
+					<td class="sub_title">생년월일</td>
+					<td >
+						<input type="text" id="birthday_input" placeholder="2023-01-01 형식으로 입력해주세요" maxlength="10">
+					</td>
+					<td>
+						<span id="birthday_input_lb"></span>
+					</td>
+				</tr>
+				<tr>
+					<td class="sub_title">몸무게</td>
+					<td>
+						<input type="text" id="wieght_input" placeholder="예) 3.25">
+						<span> kg</span>
+					</td>
+					<td>
+						<span id="wieght_input_lb"></span>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" id="text">ex) 1kg미만의 경우, 예 750g이라면 0.75로 입력</td>
+				</tr>
+				<tr>
+					<td class="sub_title">성별</td>
+					<td>
+						<input type="checkbox" value="M" name="genderchk" onclick="orCheck(this,'genderchk')">
+						<label>남아</label>
+					</td>
+					<td>
+						<input type="checkbox" value="F" name="genderchk" onclick="orCheck(this,'genderchk')">
+						<label>여아</label>
+					</td>
+				</tr>
+				<tr>
+					<td class="sub_title">중성화</td>
+					<td>
+						<input type="checkbox" value="neuterYes"name="neuterchk" onclick="orCheck(this,'neuterchk')">
+						<label>했어요</label>
+					</td>
+					<td>
+						<input type="checkbox" value="neuterNo" name="neuterchk" onclick="orCheck(this,'neuterchk')">
+						<label>안했어요</label>
+					</td>
+				</tr>	
+				<tr id="dogkind_box">
+					<td class="sub_title">견종 선택</td>
+					<td>
+						<select id="dogkind">
+			        		<option value="" disabled selected>선택해주세요</option>
+			        		<option value="GoldenRetriever">
+								골든리트리버
+							</option>
+							<option value="Dachshund">
+								닥스훈트
+							</option>
+							<option value="Maltese">
+								말티즈
+							</option>
+							<option value="MixedBreedDog">
+								믹스견
+							</option>
+							<option value="BorderCollie">
+								보더콜리
+							</option>
+							<option value="beagle">
+								비글
+							</option>
+							<option value="BichonFrise">
+								비숑프리제
+							</option>
+							<option value="Samoyed">
+								샤모예드
+							</option>
+							<option value="Schnauzer">
+								슈나우저
+							</option>
+							<option value="ShihTzu">
+								시츄
+							</option>
+							<option value="YorkshireTerrier">
+								요크셔테리어
+							</option>
+							<option value="WelshCorgi">
+								웰시코기
+							</option>
+							<option value="Jindodog">
+								진돗개
+							</option>
+							<option value="Chihuahua">
+								치와와
+							</option>
+							<option value="pug">
+								퍼그
+							</option>
+							<option value="Pomeranian">
+								포메라니안
+							</option>
+							<option value="poodle">
+								푸들
+							</option>
+							<option value="FrenchBulldog">
+								프렌치불독
+							</option>
+							<option value="else_dog">
+								그 외 
+							</option>
+						</select>
+					</td>
+					<td>
+						<input type="text" class="selfWrite" id="dog_write" placeholder="직접입력하기">
+						<label id="dog_write_lb"></label>
+					</td>
+				</tr>
+				<tr id="catkind_box">
+					<td class="sub_title">묘종 선택</td>
+					<td>
+						<select id="catkind">
+			        		<option value="" disabled selected>선택해주세요</option>
+							<option value="NorwegianForest)">
+								노르웨이숲 
+							</option>
+							<option value="Ragdoll">
+								랙돌
+							</option>
+							<option value="RussianBlue">
+								러시안블루
+							</option>
+							<option value="MaineCoon">
+								메인쿤
+							</option>
+							<option value="Munchkin">
+								먼치킨
+							</option>
+							<option value="Bengal">
+								뱅갈
+							</option>
+							<option value="BritishShortHair">
+								브리티시 쇼트헤어
+							</option>
+							<option value="BritishLongHair">
+								브리티시 롱헤어
+							</option>
+							<option value="Siberian">
+								시베리안
+							</option>
+							<option value="Siamese">
+								샴
+							</option>
+							<option value="ScottishFold">
+								스코티시 폴드
+							</option>
+							<option value="Sphynx">
+								스핑크스
+							</option>
+							<option value="Savannah">
+								사바나
+							</option>
+							<option value="AmericanShortHiar">
+								아메리칸 쇼트헤어
+							</option>
+							<option value="Abyssinian">
+								아비시니안
+							</option>
+							<option value="KoreanShortHiar">
+								코리안 쇼트헤어
+							</option>
+							<option value="TurkishAngora">
+								터키쉬 앙고라
+							</option>
+							<option value="Persian">
+								페르시안
+							</option>
+							<option value="else_cat">
+								그 외
+							</option>
+						</select>
+					</td>
+					<td>
+						<input type="text" class="selfWrite"  id="cat_write" placeholder="직접입력하기"> 
+						<label id="cat_write_lb"></label>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" ><input type="submit" id="submit_btn" value="등록하기"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	</body>
+</html>

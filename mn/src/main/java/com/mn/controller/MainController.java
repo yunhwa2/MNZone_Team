@@ -14,7 +14,7 @@ public class MainController {
     @GetMapping(value = "/")
     public String main(Model model){
         model.addAttribute("memberFormDTO", new MemberFormDTO());
-        return "mainHome";
+        return "index";
     }
 
     @GetMapping(value = "/notice")

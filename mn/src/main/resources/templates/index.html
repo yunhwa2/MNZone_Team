@@ -4,7 +4,10 @@
       layout:decorate="~{layouts/layout1}">
 
 <!-- 사용자 CSS 추가 -->
+<th:block layout:fragment="css">
+    <link rel="stylesheet" type="text/css" th:link="@{/css/index.css}">
 
+</th:block>
 
 <div layout:fragment="content">
     <div class="other">
@@ -159,17 +162,17 @@
         <div id="main_div1">
             <div id="MNpet">
                 <!--    href controller 매핑 수정할 요소    -->
-                <a href="mypet.html"><img th:src="@{/img/동물추가버튼.png}" alt="반려동물 추가img"></a>
+                <a href="mypet.html"><img th:src="@{/img/MN_petAdd_icon.png}" alt="반려동물 추가img"></a>
                 <p id="register_text"><a href="mypet.html">반려동물 등록하기</a></p>
             </div>
             <div id="MNdoctor">
                 <!--    href controller 매핑 수정할 요소    -->
-                <a href="hospital.html"><img th:src="@{/img/멍냥닥터버튼.png}" alt="인기병원img"></a>
+                <a href="hospital.html"><img th:src="@{/img/MN_hispital_icon.png}" alt="인기병원img"></a>
                 <p id="hospital_text"><a href="hospital.html">우리동네 동물병원</a></p>
             </div>
             <div id="MNmissing">
                 <!--    href controller 매핑 수정할 요소    -->
-                <a href = "missing.html"><img th:src="@{/img/멍냥실종버튼.png}" alt="긴급신고img"></a>
+                <a href = "missing.html"><img th:src="@{/img/MN_missing_icon.png}" alt="긴급신고img"></a>
                 <p id="emergency_text"><a href = "missing.html">긴급신고</a></p>
             </div>
         </div>
@@ -181,40 +184,40 @@
             <div class="slide_wrapper">
                 <ul class="slides">
                     <li>
-                        <img th:src="@{/img/쿵이.jpg}">
+                        <img th:src="@{/img/pet_kung.jpg}">
                     </li>
                     <li>
-                        <img th:src="@{/img/호두.jpg}">
+                        <img th:src="@{/img/pet_hodu.jpg}">
                     </li>
                     <li>
-                        <img th:src="@{/img/군이.jpg}">
+                        <img th:src="@{/img/pet_gun.jpg}">
                     </li>
                     <li>
-                        <img th:src="@{/img/심바.jpg}">
+                        <img th:src="@{/img/pet_simba.jpg}">
                     </li>
                     <li>
-                        <img th:src="@{/img/몽이.jpg}">
+                        <img th:src="@{/img/pet_mong.jpg}">
                     </li>
                     <li>
-                        <img th:src="@{/img/빵이.jpg}">
+                        <img th:src="@{/img/pet_bbang.jpg}">
                     </li>
                     <li>
-                        <img th:src="@{/img/톰이.jpg}">
+                        <img th:src="@{/img/pet_tom.jpg}">
                     </li>
                     <li>
-                        <img th:src="@{/img/소금이.jpg}">
+                        <img th:src="@{/img/pet_sogeum.jpg}">
                     </li>
                 </ul>
             </div>
             <p class="controls">
-                <img class="prev" src="img/녹색화살표_왼.png">
-                <img class="next" src="img/녹색화살표_오.png">
+                <img class="prev" src="img/greenArrow_left.png">
+                <img class="next" src="img/greenArrow_right.png">
             </p>
         </div>
 
         <div id="main_div3">
             <div id="calculator_imgdiv">
-                <img th:src="@{img/계산기.png}">
+                <img th:src="@{img/calculator.png}">
             </div>
             <div id="calculator">
                 <div id="calculator_text1">
@@ -283,7 +286,7 @@
 
 
 <th:block layout:fragment="script">
-    <script type="text/javascript" th:src="@{/js/mainhome.js}"/>
+    <script type="text/javascript" th:src="@{/js/index.js}"/>
     <script type="text/javascript" th:src="@{/js/t_member22.js}"/>
     <script th:inline="javascript">
 
