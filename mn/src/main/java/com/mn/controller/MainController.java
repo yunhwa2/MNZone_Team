@@ -16,6 +16,7 @@ public class MainController {
         model.addAttribute("memberFormDTO", new MemberFormDTO());
         return "mainHome";
     }
+
     @GetMapping(value = "/notice")
     public String notice(){
         System.err.println("getmapping notice");

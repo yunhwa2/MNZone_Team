@@ -4,10 +4,10 @@
       layout:decorate="~{layouts/layout1}"
 >
 <th:block layout:fragment="css">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/t_login.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mainhome.css}"/>
 </th:block>
 <th:block layout:fragment="script">
-
+    <script type="text/javascript" th:src="@{/js/notice.js}"></script>
 
 </th:block>
 
@@ -22,15 +22,16 @@
             <div id="search_input_div"><input type="text" id="search_input_input" placeholder="검색"/></div>
             <div><a href="/notice/new">글쓰기</a></div>
         </div>
-<!--        <div id="notice_content">-->
-<!--            <table id="notice_table">-->
-<!--                <tr><th>전체</th><th>제목</th><th>날짜</th> </tr>-->
-<!--                &lt;!&ndash; 공지사항 최상단 중요 &ndash;&gt;-->
-<!--                <th:block th:each = "notice, status:${notices.getContent()}">-->
-<!--                    <a th:href="'/notice/' + ${notice.id}}">-->
-<!--                        <tr><td>[[${notice.noticeTitle}]]</td><td>[[${notice.noticeContent}]]</td><td>[[${notice.regTime}]]</td></tr>-->
 
-<!--                    </a>-->
+                <div id="notice_content">
+                    <table id="notice_table">
+                        <tr><th>전체</th><th>제목</th><th>날짜</th> </tr>
+                        <!-- 공지사항 최상단 중요 -->
+                        <th:block th:each = "notice, status:${notices.getContent()}">
+                            <a th:href="'/notice/' + ${notice.id}}">
+                                <tr><td>[[${notice.noticeTitle}]]</td><td>[[${notice.noticeContent}]]</td><td>[[${notice.regTime}]]</td></tr>
+
+                            </a>
 
 <!--                </th:block>-->
 <!--&lt;!&ndash;                <tr class="important_tr"><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;-->

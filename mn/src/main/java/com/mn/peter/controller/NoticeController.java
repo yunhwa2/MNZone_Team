@@ -15,7 +15,7 @@ import java.security.Principal;
 public class NoticeController {
 
 
-    @GetMapping(value = "new")
+    @GetMapping(value = "/new")
     public String newNotice(Model model, Principal principal){
         NoticeFormDTO noticeFormDTO = new NoticeFormDTO();
         noticeFormDTO.setNoticeAuthor(principal.getName());
