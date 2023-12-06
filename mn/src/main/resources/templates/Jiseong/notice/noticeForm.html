@@ -90,7 +90,13 @@
         <input type="hidden" value="${author}" th:field="*{noticeAuthor}" />
 
         <div class = "noticeFormInput" id = "noticeFormClass">
-            <span th:text="*{writeClassField}" ></span>
+            <span >카테고리 설정 :  </span>
+            <select th:field="*{noticeKind}" class="noticeFormSelect" style="width:auto;">
+                <option value="ANNOUNCEMENT">공지</option>
+                <option value="SYSTEM">시스템</option>
+                <option value="SERVICE">서비스</option>
+                <option value="EVENT">이벤트</option>
+            </select>
         </div>
         <div class = "noticeFormInput" id="noticeFormTitle">
             <input type="text" placeholder="글 제목" th:field="*{noticeTitle}" id="noticeFormTitleInput"/>

@@ -3,8 +3,12 @@
 		  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 		  layout:decorate="~{layouts/layout1}">
 
+<!--사용자 추가 css-->
 	<th:block layout:fragment="css">
-		<link rel="stylesheet" type="text/css" th:link="@{/css/search_error.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/search_error.css}"/>
+		<style>
+			#error_img{width:10px}
+		</style>
 	</th:block>
 
 	<th:block layout:fragment="script">
