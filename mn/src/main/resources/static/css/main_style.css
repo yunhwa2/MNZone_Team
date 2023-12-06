@@ -85,7 +85,7 @@ body{
 }
 /*↑해더 영역----------------------------------------------*/
 
-------------------------------------------------------------서하누나까{}
+------------------------------------------------------------서하{}
 
 .oh{overflow:hidden}
 .opacityall{opacity:0.2;background:gray }
@@ -162,7 +162,7 @@ h4{cursor:pointer}
 #main_head{
 	width :100%;
 	margin:0px auto;
-	background-image:url("../img/발자국1.jpg");
+	background-image:url("../img/join_foot.jpg");
 	background-size:198px 135px;
 	background-repeat: no-repeat;
 	background-position: right center; 
@@ -226,7 +226,7 @@ t_member_>form>table>tbody>td{
 #log_join{cursor:pointer}
 
 
----------------------------------회원가입창,로그인창 이동및 크기조정{}
+---------------------------------회원가입창,로그인창 이동 및 크기 조정{}
 #t_member{transition:1s;position:fixed;z-index:11;top:5vw;right:35vw;background:white;width:600px;height:750px;border-radius:4vw}
 #logking{transition:1s;z-index:11;position:fixed;top:5vw;right:35vw;background:white;border-radius:4vw;}
 

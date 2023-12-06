@@ -32,7 +32,7 @@ public class MemberService implements UserDetailsService {
         Member findMember = memberRepository.findById(member.getId());
 
         if(findMember != null){
-            throw new IllegalStateException("존재하는 이메일 입니다.");
+            throw new IllegalStateException("이미 가입된 회원입니다.");
         }
 
     }
@@ -45,6 +45,6 @@ public class MemberService implements UserDetailsService {
         if(member ==null){
             throw new UsernameNotFoundException(id);
         }
-        return User.builder().username(member.getId()).password(member.getPassword()).roles(member.getMemberRole().toString()).build();
+        return User.builder().username(member.getEmail()).password(member.getPassword()).roles(member.getMemberRole().toString()).build();
     }
 }

@@ -22,16 +22,16 @@ import javax.validation.Valid;
 @RequestMapping(value = "/members")
 public class MemberController {
 
-
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
+
     @GetMapping(value = "/register")
     public String memberForm(Model model){
         System.err.println("get방식 - memberFormDTO view에 전달");
 
         MemberFormDTO memberFormDTO = new MemberFormDTO();
         model.addAttribute("memberFormDTO",memberFormDTO);
-        return "members/t_member22";
+        return "members/join";
     }
 
     @PostMapping(value = "/register")
@@ -42,7 +42,7 @@ public class MemberController {
         try{
             if(bindingResult.hasErrors()){
                 System.err.println("mainhomeerr");
-                return "members/t_member22";
+                return "members/join";
             }
             Member member = Member.createMember(memberFormDTO,passwordEncoder);
             System.err.println(member);
@@ -58,12 +58,16 @@ public class MemberController {
         return "index";
     }
 
-
+   /* //책에서 쓰라고한 부분
+    @GetMapping(value = "/login")
+    public String loginMember(){
+        return "/member/memberLoginForm";
+    }
+*/
     @GetMapping(value = "login/error")
     public String loginErrorPage(Model model){
         model.addAttribute("memberFormDTO",new MemberFormDTO());
         return "members/t_login";
     }
-
 
 }

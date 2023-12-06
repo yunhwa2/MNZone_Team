@@ -408,7 +408,7 @@ function Login()
                 return;
                }
 
-         //입력된 문자의 길이만큼 루프를 돌면서 검사 
+         //입력된 문자의 길이만큼 루프를 돌면서 검사
 
          for (i=0; i<form.txtID.value.length; i++)
          {
@@ -470,3 +470,4 @@ function t_member_signin(){
 	
 
 }
+

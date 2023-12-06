@@ -16,24 +16,24 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 public class MemberFormDTO {
-    @NotBlank(message = "아이디는 필수 입력값 입니다.")
+    @NotBlank(message ="아이디를 입력해 주세요.")
     private String id;
 
-    @NotBlank(message="이름은 필수 입력값 입니다.")
+    @NotBlank(message="이름을 입력해 주세요.")
     private String name;
 
-    @NotBlank(message="닉네임은 필수 입력값 입니다.")
+    @NotBlank(message="닉네임을 입력해 주세요.")
     private String nickName;
 
-    @NotEmpty(message="email 필수 입력값 입니다.")
-    @Email(message="이메일 형식으로 입력해주세요")
+    @NotEmpty(message="email을 입력해 주세요.")
+    @Email(message="이메일 형식으로 입력해 주세요")
     private String email;
 
-    @NotEmpty(message="비밀번호는 필수 입력값 입니다.")
-    @Length(min=4,max=16,message="비밀번호는 4글자 이상, 16글자 이하로 입력해주세요")
-
+    @NotEmpty(message="비밀번호를 입력해 주세요.")
+    @Length(min=4,max=16,message="비밀번호는 4글자 이상, 16글자 이하로 입력해 주세요")
     private String password;
 
+    @NotEmpty(message="지역을 입력해 주세요.")
     private String sido;
 
     private String gugun;
@@ -44,6 +44,7 @@ public class MemberFormDTO {
 
     private String day;
 
+    @NotEmpty(message="전화번호를 입력해주세요.")
     private String ph;
 
 

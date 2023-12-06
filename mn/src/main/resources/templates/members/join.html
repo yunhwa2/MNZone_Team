@@ -3,7 +3,7 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="~{layouts/layout1}">
 <th:block layout:fragment="css">
-	<link rel="stylesheet" type="text/css" th:link="@{/css/t_member22.css}"/>
+	<link rel="stylesheet" type="text/css" th:link="@{/css/join.css}"/>
 	<style>
 		#t_member_container{
 			height:1000px;
@@ -18,7 +18,7 @@
 
 	<div  id="t_member">
 <!--		<img id="xbutton" th:src="@{/img/x.png}" onclick="logout()"/>-->
-		<img id="t_member_join_img" th:src="@{/img/강아지3.jpg}" alt="멍냥존">
+		<img id="t_member_join_img" th:src="@{/img/join_dog.jpg}" alt="멍냥존">
 		<div id="t_member_main">
 			<div id="t_member_main_head" >
 				<h2 id="t_member_join" >Join Us</h2>
@@ -101,7 +101,9 @@
 							</tr>
 							<tr>
 								<td colspan="4">
+
 									<input class="t_member_submit" type="submit" value="멍냥 친구 되기" >
+
 								</td>
 							</tr>
 						</table>
@@ -115,6 +117,6 @@
 </div>
 
 <th:block layout:fragment="script">
-	<script type="text/javascript" th:src="@{/js/t_member22.js}"/>
+	<script type="text/javascript" th:src="@{/js/join.js}"/>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </th:block>

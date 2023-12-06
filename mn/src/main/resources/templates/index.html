@@ -14,7 +14,7 @@
     <div class="blind" id="logking">
         <div  id="log_title">
             <button onclick="logout()" class="xbutton">X</button>
-            <img id="log_titleimg" th:src="@{/img/로그인.png}">
+            <img id="log_titleimg" th:src="@{/img/login_dog.png}">
         </div>
         <form role="form"  id="log_box" method="post" name="form1" action="/members/login">
             <input class="log_log" id="log_inputid" name="id" type= "text" placeholder="아이디를 입력해주세요.">
@@ -31,7 +31,7 @@
 <!--                <div class="t_member_input" id="t_member_head1">-->
 <!--                    <h3 class="t_member_input" id="t_member_titleH3">-->
 <!--                        <a href="/">-->
-<!--                           <img class="t_member_input" id="t_member_main_logo" th:src="@{/img/.png}" alt="멍냥존 로고">&ndash;&gt;-->
+<!--                           <img class="t_member_input" id="t_member_main_logo" th:src="@{/img/메인로고회색.png}" alt="멍냥존 로고">&ndash;&gt;-->
 <!--                        </a>-->
 <!--                    </h3>-->
 <!--               </div>-->
@@ -43,7 +43,7 @@
 
         <div class ="blind" id="t_member">
             		<img id="xbutton" th:src="@{/img/x.png}" onclick="logout()"/>
-            <img id="t_member_join_img" th:src="@{/img/강아지3.jpg}" alt="멍냥존">
+            <img id="t_member_join_img" th:src="@{/img/join_dog.jpg}" alt="멍냥존">
             <div id="t_member_main">
                 <div id="t_member_main_head" >
                     <h2 id="t_member_join" >Join Us</h2>
@@ -126,7 +126,7 @@
                             </tr>
                             <tr>
                                 <td colspan="4">
-                                    <input class="t_member_submit" type="submit" value="멍냥 친구 되기" onclick="signin(); return false;">
+                                    <input class="t_member_submit" type="submit" value="멍냥 친구 되기" >
                                 </td>
                             </tr>
                         </table>
@@ -287,7 +287,7 @@
 
 <th:block layout:fragment="script">
     <script type="text/javascript" th:src="@{/js/index.js}"/>
-    <script type="text/javascript" th:src="@{/js/t_member22.js}"/>
+    <script type="text/javascript" th:src="@{/js/join.js}"/>
     <script th:inline="javascript">
 
 
