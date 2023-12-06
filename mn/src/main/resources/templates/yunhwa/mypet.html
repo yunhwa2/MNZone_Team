@@ -1,26 +1,33 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>멍냥Zone : 내 동물 등록하기</title>
-		<link rel="stylesheet" type="text/css" href="../../../../../../../project/WebContent/css/mypet.css">
-		<script type="text/javascript" src="../../../../../../../project/WebContent/js/jquery-3.7.0.js"></script>
-		<script type="text/javascript" src="../../../../../../../project/WebContent/js/mypet.js"></script>
-		
-	</head>
-	<body>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout1}">
+
+	<title>멍냥Zone : 내 동물 등록하기</title>
+	<!-- 사용자 CSS 추가 -->
+	<th:block layout:fragment="css">
+		<link rel="stylesheet" type="text/css" th:link="@{/css/mypet.css}">
+	</th:block>
+
+	<th:block layout:fragment="script">
+		<script type="text/javascript" src="@{/js/jquery-3.7.0.js}"></script>
+		<script type="text/javascript" src="@{/js/mypet.js}"></script>
+	</th:block>
+
+
+<div layout:fragment="content">
+
 	<div id="logodiv">
-		<img id="line" src="../../../../../../../project/WebContent/img/박스캐릭터회색.png" alt="">
+		<img id="line" src="/img/박스캐릭터회색.png" alt="">
 	</div>
 	<div id="container">
 		<div id="header">
 			<div id="title">
-				<img src="../../../../../../../project/WebContent/img/mypet_textlogo.png" alt="">
+				<img src="/img/mypet_textlogo.png" alt="">
 			</div>	
 		</div>
 		<div id="main_img">
 			<input id="mypet_img" type="file">
-	        <button id="img-button" onclick="onClickUpload();"><img src="../../../../../../../project/WebContent/img/동물사진추가아이콘.png" alt=""><br>사진 추가하기</button>
+	        <button id="img-button" onclick="onClickUpload();"><img src="/img/동물사진추가아이콘.png" alt=""><br>사진 추가하기</button>
 		</div>
 		<form id="main" action="hello" onsubmit="return checknull();">
 			<table>
@@ -232,5 +239,5 @@
 			</table>
 		</form>
 	</div>
-	</body>
+</div>
 </html>

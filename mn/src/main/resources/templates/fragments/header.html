@@ -26,6 +26,9 @@
 
                     <img th:if="${userName==null}" th:src="@{/img/로그인창.png}" alt="로그인창" sec:authorize="isAnonymous()" onclick="login()">
                     <a href = "/members/logout"><span th:text="${userName}" alt="로그아웃창" sec:authorize="isAuthenticated()"></span></a>
+                    <img class ="head2_navBar" th:src="@{/img/navBar.png}" alt="더보기 버튼" sec:authorize="isAnonymous()" onclick="login()">
+                    <img class ="head2_userProfile"th:src="@{/img/userProfile.png}" alt="비회원 기본 이미지" sec:authorize="isAnonymous()" onclick="login()">
+                    <a href = "/members/logout"><img th:src="@{/img/로그인창.png}" alt="로그아웃창" sec:authorize="isAuthenticated()"></a>
 
                 </div>
 <!--                <form class="" th:action="@{/}" method="get">-->

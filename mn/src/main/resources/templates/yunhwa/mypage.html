@@ -1,41 +1,43 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="~{layouts/layout1}">
-<title>멍냥Zone : 마이페이지</title>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+<title>멍냥Zone : 마이페이지</title>
 
 <!-- 사용자 CSS 추가 -->
 <th:block layout:fragment="css">
 	<link rel="stylesheet" type="text/css" th:link="@{/css/mypage.css}">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+
+</th:block>
+
+<th:block layout:fragment="script">
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 </th:block>
 
 <div layout:fragment="content">
-	<th:block layout:fragment="script">
-		<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-	</th:block>
-
 		<div id="main">
 			<div id="main_div">
 				<div class="main_border">
-					<a href=""><img id="information_edit_img" src="/img/멍냥존기본사진.png" alt="정보수정img"></a>
+					<a href=""><img id="information_edit_img" src="@{/static/img/pet_DefaultProfile.png}" alt="반려동물 기본 프로필"></a>
 					<p id="information_text"><a href="">내 정보 수정하기</a></p>
 				</div>
 				<div class="main_border">
-					<a href=""><img id="reservation_img" src="/img/멍냥닥터버튼.png" alt="병원img"></a>
+					<a href=""><img id="reservation_img" src="@{/img/MN_hispital_icon.png}" alt="멍냥 닥터 아이콘 이미지"></a>
 					<p id="reservation_text"><a href="">병원예약현황</a></p>
 				</div>
 				<div class="main_border">
-					<a href = ""><img id="my_writing_img" src="/img/발자국.png" alt="발자국img"></a>
+					<a href = ""><img id="my_writing_img" src="@{/img/footprint.png}" alt="발자국 이미지"></a>
 					<p id="my_writing_text"><a href = "">내가 쓴 글보기</a></p> 
 				</div>	
 				<div class="main_border">
-					<a href="/mypet.html"><img id="mypet1_img" src="/img/동물추가버튼.png" alt="반려동물추가img"></a>
+					<a href="/mypet.html"><img id="mypet1_img" src="@{/img/pet_ImgAddIcon.png}" alt="반려동물 이미지 추가 버튼"></a>
 					<p id="mypet1_text"><a href="/mypet.html">반려동물 등록하기</a></p>
 				</div>
 			</div>
 		</div>
 </div>
+</html>
