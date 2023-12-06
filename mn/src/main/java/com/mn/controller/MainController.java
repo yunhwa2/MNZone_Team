@@ -1,18 +1,32 @@
 package com.mn.controller;
 
 import com.mn.seoha.dto.MemberFormDTO;
+import jdk.jshell.spi.ExecutionControlProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.security.Principal;
 
 
 @RequiredArgsConstructor
 @Controller
+@Transactional
 public class MainController {
 
     @GetMapping(value = "/")
-    public String main(Model model){
+    public String main(Model model, Principal principal){
+
+        try{
+            System.err.println(principal.getName());
+            String name = principal.getName();
+            model.addAttribute("userName",name);
+        }catch (Exception e){
+            model.addAttribute("memberFormDTO", new MemberFormDTO());
+            return "index";
+        }
         model.addAttribute("memberFormDTO", new MemberFormDTO());
         return "index";
     }

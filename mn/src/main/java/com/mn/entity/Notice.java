@@ -16,7 +16,7 @@ public class Notice extends BaseEntity{
     @Id
     @Column(name = "member_code")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long noticeId;
 
     private String noticeTitle;
     private String noticeContent;
