@@ -44,13 +44,3 @@
     background-color: #fedcda;
 }
 
-#join{
-	width:100px;
-	margin: 4px 170px;
-	padding:5px 19px;
-	display:flex;
-	justify-content:right;
-	font-size:16px;
- 	color:#686868;
-}
-

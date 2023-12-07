@@ -74,9 +74,9 @@ function checknull(){
 				"marginTop":"15px"		
 		});	
 		return false;
-	}else if($("#wieght_input").val().length == 0){
-		$("#wieght_input_lb").html("멍냥이의 몸무게를 알려주세요!");
-		$("#wieght_input_lb").css({
+	}else if($("#weight_input").val().length == 0){
+		$("#weight_input_lb").html("멍냥이의 몸무게를 알려주세요!");
+		$("#weight_input_lb").css({
 			"color":"red",
 				"fontSize":"13px",
 				"marginTop":"15px"		
@@ -84,7 +84,7 @@ function checknull(){
 		return false;
 	}else if($("#dogkind option:selected").val()=="else_dog"){
 		if($("#dog_write").val().length == 0){
-			$("#dog_write_lb").html("직접입력해주세요!");
+			$("#dog_write_lb").html("직접 입력해주세요!");
 			$("#dog_write_lb").css({
 				"color":"red",
 					"fontSize":"13px",
@@ -94,7 +94,7 @@ function checknull(){
 		}
 	}else if($("#catkind option:selected").val()=="else_cat"){
 		if($("#cat_write").val().length == 0){
-			$("#cat_write_lb").html("직접입력해주세요!");
+			$("#cat_write_lb").html("직접 입력해주세요!");
 			$("#cat_write_lb").css({
 				"color":"red",
 					"fontSize":"13px",
