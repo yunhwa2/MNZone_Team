@@ -1,4 +1,4 @@
 package com.mn.entity;
 
-public class Pet {
+public class MyPetImg {
 }

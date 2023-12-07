@@ -75,8 +75,8 @@ function checknull(){
 		});	
 		return false;
 	}else if($("#wieght_input").val().length == 0){
-		$("#wieght_input_lb").html("멍냥이의 몸무게를 알려주세요!");
-		$("#wieght_input_lb").css({
+		$("#weight_input_lb").html("멍냥이의 몸무게를 알려주세요!");
+		$("#weight_input_lb").css({
 			"color":"red",
 				"fontSize":"13px",
 				"marginTop":"15px"		
