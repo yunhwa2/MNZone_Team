@@ -29,5 +29,5 @@ public class MyPetDTO {
     private Member member;
 
 
-    public
+
 }

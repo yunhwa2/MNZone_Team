@@ -1,23 +1,73 @@
 @charset "UTF-8";
 
-#jointable{
+#t_member_join{
+	width:100px;
+	margin: 4px 170px;
+	padding:5px 19px;
+	display:flex;
+	justify-content:right;
+	font-size:16px;
+ 	color:#686868;
+}
+
+#t_member_join{
+	margin-top:-5px;
+}
+
+#t_member_submit{
+     margin-top:-5px;
+}
+
+#t_member_main_head{
+	width :98%;
+	margin:0px auto;
+	background-image:url("../img/join_foot.jpg");
+	background-size:198px 135px;
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+
+#t_member_main{
+	width: 610px;
+    height: 730px;
+    padding:10px 10px;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+	justify-content: center;
+    align-items: center;
+    border: 2px solid #adadad;
+    border-radius: 30px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+#t_member_join_img{
+	width: 120px;
+    height: 120px;
+    display: block;
+    margin: 0px auto;
+    margin-top: 0px;
+    margin-bottom: -20px;
+}
+
+#t_member_jointable{
 	display: flex;
     justify-content: center;
     align-items: center;
 }
 
-input[type="text"],
-input[type="password"] {
+.t_member_input {
     width: 235px;
     padding: 10px 18px;
     font-size: 14px;
-    border-radius: 20px; 
+    border-radius: 20px;
     border: 1px solid #ccc;
     outline: none;
     transition: border-color 0.3s ease;
 }
 
-#chkNotice{
+#t_member_chkNotice{
 	margin:0px 100px;
 }
 #t_member_birth_year,
@@ -32,7 +82,7 @@ input[type="password"] {
     color: #808080;
 }
 
-#sido1{
+#t_member_sido1{
 	width:170px;
 	height:38px;
 	margin:0px auto;
@@ -44,7 +94,8 @@ input[type="password"] {
     transition: border-color 0.3s ease;
     color:#808080;
 }
-#gugun1{
+
+#t_member_gugun1{
 	width:100px;
 	height:38px;
 	margin:0px auto;
@@ -57,13 +108,11 @@ input[type="password"] {
     color:#808080;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus {
-    border-color:#808080; 
+.t_member_input:focus{
+	border-color:#808080;
 }
-
-input[type="submit"] {
-    margin-bottom: 15px;
+.t_member_submit{
+	margin-bottom: 15px;
     margin-top: 20px;
     background-color: #fedcda;
     border: none;
@@ -76,77 +125,43 @@ input[type="submit"] {
     transition: background-color 0.3s ease;
 }
 
-input[type="submit"]:hover {
-    background-color: #f8fbc9;
+.t_member_submit:hover{
+	background-color: #f8fbc9;
 }
- 
+
 td{
 	font-weight:bold;
-} 
-#main input::placeholder {
-  font-size: 12px; 
 }
- 
- .modal {
-     display: none;
-     position: fixed;
-     z-index: 1;
-     left: 0;
-     top: 0;
-     width: 100%;
-     height: 100%;
-     overflow: auto;
-     background-color: rgba(0,0,0,0.4);
- }
 
- .modal-content {
-     background-color: #fefefe;
-     margin: 10% auto;
-     padding: 20px;
-     border: 1px solid #888;
-     width: 80%;
- }
-
- .close {
-     color: #aaa;
-     float: right;
-     font-size: 28px;
-     font-weight: bold;
- }
-
- .close:hover,
- .close:focus {
-     color: black;
-     text-decoration: none;
-     cursor: pointer;
- }
+#main input::placeholder {
+  font-size: 12px;
+}
 
 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
