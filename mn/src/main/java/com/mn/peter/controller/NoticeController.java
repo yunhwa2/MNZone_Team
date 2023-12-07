@@ -41,7 +41,7 @@ public class NoticeController {
         }
         noticeService.saveNotice(noticeFormDTO);
 
-        return"Jiseong/notice/notice";
+        return"redirect:/notice/list";
     }
 
 }

@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class Notice extends BaseEntity{
 
     @Id
-    @Column(name = "member_code")
+    @Column(name = "notice_code")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long noticeId;
 
