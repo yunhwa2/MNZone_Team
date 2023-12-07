@@ -1,0 +1,44 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout1}">
+
+	<title>멍냥Zone : 멍냥실종</title>
+
+	<!-- CSS  -->
+	<th:block layout:fragment="css">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/MNmissing.css}">
+	</th:block>
+
+	<!-- content  -->
+	<div layout:fragment="content">
+		<div id="container">
+			<div id="main">
+				<div id="main_div1">
+					<div id="explain_img">
+						<div id="explain_box">
+							<p id="explain_title">멍냥실종</p>
+							<p class="explain_subtitle">멍냥이를 실종, 보호, 목격하셨다면 글을 남겨주세요</p>
+							<p class="explain_subtitle">당신의 제보가 큰 힘이 됩니다!</p>
+						</div>					
+					</div>	
+					<div id="button_div">
+						<button type="button" id="write" onclick="openTok()">글쓰기</button>	
+					</div>
+				</div>	
+				<div id="tokContent">
+					<div id="tokCnt">
+						<span id="tokCntPrintf">개의 글</span>
+					</div>
+					<div id="auto_box">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- script  -->
+		<th:block layout:fragment="script">
+			<script type="text/javascript" th:src="@{/js/MNmissing.js}"></script>
+		</th:block>
+
+	</div>
+</html>

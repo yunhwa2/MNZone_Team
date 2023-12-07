@@ -1,0 +1,35 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout1}">
+
+	<title>멍냥실종 : 글쓰기</title>
+
+	<!-- CSS  -->
+	<th:block layout:fragment="css">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/MNmissing_write.css}">
+	</th:block>
+
+	<!-- content  -->
+	<div layout:fragment="content">
+		<div id="container">
+			<div id="container1">
+				<form action="#" id="form1">
+				<br>
+					<input id="title1" type="text" placeholder="제목">
+					<input id="img1" type="text" placeholder="프로필 이미지 주소">
+					<input id="title2" type="text" placeholder="닉네임">
+					<input id="img2" type="text" placeholder="이미지 주소">
+				<hr>
+				<br>
+					<textarea id="content1" placeholder="내용을 입력해 주세요."></textarea>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- script  -->
+	<th:block layout:fragment="script">
+		<script type="text/javascript" th:src="@{/js/MNmissing_write.js}"></script>
+	</th:block>
+
+</html>

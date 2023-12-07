@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout1}">
+
+	<title>멍냥Zone : 육아수첩</title>
+
+	<!--  CSS  -->
+	<th:block layout:fragment="css">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/petDiary.css}">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+
+	</th:block>
+
+	<!-- script  -->
+	<th:block layout:fragment="script">
+		<script th:src="@{/js/petDiary.js}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bPopup/0.11.0/jquery.bpopup.min.js"></script>
+		<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+		<script src="https://unpkg.com/tippy.js@6"></script>
+
+		<script th:inline="javascript">
+			var calendar = null; //전역으로 선언
+
+			function nullcheck(obj){
+				if(obj==""||obj==null||obj==undefined){
+					return true;
+				}else{
+					return false;
+				}
+			}; //null체크 함수
+
+			var today = new Date();
+			var year = today.getFullYear();
+			var month = ('0' + (today.getMonth() + 1)).slice(-2);
+			var day = ('0' + today.getDate()).slice(-2);
+			var end_day = ('0' + (today.getDate() + 1)).slice(-2);
+			var dateString = year + '-' + month  + '-' + day;
+			var dateString_end = year + '-' + month  + '-' + end_day;
+			var dateString_ko = year + '년 ' + month  + '월 ' + day + '일';
+
+			$(document).ready(function(){
+				$("#today_date").text(dateString_ko);
+				$("#start_date").val(dateString);
+				$("#end_date").val(dateString_end);
+
+				var containerEl = document.getElementById('drag_list');
+				new FullCalendar.Draggable(containerEl, {
+				  itemSelector: '.fc-event',
+				  eventData: function(eventEl) {
+					return {
+					  title: eventEl.innerText.trim(),
+					  description: eventEl.innerText.trim()
+					}
+				  }
+				});
+
+
+				var calendarEl = document.getElementById('calendar');
+				calendar = new FullCalendar.Calendar(calendarEl, {
+					  initialView: 'dayGridMonth',//월단위 캘랜더
+					  headerToolbar:{
+						  left:'prev,next today',
+						  center:'title',
+						  right:'dayGridMonth,listMonth'
+					  },
+					  selectable: true,
+					  selectMirror: true,
+						droppable: true,
+						editable: true,
+					  events: [
+							{
+							  title  : '일산지 산책',
+							  start  : '2023-08-11T12:30:00',
+							  end  : '2023-08-11T13:30:00',
+							  description:"오늘은 군이랑 일산지에서 3키로정도 걸었더니 피곤쓰"
+							  ,
+							  allDay : false
+							},
+							{
+								  title  : '새 장난감',
+								  start  : '2023-08-05',
+								  end  : '2023-08-05',
+								  description:"오늘 새로운 장난감을 샀는데 군이가 너무 좋아해서 뿌듯해~~ 누나랑 터그놀이 열심히하쟈아아 키키",
+								  allDay : true
+								}
+						],
+						eventDidMount: function(info) {
+							var title = info.event.title;
+									tippy(info.el, {
+										content: title
+										,placement: 'bottom' //툴팁 방향
+										,theme: 'yellow' //css테마 설정된 데이터 값
+										,arrow : false //툴팁에서 말풍선 모양처럼 화살표 출력여부
+									});
+							},
+					select: function(arg) {
+						  let start_year = arg.start.getUTCFullYear();
+						  let start_month = ('0' + (arg.start.getMonth()+1)).slice(-2);
+						  let start_date = ('0' + arg.start.getDate()).slice(-2);
+
+						  let start = start_year+"년 "+start_month+"월 "+start_date+"일 ";
+
+						$("#today_date").text(start);
+						$("#start_date").val(arg.startStr);
+						$("#end_date").val(arg.endStr);
+							  },
+					  eventClick: function(info){
+						  let start_year = info.event.start.getUTCFullYear();
+						  let start_month = ('0' + (info.event.start.getMonth()+1)).slice(-2);
+						  let start_date = ('0' + info.event.start.getDate()).slice(-2);
+						 // let start_hour = info.event.start.getHours();
+						 // let start_minute = info.event.start.getMinutes();
+						 // let start_second = info.event.start.getSeconds();
+						 // let end_hour = info.event.end.getHours();
+
+						  let start = start_year+"년 "+start_month+"월 "+start_date+"일 "+'<br>';
+
+						 let contents=`
+								<div id="popup_date">
+									${start}
+								</div>
+								<div id="popup_border">
+									<input type="text" id="popup_title" value="${info.event.title}">
+									<textarea id="popup_content">
+									</textarea>
+								</div>
+								<div id="popup_btn">
+									<button id = "edit_btn">수정하기</button>
+									<button id = "delete_btn">삭제하기</button>
+								</div>`;
+
+							$("#popup").html(contents);
+							$("#popup_content").val(info.event.extendedProps.description);
+
+							$("#popup").bPopup(); // bPopup()은 위에 제이쿼리 가져올때 가져와야 사용할수있음
+					$("#edit_btn").click(function(){
+							edit_diary(info);
+					});
+					$("#delete_btn").click(function(){
+						del_diary(info);
+					});
+					},
+					drop: function(arg) {
+						  if (document.getElementById('drop-remove').checked) {
+							arg.draggedEl.parentNode.removeChild(arg.draggedEl);
+						  }
+					}
+				});
+				calendar.render();
+			});
+
+			function save_diary(){
+				let title = $("#diary_title").val();
+				let content = $("#diary_content_area").val();
+				content = content.replace(/(?:\r\n|\r|\n)/g, '<br>');
+
+				let start = $("#start_date").val();
+				let end = $("#end_date").val();
+
+				if(!nullcheck(title)){
+					calendar.addEvent({
+						title: title,
+						start: start,
+						end: end,
+						description:content,
+						allDay: true
+					  });
+					$("#diary_title").val("");
+					$("#diary_content_area").val("");
+				}
+
+			}
+
+			function edit_diary(info){
+				let title = $("#popup_title").val();
+				let content = $("#popup_content").val();
+
+				info.event.setProp('title',title);
+				info.event.setExtendedProp('description',content);
+				$("#popup").bPopup().close();
+			}//수정하기 버튼
+
+			function del_diary(info){
+				console.log(info);
+				info.event.remove();
+				$("#popup").bPopup().close();
+			}//삭제하기 버튼
+	    
+    	</script>
+	</th:block>
+
+	<!-- content  -->
+	<div layout:fragment="content">
+  		<div id="container">
+			<div id="title">
+				<span>육아수첩</span>
+			</div>
+			<div id="title_border"></div>
+			<div id="main">
+				 <div id='external-events'>
+					 <h4>멍냥루틴</h4>
+					 <div id='drag_list'>
+						 <div class='fc-event todolist'>
+							 <div class='fc-event-main'> ✔ 목욕하는 날</div>
+						</div>
+						<div class='fc-event todolist'>
+							<div class='fc-event-main'> ✔ 발톱 깎는 날</div>
+						</div>
+						<div class='fc-event todolist'>
+							<div class='fc-event-main'> ✔ 사상충 약먹이는 날</div>
+						</div>
+						<div class='fc-event todolist'>
+							<div class='fc-event-main'> ✔ 귓청소하는 날</div>
+						</div>
+					 </div>
+					 <p>
+						 <input type='checkbox' id='drop-remove' />
+						 <label for='drop-remove'>remove after drop</label>
+					 </p>
+				 </div>
+				<div id="calendar">
+				</div>
+				
+				<div id="popup">
+				</div>
+				
+				<div id="today_diary">
+					<div id="diary">
+							  	<div id="today_date">
+								</div>
+							  	<input type="hidden" id="start_date">
+								<input type="hidden" id="end_date">
+								<div id="diary_text">
+									<div id="diary_title_div">
+										<input type = "text" id = "diary_title" placeholder="title">
+									</div>
+									<div id="diary_content">
+										<textarea id = "diary_content_area" placeholder="오늘 하루를 기록해주세요"></textarea>
+										<button id="save_btn" onclick="save_diary()">작성하기</button>
+									</div>
+								</div>
+							</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</html>

@@ -18,43 +18,104 @@
 
     <div id="main_notice">
         <div id="notice_search">
-            <h2 id="notice_title">공지사항</h2>
+
             <div id="search_input_div"><input type="text" id="search_input_input" placeholder="검색"/></div>
             <div><a href="/notice/new">글쓰기</a></div>
         </div>
 
-                <div id="notice_content">
-                    <table id="notice_table">
-                        <tr><th>전체</th><th>제목</th><th>날짜</th> </tr>
-                        <!-- 공지사항 최상단 중요 -->
-                        <th:block th:each = "notice, status:${notices.getContent()}">
-                            <a th:href="'/notice/' + ${notice.id}}">
-                                <tr><td>[[${notice.noticeTitle}]]</td><td>[[${notice.noticeContent}]]</td><td>[[${notice.regTime}]]</td></tr>
-
-                            </a>
-
-<!--                </th:block>-->
-<!--&lt;!&ndash;                <tr class="important_tr"><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;-->
-<!--&lt;!&ndash;                <tr class="important_tr"><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;-->
-<!--&lt;!&ndash;                <tr class="important_tr"><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;-->
-<!--&lt;!&ndash;                &lt;!&ndash; 공지사항 일반&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;-->
-<!--&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;-->
-<!--&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;-->
-<!--&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;-->
-<!--&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;-->
-<!--&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;-->
-<!--&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;-->
-<!--&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;-->
-<!--&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;-->
-<!--&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;-->
-<!--&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;-->
-<!--&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;-->
-<!--            </table>-->
-<!--            <div id="count"></div>-->
+<!--                <div id="notice_content">-->
+<!--                    <table id="notice_table">-->
+<!--                        <tr><th>전체</th><th>제목</th><th>날짜</th> </tr>-->
+<!--                        &lt;!&ndash; 공지사항 최상단 중요 &ndash;&gt;-->
+<!--                        <th:block th:each = "notice, status:${notices.getContent()}">-->
+<!--                            <a th:href="'/notice/' + ${notice.noticeId}}">-->
+<!--                                <tr><td>[[${notice.noticeTitle}]]</td><td>[[${notice.noticeContent}]]</td><td>[[${notice.regTime}]]</td></tr>-->
+<!--                            </a>-->
+<!--                        </th:block>-->
+<!--                    </table>-->
+<!--&lt;!&ndash;                </th:block>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <tr class="important_tr"><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <tr class="important_tr"><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <tr class="important_tr"><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                &lt;!&ndash; 공지사항 일반&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <tr><td>공지</td><td>시스템 개편사항</td><td>2023.08.07</td></tr>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            </table>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div id="count"></div>&ndash;&gt;-->
 <!--        </div>-->
+        <div id ="notice_content">
+        <form th:action="@{'/admin/notice/' + ${notices.number}}" role="form" method="get" th:object="${notices}">
+            <div class="notice_search" th:object="${noticeSearchDTO}">
+                <h2 id="notice_title">공지사항</h2>
+                <select th:field="*{noticeKind}" class="form-control" style="width:auto;">
+                    <option value="ANNOUNCEMENT">공지</option>
+                    <option value="SYSTEM">시스템</option>
+                    <option value="SERVICE">서비스</option>
+                    <option value="EVENT">이벤트</option>
+                </select>
+                <select th:field="*{searchBy}" class="form-control" style="width:auto;">
+                    <option value="noticeTitle">제목</option>
+                    <option value="createdBy">등록자</option>
+                </select>
+                <input th:field="*{searchQuery}" type="text" class="search_input_input" placeholder="검색">
+                <button id="searchBtn" type="submit" class="btn btn-primary">검색</button>
+            </div>
+            <table class="notice_table">
+                <thead>
+                <tr>
+                    <td>카테고리</td>
+                    <td>제목</td>
+                    <td>등록자</td>
+                    <td>등록일</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="notice, status: ${notices.getContent()}">
+                    <td th:text="${notice.noticeKind}"></td>
+                    <td>
+                        <a th:href="'/admin/notice/'+${notice.noticeId}" th:text="${notice.noticeTitle}"></a>
+                    </td>
+                    <td th:text="${item.createBy}"></td>
+                    <td th:text="${item.regTime}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div th:with="start=${(notices.number/maxPage)*maxPage + 1}, end=(${(notices.totalPages == 0) ? 1 : (start + (maxPage - 1) < notices.totalPages ? start + (maxPage - 1) : notices.totalPages)})" >
+                <ul class="pagination justify-content-center">
+
+                    <li class="page-item" th:classappend="${notices.first}?'disabled'">
+                        <a th:onclick="'javascript:page(' + ${notices.number - 1} + ')'" aria-label='Previous' class="page-link">
+                            <span aria-hidden='true'>Previous</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${notices.number eq page-1}?'active':''">
+                        <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
+                    </li>
+
+                    <li class="page-item" th:classappend="${notices.last}?'disabled'">
+                        <a th:onclick="'javascript:page(' + ${items.number + 1} + ')'" aria-label='Next' class="page-link">
+                            <span aria-hidden='true'>Next</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
 
 
+        </form>
+        </div>
 
     </div>
 </th:block>

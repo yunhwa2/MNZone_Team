@@ -1,9 +1,9 @@
 
 #main_div{
 	background-color:#fedcda;
-	max-height:1300px;
+	max-height:1200px;
 	width:100%;
-	max-width:1300px;
+	max-width:1400px;
 	margin:0px auto;
 	display:flex;
 	flex-wrap:wrap;		
@@ -21,49 +21,50 @@
 	color:#353535;
 }
 .main_border{
-	height:350px;
-	width:350px;
+	height:330px;
+	width:330px;
   	border-radius: 20px 60px 100px 140px;
 	background-color:white;
-	margin:30px 0px;
-	margin-left:125px;
+	margin:33px 0px;
+	margin-left:105px;
 }
 #information_edit_img{
-	height: 295px;
-    width: 295px;
-    margin: 10px 25px 5px 25px;
+	height: 230px;
+    width: 230px;
+    margin: 7px 21px 0px 25px;
 }
 #information_text{
-	font-size:31px;
+	font-size:33px;
 	font-family: 'Black Han Sans', sans-serif;	
 	margin-top:10px;
 }
 #reservation_img{
-	height:225px;
-	width:350px;
-	margin:47px 27px;	
+	height:206px;
+	width:261px;
+	margin:13px 0px 29px 5px;
 }
 #reservation_text{
-	font-size:30px;
+	font-size:33px;
 	font-family: 'Black Han Sans', sans-serif;
 	margin:0px;	
 }
 #my_writing_img{
-	height:320px;
-    width:320px;
+	height:253px;
+    width:280px;
+    margin:-3px 0px -4px 0px;
 }
 #my_writing_text{
-	font-size:30px;
+	font-size:33px;
 	font-family: 'Black Han Sans', sans-serif;
 	margin:0px;	
 }
 #mypet1_img{
-	height:235px;
-    width:348px;
-    margin:37px 25px;
+	height:208px;
+    width:235px;
+    margin:15px 0px 11px 26px;
 }
 #mypet1_text{
-	font-size:31px;
+	font-size:33px;
 	font-family: 'Black Han Sans', sans-serif;	
 	margin-top:10px;
 }

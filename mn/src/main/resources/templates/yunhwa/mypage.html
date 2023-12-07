@@ -2,17 +2,18 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="~{layouts/layout1}">
 
-<title>멍냥Zone : 마이페이지</title>
+	<title>멍냥Zone : 마이페이지</title>
 
-<!-- 사용자 CSS 추가 -->
-<th:block layout:fragment="css">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/mypage.css}">
-</th:block>
+	<!--  CSS  -->
+	<th:block layout:fragment="css">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/mypage.css}">
+	</th:block>
+	<!-- script  -->
+	<th:block layout:fragment="script">
+	</th:block>
 
-<th:block layout:fragment="script">
-</th:block>
-
-<div layout:fragment="content">
+	<!-- content  -->
+	<div layout:fragment="content">
 		<div id="main">
 			<div id="main_div">
 				<div class="main_border">
@@ -25,13 +26,13 @@
 				</div>
 				<div class="main_border">
 					<a href = ""><img id="my_writing_img" th:src="@{/img/footprint.png}" alt="발자국 이미지"></a>
-					<p id="my_writing_text"><a href = "">내가 쓴 글보기</a></p> 
-				</div>	
+					<p id="my_writing_text"><a href = "">내가 쓴 글보기</a></p>
+				</div>
 				<div class="main_border">
 					<a href="/mypet.html"><img id="mypet1_img" th:src="@{/img/pet_ImgAddIcon.png}" alt="반려동물 이미지 추가 버튼"></a>
 					<p id="mypet1_text"><a href="/mypet.html">반려동물 등록하기</a></p>
 				</div>
 			</div>
 		</div>
-</div>
+	</div>
 </html>
