@@ -1,6 +1,8 @@
 package com.mn.entity;
 
 import com.mn.constant.MyPetCategory;
+import com.mn.constant.MyPetGender;
+import com.mn.constant.MyPetNeuter;
 import com.mn.seoha.dto.MemberFormDTO;
 import com.mn.yunhwa.dto.MyPetFormDTO;
 import lombok.Getter;
@@ -8,7 +10,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 @Entity
 @Table(name="mypet")
@@ -24,25 +27,28 @@ public class MyPet {
     @Column(nullable = false, length = 50)
     private String name;
 
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private MyPetCategory myPetCategory;
 
     @Column(nullable = false)
-    private LocalDateTime birth;
+    private LocalDate birth;
 
     @Column(nullable = false)
     private String weight;
 
     @Column(columnDefinition = "VARCHAR(10) NOT NULL")
-    private boolean gender;
+    @Enumerated(EnumType.STRING)
+    private MyPetGender myPetGender;
 
     @Column(columnDefinition = "VARCHAR(10) NOT NULL")
-    private boolean neuterIsYn;
+    @Enumerated(EnumType.STRING)
+    private MyPetNeuter myPetNeuter;
 
     @Column(nullable = false)
     private String kind;
 
-    @JoinColumn(name = "member_code")
+    @JoinColumn(name = "member_code",nullable = false)
     @ManyToOne
     private Member member;
 
@@ -50,10 +56,10 @@ public class MyPet {
         MyPet myPet = new MyPet();
         myPet.setMyPetCategory(myPetFormDTO.getMyPetCategory());
         myPet.setName(myPetFormDTO.getName());
-        myPet.setBirth(myPetFormDTO.getBirth());
+        myPet.setBirth(myPetFormDTO.getBirth().toLocalDate());
         myPet.setWeight(myPetFormDTO.getWeight());
-        myPet.setGender(myPetFormDTO.isGender());
-        myPet.setNeuterIsYn(myPetFormDTO.isNeuterIsYn());
+        myPet.setMyPetGender(myPetFormDTO.getMyPetGender());
+        myPet.setMyPetNeuter(myPetFormDTO.getMyPetNeuter());
 
         return myPet;
     }

@@ -1,6 +1,8 @@
 package com.mn.yunhwa.dto;
 
 import com.mn.constant.MyPetCategory;
+import com.mn.constant.MyPetGender;
+import com.mn.constant.MyPetNeuter;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
@@ -26,10 +28,10 @@ public class MyPetFormDTO {
     private String weight;
 
     @NotEmpty
-    private boolean gender;
+    private MyPetGender myPetGender;
 
     @NotEmpty
-    private boolean neuterIsYn;
+    private MyPetNeuter myPetNeuter;
 
     @NotEmpty
     private String kind;
