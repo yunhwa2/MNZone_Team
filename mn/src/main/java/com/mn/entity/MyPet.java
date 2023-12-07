@@ -1,6 +1,8 @@
 package com.mn.entity;
 
 import com.mn.constant.MyPetCategory;
+import com.mn.seoha.dto.MemberFormDTO;
+import com.mn.yunhwa.dto.MyPetFormDTO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -43,4 +45,16 @@ public class MyPet {
     @JoinColumn(name = "member_code")
     @ManyToOne
     private Member member;
+
+    public static MyPet createMyPet(MyPetFormDTO myPetFormDTO, MemberFormDTO memberFormDTO){
+        MyPet myPet = new MyPet();
+        myPet.setMyPetCategory(myPetFormDTO.getMyPetCategory());
+        myPet.setName(myPetFormDTO.getName());
+        myPet.setBirth(myPetFormDTO.getBirth());
+        myPet.setWeight(myPetFormDTO.getWeight());
+        myPet.setGender(myPetFormDTO.isGender());
+        myPet.setNeuterIsYn(myPetFormDTO.isNeuterIsYn());
+
+        return myPet;
+    }
 }
