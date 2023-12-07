@@ -31,7 +31,7 @@ public class MemberController {
 
         MemberFormDTO memberFormDTO = new MemberFormDTO();
         model.addAttribute("memberFormDTO",memberFormDTO);
-        return "members/join";
+        return "members/memberForm";
     }
 
     @PostMapping(value = "/register")
@@ -42,7 +42,7 @@ public class MemberController {
         try{
             if(bindingResult.hasErrors()){
                 System.err.println("mainhomeerr");
-                return "members/join";
+                return "members/memberForm";
             }
             Member member = Member.createMember(memberFormDTO,passwordEncoder);
             System.err.println(member);
