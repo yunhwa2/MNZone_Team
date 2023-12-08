@@ -33,13 +33,15 @@ public class NoticeUserController {
         System.err.println("getmapping notice");
         Pageable pageable = PageRequest.of(page.isPresent()?page.get():0,15);
 
+//        Page<Notice> notices
+//                =noticeService.getNoticePage2(noticeSearchDTO,pageable);
         Page<NoticeListFormDTO> notices
                 =noticeService.getNoticePage(noticeSearchDTO,pageable);
 
         model.addAttribute("notices",notices);
         model.addAttribute("noticeSearchDTO",noticeSearchDTO);
         model.addAttribute("maxPage",5);
-        System.out.println("notices : "+notices.getTotalElements());
+//        System.out.println("notices : "+notices.getTotalElements());
         return "Jiseong/notice/noticeList";
     }
 }

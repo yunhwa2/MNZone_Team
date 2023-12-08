@@ -22,8 +22,8 @@ public class Notice extends BaseEntity{
 
     private String noticeTitle;
     private String noticeContent;
-    @ManyToOne
-    @JoinColumn(name = "member_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_code")
     private Member member;
     private NoticeKind noticeKind;
     private NoticeStatus noticeStatus;

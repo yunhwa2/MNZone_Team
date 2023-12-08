@@ -14,7 +14,7 @@ import java.time.LocalDate;
 
 
 @Entity
-@Table(name="mypet")
+@Table(name="myPet")
 @Getter @Setter
 @ToString
 public class MyPet {
@@ -48,8 +48,9 @@ public class MyPet {
     @Column(nullable = false)
     private String kind;
 
+
     @JoinColumn(name = "member_code",nullable = false)
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
     public static MyPet createMyPet(MyPetFormDTO myPetFormDTO, MemberFormDTO memberFormDTO){

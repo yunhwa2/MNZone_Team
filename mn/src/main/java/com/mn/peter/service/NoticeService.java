@@ -41,6 +41,13 @@ public class NoticeService {
         return noticeRepository.getNoticePage(noticeSearchDTO,pageable);
 
     }
+    @Transactional(readOnly = true)
+    public Page<Notice> getNoticePage2(NoticeSearchDTO noticeSearchDTO,
+                                                 Pageable pageable){
+        System.err.println("NoticeService.getNoticePage");
+        return noticeRepository.getNoticePage2(noticeSearchDTO,pageable);
+
+    }
 
 
 }
