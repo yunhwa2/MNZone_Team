@@ -60,13 +60,14 @@ public class NoticeRepositoryCustomImpl implements NoticeRepositoryCustom{
 
         List<NoticeListFormDTO> content = queryFactory.select(
                 new QNoticeListFormDTO(
-                        notice.noticeId,
                         notice.noticeTitle,
                         notice.noticeContent,
                         notice.createBy,
                         notice.regTime)
                 )
                 .from(notice)
+                .where(searchNoticeKind(noticeSearchDTO.getNoticeSearchKind()),
+                        searchByLike(noticeSearchDTO.getNoticeSearchBy(), noticeSearchDTO.getNoticeSearchQuery()))
                 .orderBy(QNotice.notice.noticeId.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -79,8 +80,7 @@ public class NoticeRepositoryCustomImpl implements NoticeRepositoryCustom{
                         searchByLike(noticeSearchDTO.getNoticeSearchBy(), noticeSearchDTO.getNoticeSearchQuery()))
                 .fetchOne();
 
-
-        return new PageImpl<>(content,pageable,total);
+        return null;
     }
     @Override
     public Page<Notice> getNoticePage2(NoticeSearchDTO noticeSearchDTO, Pageable pageable) {
@@ -99,7 +99,7 @@ public class NoticeRepositoryCustomImpl implements NoticeRepositoryCustom{
                 .where(searchNoticeKind(noticeSearchDTO.getNoticeSearchKind()),
                         searchByLike(noticeSearchDTO.getNoticeSearchBy(), noticeSearchDTO.getNoticeSearchQuery()))
                 .fetchOne();
-
+        System.err.println("total : " +total);
         return new PageImpl<>(content,pageable,total);
     }
 }

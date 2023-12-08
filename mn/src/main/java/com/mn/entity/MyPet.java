@@ -20,22 +20,22 @@ import java.time.LocalDate;
 public class MyPet {
 
     @Id
-    @Column(name="pet_code")
+    @Column(name="my_pet_code")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long petCode;
+    private Long myPetCode;
 
     @Column(nullable = false, length = 50)
-    private String name;
+    private String myPetName;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private MyPetCategory myPetCategory;
 
     @Column(nullable = false)
-    private LocalDate birth;
+    private LocalDate myPetBirth;
 
     @Column(nullable = false)
-    private String weight;
+    private String myPetWeight;
 
     @Column(columnDefinition = "VARCHAR(10) NOT NULL")
     @Enumerated(EnumType.STRING)
@@ -46,21 +46,22 @@ public class MyPet {
     private MyPetNeuter myPetNeuter;
 
     @Column(nullable = false)
-    private String kind;
+    private String MyPetKind;
 
 
     @JoinColumn(name = "member_code",nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Member member;
 
-    public static MyPet createMyPet(MyPetFormDTO myPetFormDTO, MemberFormDTO memberFormDTO){
+    public static MyPet createMyPet(MyPetFormDTO myPetFormDTO){
         MyPet myPet = new MyPet();
         myPet.setMyPetCategory(myPetFormDTO.getMyPetCategory());
-        myPet.setName(myPetFormDTO.getName());
-        myPet.setBirth(myPetFormDTO.getBirth().toLocalDate());
-        myPet.setWeight(myPetFormDTO.getWeight());
+        myPet.setMyPetName(myPetFormDTO.getMyPetName());
+        myPet.setMyPetBirth(myPetFormDTO.getMyPetBirth());
+        myPet.setMyPetWeight(myPetFormDTO.getMyPetWeight());
         myPet.setMyPetGender(myPetFormDTO.getMyPetGender());
         myPet.setMyPetNeuter(myPetFormDTO.getMyPetNeuter());
+
 
         return myPet;
     }

@@ -6,12 +6,12 @@
 
 	<!-- CSS  -->
 	<th:block layout:fragment="css">
-		<link rel="stylesheet" type="text/css" th:href="@{/css/addMyPet.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/MyPet.css}">
 	</th:block>
 
 	<!-- script  -->
 	<th:block layout:fragment="script">
-		<script type="text/javascript" th:src="@{/js/addMyPet.js}"></script>
+		<script type="text/javascript" th:src="@{/js/MyPet.js}"></script>
 	</th:block>
 
 	<!-- content  -->
@@ -30,23 +30,25 @@
 					<input id="mypet_img" type="file">
 					<button id="img-button" onclick="onClickUpload();"><img th:src="@{/img/pet_ImgAddIcon.png}" alt=""><br>사진 추가하기</button>
 				</div>
-				<form id="main" action="hello" onsubmit="return checknull();">
+				<form id="main" action="hello" onsubmit="return checknull();" method="post" th:object="${MyPetFormDTO}">
 					<table>
 						<tr>
 							<td class="sub_title">반려동물</td>
 							<td>
-								<input type="checkbox" id="dog_check" value="dog" name="dccheck" onclick="orCheck(this,'dccheck')">
+								<input th:field="*{myPetCategory}" type="checkbox" id="dog_check" value="DOG" name="dccheck" onclick="orCheck(this,'dccheck')">
 								<label>강아지</label>
 							</td>
 							<td>
-								<input type="checkbox" id="cat_check" value="cat" name="dccheck" onclick="orCheck(this,'dccheck')">
+								<input th:field="*{myPetCategory}" type="checkbox" id="cat_check" value="CAT" name="dccheck" onclick="orCheck(this,'dccheck')">
 								<label>고양이</label>
 							</td>
 						</tr>
 						<tr>
 							<td class="sub_title">이름</td>
 							<td>
-								<input type="text" id="pet_name" placeholder="이름을 입력하세요" onclick="nameNotEmpty()">
+								<input th:field="*{myPetName}" type="text" id="pet_name" placeholder="이름을 입력하세요" onclick="nameNotEmpty()">
+								<p th:if="${#fields.hasErrors('myPetName')}"
+								   th:errors="*{myPetName}" class="fieldError" >Incorrect data</p>
 							</td>
 							<td>
 								<span id="name_lb"></span>
@@ -56,6 +58,8 @@
 							<td class="sub_title">생년월일</td>
 							<td >
 								<input type="text" id="birthday_input" placeholder="2023-01-01 형식으로 입력해주세요" maxlength="10">
+								<p th:if="${#fields.hasErrors('myPetBirth')}"
+								   th:errors="*{myPetBirth}" class="fieldError" >Incorrect data</p>
 							</td>
 							<td>
 								<span id="birthday_input_lb"></span>
