@@ -110,9 +110,6 @@
 								<td colspan="3">
 									<input th:field="*{email}" type="text" class="t_member_input" id="t_member_myemail"
 										   placeholder="이메일 주소">
-									<label id="t_member_emailError" class="error"></label>
-									<p th:if="${#fields.hasErrors('email')}"
-									   th:errors="*{email}" class="fieldError">Incorrect data</p>
 								</td>
 							</tr>
 							<tr>

@@ -493,10 +493,6 @@ label{cursor:pointer}
     background-color: #fedcda;
 }
 
-#logimg{
-	cursor:pointer;
-}
-
 .oh{
 	overflow:hidden;
 }
@@ -504,6 +500,7 @@ label{cursor:pointer}
 	opacity:0.2;
 	background:gray;
 }
+
 #other{
 	width:5000px;
 	height:2000px;
@@ -512,14 +509,7 @@ label{cursor:pointer}
 	position:fixed;
 	z-index:10
 }
-#other{
-    width:100vw;
-    height:100vw;
-    opacity:0.6;
-    background:gray;
-    position:fixed;
-    z-index:10
- }
+
 
 #log_title{
 	width:100%;	
@@ -527,15 +517,6 @@ label{cursor:pointer}
   
 h4{
 	cursor:pointer;
-}
-
-#log_titleimg{
-	width: 550px;
-	height:240px;	
-	margin: 10px auto;
-	margin-top:70px;
-	margin-right:10px;
-	padding:24px;
 }
 
 #log_titleimg{
@@ -551,15 +532,7 @@ h4{
 	width : 300px;
 	padding: 10px 40px;
 	margin: 0pX auto;
-	height:300px;
-	background-color:white;
-}
-
-#log_box{
-	width : 300px;
-	padding: 10px 40px;
-	margin: 10pX auto;
-	height:490px;
+	height:400px;
 	background-color:white;
 }
 
@@ -572,6 +545,7 @@ h4{
     border: 1px solid #606060;
     border-radius: 5px;
 }
+
 #log_btlog{
 	width: 100%;
     padding: 12px;
@@ -623,23 +597,50 @@ h4{
 	height:780px;
 	border-radius:10px;
 }
-#logking{
-    z-index:11;
-    position:fixed;
-    top:5vw;
-    right:35vw;
-    background:white;
-    border-radius:60px
-}
 
+.logking:focus {
+    border-color:#808080;
+}
  ----------------------------returnflase클래스 정의, 정규표현식을 불만족할 시 시각적 효과 !important로 덧씌우기 {}
  .returnfalse{
  	border:2px solid red !important;
  }
- 
+
  
 
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
 
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
 
 
 

@@ -25,7 +25,6 @@ public class MemberFormDTO {
     @NotBlank
     private String nickName;
 
-    @NotEmpty
     @Email
     private String email;
 
