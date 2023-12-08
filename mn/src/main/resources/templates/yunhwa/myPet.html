@@ -6,12 +6,12 @@
 
 	<!-- CSS  -->
 	<th:block layout:fragment="css">
-		<link rel="stylesheet" type="text/css" th:href="@{/css/MyPet.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/myPet.css}">
 	</th:block>
 
 	<!-- script  -->
 	<th:block layout:fragment="script">
-		<script type="text/javascript" th:src="@{/js/MyPet.js}"></script>
+		<script type="text/javascript" th:src="@{/js/myPet.js}"></script>
 	</th:block>
 
 	<!-- content  -->
@@ -47,32 +47,34 @@
 							<td class="sub_title">이름</td>
 							<td>
 								<input th:field="*{myPetName}" type="text" id="pet_name" placeholder="이름을 입력하세요" onclick="nameNotEmpty()">
-								<p th:if="${#fields.hasErrors('myPetName')}"
-								   th:errors="*{myPetName}" class="fieldError" >Incorrect data</p>
 							</td>
 							<td>
 								<span id="name_lb"></span>
+								<p th:if="${#fields.hasErrors('myPetName')}"
+								   th:errors="*{myPetName}" class="fieldError" >Incorrect data</p>
 							</td>
 						</tr>
 						<tr>
 							<td class="sub_title">생년월일</td>
 							<td >
-								<input type="text" id="birthday_input" placeholder="2023-01-01 형식으로 입력해주세요" maxlength="10">
-								<p th:if="${#fields.hasErrors('myPetBirth')}"
-								   th:errors="*{myPetBirth}" class="fieldError" >Incorrect data</p>
+								<input th:field="*{myPetBirth}" type="text" id="birthday_input" placeholder="2023-01-01 형식으로 입력해주세요" maxlength="10">
 							</td>
 							<td>
 								<span id="birthday_input_lb"></span>
+								<p th:if="${#fields.hasErrors('myPetBirth')}"
+								   th:errors="*{myPetBirth}" class="fieldError" >Incorrect data</p>
 							</td>
 						</tr>
 						<tr>
 							<td class="sub_title">몸무게</td>
 							<td>
-								<input type="text" id="weight_input" placeholder="예) 3.25">
+								<input th:field="*{myPetWeight}" type="text" id="weight_input" placeholder="예) 3.25" >
 								<span> kg</span>
 							</td>
 							<td>
 								<span id="weight_input_lb"></span>
+								<p th:if="${#fields.hasErrors('myPetWeight')}"
+								   th:errors="*{myPetWeight}" class="fieldError" >Incorrect data</p>
 							</td>
 						</tr>
 						<tr>
@@ -81,29 +83,29 @@
 						<tr>
 							<td class="sub_title">성별</td>
 							<td>
-								<input type="checkbox" value="M" name="genderchk" onclick="orCheck(this,'genderchk')">
+								<input th:field="*{myPetGender}" type="checkbox" value="M" name="genderchk" onclick="orCheck(this,'genderchk')">
 								<label>남아</label>
 							</td>
 							<td>
-								<input type="checkbox" value="F" name="genderchk" onclick="orCheck(this,'genderchk')">
+								<input th:field="*{myPetGender}" type="checkbox" value="F" name="genderchk" onclick="orCheck(this,'genderchk')">
 								<label>여아</label>
 							</td>
 						</tr>
 						<tr>
 							<td class="sub_title">중성화</td>
 							<td>
-								<input type="checkbox" value="neuterYes"name="neuterchk" onclick="orCheck(this,'neuterchk')">
+								<input th:field="*{myPetNeuter}" type="checkbox" value="neuterYes"name="neuterchk" onclick="orCheck(this,'neuterchk')">
 								<label>했어요</label>
 							</td>
 							<td>
-								<input type="checkbox" value="neuterNo" name="neuterchk" onclick="orCheck(this,'neuterchk')">
+								<input th:field="*{myPetNeuter}" type="checkbox" value="neuterNo" name="neuterchk" onclick="orCheck(this,'neuterchk')">
 								<label>안했어요</label>
 							</td>
 						</tr>
 						<tr id="dogkind_box">
 							<td class="sub_title">견종 선택</td>
 							<td>
-								<select id="dogkind">
+								<select th:field="*{myPetKind}" id="dogkind">
 									<option value="" disabled selected>선택해주세요</option>
 									<option value="GoldenRetriever">
 										골든리트리버
@@ -172,7 +174,7 @@
 						<tr id="catkind_box">
 							<td class="sub_title">묘종 선택</td>
 							<td>
-								<select id="catkind">
+								<select th:field="*{myPetKind}" id="catkind">
 									<option value="" disabled selected>선택해주세요</option>
 									<option value="NorwegianForest)">
 										노르웨이숲
@@ -234,7 +236,7 @@
 								</select>
 							</td>
 							<td>
-								<input type="text" class="selfWrite"  id="cat_write" placeholder="직접입력하기">
+								<input th:field="*{myPetKind}" type="text" class="selfWrite"  id="cat_write" placeholder="직접입력하기">
 								<label id="cat_write_lb"></label>
 							</td>
 						</tr>

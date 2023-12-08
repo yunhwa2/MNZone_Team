@@ -10,7 +10,7 @@ public class MypageController {
     @GetMapping(value="/mypage")
     public String myPage(){
 
-        return "yunhwa/mypage";
+        return "yunhwa/myPage";
     }
 
 }

@@ -522,16 +522,16 @@ label{cursor:pointer}
  }
 
 #log_title{
-	width:100%;	
+	width:100%;
 }
-  
+
 h4{
 	cursor:pointer;
 }
 
 #log_titleimg{
 	width: 550px;
-	height:240px;	
+	height:240px;
 	margin: 10px auto;
 	margin-top:70px;
 	margin-right:10px;
@@ -636,8 +636,8 @@ h4{
  .returnfalse{
  	border:2px solid red !important;
  }
- 
- 
+
+
 
 
 
