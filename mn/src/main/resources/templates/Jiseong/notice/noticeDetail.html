@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layouts/layout1}"
+>
+<th:block layout:fragment="css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/notice.css}"/>
+</th:block>
+<th:block layout:fragment="script">
+
+    <script th:inline="javascript">
+
+        $(document).ready(function(){
+            $("#searchBtn").on("click",function(e) {
+                e.preventDefault();
+                page(0);
+            });
+        });
+
+        function page(page){
+            var searchDateType = $("#searchDateType").val();
+            var noticeSearchKind = $("#noticeSearchKind").val();
+            var searchBy = $("#searchBy").val();
+            var searchQuery = $("#searchQuery").val();
+
+            location.href="/notice/list/" + page + "?searchDateType=" + searchDateType
+            + "&noticeSearchKind=" + noticeSearchKind
+            + "&searchBy=" + searchBy
+            + "&searchQuery=" + searchQuery;
+        }
+
+    </script>
+</th:block>
+
+
+
+
+<th:block layout:fragment="content">
+
+
+</th:block>
+</html>

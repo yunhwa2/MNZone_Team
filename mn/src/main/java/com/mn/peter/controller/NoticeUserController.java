@@ -31,6 +31,7 @@ public class NoticeUserController {
                          Model model
                          ){
         System.err.println("getmapping notice");
+        System.err.println("noticeSearchDTO.query : " + noticeSearchDTO.getNoticeSearchBy()+noticeSearchDTO.getNoticeSearchKind()+noticeSearchDTO.getNoticeSearchQuery());
         Pageable pageable = PageRequest.of(page.isPresent()?page.get():0,15);
 
 //        Page<Notice> notices
@@ -43,5 +44,12 @@ public class NoticeUserController {
         model.addAttribute("maxPage",5);
 //        System.out.println("notices : "+notices.getTotalElements());
         return "Jiseong/notice/noticeList";
+    }
+
+    @GetMapping(value = "/detail/{noticeId}")
+    public String noticeDetail(Model model,
+                               @PathVariable("noticeId") Long noticeId){
+
+        return "Jiseong/notice/noticeDetail";
     }
 }
