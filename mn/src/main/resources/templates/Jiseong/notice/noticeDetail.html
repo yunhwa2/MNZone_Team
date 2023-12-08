@@ -11,28 +11,20 @@
 
     <script th:inline="javascript">
 
-        $(document).ready(function(){
-            $("#searchBtn").on("click",function(e) {
-                e.preventDefault();
-                page(0);
-            });
-        });
 
-        function page(page){
-            var searchDateType = $("#searchDateType").val();
-            var noticeSearchKind = $("#noticeSearchKind").val();
-            var searchBy = $("#searchBy").val();
-            var searchQuery = $("#searchQuery").val();
-
-            location.href="/notice/list/" + page + "?searchDateType=" + searchDateType
-            + "&noticeSearchKind=" + noticeSearchKind
-            + "&searchBy=" + searchBy
-            + "&searchQuery=" + searchQuery;
-        }
 
     </script>
 </th:block>
-
+    <div id ="noticeDetailWrapper">
+        <div id="noticeDetailTitle"><h2 th:text="${noticeDetail.noticeTitle}"></h2></div>
+        <div id="noticeDetailSubTitle">
+            <span th:text="noticeDetail.noticeRegTime"></span>
+            <span th:text="${noticeDetail.noticeKind.displayValue}"></span>
+        </div>
+        <div id="noticeDetailContent">
+            <div class="noticeDetailRealContent" th:text="noticeDetail.noticeContent"></div>
+        </div>
+    </div>
 
 
 

@@ -2,6 +2,7 @@ package com.mn.peter.service;
 
 import com.mn.constant.NoticeStatus;
 import com.mn.entity.Notice;
+import com.mn.peter.dto.NoticeDetailFormDTO;
 import com.mn.peter.dto.NoticeFormDTO;
 import com.mn.peter.dto.NoticeListFormDTO;
 import com.mn.peter.dto.NoticeSearchDTO;
@@ -23,6 +24,7 @@ public class NoticeService {
         System.err.println("noticeService.saveNotice 진입");
         System.err.println("noteiceFormDTO.gettitle : " + noticeFormDTO.getNoticeTitle());
         Notice notice = new Notice();
+        System.err.println("saveNotice.noticeFormDTO.getNoticeContent : " + noticeFormDTO.);
         notice.setNoticeContent(noticeFormDTO.getNoticeContent());
         notice.setNoticeTitle(noticeFormDTO.getNoticeTitle());
         notice.setMember(memberRepository.findById(noticeFormDTO.getNoticeAuthor()));
@@ -49,5 +51,24 @@ public class NoticeService {
 
     }
 
+    @Transactional(readOnly = true)
+    public NoticeDetailFormDTO getNoticeDetail(Long id){
+        NoticeDetailFormDTO noticeDetailFormDTO = new NoticeDetailFormDTO();
+        try{
+            Notice notice = noticeRepository.findByNoticeId(id);
 
+            noticeDetailFormDTO.setNoticeId(notice.getNoticeId());
+            noticeDetailFormDTO.setNoticeTitle(notice.getNoticeTitle());
+
+
+
+            noticeDetailFormDTO.setNoticeContent();
+            noticeDetailFormDTO.setNoticeKind(notice.getNoticeKind());
+            noticeDetailFormDTO.setNoticeRegTime(notice.getRegTime());
+        }catch (Exception e){
+            System.err.println("NoticeService.getNoticeDetail 중 예외 발생");
+            e.printStackTrace();
+        }
+        return noticeDetailFormDTO;
+    }
 }
