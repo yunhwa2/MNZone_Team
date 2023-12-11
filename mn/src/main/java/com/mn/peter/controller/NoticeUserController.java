@@ -1,6 +1,7 @@
 package com.mn.peter.controller;
 
 import com.mn.entity.Notice;
+import com.mn.peter.dto.NoticeDetailFormDTO;
 import com.mn.peter.dto.NoticeListFormDTO;
 import com.mn.peter.dto.NoticeSearchDTO;
 import com.mn.peter.service.NoticeService;
@@ -31,7 +32,6 @@ public class NoticeUserController {
                          Model model
                          ){
         System.err.println("getmapping notice");
-        System.err.println("noticeSearchDTO.query : " + noticeSearchDTO.getNoticeSearchBy()+noticeSearchDTO.getNoticeSearchKind()+noticeSearchDTO.getNoticeSearchQuery());
         Pageable pageable = PageRequest.of(page.isPresent()?page.get():0,15);
 
 //        Page<Notice> notices
@@ -50,6 +50,10 @@ public class NoticeUserController {
     public String noticeDetail(Model model,
                                @PathVariable("noticeId") Long noticeId){
 
+        noticeService.plusVisitCount(noticeId);
+
+        NoticeDetailFormDTO noticeDetailFormDTO = noticeService.getNoticeDetail(noticeId);
+        model.addAttribute("noticeDetailFormDTO", noticeDetailFormDTO);
         return "Jiseong/notice/noticeDetail";
     }
 }

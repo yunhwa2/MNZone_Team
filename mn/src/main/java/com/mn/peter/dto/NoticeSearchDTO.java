@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class NoticeSearchDTO {
     private String noticeSearchKind;
-    private String noticeSearchBy;
+//    private String noticeSearchBy;
     private String noticeSearchQuery="";
 }

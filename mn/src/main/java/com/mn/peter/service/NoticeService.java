@@ -1,11 +1,9 @@
 package com.mn.peter.service;
 
+import com.mn.config.ArrayListCustomForNoticeDetailFormList;
 import com.mn.constant.NoticeStatus;
 import com.mn.entity.Notice;
-import com.mn.peter.dto.NoticeDetailFormDTO;
-import com.mn.peter.dto.NoticeFormDTO;
-import com.mn.peter.dto.NoticeListFormDTO;
-import com.mn.peter.dto.NoticeSearchDTO;
+import com.mn.peter.dto.*;
 import com.mn.peter.repository.NoticeRepository;
 import com.mn.seoha.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,32 +12,51 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.TreeMap;
+
 @Service
 @RequiredArgsConstructor
 public class NoticeService {
     private final NoticeRepository noticeRepository;
     private final MemberRepository memberRepository;
+    private static TreeMap<Long,NoticeDetailPrevNextDTO> noticePrevNextMap = new TreeMap<>();
 
     public Notice saveNotice(NoticeFormDTO noticeFormDTO){
         System.err.println("noticeService.saveNotice 진입");
         System.err.println("noteiceFormDTO.gettitle : " + noticeFormDTO.getNoticeTitle());
         Notice notice = new Notice();
-        System.err.println("saveNotice.noticeFormDTO.getNoticeContent : " + noticeFormDTO.);
+        System.err.println("saveNotice.noticeFormDTO.getNoticeContent : " + noticeFormDTO.getNoticeContent());
         notice.setNoticeContent(noticeFormDTO.getNoticeContent());
         notice.setNoticeTitle(noticeFormDTO.getNoticeTitle());
         notice.setMember(memberRepository.findById(noticeFormDTO.getNoticeAuthor()));
         notice.setNoticeKind(noticeFormDTO.getNoticeKind());
         notice.setNoticeStatus(NoticeStatus.NORMAL);
+        notice.setNoticeVisitCount(0);
         notice.setMember(memberRepository.findById(noticeFormDTO.getNoticeAuthor()));
         System.out.println("notice.getTitle : " +notice.getNoticeTitle());
         System.out.println("notice.content : " +notice.getNoticeContent());
 
         return noticeRepository.save(notice);
     }
+    @Transactional
+    public void plusVisitCount(Long id){
+        Notice notice = noticeRepository.findByNoticeId(id);
+        notice.setNoticeVisitCount(notice.getNoticeVisitCount()+1);
+        noticeRepository.save(notice);
+    }
     @Transactional(readOnly = true)
     public Page<NoticeListFormDTO> getNoticePage(NoticeSearchDTO noticeSearchDTO,
                                                  Pageable pageable){
         System.err.println("NoticeService.getNoticePage");
+        List<NoticeDetailPrevNextDTO> list = noticeRepository.getNoticeDetailPrevNextDTOList(noticeSearchDTO);
+        for(NoticeDetailPrevNextDTO noticeDetailPrevNextDTO : list){
+            noticePrevNextMap.put(noticeDetailPrevNextDTO.getNoticeId(),noticeDetailPrevNextDTO);
+        }
+
+
         return noticeRepository.getNoticePage(noticeSearchDTO,pageable);
 
     }
@@ -51,20 +68,33 @@ public class NoticeService {
 
     }
 
+    public List methodForPrevNextFromDatabase(){
+        List<NoticeDetailPrevNextDTO> list = new ArrayList<>(3);
+        return list;
+    }
     @Transactional(readOnly = true)
     public NoticeDetailFormDTO getNoticeDetail(Long id){
         NoticeDetailFormDTO noticeDetailFormDTO = new NoticeDetailFormDTO();
+        int index = 0;
+
         try{
             Notice notice = noticeRepository.findByNoticeId(id);
-
             noticeDetailFormDTO.setNoticeId(notice.getNoticeId());
             noticeDetailFormDTO.setNoticeTitle(notice.getNoticeTitle());
-
-
-
-            noticeDetailFormDTO.setNoticeContent();
+            noticeDetailFormDTO.setNoticeVisitCount(notice.getNoticeVisitCount());
+            noticeDetailFormDTO.setNoticeContent(notice.getNoticeContent());
             noticeDetailFormDTO.setNoticeKind(notice.getNoticeKind());
+            noticeDetailFormDTO.setCreateBy(notice.getCreateBy());
             noticeDetailFormDTO.setNoticeRegTime(notice.getRegTime());
+
+            if(!noticePrevNextMap.firstKey().equals(id)){
+                noticeDetailFormDTO.setNextDTO(noticePrevNextMap.floorEntry(id-1).getValue());
+            }
+            if(!noticePrevNextMap.lastKey().equals(id)){
+                noticeDetailFormDTO.setPrevDTO(noticePrevNextMap.higherEntry(id).getValue());
+            }
+            System.err.println("getPrevDTO : " + noticeDetailFormDTO.getPrevDTO());
+            System.err.println("getNextDTO : " + noticeDetailFormDTO.getNextDTO());
         }catch (Exception e){
             System.err.println("NoticeService.getNoticeDetail 중 예외 발생");
             e.printStackTrace();
