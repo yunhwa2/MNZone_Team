@@ -28,7 +28,7 @@ public class HospitalImgService {
             e.printStackTrace();
             System.err.println("HospitalImg저장 중 예외 발생");
         }
-
+        return null;
     }
 
 
