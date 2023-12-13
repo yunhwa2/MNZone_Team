@@ -1,59 +1,5 @@
 @charset "UTF-8";
-body{
-	margin:0;
-	padding:0;
-}
 
-#header h1{
-	font-size: 55px;
-}
-#header h3{
-	min-width:75px;
-}
-
-#header{
-	background:white;
-	height:77px;
-	width:100%; 
-	position:sticky;
-	top:0px;
-	padding-top:20px;
-	border:2px solid rgb(231, 231, 231);
-	border-style:solid none;
-}
-#headerContent{
-	margin:0px auto; 
-	max-width:1200px;
-	display:flex; 
-	flex-flow:row nowrap;
-	justify-content:space-between;
-	height:67px;
-}
-#main_logo{
-    margin-top:-30px;
-	height:80px ;
-	width:100px;
-}
-
-
-#container{
-	height:1000px;
-}
-.head{
-	display:flex; 
-	flex-flow:row;
-}
-#head1{
-	display:flex;
-	flex-flow:row nowrap;
-}
-#head2{
-	justify-content: flex-end;
-	float:right;
-}
-#titleH4{
-	margin-right:30px;
-}
 
 #container1{
 	width:750px;

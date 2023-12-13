@@ -48,7 +48,6 @@ public class MyPet {
     @Column(nullable = false)
     private String MyPetKind;
 
-
     @JoinColumn(name = "member_code",nullable = false)
     @ManyToOne
     private Member member;

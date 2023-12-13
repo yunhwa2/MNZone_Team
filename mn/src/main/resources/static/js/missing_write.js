@@ -12,6 +12,8 @@ var cancel = document.getElementById("cancel")
 let nums = 9
 
 
+
+
 function onEditorFormSubmit(e) {
 
 if(confirm("저장하시겠습니까?")) {

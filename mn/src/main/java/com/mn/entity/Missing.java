@@ -1,4 +1,30 @@
 package com.mn.entity;
 
-public class Missing {
+import com.mn.constant.MissingKind;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="missing")
+@Getter @Setter
+@ToString
+public class Missing extends BaseEntity{
+
+    @Id
+    @Column(name = "missing_code")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long missingId;
+
+    private String missingTitle;
+
+    private String missingContent;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_code")
+    private Member member;
+
+    private MissingKind missingKind;
 }
