@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class MemberService implements UserDetailsService {
 
-    private  final MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
 
     public Member saveMember(Member member){
@@ -24,17 +24,12 @@ public class MemberService implements UserDetailsService {
     }
 
     private void validateDuplicateMember(Member member){
-//        if(null!=memberRepository.findById(member.getId())){
-//            System.out.println("null!=findById");
-//            throw new IllegalStateException("존재하는 이메일 입니다.");
-//        }
 
         Member findMember = memberRepository.findById(member.getId());
 
         if(findMember != null){
             throw new IllegalStateException("이미 가입된 회원입니다.");
         }
-
     }
 
 
@@ -42,9 +37,13 @@ public class MemberService implements UserDetailsService {
     public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
         System.err.println("Service.MemberService.loadUserByUsername");
         Member member = memberRepository.findById(id);
-        if(member ==null){
+        if(member == null){
             throw new UsernameNotFoundException(id);
         }
-        return User.builder().username(member.getId()).password(member.getPassword()).roles(member.getMemberRole().toString()).build();
+        return User.builder()
+                .username(member.getId())
+                .password(member.getPassword())
+                .roles(member.getMemberRole().toString())
+                .build();
     }
 }

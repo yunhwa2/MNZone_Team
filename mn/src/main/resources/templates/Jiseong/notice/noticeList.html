@@ -6,9 +6,13 @@
 >
 <th:block layout:fragment="css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/notice.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/memberForm.css}">
 </th:block>
-<th:block layout:fragment="script">
 
+<th:block layout:fragment="script">
+    <script type="text/javascript" th:src="@{/js/login.js}"/>
+    <script type="text/javascript" th:src="@{/js/memberForm.js}"/>
     <script th:inline="javascript">
 
         $(document).ready(function(){
@@ -29,6 +33,7 @@
             + "&searchBy=" + searchBy
             + "&searchQuery=" + searchQuery;
         }
+
 
     </script>
 </th:block>
@@ -116,4 +121,5 @@
 
     </div>
 </th:block>
+
 </html>
