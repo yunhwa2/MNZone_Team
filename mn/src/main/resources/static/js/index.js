@@ -359,10 +359,10 @@ const other=document.getElementsByClassName("other")
 const log_log=document.getElementsByClassName("log_log")
 const t_member_input=document.getElementsByClassName("t_member_input")
 
-function login(){
+function login1(){
 	log.classList.remove('blind')
 	other.classList.remove('blind')
-	document.querySelector('body').classList.add("oh")
+//	document.querySelector('body').classList.add("oh")
 
 }
 function logout(){
@@ -370,7 +370,7 @@ function logout(){
 	log.classList.add("blind")
 	other.classList.add("blind")
 	t_member.classList.add("blind")
-	document.querySelector('body').classList.remove("oh")
+//	document.querySelector('body').classList.remove("oh")
 
 	for(let i=0;i<t_member_input.length;i++){
 		t_member_input[i].value=null

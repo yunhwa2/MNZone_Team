@@ -15,7 +15,7 @@ import org.springframework.ui.Model;
 
 @Configuration // Spring을 구성하기 위한 클래스
 @EnableWebSecurity // 스프링 시큐리티를 활성화시키기 위한 어노테이션
-public class SecurityConfig {
+public class SecurityConfig  {
     @Bean
     public SecurityFilterChain filterChain( HttpSecurity http)throws Exception{
 
@@ -24,7 +24,7 @@ public class SecurityConfig {
                 .defaultSuccessUrl("/")//로그인 성공 시 이동할 url
                 .usernameParameter("id")//로그인시 사용할 이름
                 .failureUrl("/members/login/error")//로그인 실패 시 보여줄 url
-                .and()//뭉
+                .and()
                 .logout()//logout처리
                 .logoutRequestMatcher
                         (new AntPathRequestMatcher("/members/logout"))//로그아웃 url처리
@@ -38,6 +38,7 @@ public class SecurityConfig {
                 //admin으로 시작하는 경로는 admin만 가능
                 .mvcMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated();
+
         http.exceptionHandling()
                 .authenticationEntryPoint(new CustomAuthenticationEntryPoint());
 

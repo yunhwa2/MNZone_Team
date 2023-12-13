@@ -31,6 +31,8 @@ public class MainController {
         return "index";
     }
 
+
+
     @GetMapping(value = "/notice")
     public String notice(){
         System.err.println("getmapping notice");
