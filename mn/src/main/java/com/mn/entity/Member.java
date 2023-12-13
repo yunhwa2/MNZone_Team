@@ -58,6 +58,7 @@ public class Member {
         member.setPh(memberFormDTO.getPh());
         member.setAddress(memberFormDTO.getSido()+memberFormDTO.getGugun());
         member.setBirth(LocalDateTime.parse((memberFormDTO.getYear()+"-"+memberFormDTO.getMonth()+"-"+memberFormDTO.getDay()+"0000"),formatter));
+        member.setNickName(memberFormDTO.getNickName());
         member.setEmail(memberFormDTO.getEmail());
         member.setName(memberFormDTO.getName());
         member.setNickName(memberFormDTO.getNickName());

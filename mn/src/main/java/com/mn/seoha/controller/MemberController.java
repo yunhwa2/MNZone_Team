@@ -22,9 +22,9 @@ import javax.validation.Valid;
 @RequestMapping(value = "/members")
 public class MemberController {
 
+
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
-
     @GetMapping(value = "/register")
     public String memberForm(Model model){
         System.err.println("get방식 - memberFormDTO view에 전달");
