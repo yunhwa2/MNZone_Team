@@ -26,7 +26,7 @@ public class MissingController {
     }
 
     @GetMapping("/missing/write")
-    public String missingWrite(Model model){
+    public String missingForm(Model model){
         model.addAttribute("missingFormDTO", new MissingFormDTO());
         return "yunhwa/missing_write";
     }

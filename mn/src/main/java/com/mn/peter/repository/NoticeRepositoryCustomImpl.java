@@ -60,6 +60,7 @@ public class NoticeRepositoryCustomImpl implements NoticeRepositoryCustom{
 
         List<NoticeListFormDTO> content = queryFactory.select(
                 new QNoticeListFormDTO(
+                        notice.noticeId,
                         notice.noticeTitle,
                         notice.noticeContent,
                         notice.createBy,

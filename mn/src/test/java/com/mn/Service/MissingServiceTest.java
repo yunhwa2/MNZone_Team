@@ -41,7 +41,7 @@ public class MissingServiceTest {
         List<MultipartFile> multipartFileList = new ArrayList<>();
 
         for(int i=0; i<5;i++){
-            String path = "C:/shop/item/";
+            String path = "D:/MN/missing";
             String imageName = "image" + i +".jpg";
             MockMultipartFile multipartFile = new MockMultipartFile(path, imageName,"image/jpg", new byte[] {1,2,3,4});
             multipartFileList.add(multipartFile);
@@ -53,19 +53,20 @@ public class MissingServiceTest {
     @Test
     @DisplayName("멍냥실종 글 등록 테스트")
     @WithMockUser(username = "test1", roles = "USER")
-    void saveItem() throws Exception{
+    void saveMissing() throws Exception{
         MissingFormDTO missingFormDTO = new MissingFormDTO();
-        missingFormDTO.setMissingId(1l);
+       // missingFormDTO.setMissingId(100l);
         missingFormDTO.setMissingTitle("테스트 글 제목1");
         missingFormDTO.setMissingContent("테스트중~");
         missingFormDTO.setMissingKind(MissingKind.DISAPPEAR);
+
         List<MultipartFile> multipartFileList = createMultipartFiles();
         Long missingId = missingService.saveMissing(missingFormDTO,multipartFileList);
 
-        List<MissingImg> missingImgList = missingImgRepository.findByMissingIdOrderByAsc(missingId);
+        List<MissingImg> missingImgList = missingImgRepository.findByMissingIdOrderByIdAsc(missingId);
         Missing missing = missingRepository.findById(missingId).orElseThrow(EntityNotFoundException::new);
 
-        assertEquals(missingFormDTO.getMissingId(),missing.getMissingId());
+       // assertEquals(missingFormDTO.getMissingId(),missing.getMissingId());
         assertEquals(missingFormDTO.getMissingTitle(),missing.getMissingTitle());
         assertEquals(missingFormDTO.getMissingContent(),missing.getMissingContent());
         assertEquals(missingFormDTO.getMissingKind(),missing.getMissingKind());

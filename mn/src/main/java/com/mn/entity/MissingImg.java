@@ -26,9 +26,9 @@ public class MissingImg extends BaseEntity{
     @JoinColumn(name = "missing_code")
     private Missing missing;
 
-    public void updateMissingImg(String missingImgName, String missingOriImgName, String missingImgUrl) {
-        this.missingImgName = missingImgName;
+    public void updateMissingImg(String missingOriImgName,String missingImgName, String missingImgUrl) {
         this.missingOriImgName = missingOriImgName;
+        this.missingImgName = missingImgName;
         this.missingImgUrl = missingImgUrl;
     }
 }

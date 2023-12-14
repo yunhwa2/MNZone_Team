@@ -27,11 +27,11 @@ public class MissingService {
         for (int i = 0; i < missingImgFileList.size(); i++) {
             MissingImg missingImg = new MissingImg();
             missingImg.setMissing(missing);
-            if (i == 0) {
+            if (i == 0)
                 missingImg.setMissingRepImgYn("Y");
-            } else {
+             else
                 missingImg.setMissingRepImgYn("N");
-            }
+
             missingImgService.saveMissingImg(missingImg, missingImgFileList.get(i));
         }
             return missing.getMissingId();

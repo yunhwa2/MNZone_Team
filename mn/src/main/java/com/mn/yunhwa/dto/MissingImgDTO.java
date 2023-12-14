@@ -1,8 +1,11 @@
 package com.mn.yunhwa.dto;
 
 import com.mn.entity.MissingImg;
+import lombok.Getter;
+import lombok.Setter;
 import org.modelmapper.ModelMapper;
 
+@Getter @Setter
 public class MissingImgDTO {
     private Long missingImgId;
     private String missingImgName;
