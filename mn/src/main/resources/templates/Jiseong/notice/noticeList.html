@@ -25,13 +25,13 @@
         function page(page){
             var searchDateType = $("#searchDateType").val();
             var noticeSearchKind = $("#noticeSearchKind").val();
-            var noticeSearchBy = $("#noticeSearchBy").val();
-            var noticeSearchQuery = $("#noticeSearchQuery").val();
+            var searchBy = $("#searchBy").val();
+            var searchQuery = $("#searchQuery").val();
 
             location.href="/notice/list/" + page + "?searchDateType=" + searchDateType
             + "&noticeSearchKind=" + noticeSearchKind
-            + "&noticeSearchBy=" + noticeSearchBy
-            + "&noticeSearchQuery=" + noticeSearchQuery;
+            + "&searchBy=" + searchBy
+            + "&searchQuery=" + searchQuery;
         }
 
 

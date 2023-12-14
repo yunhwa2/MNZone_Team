@@ -13,6 +13,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class HospitalImgService {
 
     private final HospitalImgRepository hospitalImgRepository;
