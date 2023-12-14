@@ -546,18 +546,7 @@ h4{
     border-radius: 5px;
 }
 
-#log_btlog{
-	width: 100%;
-    padding: 12px;
-    font-size: 18px;
-    font-weight: bold;
-    background-color: #a5dbdc;
-    color: #606060;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+
 #log_btlog:hover {
     background-color: #fedcda;
 }
