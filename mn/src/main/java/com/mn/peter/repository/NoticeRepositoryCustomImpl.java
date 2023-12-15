@@ -1,11 +1,11 @@
 package com.mn.peter.repository;
 
+import com.mn.config.ArrayListCustomForNoticeDetailFormList;
 import com.mn.constant.NoticeKind;
 import com.mn.entity.Notice;
 import com.mn.entity.QNotice;
-import com.mn.peter.dto.NoticeListFormDTO;
-import com.mn.peter.dto.NoticeSearchDTO;
-import com.mn.peter.dto.QNoticeListFormDTO;
+import com.mn.peter.dto.*;
+import com.querydsl.core.QueryFactory;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Wildcard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.thymeleaf.util.StringUtils;
 
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.List;
 
 public class NoticeRepositoryCustomImpl implements NoticeRepositoryCustom{
@@ -41,16 +42,11 @@ public class NoticeRepositoryCustomImpl implements NoticeRepositoryCustom{
 
         return QNotice.notice.noticeKind.eq(noticeKind1);
     }
-    private BooleanExpression searchByLike(String searchBy, String searchQuery){
+    private BooleanExpression searchByLike(String searchQuery){
 
         System.err.println("repository.ItemRepositoryCustomImpl.searchByLike");
-        if(StringUtils.equals("noticeTitle",searchBy)){
-            return QNotice.notice.noticeTitle.like("%"+searchQuery+"%");
-        }else if(StringUtils.equals("createdBy", searchBy)){
-            return QNotice.notice.createBy.like("%"+searchQuery+"%");
-        }
 
-        return null;
+        return QNotice.notice.noticeTitle.like("%"+searchQuery+"%");
     }
 
     @Override
@@ -64,11 +60,13 @@ public class NoticeRepositoryCustomImpl implements NoticeRepositoryCustom{
                         notice.noticeTitle,
                         notice.noticeContent,
                         notice.createBy,
-                        notice.regTime)
+                        notice.regTime,
+                        notice.noticeKind)
                 )
                 .from(notice)
                 .where(searchNoticeKind(noticeSearchDTO.getNoticeSearchKind()),
-                        searchByLike(noticeSearchDTO.getNoticeSearchBy(), noticeSearchDTO.getNoticeSearchQuery()))
+                        searchByLike(noticeSearchDTO.getNoticeSearchQuery()))
+
                 .orderBy(QNotice.notice.noticeId.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -78,10 +76,11 @@ public class NoticeRepositoryCustomImpl implements NoticeRepositoryCustom{
         long total = queryFactory.select(Wildcard.count)
                 .from(notice)
                 .where(searchNoticeKind(noticeSearchDTO.getNoticeSearchKind()),
-                        searchByLike(noticeSearchDTO.getNoticeSearchBy(), noticeSearchDTO.getNoticeSearchQuery()))
+                        searchByLike(noticeSearchDTO.getNoticeSearchQuery()))
                 .fetchOne();
 
-        return null;
+
+        return new PageImpl<>(content,pageable,total);
     }
     @Override
     public Page<Notice> getNoticePage2(NoticeSearchDTO noticeSearchDTO, Pageable pageable) {
@@ -89,7 +88,7 @@ public class NoticeRepositoryCustomImpl implements NoticeRepositoryCustom{
         List<Notice> content = queryFactory
                 .selectFrom(QNotice.notice)
                 .where(searchNoticeKind(noticeSearchDTO.getNoticeSearchKind()),
-                        searchByLike(noticeSearchDTO.getNoticeSearchBy(), noticeSearchDTO.getNoticeSearchQuery()))
+                        searchByLike(noticeSearchDTO.getNoticeSearchQuery()))
                 .orderBy(QNotice.notice.noticeId.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -98,9 +97,26 @@ public class NoticeRepositoryCustomImpl implements NoticeRepositoryCustom{
         long total = queryFactory.select(Wildcard.count)
                 .from(QNotice.notice)
                 .where(searchNoticeKind(noticeSearchDTO.getNoticeSearchKind()),
-                        searchByLike(noticeSearchDTO.getNoticeSearchBy(), noticeSearchDTO.getNoticeSearchQuery()))
+                        searchByLike(noticeSearchDTO.getNoticeSearchQuery()))
                 .fetchOne();
-        System.err.println("total : " +total);
+
         return new PageImpl<>(content,pageable,total);
+    }
+
+    @Override
+    public List<NoticeDetailPrevNextDTO> getNoticeDetailPrevNextDTOList(NoticeSearchDTO noticeSearchDTO) {
+        QNotice notice = QNotice.notice;
+        List<NoticeDetailPrevNextDTO> content =  queryFactory.select(
+                new QNoticeDetailPrevNextDTO(notice.noticeId, notice.noticeTitle, notice.regTime)
+        )
+                .from(notice)
+                .where(searchNoticeKind(noticeSearchDTO.getNoticeSearchKind()),
+                        searchByLike(noticeSearchDTO.getNoticeSearchQuery()))
+                .orderBy(notice.noticeId.desc())
+                .fetch();
+
+
+
+        return content;
     }
 }

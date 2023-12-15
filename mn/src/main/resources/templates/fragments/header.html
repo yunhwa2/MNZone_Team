@@ -15,7 +15,6 @@
                     </h3>
                     <ul>
                         <li class="headList" id="list0" ><a href="http://www.naver.com">멍냥닥터</a></li>
-                        <li class="headList" id="list1" href="/">멍냥자랑</li>
                         <li class="headList" id="list2" href="/">멍냥만나</li>
                         <li class="headList" id="list3" href="/">육아톡톡</li>
                         <li class="headList" id="list4" href="/">멍냥실종</li>
@@ -23,13 +22,17 @@
                     </ul>
                 </div>
                 <div class="head" id="head2">
-                    <img class ="head2_navBar" th:src="@{/img/navBar.png}" alt="더보기 버튼" sec:authorize="isAnonymous()" onclick="login()">
-                    <img class ="head2_userProfile" th:if="${userName==null}" th:src="@{/img/userProfile.png}" alt="비회원 기본 이미지" sec:authorize="isAnonymous()" onclick="login()">
+                    <img class ="head2_navBar" th:src="@{/img/navBar.png}" alt="더보기 버튼" sec:authorize="isAnonymous()" onclick="login1()">
+                    <img class ="head2_userProfile" th:if="${userName==null}" th:src="@{/img/userProfile.png}" alt="비회원 기본 이미지" sec:authorize="isAnonymous()" onclick="login1()">
                     <a href = "/members/logout"><span th:text="${userName}" alt="로그아웃창" sec:authorize="isAuthenticated()"></span></a>
                     <a href = "/members/logout"><img th:src="@{/img/로그인창.png}" alt="로그아웃창" sec:authorize="isAuthenticated()"></a>
 
                 </div>
-<!--                <form class="" th:action="@{/}" method="get">-->
+
+
+
+
+                        <!--                <form class="" th:action="@{/}" method="get">-->
 <!--                    <input name="searchQuery" class="" type="search" placeholder="Search" aria-label="Search">-->
 <!--                    <button class="" type="submit">Search</button>-->
 <!--                </form>-->

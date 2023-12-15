@@ -28,15 +28,15 @@
     border: 1px solid #606060;
     border-radius: 5px;
 }
-#btlog{
+#log_btlog{
 	width: 100%;
-    padding: 12px;
-    font-size: 18px;
+	height: 45px;
+    font-size: 15px;
     font-weight: bold;
     background-color: #a5dbdc;
     color: #606060;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }

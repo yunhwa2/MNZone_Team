@@ -25,17 +25,17 @@ public class MemberFormDTO {
     @NotBlank
     private String nickName;
 
-    @NotEmpty
     @Email
     private String email;
 
     @NotEmpty
-    @Length(min=4,max=16)
+    @Length(min=4,max=12)
     private String password;
 
-    @NotEmpty
+    @NotBlank
     private String sido;
 
+    @NotBlank
     private String gugun;
 
     private String year;

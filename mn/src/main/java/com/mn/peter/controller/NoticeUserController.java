@@ -1,6 +1,7 @@
 package com.mn.peter.controller;
 
 import com.mn.entity.Notice;
+import com.mn.peter.dto.NoticeDetailFormDTO;
 import com.mn.peter.dto.NoticeListFormDTO;
 import com.mn.peter.dto.NoticeSearchDTO;
 import com.mn.peter.service.NoticeService;
@@ -43,5 +44,16 @@ public class NoticeUserController {
         model.addAttribute("maxPage",5);
 //        System.out.println("notices : "+notices.getTotalElements());
         return "Jiseong/notice/noticeList";
+    }
+
+    @GetMapping(value = "/detail/{noticeId}")
+    public String noticeDetail(Model model,
+                               @PathVariable("noticeId") Long noticeId){
+
+        noticeService.plusVisitCount(noticeId);
+
+        NoticeDetailFormDTO noticeDetailFormDTO = noticeService.getNoticeDetail(noticeId);
+        model.addAttribute("noticeDetailFormDTO", noticeDetailFormDTO);
+        return "Jiseong/notice/noticeDetail";
     }
 }

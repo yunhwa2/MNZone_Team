@@ -6,9 +6,13 @@
 >
 <th:block layout:fragment="css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/notice.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/memberForm.css}">
 </th:block>
+
 <th:block layout:fragment="script">
-    <script type="text/javascript" th:src="@{/js/notice.js}"></script>
+    <script type="text/javascript" th:src="@{/js/login.js}"/>
+    <script type="text/javascript" th:src="@{/js/memberForm.js}"/>
     <script th:inline="javascript">
 
         $(document).ready(function(){
@@ -24,11 +28,12 @@
             var searchBy = $("#searchBy").val();
             var searchQuery = $("#searchQuery").val();
 
-            location.href="/admin/items/" + page + "?searchDateType=" + searchDateType
+            location.href="/notice/list/" + page + "?searchDateType=" + searchDateType
             + "&noticeSearchKind=" + noticeSearchKind
             + "&searchBy=" + searchBy
             + "&searchQuery=" + searchQuery;
         }
+
 
     </script>
 </th:block>
@@ -39,17 +44,15 @@
 <th:block layout:fragment="content">
 
     <div id="main_notice">
-        <div id="notice_search">
+            <div id="noticeMoveToWrite" sec:authorize="isAuthenticated()"><a href="/admin/notice/new" >글쓰기</a></div>
 
-            <div id="search_input_div"><input type="text" id="search_input_input" placeholder="검색"/></div>
-            <div sec:authorize="isAuthenticated()"><a href="/admin/notice/new" >글쓰기</a></div>
-        </div>
 
 
         <div id ="notice_content">
-        <form th:action="@{'/admin/notice/' + ${notices.number}}" role="form" method="get" th:object="${notices}">
-            <div class="notice_search" th:object="${noticeSearchDTO}">
-                <h2 id="notice_title">공지사항</h2>
+            <h2 id="notice_title">공지사항</h2>
+            <form th:action="@{'/notice/list/' + ${notices.number}}" role="form" method="get" th:object="${notices}">
+            <div id="notice_search" th:object="${noticeSearchDTO}">
+
                 <select th:field="*{noticeSearchKind}" class="form-control" style="width:auto;">
                     <option value="ALL">전체</option>
                     <option value="ANNOUNCEMENT">공지</option>
@@ -57,14 +60,14 @@
                     <option value="SERVICE">서비스</option>
                     <option value="EVENT">이벤트</option>
                 </select>
-                <select th:field="*{noticeSearchBy}" class="form-control" style="width:auto;">
-                    <option value="noticeTitle">제목</option>
-                    <option value="createdBy">등록자</option>
-                </select>
+<!--                <select th:field="*{noticeSearchBy}" class="form-control" style="width:auto;">-->
+<!--                    <option value="noticeTitle">제목</option>-->
+<!--                    <option value="createdBy">등록자</option>-->
+<!--                </select>-->
                 <input th:field="*{noticeSearchQuery}" type="text" class="search_input_input" placeholder="검색">
                 <button id="searchBtn" type="submit" class="btn btn-primary">검색</button>
             </div>
-            <table class="notice_table">
+            <table id="notice_table">
                 <thead>
                 <tr>
                     <td>카테고리</td>
@@ -75,17 +78,22 @@
                 </thead>
                 <tbody>
                 <tr th:each="notice, status: ${notices.getContent()}">
-                    <td th:text="${notice.noticeKind}"></td>
-                    <td>
-                        <a th:href="'/notice/'+${notice.noticeId}" th:text="${notice.noticeTitle}"></a>
+
+                    <td class="noticeTableBodyCate" th:text="${notice.noticeKind.displayValue}"></td>
+
+                    <td class="noticeTableBodyTitle" >
+                        <form action="">
+
+                        </form>
+                        <a th:href="'/notice/detail/'+${notice.noticeId}" th:text="${notice.noticeTitle}">12</a>
                     </td>
-                    <td th:text="${notice.createBy}"></td>
-                    <td th:text="${notice.regTime}"></td>
+                    <td class="noticeTableBodyCreateBy" th:text="${notice.createBy}"></td>
+                    <td class="noticeTableBodyRegTime" th:text="${notice.regTime}"></td>
                 </tr>
                 </tbody>
             </table>
 
-            <div th:with="start=${(notices.number/maxPage)*maxPage + 1}, end=(${(notices.totalPages == 0) ? 1 : (start + (maxPage - 1) < notices.totalPages ? start + (maxPage - 1) : notices.totalPages)})" >
+            <div id="noticePageController" th:with="start=${(notices.number/maxPage)*maxPage + 1}, end=(${(notices.totalPages == 0) ? 1 : (start + (maxPage - 1) < notices.totalPages ? start + (maxPage - 1) : notices.totalPages)})" >
                 <ul class="pagination justify-content-center">
 
                     <li class="page-item" th:classappend="${notices.first}?'disabled'">
@@ -113,4 +121,5 @@
 
     </div>
 </th:block>
+
 </html>

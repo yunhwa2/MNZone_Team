@@ -358,25 +358,34 @@ const log=document.getElementById("logking")
 const other=document.getElementsByClassName("other")
 const log_log=document.getElementsByClassName("log_log")
 const t_member_input=document.getElementsByClassName("t_member_input")
-function login(){
+
+function login1(){
 	log.classList.remove('blind')
 	other.classList.remove('blind')
-	document.querySelector('body').classList.add("oh")
-	
+//	document.querySelector('body').classList.add("oh")
+
 }
 function logout(){
-	
+
 	log.classList.add("blind")
 	other.classList.add("blind")
 	t_member.classList.add("blind")
-	document.querySelector('body').classList.remove("oh")
-	
+//	document.querySelector('body').classList.remove("oh")
+
 	for(let i=0;i<t_member_input.length;i++){
 		t_member_input[i].value=null
 	}
 	for(let i=0;i<log_log.length;i++){
 		log_log[i].value=null
 	}
+}
+
+const t_member=document.getElementById("t_member")
+
+function signin() {
+    log.classList.add("blind");
+    t_member.classList.remove("blind");
+
 }
 
 //1. ID : 4~12자 이내의 영어와 숫자로 입력<br>
@@ -460,14 +469,4 @@ function Login()
 
 
 //---------------------------------------0811회원가입
-const t_member=document.getElementById("t_member")
-
-function t_member_signin(){
-	
-	log.classList.add("blind")
-	t_member.classList.remove("blind")
-	
-	
-
-}
 

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layouts/layout1}"
+>
+<th:block layout:fragment="css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/noticeDetail.css}"/>
+</th:block>
+<th:block layout:fragment="script">
+
+    <script th:inline="javascript">
+
+
+
+    </script>
+</th:block>
+
+
+
+
+
+<th:block layout:fragment="content">
+
+    <div id ="noticeDetailWrapper" th:object="${noticeDetailFormDTO}">
+        <input type = "hidden" th:field ="*{noticeId}">
+        <div id="noticeDetailTitle"><h2 th:text="*{noticeTitle}"></h2></div>
+        <div id="noticeDetailSubTitle">
+            <span class = "noticeDetailSpan" id="noticeDetailRegTime" th:text="*{noticeRegTime}"></span>
+            <span class = "noticeDetailSpan" id="noticeDetailNoticeKind" th:text="*{noticeKind.displayValue}"></span>
+            <span class = "noticeDetailSpan" id="noticeDetailCreateBy" th:text="*{createBy}"></span>
+            <span class = "noticeDetailSpan" id="noticeDetailVisitCount" th:text="*{noticeVisitCount}"></span>
+        </div>
+        <div id="noticeDetailContent">
+            <div class="noticeDetailRealContent" th:text="*{noticeContent}"></div>
+        </div>
+        <br id="noticeDetailBr"/>
+        <div id="noticeDetailPrevNext">
+            <li th:if="${noticeDetailFormDTO.prevDTO!=null}">
+                <span class="noticeDetailPrevNextSpan">다음 글</span>
+                <a th:href="'/notice/detail/'+${noticeDetailFormDTO.prevDTO.noticeId}" th:text="${noticeDetailFormDTO.prevDTO.noticeTitle}"></a>
+            </li>
+            <li th:if="${noticeDetailFormDTO.nextDTO!=null}">
+                <span class="noticeDetailPrevNextSpan">이전 글</span>
+                <a th:href="'/notice/detail/'+${noticeDetailFormDTO.nextDTO.noticeId}" th:text="${noticeDetailFormDTO.nextDTO.noticeTitle}"></a>
+            </li>
+            <div>
+                <a href="/notice/list">목록</a>
+            </div>
+        </div>
+    </div>
+</th:block>
+</html>

@@ -28,9 +28,7 @@ public class MemberController {
     @GetMapping(value = "/register")
     public String memberForm(Model model){
         System.err.println("get방식 - memberFormDTO view에 전달");
-
-        MemberFormDTO memberFormDTO = new MemberFormDTO();
-        model.addAttribute("memberFormDTO",memberFormDTO);
+        model.addAttribute("memberFormDTO", new MemberFormDTO());
         return "members/memberForm";
     }
 
@@ -39,35 +37,34 @@ public class MemberController {
         System.err.println("memberController.register()진입");
         System.err.println(memberFormDTO);
 
-        try{
             if(bindingResult.hasErrors()){
                 System.err.println("mainhomeerr");
                 return "members/memberForm";
             }
+        try{
             Member member = Member.createMember(memberFormDTO,passwordEncoder);
             System.err.println(member);
             Member savedMember = memberService.saveMember(member);
-
-
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("MemberController./register 중 예외 발생");
             model.addAttribute("errorMessage", e.getMessage());
-            return "members/t_login";
+            return "members/login";
         }
         return "index";
     }
 
-   /* //책에서 쓰라고한 부분
-    @GetMapping(value = "/login")
-    public String loginMember(){
-        return "/member/memberLoginForm";
-    }
-*/
-    @GetMapping(value = "login/error")
-    public String loginErrorPage(Model model){
-        model.addAttribute("memberFormDTO",new MemberFormDTO());
-        return "members/t_login";
-    }
 
+
+//    @GetMapping(value = "login/error")
+//    public String loginErrorPage(Model model){
+//        model.addAttribute("memberFormDTO",new MemberFormDTO());
+//        return "members/login";
+//    }
+
+    @GetMapping(value = "login/error")
+    public String loginErrorMsg(Model model){
+        model.addAttribute("loginErrorMsg","아이디 또는 비밀번호를 확인해주세요");
+        return "members/login";
+    }
 }
