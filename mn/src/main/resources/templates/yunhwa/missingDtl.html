@@ -140,67 +140,56 @@
 
 <div layout:fragment="content" style="margin-left:25%;margin-right:25%">
 
-    <input type="hidden" id="itemId" th:value="${item.id}">
+    <input type="hidden" id="missing_id" th:value="${missing.missingId}">
 
     <div>
-
-
-    </div>
-    <div class="d-flex">
-        <div class="repImgDiv">
-            <img th:src="${item.itemImgDTOList[0].imgUrl}" class = "rounded repImg" th:alt="${item.itemName}">
-        </div>
-        <div class="wd50">
-            <span th:if="${item.itemSellStatus == T(com.shop.constant.ItemSellStatus).SELL}" class="badge badge-primary mgb-15">
-                판매중
+        <div>
+            <span th:if="${missing.missingKind == T(com.mn.constant.MissingKind).DISAPPEAR}" class="contentKind" style="color:red; font-weight:bold">
+                실종
             </span>
-            <span th:unless="${item.itemSellStatus == T(com.shop.constant.ItemSellStatus).SELL}" class="badge btn-danger mgb-15" >
-                품절
-
+            <span th:unless="${missing.missingKind == T(com.mn.constant.MissingKind).WITNESS}" class="contentKind" style="color:#FFBF00; font-weight:bold">
+                목격
             </span>
-            <div class="h4" th:text="${item.itemName}"></div>
+            <span th:unless="${missing.missingKind == T(com.mn.constant.MissingKind).PROTECT}" class="contentKind" style="color:2E9AFE; font-weight:bold">
+                보호
+            </span>
+            <div class="missing_title" th:text="${missing.missingName}"></div>
+            <div class="missing_author" th:text="작성자 : ${member.memberNickname}"></div>
             <hr class="my-4">
+        </div>
+
+        <div>
+            <div class="repImgDiv">
+               <img th:src="${missing.missingImgDTOList[0].missingImgUrl}" class = "repImg" th:alt="${missing.missingName}">
+            </div>
 
             <div class="text-right">
-                <div class="h4 text-danger text-left">
-                    <input type="hidden" th:value="${item.price}" id="price" name="price">
-                    <span th:text="${item.price}"></span>원
-                </div>
-                <div class="input-group w-50">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">수량</span>
-                    </div>
-                    <input type="number" name="count" id="count" class="form-control" value="1" min="1">
-                </div>
-            </div>
-            <hr class="my-4">
-
-            <div class="text-right mgt-50">
-                <h5>결제 금액</h5>
-                <h3 name="totalPrice" id="totalPrice" class="font-weight-bold"></h3>
-            </div>
-            <div th:if="${item.itemSellStatus == T(com.shop.constant.ItemSellStatus).SELL}" class="text-right">
-                <button type="button" class="btn btn-light border border-primary btn-lg" onclick="addCart()">장바구니 담기</button>
-                <button type="button" class="btn btn-primary btn-lg" onclick="order()">주문하기</button>
-            </div>
-            <div th:unless="${item.itemSellStatus == T(com.shop.constant.ItemSellStatus).SELL}" class="text-right">
-                <button type="button" class="btn btn-danger btn-lg">품절</button>
+                <h3>기본 정보</h3>
+                <p>마지막 목격장소 : </p>
+                <p>마지막 목격날짜  : </p>
+                <p>보호자 연락처 : </p>
+                <p>특징 : </p>
             </div>
         </div>
-    </div>
 
-    <div class="jumbotron jumbotron-fluid mgt-30">
-        <div class="container">
-            <h4 class="display-5">상품 상세 설명</h4>
-            <hr class="my-4">
-            <p class="lead" th:text="${item.itemDetail}"></p>
+        <div>
+            <div>
+                <span th:text="${missing.missingContent}"></span>
+            </div>
+
+            <div th:each="missingImg : ${missing.missingImgDTOList}" class="text-center">
+                <img th:if="${not #strings.isEmpty(missingImg.missingImgUrl)}" th:src="${missingImg.missingImgUrl}">
+            </div>
         </div>
-    </div>
 
-    <div th:each="itemImg : ${item.itemImgDTOList}" class="text-center">
-        <img th:if="${not #strings.isEmpty(itemImg.imgUrl)}" th:src="${itemImg.imgUrl}" class="rounded mgb-15" width="800">
-    </div>
+        <div th:if="${member.Id == session.Id}" >
+            <button type="button" onclick="">수정</button>
+            <button type="button" onclick="">삭제</button>
+        </div>
 
+
+
+    </div>
 </div>
 
 </html>
