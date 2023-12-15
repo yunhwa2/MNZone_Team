@@ -1,7 +1,7 @@
 package com.mn.yunhwa.service;
 
+import com.mn.CommonService.FileService;
 import com.mn.entity.MissingImg;
-import com.mn.service.FileService;
 import com.mn.yunhwa.repository.MissingImgRepository;
 import lombok.RequiredArgsConstructor;
 

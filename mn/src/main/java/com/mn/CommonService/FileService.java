@@ -11,33 +11,37 @@ import java.util.UUID;
 @Log
 public class FileService {
 
-    public String uploadFile(String uploadPath, byte[] fileData,
-                             String originalFileName)throws Exception{
+    //파일 업로드 메서드
+    public String uploadFile(String uploadPath, String originalFileName, byte[] fileData) throws Exception{
 
         UUID uuid = UUID.randomUUID();
-        String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
-        String remakeFileName = uuid+extension;
-        String remakeFileUrl = uploadPath+"/"+remakeFileName;
 
-        FileOutputStream fos = new FileOutputStream(remakeFileUrl);
+        String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
+
+        String savedFileName = uuid.toString()+extension;
+
+        String fileUploadFullUrl = uploadPath+"/"+savedFileName;
+
+        FileOutputStream fos = new FileOutputStream(fileUploadFullUrl);
+
         fos.write(fileData);
 
         fos.close();
 
-        return remakeFileName;
+        return savedFileName;
     }
 
+    //파일 삭제 메서드
     public void deleteFile(String filePath) throws Exception{
 
         File deleteFile = new File(filePath);
 
         if(deleteFile.exists()){
             deleteFile.delete();
-            log.info("파일 삭제");
+            log.info("파일을 삭제하였습니다");
         }else{
-            log.info("파일이 존재하지 않습니다.");
+            log.info("파일이 존재하지 않습니다");
         }
-
     }
 
 }
