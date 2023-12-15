@@ -3,6 +3,7 @@ package com.mn.yunhwa.service;
 import com.mn.entity.Missing;
 import com.mn.entity.MissingImg;
 import com.mn.yunhwa.dto.MissingFormDTO;
+import com.mn.yunhwa.dto.MissingImgDTO;
 import com.mn.yunhwa.repository.MissingImgRepository;
 import com.mn.yunhwa.repository.MissingRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -36,4 +39,21 @@ public class MissingService {
         }
             return missing.getMissingId();
     }
+
+    @Transactional(readOnly = true)
+    public MissingFormDTO getMissingContent(Long missingId){
+        List<MissingImg> missingImgList = missingImgRepository.findByMissingMissingIdOrderByMissingImgIdAsc(missingId);
+        List<MissingImgDTO> missingImgDTOList = new ArrayList<>();
+
+        for(MissingImg missingImg : missingImgList){
+            MissingImgDTO missingImgDTO = MissingImgDTO.of(missingImg);
+            missingImgDTOList.add(missingImgDTO);
+        }
+
+        Missing missing = missingRepository.findById(missingId).orElseThrow(EntityNotFoundException::new);
+        MissingFormDTO missingFormDTO = MissingFormDTO.of(missing);
+        missingFormDTO.setMissingImgDTOList(missingImgDTOList);
+        return missingFormDTO;
+    }
+
 }

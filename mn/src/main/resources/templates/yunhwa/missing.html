@@ -22,7 +22,7 @@
 						</div>					
 					</div>	
 					<div id="button_div">
-						<button type="button" id="write" onclick="openTok()">글쓰기</button>	
+						<button th:formaction="@{/missing/write/}" type="submit" id="write" onclick="gotoMissingForm()">글쓰기</button>
 					</div>
 				</div>	
 				<div id="tokContent">

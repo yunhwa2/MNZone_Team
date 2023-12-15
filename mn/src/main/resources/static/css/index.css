@@ -338,153 +338,15 @@ table{
 	margin-top:5px;
 }
 
-
-
--------↓병원에 적용할 CSS소스-------------------------------{}
-#write{;cursor:pointer;background:white; padding:10px; border:1px solid black; border-radius:20px;width: 130px;float:right;top:10px}
-#write:hover{background:rgb(222, 222, 222);color:rgb(93, 93, 93);}
-h5{display:inline-block;margin-right:10px}
-
-#toktok{margin:0 auto;max-width:1200px;}
-#tokTitle{margin: 30px 0 0 0;padding:70px 0 0 0;}
-#tok_hr{margin-top:60px;margin-button:10px;height:2px;background:black;border-radius:30px;}
-.myimg_tok{weidth:20px;height:20px;border-radius:100%}
-.tok_content_title{cursor:pointer;font-weight:900;font-size:17px;strong}
-.tok_content_content{cursor:pointer;color:#a4a4a4;font-size:14px}
-.like,.comment,.view{color:#04689d;cursor:pointer}
-label{cursor:pointer}
-.changered{color:#7e1645}
-.blind{display:none}
-
-
-
-
-#main_hospital{margin:10px auto;height:600px;width:1200px;}
-#content_box{height:80%;width:95%;margin: 90px auto;overflow:hidden;}
-#content_container{width:5000px;}
-.content_each{transition: all 1s;position:relative;background: #a5dbdc;border-radius:40px;width:280px;height:450px;border:1px solid black;margin:10px 47px;display:inline-block}
-.content_head{height:80%;text-align:center;background: #cccccc;border-radius:40px;margin:4px}
-.content_foot{text-align:center;cursor:pointer}
-.content_foot:hover{opacity:0.7}
-.region{display:inline-block;color:rgb(168, 168, 168);margin:0}
-.star,.review{cursor:pointer;}
-.star:hover,.review:hover{color:rgb(252, 90, 3)}
-.slide{cursor:pointer;background:none;position:relative;border:none;width:60px;height:60px;font-size:20px ;}
-.hospitalimg{margin-bottom:40px;width:280px;height:260px}
-.hospital_title{font-weight:border;font-size:20px;color:#003515}
-.star{color:#ffff00}
-#slidebtn2{top:-60%;right:-88%}
-#slidebtn1{top:-60%}
-.review{margin-left:10px;color:#005b00}
-
-
------------------------------------------------//공지{}
-
-#main_notice{width:800px; margin:30px auto; }
-#notice_search{display:flex;justify-content:space-between;margin-top:60px;margin-bottom:70px}
-#notice_title,#search_input_div{display:inline-block; font-size:40px;height:70px;margin:auto 0}
-#search_input_input{height:25px;font-size:15px;}
-#notice_content>table{width:100%;border-collapse:collapse}
-#notice_content>table>tbody>tr>th{font-size:20px;border-top:2px solid black;border-bottom:2px solid silver}
-#notice_content>table>tbody>tr{height:40px;cursor:pointer;}
-.important_tr{background:#f0fffa}
-
-
-#notice_content>table>tbody>tr>td{padding-left:20px;border:1px solid #e0e0e0; border-style:none none solid none;}
-#notice_content>table>tbody>tr>th:first-child,th:last-child{inline-size:80px}
-
-#opa:hover{opacity:0.5}
-#search_input_input{border-radius:10px}
-#count{text-align:center}
-.pagenum{background:white;border:none;cursor:pointer}
-.pagenum:hover{opacity:0.5}
-
-
--------↓병원에 적용할 CSS소스-------------------------------{}
-#write{;cursor:pointer;background:white; padding:10px; border:1px solid black; border-radius:20px;width: 130px;float:right;top:10px}
-#write:hover{background:rgb(222, 222, 222);color:rgb(93, 93, 93);}
-h5{display:inline-block;margin-right:10px}
-
-#toktok{margin:0 auto;max-width:1200px;}
-#tokTitle{margin: 30px 0 0 0;padding:70px 0 0 0;}
-#tok_hr{margin-top:60px;margin-button:10px;height:2px;background:black;border-radius:30px;}
-.myimg_tok{weidth:20px;height:20px;border-radius:100%}
-.tok_content_title{cursor:pointer;font-weight:900;font-size:17px;strong}
-.tok_content_content{cursor:pointer;color:#a4a4a4;font-size:14px}
-.like,.comment,.view{color:#04689d;cursor:pointer}
-label{cursor:pointer}
-.changered{color:#7e1645}
-.blind{display:none;transition:1s;width:0!important;height:0!important}
-
-
-
-
-#main_hospital{margin:10px auto;height:600px;width:1200px;}
-#content_box{height:80%;width:95%;margin: 90px auto;overflow:hidden;}
-#content_container{width:5000px;}
-.content_each{transition: all 1s;position:relative;background: #a5dbdc;border-radius:40px;width:280px;height:450px;border:1px solid black;margin:10px 47px;display:inline-block}
-.content_head{height:80%;text-align:center;background: #cccccc;border-radius:40px;margin:4px}
-.content_foot{text-align:center;cursor:pointer}
-.content_foot:hover{opacity:0.7}
-.region{display:inline-block;color:rgb(168, 168, 168);margin:0}
-.star,.review{cursor:pointer;}
-.star:hover,.review:hover{color:rgb(252, 90, 3)}
-.slide{cursor:pointer;background:none;position:relative;border:none;width:60px;height:60px;font-size:20px ;}
-.hospitalimg{margin-bottom:40px;width:280px;height:260px}
-.hospital_title{font-weight:border;font-size:20px;color:#003515}
-.star{color:#ffff00}
-#slidebtn2{top:-60%;right:-88%}
-#slidebtn1{top:-60%}
-.review{margin-left:10px;color:#005b00}
-
--------------병원 each---------------------------------------------{}
-#hos_ctt_main{margin:7vw auto;width:80vw;display:flex;flex-flow:column;}
-#HosCtt_title{dispaly:flex;flex-clow:column}
-#HosCtt_ttl_head{display:flex;flex-flow:row;width:1000px;height:420px; margin:0 auto;}
-#HosCtt_ttl_hd_infor{margin-left:10px}
-#HosCtt_imgdiv{width:60%;}
-#Hos_Ctt_hosimg{width:470px;height:380px;border-radius:20px}
-.HosCtt_serv{display:inline-flex;align-items:center;box-shadow:3px 5px 5px 3px #acacac;width:13vw;height:5vw;border-radius:10px;margin:10px auto;}
-.HosCtt_serv>span{margin:top:}
-.serv_ico{margin:20px 5px;width:2vw;height:2vw;}
-.HosCtt_img{width:50px;height:50px;}
-.HosCtt_p_border{font-weight:bolder;font-size:20px;margin-bottom:0}
-#HosCtt_ttl_hd_infor>p{margin-top:0}
-.HosCtt_content_exp>div>p{margin:0}
-.HosCtt_content_exp{display:flex;align-items:center}
-
-
-
-
------------------------------------------------//공지{}
-
-#main_notice{width:800px; margin:30px auto; }
-#notice_search{display:flex;justify-content:space-between;margin-top:60px;margin-bottom:70px}
-#notice_title,#search_input_div{display:inline-block; font-size:40px;height:70px;margin:auto 0}
-#search_input_input{height:25px;font-size:15px;}
-#notice_content>table{width:100%;border-collapse:collapse}
-#notice_content>table>tbody>tr>th{font-size:20px;border-top:2px solid black;border-bottom:2px solid silver}
-#notice_content>table>tbody>tr{height:40px;cursor:pointer;}
-.important_tr{background:#f0fffa}
-
-
-#notice_content>table>tbody>tr>td{padding-left:20px;border:1px solid #e0e0e0; border-style:none none solid none;}
-#notice_content>table>tbody>tr>th:first-child,th:last-child{inline-size:80px}
-
-#opa:hover{opacity:0.5}
-#search_input_input{border-radius:10px}
-#count{text-align:center}
-.pagenum{background:white;border:none;cursor:pointer}
-.pagenum:hover{opacity:0.5}
 ----------------------------------------------------서하로그인{}
 
 .xbutton{
-	width:25px;
-	height:25px;
-	position:absolute;
-	top:2%;
-	left:91%;
-	cursor:pointer;
+   width:25px;
+   height:25px;
+   position:absolute;
+   top:2%;
+   left:91%;
+   cursor:pointer;
     border-radius: 20px;
     font-size: 15px;
     font-weight: bold;
@@ -493,78 +355,53 @@ label{cursor:pointer}
     background-color: #fedcda;
 }
 
-#logimg{
-	cursor:pointer;
-}
-
 .oh{
-	overflow:hidden;
+   overflow:hidden;
 }
 .opacityall{
-	opacity:0.2;
-	background:gray;
+   opacity:0.2;
+   background:gray;
 }
+
 #other{
-	width:5000px;
-	height:2000px;
-	opacity:0.6;
-	background:gray;
-	position:fixed;
-	z-index:10
+   width:5000px;
+   height:2000px;
+   opacity:0.6;
+   background:gray;
+   position:fixed;
+   z-index:10
 }
-#other{
-    width:100vw;
-    height:100vw;
-    opacity:0.6;
-    background:gray;
-    position:fixed;
-    z-index:10
- }
+
+.blind{
+    display:none;
+    transition:1s;
+    width:0!important;
+    height:0!important
+}
 
 #log_title{
-	width:100%;
-}
-
-h4{
-	cursor:pointer;
+   width:100%;
 }
 
 #log_titleimg{
-	width: 550px;
-	height:240px;
-	margin: 10px auto;
-	margin-top:70px;
-	margin-right:10px;
-	padding:24px;
-}
-
-#log_titleimg{
-	width: 550px;
-	height:240px;
-	margin: 10pX auto;
-	padding:40px;
-	display:flex;
-	justify-content:center;
+   width: 550px;
+   height:240px;
+   margin: 10pX auto;
+   padding:40px;
+   display:flex;
+   justify-content:center;
 }
 
 #log_box{
-	width : 300px;
-	padding: 10px 40px;
-	margin: 0pX auto;
-	height:300px;
-	background-color:white;
-}
-
-#log_box{
-	width : 300px;
-	padding: 10px 40px;
-	margin: 10pX auto;
-	height:490px;
-	background-color:white;
+   width : 300px;
+   padding: 10px 40px;
+   margin: 0pX auto;
+   height:400px;
+   background-color:white;
 }
 
 .log_log{
-	width: 92%;
+   width: 92%;
     margin-bottom: 20px;
     padding: 10px;
     font-size: 16px;
@@ -572,70 +409,65 @@ h4{
     border: 1px solid #606060;
     border-radius: 5px;
 }
-#log_btlog{
-	width: 100%;
-    padding: 12px;
-    font-size: 18px;
-    font-weight: bold;
-    background-color: #a5dbdc;
-    color: #606060;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+
+
 #log_btlog:hover {
     background-color: #fedcda;
 }
 
 #log_join{
-	width:100px;
-	margin: 4px 170px;
-	padding:5px 19px;
-	display:flex;
-	justify-content:right;
-	font-size:16px;
- 	color:#686868;
+   width:100px;
+   margin: 4px 170px;
+   padding:5px 19px;
+   display:flex;
+   justify-content:right;
+   font-size:16px;
+    color:#686868;
 }
 
 --------------------------------------t_member{}
 
 ---------------------------------회원가입창,로그인창 이동및 크기조정{}
 #t_member{
-	transition:1s;
+   transition:1s;
     margin:auto;
-	z-index:11;
-	top:5vw;
-	right:35vw;
-	background:white;
-	width:600px;
-	height:780px;
-	border-radius:10px;
+   z-index:11;
+   top:5vw;
+   right:35vw;
+   background:white;
+   width:600px;
+   height:780px;
+   border-radius:10px;
 }
 #logking{
-	transition:1s;
-	position:fixed;
-	z-index:11;
-	top:5vw;
-	right:35vw;
-	background:white;
-	width:600px;
-	height:780px;
-	border-radius:10px;
-}
-#logking{
-    z-index:11;
-    position:fixed;
-    top:5vw;
-    right:35vw;
-    background:white;
-    border-radius:60px
+   transition:1s;
+   position:fixed;
+   z-index:11;
+   top:5vw;
+   right:35vw;
+   background:white;
+   width:600px;
+   height:780px;
+   border-radius:10px;
 }
 
+.logking:focus {
+    border-color:#808080;
+}
  ----------------------------returnflase클래스 정의, 정규표현식을 불만족할 시 시각적 효과 !important로 덧씌우기 {}
  .returnfalse{
- 	border:2px solid red !important;
+    border:2px solid red !important;
  }
+
+
+
+
+
+
+
+
+
+
 
 
 

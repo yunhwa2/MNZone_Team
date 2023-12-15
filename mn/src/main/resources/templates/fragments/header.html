@@ -16,9 +16,8 @@
                     <ul>
                         <li class="headList" id="list0" ><a href="http://www.naver.com">멍냥닥터</a></li>
                         <li class="headList" id="list2" href="/">멍냥만나</li>
-                        <li class="headList" id="list3" href="/">육아톡톡</li>
-                        <li class="headList" id="list4" href="/">멍냥실종</li>
-                        <li class="headList" id="list5" ><a th:href="@{/notice/list}">멍냥공지</a></li>
+                        <li class="headList" id="list3" ><a th:href="@{/yunhwa/missing}">멍냥실종</a></li>
+                        <li class="headList" id="list4" ><a th:href="@{/notice/list}">멍냥공지</a></li>
                     </ul>
                 </div>
                 <div class="head" id="head2">
@@ -26,7 +25,6 @@
                     <img class ="head2_userProfile" th:if="${userName==null}" th:src="@{/img/userProfile.png}" alt="비회원 기본 이미지" sec:authorize="isAnonymous()" onclick="login1()">
                     <a href = "/members/logout"><span th:text="${userName}" alt="로그아웃창" sec:authorize="isAuthenticated()"></span></a>
                     <a href = "/members/logout"><img th:src="@{/img/로그인창.png}" alt="로그아웃창" sec:authorize="isAuthenticated()"></a>
-
                 </div>
 
 

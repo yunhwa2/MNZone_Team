@@ -43,7 +43,7 @@ body{
 	width:100px;
 }
 #header ul{
-	margin:0px;
+	margin-left:20px
 }
 #header li{
 	text-align:center;

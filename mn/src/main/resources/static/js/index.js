@@ -360,24 +360,24 @@ const log_log=document.getElementsByClassName("log_log")
 const t_member_input=document.getElementsByClassName("t_member_input")
 
 function login1(){
-	log.classList.remove('blind')
-	other.classList.remove('blind')
-//	document.querySelector('body').classList.add("oh")
+   log.classList.remove('blind')
+   other.classList.remove('blind')
+//   document.querySelector('body').classList.add("oh")
 
 }
 function logout(){
 
-	log.classList.add("blind")
-	other.classList.add("blind")
-	t_member.classList.add("blind")
-//	document.querySelector('body').classList.remove("oh")
+   log.classList.add("blind")
+   other.classList.add("blind")
+   t_member.classList.add("blind")
+//   document.querySelector('body').classList.remove("oh")
 
-	for(let i=0;i<t_member_input.length;i++){
-		t_member_input[i].value=null
-	}
-	for(let i=0;i<log_log.length;i++){
-		log_log[i].value=null
-	}
+   for(let i=0;i<t_member_input.length;i++){
+      t_member_input[i].value=null
+   }
+   for(let i=0;i<log_log.length;i++){
+      log_log[i].value=null
+   }
 }
 
 const t_member=document.getElementById("t_member")
@@ -469,4 +469,3 @@ function Login()
 
 
 //---------------------------------------0811회원가입
-

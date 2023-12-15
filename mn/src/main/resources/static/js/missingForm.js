@@ -60,7 +60,7 @@ else false;
 
 //editorForm.addEventListener('submit', onEditorFormSubmit);
 function openTok(){
-	location.href='\missing_write.html';
+	location.href='\missingForm.html';
 }
 cancel.addEventListener("click",function(){
 

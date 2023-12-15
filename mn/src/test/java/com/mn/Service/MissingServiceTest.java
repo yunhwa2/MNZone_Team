@@ -55,7 +55,6 @@ public class MissingServiceTest {
     @WithMockUser(username = "test1", roles = "USER")
     void saveMissing() throws Exception{
         MissingFormDTO missingFormDTO = new MissingFormDTO();
-       // missingFormDTO.setMissingId(100l);
         missingFormDTO.setMissingTitle("테스트 글 제목1");
         missingFormDTO.setMissingContent("테스트중~");
         missingFormDTO.setMissingKind(MissingKind.DISAPPEAR);
@@ -66,7 +65,6 @@ public class MissingServiceTest {
         List<MissingImg> missingImgList = missingImgRepository.findByMissingMissingIdOrderByMissingImgIdAsc(missingId);
         Missing missing = missingRepository.findById(missingId).orElseThrow(EntityNotFoundException::new);
 
-       // assertEquals(missingFormDTO.getMissingId(),missing.getMissingId());
         assertEquals(missingFormDTO.getMissingTitle(),missing.getMissingTitle());
         assertEquals(missingFormDTO.getMissingContent(),missing.getMissingContent());
         assertEquals(missingFormDTO.getMissingKind(),missing.getMissingKind());
