@@ -26,5 +26,6 @@ public class Missing extends BaseEntity{
     @JoinColumn(name = "member_code")
     private Member member;
 
+    @Enumerated(EnumType.STRING)
     private MissingKind missingKind;
 }

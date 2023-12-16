@@ -1,8 +1,13 @@
 package com.mn.yunhwa.controller;
 
+import com.mn.entity.Missing;
 import com.mn.yunhwa.dto.MissingFormDTO;
+import com.mn.yunhwa.dto.MissingSearchDTO;
 import com.mn.yunhwa.service.MissingService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -22,10 +28,10 @@ public class MissingController {
 
     private final MissingService missingService;
 
-    @GetMapping("/missing")
-    public String missingmain(){
-        return "yunhwa/missing";
-    }
+//    @GetMapping("/missing")
+//    public String missingmain(){
+//        return "yunhwa/missing";
+//    }
 
     @GetMapping("/missing/write")
     public String missingForm(Model model){
@@ -66,6 +72,16 @@ public class MissingController {
         return "yunhwa/missing";
     }
 
+    @GetMapping({"/missing","missing/{page}"})
+    public String missingManage(MissingSearchDTO missingSearchDTO, @PathVariable("page")Optional<Integer> page, Model model){
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0,9);
+        Page<Missing> missings = missingService.getMissingPage(missingSearchDTO,pageable);
+        model.addAttribute("missings",missings);
+        model.addAttribute("missingSearchDTO",missingSearchDTO);
+        model.addAttribute("maxPage",5);
+        return "yunhwa/missing";
+
+    }
 
 
 }

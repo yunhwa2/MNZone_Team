@@ -18,18 +18,18 @@ function onClickUpload(){
 } 
 // 사진 추가
 
-function orCheck(chk,name){
-	let obj = document.getElementsByName(name);
-	for(let i=0; i<obj.length;i++){
-		if(obj[i] != chk){
-			obj[i].checked=false;
-		}
-	}
-	if(name=='dccheck'){
+function orCheck(chk, showSelect){
+          let name = $(chk).attr('name');
+             $('[name="' + name + '"]').each(function(index, element) {
+                 if (element !== chk && $(element).is(':checked')) {
+                     $(element).prop('checked', false);
+                 }
+             });
+	if(showSelect == 'dccheck'){
 		if($("#dog_check").is(':checked')){
 			$("#catkind_box").hide();
 			$("#dogkind_box").show();
-		}else if($("#cat_check").is(':checked')){
+		}else{
 			$("#catkind_box").show();
 			$("#dogkind_box").hide();
 		}
