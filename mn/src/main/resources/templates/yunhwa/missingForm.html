@@ -22,7 +22,7 @@
 
                 let missing_default_content = '<h3>기본 정보</h3><p>마지막 목격장소 : </p><p>마지막 목격날짜  : </p><p>보호자 연락처 : </p><p>특징 : </p>';
                 let targetElement = document.getElementById('defaultContent');
-                targetElement.innerHTML = htmlCode;
+                targetElement.innerHTML = missing_default_content;
 
             });
 
@@ -95,7 +95,7 @@
 						<button th:formaction="@{/missing/write}" type="submit" class="btn btn-primary">저장</button>
 					</div>
 					<div th:unless="${#strings.isEmpty(missingFormDTO.missingId)}" style="text-align: center">
-						<button th:formaction="@{'/missing/write' + ${missingFormDTO.id} }" type="submit" class="btn btn-primary">수정</button>
+						<button th:formaction="@{'/missing/write' + ${missingFormDTO.missingId} }" type="submit" class="btn btn-primary">수정</button>
 					</div>
 					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 

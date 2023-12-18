@@ -1,6 +1,7 @@
 package com.mn.entity;
 
 import com.mn.constant.MissingKind;
+import com.mn.yunhwa.dto.MissingFormDTO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -28,4 +29,10 @@ public class Missing extends BaseEntity{
 
     @Enumerated(EnumType.STRING)
     private MissingKind missingKind;
+
+    public void updateMissing(MissingFormDTO missingFormDTO){
+        this.missingTitle = missingFormDTO.getMissingTitle();
+        this.missingContent = missingFormDTO.getMissingContent();
+        this.missingKind = missingFormDTO.getMissingKind();
+    }
 }

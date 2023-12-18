@@ -43,8 +43,20 @@ public class MissingService {
             return missing.getMissingId();
     }
 
+    public Long updateMissing(MissingFormDTO missingFormDTO, List<MultipartFile> missingImgFileList) throws Exception{
+        Missing missing =missingRepository.findById(missingFormDTO.getMissingId()).orElseThrow(EntityNotFoundException::new);
+        missing.updateMissing(missingFormDTO);
+
+        List<Long> missingImgIds = missingFormDTO.getMissingImgIds();
+
+        for(int i=0;i<missingImgFileList.size();i++){
+            missingImgService.updateMissingImg(missingImgIds.get(i),missingImgFileList.get(i));
+        }
+        return missing.getMissingId();
+    }
+
     @Transactional(readOnly = true)
-    public MissingFormDTO getMissingContent(Long missingId){
+    public MissingFormDTO getMissingDtl(Long missingId){
         List<MissingImg> missingImgList = missingImgRepository.findByMissingMissingIdOrderByMissingImgIdAsc(missingId);
         List<MissingImgDTO> missingImgDTOList = new ArrayList<>();
 
@@ -58,6 +70,7 @@ public class MissingService {
         missingFormDTO.setMissingImgDTOList(missingImgDTOList);
         return missingFormDTO;
     }
+
 
     @Transactional(readOnly = true)
     public Page<Missing> getMissingPage(MissingSearchDTO missingSearchDTO, Pageable pageable){

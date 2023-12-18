@@ -4,8 +4,7 @@ import com.mn.constant.MissingKind;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Getter @Setter
 public class MissingSearchDTO {
 
     private String searchDateType;

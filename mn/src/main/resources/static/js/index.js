@@ -205,6 +205,17 @@ function age(){
 			$("#age_text").html("매일매일 고마운 고령기<br>반려동물을 세심하게 보살펴주세요!");
 		}
 	};//생애주기 계산식
+
+
+function orCheck(chk,name){
+	let obj = document.getElementsByName(name);
+	for(let i=0; i<obj.length;i++){
+		if(obj[i] != chk){
+			obj[i].checked=false;
+		}
+	}
+}//생애주기 계산기 반려동물 체크 1개만 하기
+
 	
 
 let slides = document.querySelector(".slides");
@@ -278,6 +289,7 @@ function moveSlide(num){
 
 //---------↑멀티플 슬라이드 ----------------------------------------------------
 
+
 function keep_box(){
 	if(!nullcheck($(".search_txt").val())){
 		$(".search_box").css({
@@ -321,36 +333,29 @@ function enter_search(e){
 	}
 }//검색창 엔터키 누르면 작동 (13번이 엔터)
 
-function search_board(){
-	let board = $(".search_txt").val();
-	if(board=="닥터"||board=="병원"||board=="중성화"||board=="진료"){
-		location.href = "hospital.html";
-	}else if(board=="자랑"){
-		location.href = "show.html";
-	}else if(board=="리뷰"||board=="후기"){
-		location.href = "review.html";
-	}else if(board=="육아"||board=="톡톡"||board=="질문"){
-		location.href = "team_Tok.html";
-	}else if(board=="실종"||board=="목격"||board=="보호"||board=="긴급"){
-		location.href = "missing.html";
-	}else if(board=="공지"){
-		location.href = "notice.html";	
-	}else{
-		window.name = board;					//window.name은 브라우저 탭이 켜져있을때까지 값을 유지해줌
-		location.href = "search_error.html";
-	}
-}//검색창 연결링크
+//function search_board(){
+//	let board = $(".search_txt").val();
+//	if(board=="닥터"||board=="병원"||board=="중성화"||board=="진료"){
+//		location.href = "hospital.html";
+//	}else if(board=="자랑"){
+//		location.href = "show.html";
+//	}else if(board=="리뷰"||board=="후기"){
+//		location.href = "review.html";
+//	}else if(board=="육아"||board=="톡톡"||board=="질문"){
+//		location.href = "team_Tok.html";
+//	}else if(board=="실종"||board=="목격"||board=="보호"||board=="긴급"){
+//		location.href = "missing.html";
+//	}else if(board=="공지"){
+//		location.href = "notice.html";
+//	}else{
+//		window.name = board;					//window.name은 브라우저 탭이 켜져있을때까지 값을 유지해줌
+//		location.href = "search_error.html";
+//	}
+//}//검색창 연결링크
 
 
 
-function orCheck(chk,name){
-	let obj = document.getElementsByName(name);
-	for(let i=0; i<obj.length;i++){
-		if(obj[i] != chk){
-			obj[i].checked=false;
-		}
-	}	
-}//반려동물 체크 1개만 하기
+
 
 
 //------------로그인-------------------------------------------0810추가

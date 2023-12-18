@@ -39,19 +39,6 @@ public class MissingController {
         return "yunhwa/missingForm";
     }
 
-    @GetMapping("/missing/write/{missingId}")
-    public String missingContent(@PathVariable("missingId") Long missingId, Model model){
-        try{
-            MissingFormDTO missingFormDTO = missingService.getMissingContent(missingId);
-            model.addAttribute("missingFormDTO",missingFormDTO);
-        }catch (EntityNotFoundException e){
-            model.addAttribute("errorMessage","존재하지 않는 글입니다.");
-            model.addAttribute("missingFormDTO",new MissingFormDTO());
-            return "yunhwa/missingForm";
-        }
-        return "yunhwa/missingForm";
-    }
-
     @PostMapping("/missing/write")
     public String missingNew(@Valid MissingFormDTO missingFormDTO, BindingResult bindingResult, Model model, @RequestParam("missingImgFile")List<MultipartFile> missingImgFileList){
         if(bindingResult.hasErrors()){
@@ -71,6 +58,44 @@ public class MissingController {
         }
         return "yunhwa/missing";
     }
+
+    @GetMapping("/missing/write/{missingId}")
+    public String missingDtl(@PathVariable("missingId") Long missingId, Model model){
+        try{
+            MissingFormDTO missingFormDTO = missingService.getMissingDtl(missingId);
+            model.addAttribute("missingFormDTO",missingFormDTO);
+        }catch (EntityNotFoundException e){
+            model.addAttribute("errorMessage","존재하지 않는 글입니다.");
+            model.addAttribute("missingFormDTO",new MissingFormDTO());
+            return "yunhwa/missingForm";
+        }
+        return "yunhwa/missingForm";
+    }
+
+    @PostMapping("missing/write/{missingId}")
+    public String missingUpdate(@Valid MissingFormDTO missingFormDTO, BindingResult bindingResult, @RequestParam("missingImgFile") List<MultipartFile> missingImgFileList, Model model){
+        if(bindingResult.hasErrors()){
+            return "yunhwa/missingForm";
+        }
+
+        if(missingImgFileList.get(0).isEmpty() && missingFormDTO.getMissingId() == null){
+            model.addAttribute("errorMessage","사진 한장은 필수입니다.");
+            return "yunhwa/missingForm";
+        }
+
+        try {
+            missingService.updateMissing(missingFormDTO,missingImgFileList);
+            return "redirect:/missing/write/" + missingFormDTO.getMissingId();
+        }catch (Exception e){
+            model.addAttribute("errorMessage","글 수정 중 에러가 발생하였습니다.");
+            return "yunhwa/missingForm";
+        }
+    }
+
+
+
+
+
 
     @GetMapping({"/missing","missing/{page}"})
     public String missingManage(MissingSearchDTO missingSearchDTO, @PathVariable("page")Optional<Integer> page, Model model){
