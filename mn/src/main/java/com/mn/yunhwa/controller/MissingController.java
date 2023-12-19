@@ -1,6 +1,7 @@
 package com.mn.yunhwa.controller;
 
 import com.mn.entity.Missing;
+import com.mn.yunhwa.dto.MissingDTO;
 import com.mn.yunhwa.dto.MissingFormDTO;
 import com.mn.yunhwa.dto.MissingSearchDTO;
 import com.mn.yunhwa.service.MissingService;
@@ -28,10 +29,10 @@ public class MissingController {
 
     private final MissingService missingService;
 
-    @GetMapping("/missing/main")
-    public String missingmain(){
-        return "yunhwa/missing";
-    }
+//    @GetMapping("/missing/main")
+//    public String missingmain(){
+//        return "yunhwa/missing";
+//    }
 
     @GetMapping("/missing/write")
     public String missingForm(Model model){
@@ -95,16 +96,17 @@ public class MissingController {
 
     @GetMapping({"/missing","missing/page/{pageNumber}"})
     public String missingManage(MissingSearchDTO missingSearchDTO, @PathVariable("pageNumber")Optional<Integer> page, Model model){
-
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0,9);
 
-        Page<Missing> missings = missingService.getMissingPage(missingSearchDTO,pageable);
+        Page<MissingDTO> missings = missingService.getMissingMainPage(missingSearchDTO,pageable);
         model.addAttribute("missings",missings);
         model.addAttribute("missingSearchDTO",missingSearchDTO);
         model.addAttribute("maxPage",5);
         return "yunhwa/missing";
 
     }
+
+
 
 
 }

@@ -2,6 +2,7 @@ package com.mn.yunhwa.service;
 
 import com.mn.entity.Missing;
 import com.mn.entity.MissingImg;
+import com.mn.yunhwa.dto.MissingDTO;
 import com.mn.yunhwa.dto.MissingFormDTO;
 import com.mn.yunhwa.dto.MissingImgDTO;
 import com.mn.yunhwa.dto.MissingSearchDTO;
@@ -75,6 +76,11 @@ public class MissingService {
     @Transactional(readOnly = true)
     public Page<Missing> getMissingPage(MissingSearchDTO missingSearchDTO, Pageable pageable){
         return missingRepository.getMissingPage(missingSearchDTO,pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<MissingDTO> getMissingMainPage(MissingSearchDTO missingSearchDTO, Pageable pageable){
+        return missingRepository.getMissingMainPage(missingSearchDTO,pageable);
     }
 
 }
