@@ -162,19 +162,17 @@
 
             <div id="main_div1">
                 <div id="MNpet">
-                    <!--    href controller 매핑 수정할 요소    -->
-                    <a href="mypet.html"><img th:src="@{/img/MN_petAdd_icon.png}" alt="반려동물 추가img"></a>
-                    <p id="register_text"><a href="mypet.html">반려동물 등록하기</a></p>
+                    <a href="/mypet/register"><img th:src="@{/img/MN_petAdd_icon.png}" alt="반려동물 추가img"></a>
+                    <p id="register_text"><a href="/mypet/register">반려동물 등록하기</a></p>
                 </div>
                 <div id="MNdoctor">
                     <!--    href controller 매핑 수정할 요소    -->
-                    <a href="hospital.html"><img th:src="@{/img/MN_hispital_icon.png}" alt="인기병원img"></a>
+                    <a href="/"><img th:src="@{/img/MN_hispital_icon.png}" alt="인기병원img"></a>
                     <p id="hospital_text"><a href="hospital.html">우리동네 동물병원</a></p>
                 </div>
                 <div id="MNmissing">
-                    <!--    href controller 매핑 수정할 요소    -->
-                    <a href = "missing.html"><img th:src="@{/img/MN_missing_icon.png}" alt="긴급신고img"></a>
-                    <p id="emergency_text"><a href = "missing.html">긴급신고</a></p>
+                    <a href = "/missing"><img th:src="@{/img/MN_missing_icon.png}" alt="긴급신고img"></a>
+                    <p id="emergency_text"><a href = "/missing">긴급신고</a></p>
                 </div>
             </div>
             <div id="main_div2">

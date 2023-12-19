@@ -1,9 +1,9 @@
 /**
  * 
  */
-var nums;
-var autobox=document.getElementById("auto_box");
-var cnt_index=document.getElementById("tokCntPrintf");
+//var nums;
+//var autobox=document.getElementById("auto_box");
+//var cnt_index=document.getElementById("tokCntPrintf");
 
 function enter_search(e){
 	if(e.keyCode==13){
@@ -27,7 +27,7 @@ function page(page){
     location.href="/missing/"+page + "?searchDateType=" + searchDateType
                  +"&searchMissingKind="+searchMissingKind
                  +"&searchMissingBy="+searchMissingBy
-                 +"&searchMissingQuery" + searchMissingQuery;
+                 +"&searchMissingQuery=" + searchMissingQuery;
 }
 
 //const lists = JSON.parse(localStorage.getItem("missing"));

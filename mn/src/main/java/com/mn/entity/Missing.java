@@ -7,11 +7,11 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="missing")
 @Getter @Setter
-@ToString
 public class Missing extends BaseEntity{
 
     @Id
@@ -19,8 +19,10 @@ public class Missing extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long missingId;
 
+    @NotBlank
     private String missingTitle;
 
+    @NotBlank
     private String missingContent;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -21,86 +21,89 @@
 					</div>
 				</div>
 
-				<form th:action="@{'/missing/' + ${missings.number}}" role="form" method="get" th:object="${missings}">
-				<div class="sub_nav">
-
-					<div id="button_div">
-						<button th:formaction="@{/missing/write}" type="submit" id="write_btn" onclick="gotoMissingForm()">글쓰기</button>
-					</div>
-
-					<div class="search_box" th:object="${missingSearchDTO}">
-						<select th:field="*{searchDateType}" class="form-control" >
-							<option value="all">전체기간</option>
-							<option value="1d">1일</option>
-							<option value="1w">1주</option>
-							<option value="1m">1개월</option>
-							<option value="6m">6개월</option>
-						</select>
-						<select th:field="*{searchMissingKind}" class="form-control" >
-							<option value=""  >분류(전체)</option>
-							<option value="DISAPPEAR">실종</option>
-							<option value="WITNESS">목격</option>
-							<option value="PROTECT">보호</option>
-						</select>
-						<select th:field="*{searchMissingBy}" class="form-control">
-							<option value="missingTitle">제목</option>
-							<option value="missingContent">내용</option>
-							<option value="missingTitleAndContent">제목+내용</option>
-						</select>
-						<div class="search_box">
-							<input th:field="*{searchMissingQuery}" type="text" class="search_txt form-control" id="search_text" placeholder="search_" oninput="keep_box()" onkeypress="enter_search(event)">
-							<button id="search_btn" type="submit" class="search_btn">검색</button>
-						</div>
-					</div>
+				<div id="button_div">
+					<button th:formaction="@{/missing/write}" type="submit" id="write_btn">글쓰기</button>
 				</div>
 
-				<div id="tokContent">
-					<div id="tokCnt">
-						<span id="tokCntPrintf">개의 글</span>
+				<div class="search_div" th:object="${missingSearchDTO}">
+					<select th:field="*{searchDateType}" class="search_select" >
+						<option value="all">전체기간</option>
+						<option value="1d">1일</option>
+						<option value="1w">1주</option>
+						<option value="1m">1개월</option>
+						<option value="6m">6개월</option>
+					</select>
+					<select th:field="*{searchMissingKind}" class="search_select" >
+						<option value="">분류(전체)</option>
+						<option value="DISAPPEAR">실종</option>
+						<option value="WITNESS">목격</option>
+						<option value="PROTECT">보호</option>
+					</select>
+					<select th:field="*{searchMissingBy}" class="search_select">
+						<option value="missingTitle">제목</option>
+						<option value="missingContent">내용</option>
+						<option value="missingTitleAndContent">제목+내용</option>
+					</select>
+					<div class="search_box">
+						<input th:field="*{searchMissingQuery}" type="text" class="search_txt" id="search_text" placeholder="search_" oninput="keep_box()" onkeypress="enter_search(event)">
+						<button id="search_btn" type="submit" class="search_btn"><i class="fas fa-search"></i></button>
 					</div>
+				</div>
+				<div id="contentCnt">
+					<span id="contentCntPrint">개의 글</span>
+				</div>
 
-					<div id="auto_inner" class="auto_inner" >에엥ㅇㅇ??
+				<form th:action="@{'/missing/' + ${missings.number}}" role="form" method="get" th:object="${missings}">
+
+				<div id="content">
+					<div class="auto_inner" >
 						<button onclick="click_del(this.id)" class="del_btn" id="del_btn">X</button>
-						<div id="auto_border">
-							<div id="auto_author">
-								<span> th:if = "${missing.missingKind == T(com.mn.constant.MissingKind).DISAPPEAR}">실종</span>
-								<span> th:if = "${missing.missingKind == T(com.mn.constant.MissingKind).WITNESS}">목격</span>
-								<span> th:if = "${missing.missingKind == T(com.mn.constant.MissingKind).PROTECT}">보호</span>
-								<div id="auto_title" th:text = "${missing.missingTitle}"></div>
-								<div id="auto_profile">
-									<img id="auto_img" >
-									<div id="auto_nick" th:text = "${member.nickName}"></div>
+						<div class="contentBorder">
+							<div class="author" th:each="missing, status: ${missings.getContent()}">
+
+								<span th:text="${missing.missingId}"></span>
+								<span class ="missngKind" th:if = "${missing.missingKind == T(com.mn.constant.MissingKind).DISAPPEAR}" style="color:red;">[실종]</span>
+								<span class ="missngKind" th:if = "${missing.missingKind == T(com.mn.constant.MissingKind).WITNESS}" style="color:#FFBF00;">[목격]</span>
+								<span class ="missngKind" th:if = "${missing.missingKind == T(com.mn.constant.MissingKind).PROTECT}" style="color:#2E9AFE;">[보호]</span>
+								<div class="title" th:text = "${missing.missingTitle}"></div>
+								<div class="profile">
+									<img id="profileImg" >
+<!--									<div class="nickName" th:text = "${member.nickName}"></div>-->
 									<div id="missingRegTime" th:text = "${missing.regTime}"></div>
 								</div>
+
+								<div id="contentImg_div">
+									<img id="contentImg" >
+								</div>
+
+								<div ><span id="missingContent" th:text="${missing.missingContent}"></span></div>
 							</div>
-							<div id="auto_contentimg">
-								<img id="auto_img2" >
-							</div>
-							<div id="auto_content" th:text = "${missing.missingContent}"></div>
 						</div>
 					</div>
 				</div>
-					<div th:with="start=${(missings.number/maxPage)*maxPage + 1}, end=(${(missings.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : missings.totalPages)})" >
-						<ul class="pagination justify-content-center">
 
-							<li class="pageMoveBtn" th:classappend="${missings.first}?'disabled'">
-								<a th:onclick="'javascript:page(' + ${missings.number - 1} + ')'" aria-label='Previous' class="page-link">
-									<span aria-hidden='true'>Previous</span>
-								</a>
-							</li>
+				<div th:with="start=${(missings.number/maxPage)*maxPage + 1}, end=(${(missings.totalPages == 0) ? 1 : (start + (maxPage - 1) < missings.totalPages ? start + (maxPage - 1) : missings.totalPages)})" >
 
-							<li class="pageMoveBtn" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${missings.number eq page-1}?'active':''">
-								<a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
-							</li>
+					<ul class="pagination">
 
-							<li class="pageMoveBtn" th:classappend="${missings.last}?'disabled'">
-								<a th:onclick="'javascript:page(' + ${missings.number + 1} + ')'" aria-label='Next' class="page-link">
-									<span aria-hidden='true'>Next</span>
-								</a>
-							</li>
+						<li class="pageMoveBtn pageMoveMargin" th:classappend="${missings.first}?'disabled'">
+							<a th:onclick="'javascript:page(' + ${missings.number - 1} + ')'" aria-label='Previous' class="page-link">
+								<span aria-hidden='true'>Previous</span>
+							</a>
+						</li>
 
-						</ul>
-					</div>
+						<li class="pageMoveBtn" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${missings.number eq page-1}?'active':''">
+							<a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
+						</li>
+
+						<li class="pageMoveBtn" th:classappend="${missings.last}?'disabled'">
+							<a th:onclick="'javascript:page(' + ${missings.number + 1} + ')'" aria-label='Next' class="page-link">
+								<span aria-hidden='true'>Next</span>
+							</a>
+						</li>
+
+					</ul>
+				</div>
 				</form>
 			</div>
 		</div>

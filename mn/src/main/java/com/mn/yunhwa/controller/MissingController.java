@@ -28,10 +28,10 @@ public class MissingController {
 
     private final MissingService missingService;
 
-//    @GetMapping("/missing")
-//    public String missingmain(){
-//        return "yunhwa/missing";
-//    }
+    @GetMapping("/missing/main")
+    public String missingmain(){
+        return "yunhwa/missing";
+    }
 
     @GetMapping("/missing/write")
     public String missingForm(Model model){
@@ -41,7 +41,7 @@ public class MissingController {
 
     @PostMapping("/missing/write")
     public String missingNew(@Valid MissingFormDTO missingFormDTO, BindingResult bindingResult, Model model, @RequestParam("missingImgFile")List<MultipartFile> missingImgFileList){
-        if(bindingResult.hasErrors()){
+            if(bindingResult.hasErrors()){
             return "yunhwa/missingForm";
         }
 
@@ -51,12 +51,12 @@ public class MissingController {
         }
 
         try{
-            missingService.saveMissing(missingFormDTO, missingImgFileList);
+            Long missingId = missingService.saveMissing(missingFormDTO, missingImgFileList);
+            return "redirect:/missing";
         }catch (Exception e){
             model.addAttribute("errorMessage","실종글 등록 중에 에러가 발생하였습니다.");
             return "yunhwa/missingForm";
         }
-        return "yunhwa/missing";
     }
 
     @GetMapping("/missing/write/{missingId}")
@@ -84,8 +84,8 @@ public class MissingController {
         }
 
         try {
-            missingService.updateMissing(missingFormDTO,missingImgFileList);
-            return "redirect:/missing/write/" + missingFormDTO.getMissingId();
+            long updateMissingId = missingService.updateMissing(missingFormDTO,missingImgFileList);
+            return "redirect:/missing";
         }catch (Exception e){
             model.addAttribute("errorMessage","글 수정 중 에러가 발생하였습니다.");
             return "yunhwa/missingForm";
@@ -93,13 +93,11 @@ public class MissingController {
     }
 
 
+    @GetMapping({"/missing","missing/page/{pageNumber}"})
+    public String missingManage(MissingSearchDTO missingSearchDTO, @PathVariable("pageNumber")Optional<Integer> page, Model model){
 
-
-
-
-    @GetMapping({"/missing","missing/{page}"})
-    public String missingManage(MissingSearchDTO missingSearchDTO, @PathVariable("page")Optional<Integer> page, Model model){
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0,9);
+
         Page<Missing> missings = missingService.getMissingPage(missingSearchDTO,pageable);
         model.addAttribute("missings",missings);
         model.addAttribute("missingSearchDTO",missingSearchDTO);

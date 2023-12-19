@@ -24,14 +24,12 @@
 	font-weight:bold;
 	margin:5px;
 }
-#sub_nav{
+#button_div{
     margin:10px auto;
     padding:0px;
     max-width:1300px;
-    height:40px;
     justify-content:center;
 }
-
 
 #write_btn {
   width:100px;
@@ -45,29 +43,41 @@
   font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   float:right;
-  margin: -45px 350px 0px 0px;
-  align-self: flex-end;
+  margin-top: -25px;
 }
-
 
 #write_btn:hover{
 	background:rgb(222, 222, 222);
 	color:rgb(93, 93, 93);
 }
+.search_div{
+    margin:0px auto;
+    width:670px;
+}
+.search_select{
+    width: 100px;
+    height: 35px;
+    border: 4px solid #a5dbdc;
+    border-radius: 30px;
+    margin: 12px 0px 0px 5px;
+    outline: none;
+    line-height: 30px;
+    float: left;
+    text-align:center;
+    cursor: pointer;
+}
 .search_box{
 	padding: 11px;
-	width: 282px;
-	height: 30px;
-	background-color: #fff;
-	border: 4px solid #51e3d4;
-	border-radius: 30px;
-
-	margin-left:300px;
-	margin-top: 50px;
+    width: 300px;
+    height: 30px;
+    background-color: #fff;
+    border: 4px solid #a5dbdc;
+    border-radius: 30px;
+    margin-left: 335px;
 }
 .search_box:hover{
-	box-shadow: 0px 0px .5px 1px #51e3d4;
-	width: 282px;
+	box-shadow: 0px 0px .5px 1px #a5dbdc;
+	width: 300px;
 }
 .search_btn{
 	text-decoration: none;
@@ -75,11 +85,15 @@
 	width: 30px;
 	height: 30px;
 	background-color: #fff;
+	border: 3px solid #a5dbdc;
 	border-radius: 50%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: #51e3d4;
+	color: #a5dbdc;
+	font-weight:bold;
+	font-size: 1rem;
+	cursor: pointer;
 }
 .search_box:hover > .search_btn{
 	background-color: #fff;
@@ -97,27 +111,26 @@
 	transition: .4s;
 }
 .search_box:hover > .search_txt{
-	width: 240px;
+	width: 220px;
 	padding: 0 6px;
 }
 
-/*↑글쓰기 버튼 포함 그 위쪽 영역--------------------------*/
+#contentCnt{
+	width:1300px;
+	height:40px;
+	margin:40px auto;
+	text-align:right;
+	font-size:20px;
+	font-weight:bold;
+}/*↑게시물 나오기 전 위쪽 영역--------------------------*/
 
-#tokContent{
+#content{
 	width:100%;
 	max-width:1460px;
 	height:3200px;
 	margin:0 auto;
 }
-#tokCnt{
-	width:100%;
-	height:40px;
-	margin:0 auto;
-	text-align:right;
-	font-size:20px;
-	font-weight:bold;
-	margin-top:40px;
-}
+
 #auto_box{
 	display:flex;		
 	width:1530px;
@@ -142,54 +155,59 @@
     border: none;
     background-color: #fedcda;
 }
-#auto_border{
+.contentBorder{
 	border:4px solid #a5dbdc;
 	border-radius: 20px 60px 100px 140px;
 	width:450px;
 	height:650px;
 	margin: 0px auto;
 }
-#auto_author{
+.author{
 	height:90px;
 	width:430px;
 	padding:10px;
 	border-radius: 0px 40px 0px 0px;
 	margin-top:10px;
 }
-#auto_title{
+.missngKind{
+    font-weight:bold;
+    font-size:23px;
+}
+.title{
 	font-size:23px;
 	font-weight:bold;
 	color:#353535;
 }
-#auto_profile{
+.profile{
 	width:152px;
 	height:50px;
 	display:flex;
 	margin-left:320px;
 }
-#auto_img{
+#profileImg{
 	width:38px;
 	height:38px;
 }
-#auto_nick{
+.nickName{
 	font-size:15px;
 	font-weight:bold;
 	color:gray;
 	margin:10px 0px 0px 7px;	
 }
-#auto_img2{
+#contentImg{
 	width:320px;
 	height:320px;
 }
 
-#auto_contentimg{
+#contentImg_div{
 	width:100%;
 	display:flex;
 	justify-content: center;
 	margin:10px 0px 15px 0px;
 }
-#auto_content{
+#missingContent{
 	width:100%;
+	height:50px;
 	text-align:center;
 }
 .del_btn{
@@ -202,5 +220,32 @@
     border: none;
     background-color: #fedcda;
     color: #7a7a7a;
-    cursor:pointer;
+    cursor: pointer;
+}
+.pagination{
+    display:flex;
+    max-width:770px;
+    width:70px;
+    margin:10px auto;
+}
+.pageMoveBtn{
+    border-radius: 0.25rem;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    line-height: 1.25;
+    background-color: #fedcda;
+    border-color: #fedcda;
+    margin:10px auto;
+    margin-bottom:20px;
+    margin-right:10px;
+    cursor: pointer;
+}
+.pageMoveMargin{
+    margin-left:-60px
+}
+
+.pageMoveBtn:hover{
+    background-color: #a5dbdc;
+    border-color: #a5dbdc;
+    cursor: pointer;
 }
