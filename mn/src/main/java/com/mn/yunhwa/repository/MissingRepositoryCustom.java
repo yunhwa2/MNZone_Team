@@ -9,6 +9,6 @@ import org.springframework.data.domain.Pageable;
 public interface MissingRepositoryCustom {
     Page<Missing> getMissingPage(MissingSearchDTO missingSearchDTO, Pageable pageable);
 
-    Page<MissingDTO> getMissingMainPage(MissingSearchDTO missingSearchDTO, Pageable pageable);
+//    Page<MissingDTO> getMissingMainPage(MissingSearchDTO missingSearchDTO, Pageable pageable);
 
 }

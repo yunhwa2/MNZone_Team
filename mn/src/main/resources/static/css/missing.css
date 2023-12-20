@@ -124,7 +124,7 @@
 	font-weight:bold;
 }/*↑게시물 나오기 전 위쪽 영역--------------------------*/
 
-#content{
+#contents{
 	width:100%;
 	max-width:1460px;
 	height:3200px;
@@ -132,12 +132,12 @@
 }
 
 #auto_box{
-	display:flex;		
+	display:flex;
 	width:1530px;
 	margin:0px auto;
 	margin-bottom:25px;
 	margin-top:15px;
-	flex-wrap:wrap;			
+	flex-wrap:wrap;
 }
 .auto_inner{
 	width:450px;
@@ -192,7 +192,7 @@
 	font-size:15px;
 	font-weight:bold;
 	color:gray;
-	margin:10px 0px 0px 7px;	
+	margin:10px 0px 0px 7px;
 }
 #contentImg{
 	width:320px;

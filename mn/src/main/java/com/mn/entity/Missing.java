@@ -2,6 +2,7 @@ package com.mn.entity;
 
 import com.mn.constant.MissingKind;
 import com.mn.yunhwa.dto.MissingFormDTO;
+import com.mn.yunhwa.dto.MissingImgDTO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -31,6 +32,10 @@ public class Missing extends BaseEntity{
 
     @Enumerated(EnumType.STRING)
     private MissingKind missingKind;
+
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "member_code")
+//    private MissingImgDTO missingImgUrl;
 
     public void updateMissing(MissingFormDTO missingFormDTO){
         this.missingTitle = missingFormDTO.getMissingTitle();

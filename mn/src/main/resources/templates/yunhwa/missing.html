@@ -49,39 +49,38 @@
 						<button id="search_btn" type="submit" class="search_btn"><i class="fas fa-search"></i></button>
 					</div>
 				</div>
+
 				<div id="contentCnt">
 					<span id="contentCntPrint">개의 글</span>
 				</div>
 
+				<div id="contents">
+
 				<form th:action="@{'/missing/' + ${missings.number}}" role="form" method="get" th:object="${missings}">
-
-				<div id="content">
-
-					<th:block th:each="missing, status: ${missings.getContent()}">
-					<div>
-						<button class="del_btn" id="del_btn">X</button>
+					<div th:each="missing, status: ${missings.getContent()}">
+						<div>
+							<button class="del_btn" id="del_btn">X</button>
 							<div class="contentBorder">
 								<a th:href="'missing/write/' + ${missing.missingId}">
-									<span class ="missngKind" th:if = "${missing.missingKind == T(com.mn.constant.MissingKind).DISAPPEAR}" style="color:red;">[실종]</span>
-									<span class ="missngKind" th:if = "${missing.missingKind == T(com.mn.constant.MissingKind).WITNESS}" style="color:#FFBF00;">[목격]</span>
-									<span class ="missngKind" th:if = "${missing.missingKind == T(com.mn.constant.MissingKind).PROTECT}" style="color:#2E9AFE;">[보호]</span>
+									<span class="missngKind" th:if="${missing.missingKind == T(com.mn.constant.MissingKind).DISAPPEAR}" style="color:red;">[실종]</span>
+									<span class="missngKind" th:if="${missing.missingKind == T(com.mn.constant.MissingKind).WITNESS}" style="color:#FFBF00;">[목격]</span>
+									<span class="missngKind" th:if="${missing.missingKind == T(com.mn.constant.MissingKind).PROTECT}" style="color:#2E9AFE;">[보호]</span>
 
-									<p class="title">[[${missing.missingTitle}]]</p>
+									<p class="title" th:text="${missing.missingTitle}"></p>
 									<div class="profile">
-	<!--								<img id="profileImg" th:src="${missing.member.nickName}" th:alt="${missing.member.nickName}">-->
-										<div id="missingNickName" th:text = "${missing.regTime}"></div>
+										<!-- <img id="profileImg" th:src="${missing.member.nickName}" th:alt="${missing.member.nickName}"> -->
+										<div id="missingNickName" th:text="${missing.regTime}"></div>
 									</div>
 
 									<div id="contentImg_div">
-										<img id="contentImg" th:src="${missing.missingImgUrl}" th:alt="${missing.missingTitle}">
+										<!-- <img id="contentImg" th:src="${missing.missingImgUrl}" th:alt="${missing.missingTitle}"> -->
 									</div>
 
-									<div ><span id="missingContent">[[${missing.missingContent}]]</span></div>
+									<div id="missingContent" th:text="${missing.missingContent}"></div>
 								</a>
 							</div>
 						</div>
-					</th:block>
-				</div>
+					</div>
 
 
 				<div th:with="start=${(missings.number/maxPage)*maxPage + 1}, end=(${(missings.totalPages == 0) ? 1 : (start + (maxPage - 1) < missings.totalPages ? start + (maxPage - 1) : missings.totalPages)})" >
@@ -106,14 +105,14 @@
 
 					</ul>
 				</div>
-				</form>
-			</div>
-		</div>
 
+			</form>
+			</div>
+
+		</div>
 		<!-- script  -->
 		<th:block layout:fragment="script">
 			<script type="text/javascript" th:src="@{/js/missing.js}"></script>
 		</th:block>
-
 	</div>
 </html>

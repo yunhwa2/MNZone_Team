@@ -91,38 +91,38 @@ public class MissingRepositoryCustomImpl implements MissingRepositoryCustom{
 
     }
 
-    @Override
-    public Page<MissingDTO> getMissingMainPage(MissingSearchDTO missingSearchDTO, Pageable pageable) {
-        System.out.println("missingRepositoryImpl 실행");
-
-        QMissing missing = QMissing.missing;
-        QMissingImg missingImg = QMissingImg.missingImg;
-
-        //MainItemDTO 생성자에 변환할 값을 입력
-        List<MissingDTO> content =queryFactory.select(
-                        new QMissingDTO(missing.missingId,
-                                missing.missingKind,
-                                missing.missingTitle,
-                                missing.missingContent,
-                                missingImg.missingImgUrl,
-                                missing.member)
-                ).from(missingImg)
-                .join(missingImg.missing,missing)    //itemImg와 item을 조인
-                .where(missingImg.missingRepImgYn.eq("Y"))    //대표 이미지만 불러옴
-                .orderBy(missing.missingId.desc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetch();
-        //전체 아이템의 개수를 조회
-        long total = queryFactory.select(Wildcard.count)
-                .from(missingImg)
-                .join(missingImg.missing,missing)
-                .where(missingImg.missingRepImgYn.eq("Y"))
-                .where(missingTitleLike(missingSearchDTO.getSearchMissingQuery()))
-                .fetchOne();
-
-        return new PageImpl<>(content, pageable,total);
-    }
+//    @Override
+//    public Page<MissingDTO> getMissingMainPage(MissingSearchDTO missingSearchDTO, Pageable pageable) {
+//        System.out.println("missingRepositoryImpl 실행");
+//
+//        QMissing missing = QMissing.missing;
+//        QMissingImg missingImg = QMissingImg.missingImg;
+//
+//        //MainItemDTO 생성자에 변환할 값을 입력
+//        List<MissingDTO> content =queryFactory.select(
+//                        new QMissingDTO(missing.missingId,
+//                                missing.missingKind,
+//                                missing.missingTitle,
+//                                missing.missingContent,
+//                                missingImg.missingImgUrl,
+//                                missing.member)
+//                ).from(missingImg)
+//                .join(missingImg.missing,missing)    //itemImg와 item을 조인
+//                .where(missingImg.missingRepImgYn.eq("Y"))    //대표 이미지만 불러옴
+//                .orderBy(missing.missingId.desc())
+//                .offset(pageable.getOffset())
+//                .limit(pageable.getPageSize())
+//                .fetch();
+//        //전체 아이템의 개수를 조회
+//        long total = queryFactory.select(Wildcard.count)
+//                .from(missingImg)
+//                .join(missingImg.missing,missing)
+//                .where(missingImg.missingRepImgYn.eq("Y"))
+//                .where(missingTitleLike(missingSearchDTO.getSearchMissingQuery()))
+//                .fetchOne();
+//
+//        return new PageImpl<>(content, pageable,total);
+//    }
 
     private  BooleanExpression missingTitleLike(String missingSearchQuery){
         return StringUtils.isEmpty(missingSearchQuery) ? null : QMissing.missing.missingTitle.like("%" + missingSearchQuery+"%");

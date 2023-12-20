@@ -98,7 +98,7 @@ public class MissingController {
     public String missingManage(MissingSearchDTO missingSearchDTO, @PathVariable("pageNumber")Optional<Integer> page, Model model){
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0,9);
 
-        Page<MissingDTO> missings = missingService.getMissingMainPage(missingSearchDTO,pageable);
+        Page<Missing> missings = missingService.getMissingPage(missingSearchDTO,pageable);
         model.addAttribute("missings",missings);
         model.addAttribute("missingSearchDTO",missingSearchDTO);
         model.addAttribute("maxPage",5);

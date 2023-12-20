@@ -78,9 +78,9 @@ public class MissingService {
         return missingRepository.getMissingPage(missingSearchDTO,pageable);
     }
 
-    @Transactional(readOnly = true)
-    public Page<MissingDTO> getMissingMainPage(MissingSearchDTO missingSearchDTO, Pageable pageable){
-        return missingRepository.getMissingMainPage(missingSearchDTO,pageable);
-    }
+//    @Transactional(readOnly = true)
+//    public Page<MissingDTO> getMissingMainPage(MissingSearchDTO missingSearchDTO, Pageable pageable){
+//        return missingRepository.getMissingMainPage(missingSearchDTO,pageable);
+//    }
 
 }
