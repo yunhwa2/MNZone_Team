@@ -4,9 +4,10 @@ import com.mn.constant.MissingKind;
 import com.mn.entity.Missing;
 import com.mn.entity.QMissing;
 import com.mn.entity.QMissingImg;
-import com.mn.yunhwa.dto.MissingDTO;
+import com.mn.yunhwa.dto.MissingMainDTO;
 import com.mn.yunhwa.dto.MissingSearchDTO;
 import com.mn.yunhwa.dto.QMissingDTO;
+import com.mn.yunhwa.dto.QMissingMainDTO;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Wildcard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -91,40 +92,40 @@ public class MissingRepositoryCustomImpl implements MissingRepositoryCustom{
 
     }
 
-//    @Override
-//    public Page<MissingDTO> getMissingMainPage(MissingSearchDTO missingSearchDTO, Pageable pageable) {
-//        System.out.println("missingRepositoryImpl 실행");
-//
-//        QMissing missing = QMissing.missing;
-//        QMissingImg missingImg = QMissingImg.missingImg;
-//
-//        //MainItemDTO 생성자에 변환할 값을 입력
-//        List<MissingDTO> content =queryFactory.select(
-//                        new QMissingDTO(missing.missingId,
-//                                missing.missingKind,
-//                                missing.missingTitle,
-//                                missing.missingContent,
-//                                missingImg.missingImgUrl,
-//                                missing.member)
-//                ).from(missingImg)
-//                .join(missingImg.missing,missing)    //itemImg와 item을 조인
-//                .where(missingImg.missingRepImgYn.eq("Y"))    //대표 이미지만 불러옴
-//                .orderBy(missing.missingId.desc())
-//                .offset(pageable.getOffset())
-//                .limit(pageable.getPageSize())
-//                .fetch();
-//        //전체 아이템의 개수를 조회
-//        long total = queryFactory.select(Wildcard.count)
-//                .from(missingImg)
-//                .join(missingImg.missing,missing)
-//                .where(missingImg.missingRepImgYn.eq("Y"))
-//                .where(missingTitleLike(missingSearchDTO.getSearchMissingQuery()))
-//                .fetchOne();
-//
-//        return new PageImpl<>(content, pageable,total);
-//    }
+    @Override
+    public Page<MissingMainDTO> getMissingMainPage(MissingSearchDTO missingSearchDTO, Pageable pageable) {
+        System.out.println("missingRepositoryImpl 실행");
 
-    private  BooleanExpression missingTitleLike(String missingSearchQuery){
-        return StringUtils.isEmpty(missingSearchQuery) ? null : QMissing.missing.missingTitle.like("%" + missingSearchQuery+"%");
+        QMissing missing = QMissing.missing;
+        QMissingImg missingImg = QMissingImg.missingImg;
+
+        //MainItemDTO 생성자에 변환할 값을 입력
+        List<MissingMainDTO> content =queryFactory.select(
+                        new QMissingMainDTO(missing.missingId,
+                                            missing.missingKind,
+                                            missing.missingTitle,
+                                            missing.missingContent,
+                                            missingImg.missingImgUrl)
+                ).from(missingImg)
+                .join(missingImg.missing,missing)    //itemImg와 item을 조인
+                .where(missingImg.missingRepImgYn.eq("Y"))    //대표 이미지만 불러옴
+                .orderBy(missing.missingId.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        //전체 아이템의 개수를 조회
+        long total = queryFactory.select(Wildcard.count)
+                .from(missingImg)
+                .join(missingImg.missing,missing)
+                .where(missingImg.missingRepImgYn.eq("Y"))
+                .where(missingTitleLike(missingSearchDTO.getSearchMissingQuery()))
+                .fetchOne();
+
+        return new PageImpl<>(content, pageable,total);
+    }
+
+    private  BooleanExpression missingTitleLike(String searchMissingQuery){
+        return StringUtils.isEmpty(searchMissingQuery) ? null : QMissing.missing.missingTitle.like("%" + searchMissingQuery+"%");
     }
 }

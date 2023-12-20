@@ -7,22 +7,22 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter@Setter
-public class MissingDTO {
+public class MissingMainDTO {
 
     private Long missingId;
     private MissingKind missingKind;
     private String missingTitle;
     private String missingContent;
     private String missingImgUrl;
-    private Member member;
+//    private Member member;
 
     @QueryProjection
-    public MissingDTO(Long missingId, MissingKind missingKind, String missingTitle, String missingContent, String missingImgUrl, Member member) {
+    public MissingMainDTO(Long missingId, MissingKind missingKind, String missingTitle, String missingContent, String missingImgUrl) {
         this.missingId = missingId;
         this.missingKind = missingKind;
         this.missingTitle = missingTitle;
         this.missingContent = missingContent;
         this.missingImgUrl = missingImgUrl;
-        this.member = member;
+//        this.member = member;
     }
 }

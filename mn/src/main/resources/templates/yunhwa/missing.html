@@ -46,13 +46,13 @@
 						<option value="missingTitleAndContent">제목+내용</option>
 					</select>
 					<div class="search_box">
-						<input th:field="*{searchMissingQuery}" type="text" class="search_txt" id="search_text" placeholder="search_" oninput="keep_box()" onkeypress="enter_search(event)">
+						<input th:field="*{searchMissingQuery}" type="text" class="search_txt" placeholder="search_" oninput="keep_box()" onkeypress="enter_search(event)">
 						<button id="search_btn" type="submit" class="search_btn"><i class="fas fa-search"></i></button>
 					</div>
 				</div>
 
-				<div id="contentCnt">
-					<span id="contentCntPrint">개의 글</span>
+				<div id="contentCnt_div">
+					<span id="contentCnt">개의 글</span>
 				</div>
 
 				<div id="contents">
@@ -70,11 +70,11 @@
 									<span class="title" th:text="${missing.missingTitle}"></span>
 									<div class="profile">
 										<!-- <img id="profileImg" th:src="${missing.member.nickName}" th:alt="${missing.member.nickName}"> -->
-										<div id="missingNickName" th:text="${missing.regTime}"></div>
+<!--										<div id="missingNickName" th:text="${missing.regTime}"></div>-->
 									</div>
 
 									<div id="contentImg_div">
-<!--										 <img id="contentImg" th:src=s"${missingImgDTO.missingImgUrl}" th:alt="${missing.missingTitle}">-->
+<!--										 <img id="contentImg" th:src=s"${missing.missingImgUrl}" th:alt="${missing.missingTitle}">-->
 									</div>
 
 									<div id="missingContent" th:text="${missing.missingContent}"></div>
@@ -88,18 +88,18 @@
 
 					<ul class="pagination">
 
-						<li class="pageMoveBtn pageMoveMargin" th:classappend="${missings.first}?'disabled'">
-							<a th:onclick="'javascript:page(' + ${missings.number - 1} + ')'" aria-label='Previous' class="page-link">
+						<li class="pageMoveBtn pageMoveMargin" th:classappend="${missings.number eq 0}?'disabled':''">
+							<a th:href="@{'/missing' + '?SearchMissingQuery=' + ${missingSearchDTO.searchMissingQuery} + '&page=' + ${missings.number-1}}" aria-label='Previous' class="page-link">
 								<span aria-hidden='true'>Previous</span>
 							</a>
 						</li>
 
 						<li class="pageMoveBtn" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${missings.number eq page-1}?'active':''">
-							<a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
+							<a th:href="@{'/missing' +'?SearchMissingQuery=' + ${missingSearchDTO.searchMissingQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
 						</li>
 
-						<li class="pageMoveBtn" th:classappend="${missings.last}?'disabled'">
-							<a th:onclick="'javascript:page(' + ${missings.number + 1} + ')'" aria-label='Next' class="page-link">
+						<li class="pageMoveBtn" th:classappend="${missings.number+1 ge missings.totalPages}?'disabled':''">
+							<a th:href="@{'/missing' +'?SearchMissingQuery=' + ${missingSearchDTO.searchMissingQuery} + '&page=' + ${missings.number+1}}" aria-label='Next' class="page-link">
 								<span aria-hidden='true'>Next</span>
 							</a>
 						</li>
