@@ -5,11 +5,41 @@
 //var autobox=document.getElementById("auto_box");
 //var cnt_index=document.getElementById("tokCntPrintf");
 
-function enter_search(e){
-	if(e.keyCode==13){
-		search_board();
+function nullcheck(obj){
+	if(obj==""||obj==null||obj==undefined){
+		return true;
+	}else{
+		return false;
 	}
-}//검색창 엔터키 누르면 작동 (13번이 엔터)
+}; //null체크 함수
+
+function keep_box(){
+	if(!nullcheck($(".search_txt").val())){
+		$(".search_txt").css({
+			"width": "220px",
+			"padding": "0 6px"
+		});
+	}else{
+		$(".search_txt").css({
+			"display": "flex",
+			"padding": "0",
+			"width": "0px",
+			"border":"none",
+			"background": "none",
+			"outline": "none",
+			"float": "left",
+			"font-size": "1rem",
+			"line-height": "30px",
+			"transition": ".4s",
+		});
+	}
+}//검색창 인풋시 트랜스레이트 유지
+
+//function enter_search(e){
+//	if(e.keyCode==13){
+//		search_board();
+//	}
+//}//검색창 엔터키 누르면 작동 (13번이 엔터)
 
 $(document).ready(function(){
     $("#search_btn").on("click",function(e){

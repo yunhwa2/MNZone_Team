@@ -22,8 +22,9 @@
 				</div>
 
 				<div id="button_div">
-					<button th:formaction="@{/missing/write}" type="submit" id="write_btn">글쓰기</button>
+					<a th:href ="@{/missing/write}" id="write_btn" >글쓰기</a>
 				</div>
+
 
 				<div class="search_div" th:object="${missingSearchDTO}">
 					<select th:field="*{searchDateType}" class="search_select" >
@@ -57,23 +58,23 @@
 				<div id="contents">
 
 				<form th:action="@{'/missing/' + ${missings.number}}" role="form" method="get" th:object="${missings}">
-					<div th:each="missing, status: ${missings.getContent()}">
-						<div>
+					<div class="auto_box">
+						<div class="auto_card" th:each="missing, status: ${missings.getContent()}">
 							<button class="del_btn" id="del_btn">X</button>
 							<div class="contentBorder">
 								<a th:href="'missing/write/' + ${missing.missingId}">
-									<span class="missngKind" th:if="${missing.missingKind == T(com.mn.constant.MissingKind).DISAPPEAR}" style="color:red;">[실종]</span>
-									<span class="missngKind" th:if="${missing.missingKind == T(com.mn.constant.MissingKind).WITNESS}" style="color:#FFBF00;">[목격]</span>
-									<span class="missngKind" th:if="${missing.missingKind == T(com.mn.constant.MissingKind).PROTECT}" style="color:#2E9AFE;">[보호]</span>
+									<span class="missngKind" th:if="${missing.missingKind == T(com.mn.constant.MissingKind).DISAPPEAR}" style="color:red;">&nbsp;[실종]&nbsp;</span>
+									<span class="missngKind" th:if="${missing.missingKind == T(com.mn.constant.MissingKind).WITNESS}" style="color:#FFBF00;">&nbsp;[목격]&nbsp;</span>
+									<span class="missngKind" th:if="${missing.missingKind == T(com.mn.constant.MissingKind).PROTECT}" style="color:#2E9AFE;">&nbsp;[보호]&nbsp;</span>
 
-									<p class="title" th:text="${missing.missingTitle}"></p>
+									<span class="title" th:text="${missing.missingTitle}"></span>
 									<div class="profile">
 										<!-- <img id="profileImg" th:src="${missing.member.nickName}" th:alt="${missing.member.nickName}"> -->
 										<div id="missingNickName" th:text="${missing.regTime}"></div>
 									</div>
 
 									<div id="contentImg_div">
-										<!-- <img id="contentImg" th:src="${missing.missingImgUrl}" th:alt="${missing.missingTitle}"> -->
+<!--										 <img id="contentImg" th:src=s"${missingImgDTO.missingImgUrl}" th:alt="${missing.missingTitle}">-->
 									</div>
 
 									<div id="missingContent" th:text="${missing.missingContent}"></div>
