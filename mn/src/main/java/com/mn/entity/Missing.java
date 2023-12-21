@@ -9,6 +9,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Entity
 @Table(name="missing")
@@ -20,10 +21,11 @@ public class Missing extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long missingId;
 
-    @NotBlank
+    @Column(nullable = false)
     private String missingTitle;
 
-    @NotBlank
+    @Lob
+    @Column(nullable = false)
     private String missingContent;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -36,6 +38,9 @@ public class Missing extends BaseEntity{
 //    @OneToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "member_code")
 //    private MissingImgDTO missingImgUrl;
+
+    @OneToMany(mappedBy = "missing", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MissingImg> missingImgs;
 
     public void updateMissing(MissingFormDTO missingFormDTO){
         this.missingTitle = missingFormDTO.getMissingTitle();

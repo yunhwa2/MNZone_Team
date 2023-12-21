@@ -74,7 +74,7 @@
 									</div>
 
 									<div id="contentImg_div">
-<!--										 <img id="contentImg" th:src=s"${missing.missingImgUrl}" th:alt="${missing.missingTitle}">-->
+										<img id="contentImg" th:src="${missing.missingImgUrl}" th:alt="${missing.missingTitle}">
 									</div>
 
 									<div id="missingContent" th:text="${missing.missingContent}"></div>
@@ -89,17 +89,17 @@
 					<ul class="pagination">
 
 						<li class="pageMoveBtn pageMoveMargin" th:classappend="${missings.number eq 0}?'disabled':''">
-							<a th:href="@{'/missing' + '?SearchMissingQuery=' + ${missingSearchDTO.searchMissingQuery} + '&page=' + ${missings.number-1}}" aria-label='Previous' class="page-link">
+							<a th:href="@{'/missing' + '?SearchMissingQuery=' + '&page=' + ${missings.number-1}}" aria-label='Previous'>
 								<span aria-hidden='true'>Previous</span>
 							</a>
 						</li>
 
 						<li class="pageMoveBtn" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${missings.number eq page-1}?'active':''">
-							<a th:href="@{'/missing' +'?SearchMissingQuery=' + ${missingSearchDTO.searchMissingQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
+							<a th:href="@{'/missing' +'?SearchMissingQuery=' + '&page=' + ${page-1}}" th:inline="text" >[[${page}]]</a>
 						</li>
 
 						<li class="pageMoveBtn" th:classappend="${missings.number+1 ge missings.totalPages}?'disabled':''">
-							<a th:href="@{'/missing' +'?SearchMissingQuery=' + ${missingSearchDTO.searchMissingQuery} + '&page=' + ${missings.number+1}}" aria-label='Next' class="page-link">
+							<a th:href="@{'/missing' +'?SearchMissingQuery=' +  '&page=' + ${missings.number+1}}" aria-label='Next' class="page-link">
 								<span aria-hidden='true'>Next</span>
 							</a>
 						</li>
