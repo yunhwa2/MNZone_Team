@@ -108,6 +108,7 @@ body{
 	width:100%;
 	background-color:#a5dbdc;
 	z-index : 1000;
+	clear:both;
 }
 
 #footer_div1> ul{

@@ -31,4 +31,5 @@ public class MissingImg extends BaseEntity{
         this.missingImgName = missingImgName;
         this.missingImgUrl = missingImgUrl;
     }
+
 }

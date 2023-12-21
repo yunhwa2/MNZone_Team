@@ -11,21 +11,6 @@
 <!-- 사용자 스크립트 추가 -->
 <th:block layout:fragment="script">
     <script th:inline="javascript">
-<!--        $(document).ready(function(){-->
-
-<!--            calculateToalPrice();-->
-
-<!--            $("#count").change( function(){-->
-<!--                calculateToalPrice();-->
-<!--            });-->
-<!--        });-->
-
-<!--        function calculateToalPrice(){-->
-<!--            var count = $("#count").val();-->
-<!--            var price = $("#price").val();-->
-<!--            var totalPrice = price*count;-->
-<!--            $("#totalPrice").html(totalPrice + '원');-->
-<!--        }-->
 
 <!--        function order() {-->
 <!--            //csrf 토큰 가져오기-->
@@ -135,55 +120,70 @@
 
 <!--  CSS  -->
 <th:block layout:fragment="css">
-
+    <link rel="stylesheet" type="text/css" th:href="@{/css/missingDtl.css}">
 </th:block>
 
-<div layout:fragment="content" style="margin-left:25%;margin-right:25%">
+<div class = "container" layout:fragment="content">
 
     <input type="hidden" id="missing_id" th:value="${missing.missingId}">
 
-    <div>
-        <div>
-            <span th:if="${missing.missingKind == T(com.mn.constant.MissingKind).DISAPPEAR}" class="contentKind" style="color:red; font-weight:bold">
-                실종
+    <div class="dtlTitle">
+            <span th:if="${missing.missingKind == T(com.mn.constant.MissingKind).DISAPPEAR}" class="contentKind" style="color:red;">
+                &nbsp;[실종]&nbsp;
             </span>
-            <span th:unless="${missing.missingKind == T(com.mn.constant.MissingKind).WITNESS}" class="contentKind" style="color:#FFBF00; font-weight:bold">
-                목격
+            <span th:if="${missing.missingKind == T(com.mn.constant.MissingKind).WITNESS}" class="contentKind" style="color:#FFBF00;">
+                &nbsp;[목격]&nbsp;
             </span>
-            <span th:unless="${missing.missingKind == T(com.mn.constant.MissingKind).PROTECT}" class="contentKind" style="color:2E9AFE; font-weight:bold">
-                보호
+            <span th:if="${missing.missingKind == T(com.mn.constant.MissingKind).PROTECT}" class="contentKind" style="color:2E9AFE;">
+                &nbsp;[보호]&nbsp;
             </span>
-            <div class="missing_title" th:text="${missing.missingName}"></div>
-            <div class="missing_author" th:text="작성자 : ${member.memberNickname}"></div>
-            <hr class="my-4">
+            <span class="missing_title" th:text="${missing.missingTitle}"></span>
+<!--            <div class="missing_author" th:text="작성자 : ${member.memberNickname}"></div>-->
+            <hr class="line">
+    </div>
+
+    <div class="dtlSummary">
+        <div class="repImgDiv">
+           <img th:src="${missing.missingImgDTOList[0].missingImgUrl}" class = "repImg" th:alt="${missing.missingTitle}">
         </div>
 
-        <div>
-            <div class="repImgDiv">
-               <img th:src="${missing.missingImgDTOList[0].missingImgUrl}" class = "repImg" th:alt="${missing.missingName}">
-            </div>
-
-            <div class="text-right">
-
-            </div>
+        <div class="text-right">
+            <h2>기본 정보</h2>
+            <p>마지막 목격장소 : </p>
+            <p>마지막 목격날짜  : </p>
+            <p>보호자 연락처 : </p>
+            <p>특징 : </p>
         </div>
+    </div>
 
-        <div>
-            <div>
-                <span th:text="${missing.missingContent}"></span>
-            </div>
+    <div class="dtlContent">
+        <br>
+        <p th:text="${missing.missingContent}"></p>
 
-            <div th:each="missingImg : ${missing.missingImgDTOList}" class="text-center">
+        <div class="dtlImgDiv">
+            <div class="dtlImgCard" th:each="missingImg : ${missing.missingImgDTOList}" >
                 <img th:if="${not #strings.isEmpty(missingImg.missingImgUrl)}" th:src="${missingImg.missingImgUrl}">
             </div>
         </div>
-
-        <div th:if="${member.Id == session.Id}" >
-            <button type="button" onclick="">수정</button>
-            <button type="button" onclick="">삭제</button>
-        </div>
-
     </div>
+
+
+    <!--th:if="${member.Id == session.Id}"    세션 연결해서 버튼 숨기고 나타내기 해야함-->
+
+<!--    <form role="form" method="post" enctype="multipart/form-data" th:object="${missingFormDTO}">-->
+<!--        <div class="btn_div" th:if="${missingFormDTO != null && #strings.isNotEmpty(missingFormDTO.missingId)}">-->
+<!--            <button th:formaction="@{'/missing/write/' + ${missingFormDTO.missingId} }" type="submit">수정</button>-->
+<!--            <button type="submit" onclick="">삭제</button>-->
+<!--        </div>-->
+<!--    </form>-->
+    <form>
+        <div class="btn_div" >
+            <button type="submit">수정</button>
+            <button type="submit">삭제</button>
+        </div>
+    </form>
+
 </div>
+
 
 </html>

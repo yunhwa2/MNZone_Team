@@ -91,11 +91,11 @@
 						</div>
 					</div>
 
-					<div th:if="${#strings.isEmpty(missingFormDTO.missingId)}" style="text-align: center">
-						<button th:formaction="@{/missing/write}" type="submit" class="btn btn-primary">저장</button>
+					<div th:if="${#strings.isEmpty(missingFormDTO.missingId)}">
+						<button class="btn" th:formaction="@{/missing/write}" type="submit">저장</button>
 					</div>
-					<div th:unless="${#strings.isEmpty(missingFormDTO.missingId)}" style="text-align: center">
-						<button th:formaction="@{'/missing/write/' + ${missingFormDTO.missingId} }" type="submit" class="btn btn-primary">수정</button>
+					<div th:unless="${#strings.isEmpty(missingFormDTO.missingId)}">
+						<button class="btn" th:formaction="@{'/missing/write/' + ${missingFormDTO.missingId} }" type="submit">수정</button>
 					</div>
 
 					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">

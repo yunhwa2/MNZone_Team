@@ -52,7 +52,7 @@
 				</div>
 
 				<div id="contentCnt_div">
-					<span id="contentCnt">개의 글</span>
+					<span id="contentCnt" th:text="${missingCount} + '개의 글'"></span>
 				</div>
 
 				<div id="contents">
@@ -74,8 +74,9 @@
 									</div>
 
 									<div id="contentImg_div">
-										<img id="contentImg" th:src="${missing.missingImgUrl}" th:alt="${missing.missingTitle}">
+										<img id="contentImg" th:src="@{${missing.missingImgUrl}}" th:alt="${missing.missingTitle}">
 									</div>
+
 
 									<div id="missingContent" th:text="${missing.missingContent}"></div>
 								</a>

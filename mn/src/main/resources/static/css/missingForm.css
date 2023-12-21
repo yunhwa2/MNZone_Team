@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-
 #container1{
 	width:750px;
 	margin:0px auto;
@@ -85,39 +84,9 @@ textarea{
 	font-weight: bold;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	float:right;
-	margin :20px 0px 0px 10px;
+	margin :20px 0px 20px 10px;
 }
 .btn:hover{
 	background:rgb(222, 222, 222);
 	color:rgb(93, 93, 93);
-}
-/*↑해더 영역---------------------------*/
-
-/*풋터 영역↓----------------*/
-#footer{
-	width:100%;
-	background-color:#a5dbdc;
-}
-
-#footer_div2{
-	width:100%;
-	height:130px;
-}
-#footer_div3{
-	display:flex;
-	width:780px;
-	margin:0px auto;
-	color:gray;
-}
-#footer_img{
-	width:110px;
-	height:90px;
-	color:gray;
-	margin:15px 0px 0px 80px;
-}
-#footertext{
-	width:500px;
-	height:90px;
-	margin:20px auto;
-	color:gray;
 }

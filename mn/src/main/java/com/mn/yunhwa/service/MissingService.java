@@ -56,6 +56,10 @@ public class MissingService {
         return missing.getMissingId();
     }
 
+    public long countMissing() {
+        return missingRepository.count();
+    }
+
     @Transactional(readOnly = true)
     public MissingFormDTO getMissingDtl(Long missingId){
         List<MissingImg> missingImgList = missingImgRepository.findByMissingMissingIdOrderByMissingImgIdAsc(missingId);

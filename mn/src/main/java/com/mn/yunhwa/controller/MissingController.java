@@ -62,6 +62,7 @@ public class MissingController {
 
     @GetMapping("/missing/write/{missingId}")
     public String missingDtl(@PathVariable("missingId") Long missingId, Model model){
+
         try{
             MissingFormDTO missingFormDTO = missingService.getMissingDtl(missingId);
             model.addAttribute("missingFormDTO",missingFormDTO);
@@ -94,29 +95,26 @@ public class MissingController {
     }
 
 
-//    @GetMapping({"/missing","missing/page/{pageNumber}"})
-//    public String missingManage(MissingSearchDTO missingSearchDTO, @PathVariable("pageNumber")Optional<Integer> page, Model model){
-//        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0,9);
-//
-//        Page<Missing> missings = missingService.getMissingPage(missingSearchDTO,pageable);
-//        model.addAttribute("missings",missings);
-//        model.addAttribute("missingSearchDTO",missingSearchDTO);
-//        model.addAttribute("maxPage",5);
-//        return "yunhwa/missing";
-//
-//    }
-
     @GetMapping(value = "/missing")
     public String missingMain(MissingSearchDTO missingSearchDTO, Optional<Integer> page, Model model){
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0,9);
         Page<MissingMainDTO> missingMainDTOS = missingService.getMissingMainPage(missingSearchDTO,pageable);
         model.addAttribute("missings",missingMainDTOS);
         model.addAttribute("missingSearchDTO",missingSearchDTO);
-        model.addAttribute("maxPage",5);
+
+        long missingCount = missingService.countMissing();
+        model.addAttribute("missingCount", missingCount);
+        model.addAttribute("maxPage",9);
+
         return "yunhwa/missing";
     }
 
-
+    @GetMapping("/missing/{missingId}")
+    public String missingDtl(Model model, @PathVariable("missingId") Long missingId){
+        MissingFormDTO missingFormDTO = missingService.getMissingDtl(missingId);
+        model.addAttribute("missing",missingFormDTO);
+        return "yunhwa/missingDtl";
+    }
 
 
 
