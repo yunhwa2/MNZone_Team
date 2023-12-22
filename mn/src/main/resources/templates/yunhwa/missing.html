@@ -20,99 +20,97 @@
 						<p class="explain_subtitle">당신의 제보가 큰 힘이 됩니다!</p>
 					</div>
 				</div>
-
-				<div id="button_div">
-					<a th:href ="@{/missing/write}" id="write_btn" >글쓰기</a>
-				</div>
-
-
-				<div class="search_div" th:object="${missingSearchDTO}">
-					<select th:field="*{searchDateType}" class="search_select" >
-						<option value="all">전체기간</option>
-						<option value="1d">1일</option>
-						<option value="1w">1주</option>
-						<option value="1m">1개월</option>
-						<option value="6m">6개월</option>
-					</select>
-					<select th:field="*{searchMissingKind}" class="search_select" >
-						<option value="">분류(전체)</option>
-						<option value="DISAPPEAR">실종</option>
-						<option value="WITNESS">목격</option>
-						<option value="PROTECT">보호</option>
-					</select>
-					<select th:field="*{searchMissingBy}" class="search_select">
-						<option value="missingTitle">제목</option>
-						<option value="missingContent">내용</option>
-						<option value="missingTitleAndContent">제목+내용</option>
-					</select>
-					<div class="search_box">
-						<input th:field="*{searchMissingQuery}" type="text" class="search_txt" placeholder="search_" oninput="keep_box()" onkeypress="enter_search(event)">
-						<button id="search_btn" type="submit" class="search_btn"><i class="fas fa-search"></i></button>
+					<div id="button_div">
+						<a th:href ="@{/missing/write}" id="write_btn" >글쓰기</a>
 					</div>
-				</div>
-
-				<div id="contentCnt_div">
-					<span id="contentCnt" th:text="${missingCount} + '개의 글'"></span>
-				</div>
-
-				<div id="contents">
-
-				<form th:action="@{'/missing/' + ${missings.number}}" role="form" method="get" th:object="${missings}">
-					<div class="auto_box">
-						<div class="auto_card" th:each="missing, status: ${missings.getContent()}">
-							<button class="del_btn" id="del_btn">X</button>
-							<div class="contentBorder">
-								<a th:href="'missing/' + ${missing.missingId}">
-<!--									<span class="missngKind" th:text="${missing.missingKind}" style="color:red;"></span>-->
-									<span class="missngKind" th:if="${missing.missingKind.name() == 'DISAPPEAR'}" style="color:red;">&nbsp;[실종]&nbsp;</span>
-									<span class="missngKind" th:if="${missing.missingKind.name() == 'WITNESS'}" style="color:#FFBF00;">&nbsp;[목격]&nbsp;</span>
-									<span class="missngKind" th:if="${missing.missingKind.name() == 'PROTECT'}" style="color:#2E9AFE;">&nbsp;[보호]&nbsp;</span>
-
-									<span class="title" th:text="${missing.missingTitle}"></span>
-									<div class="profile">
-										<!-- <img id="profileImg" th:src="${missing.member.nickName}" th:alt="${missing.member.nickName}"> -->
-<!--										<div id="missingNickName" th:text="${missing.regTime}"></div>-->
-									</div>
-
-									<div id="contentImg_div">
-										<img id="contentImg" th:src="@{${missing.missingImgUrl}}" th:alt="${missing.missingTitle}">
-									</div>
 
 
-									<div id="missingContent" th:text="${missing.missingContent}"></div>
-								</a>
-							</div>
+					<div class="search_div" th:object="${missingSearchDTO}">
+						<select th:field="*{searchDateType}" class="search_select" >
+							<option value="all">전체기간</option>
+							<option value="1d">1일</option>
+							<option value="1w">1주</option>
+							<option value="1m">1개월</option>
+							<option value="6m">6개월</option>
+						</select>
+						<select th:field="*{searchMissingKind}" class="search_select" >
+							<option value="">분류(전체)</option>
+							<option value="DISAPPEAR">실종</option>
+							<option value="WITNESS">목격</option>
+							<option value="PROTECT">보호</option>
+						</select>
+						<select th:field="*{searchMissingBy}" class="search_select">
+							<option value="missingTitle">제목</option>
+							<option value="missingContent">내용</option>
+							<option value="missingTitleAndContent">제목+내용</option>
+						</select>
+						<div class="search_box">
+							<input th:field="*{searchMissingQuery}" type="text" class="search_txt" placeholder="search_" oninput="keep_box()" onkeypress="enter_search(event)">
+							<button id="search_btn" type="submit" class="search_btn"><i class="fas fa-search"></i></button>
 						</div>
 					</div>
 
+					<div id="contentCnt_div">
+						<span id="contentCnt" th:text="${missingCount} + '개의 글'"></span>
+					</div>
 
-				<div th:with="start=${(missings.number/maxPage)*maxPage + 1}, end=(${(missings.totalPages == 0) ? 1 : (start + (maxPage - 1) < missings.totalPages ? start + (maxPage - 1) : missings.totalPages)})" >
+					<div id="contents">
 
-					<ul class="pagination">
+					<form th:action="@{'/missing/' + ${missings.number}}" role="form" method="get" th:object="${missings}">
+						<div class="auto_box">
+							<div class="auto_card" th:each="missing, status: ${missings.getContent()}">
+								<button class="del_btn" id="del_btn">X</button>
+								<div class="contentBorder">
+									<a th:href="'missing/' + ${missing.missingId}">
+	<!--									<span class="missngKind" th:text="${missing.missingKind}" style="color:red;"></span>-->
+										<span class="missngKind" th:if="${missing.missingKind.name() == 'DISAPPEAR'}" style="color:red;">&nbsp;[실종]&nbsp;</span>
+										<span class="missngKind" th:if="${missing.missingKind.name() == 'WITNESS'}" style="color:#FFBF00;">&nbsp;[목격]&nbsp;</span>
+										<span class="missngKind" th:if="${missing.missingKind.name() == 'PROTECT'}" style="color:#2E9AFE;">&nbsp;[보호]&nbsp;</span>
 
-						<li class="pageMoveBtn pageMoveMargin" th:classappend="${missings.number eq 0}?'disabled':''">
-							<a th:href="@{'/missing' + '?SearchMissingQuery=' + '&page=' + ${missings.number-1}}" aria-label='Previous'>
-								<span aria-hidden='true'>Previous</span>
-							</a>
-						</li>
+										<span class="title" th:text="${missing.missingTitle}"></span>
+										<div class="profile">
+											<!-- <img id="profileImg" th:src="${missing.member.nickName}" th:alt="${missing.member.nickName}"> -->
+	<!--										<div id="missingNickName" th:text="${missing.regTime}"></div>-->
+										</div>
 
-						<li class="pageMoveBtn" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${missings.number eq page-1}?'active':''">
-							<a th:href="@{'/missing' +'?SearchMissingQuery=' + '&page=' + ${page-1}}" th:inline="text" >[[${page}]]</a>
-						</li>
+										<div id="contentImg_div">
+											<img id="contentImg" th:src="@{${missing.missingImgUrl}}" th:alt="${missing.missingTitle}">
+										</div>
+										<div id="missingContent" th:text="${missing.missingContent}"></div>
+									</a>
+								</div>
+							</div>
+						</div>
 
-						<li class="pageMoveBtn" th:classappend="${missings.number+1 ge missings.totalPages}?'disabled':''">
-							<a th:href="@{'/missing' +'?SearchMissingQuery=' +  '&page=' + ${missings.number+1}}" aria-label='Next' class="page-link">
-								<span aria-hidden='true'>Next</span>
-							</a>
-						</li>
 
-					</ul>
+					<div class="pagination_div" th:with="start=${(missings.number/maxPage)*maxPage + 1}, end=(${(missings.totalPages == 0) ? 1 : (start + (maxPage - 1) < missings.totalPages ? start + (maxPage - 1) : missings.totalPages)})" >
+
+						<ul class="pagination">
+
+							<li class="pageMoveBtn pageMoveMargin" th:classappend="${missings.number eq 0}?'disabled':''">
+								<a th:href="@{'/missing' + '?SearchMissingQuery=' + '&page=' + ${missings.number-1}}" aria-label='Previous'>
+									<span aria-hidden='true'>Previous</span>
+								</a>
+							</li>
+
+							<li class="pageMoveBtn" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${missings.number eq page-1}?'active':''">
+								<a th:href="@{'/missing' +'?SearchMissingQuery=' + '&page=' + ${page-1}}" th:inline="text" >[[${page}]]</a>
+							</li>
+
+							<li class="pageMoveBtn" th:classappend="${missings.number+1 ge missings.totalPages}?'disabled':''">
+								<a th:href="@{'/missing' +'?SearchMissingQuery=' +  '&page=' + ${missings.number+1}}" aria-label='Next' class="page-link">
+									<span aria-hidden='true'>Next</span>
+								</a>
+							</li>
+
+						</ul>
+					</div>
+
+					</form>
 				</div>
 
-			</form>
-			</div>
 
-		</div>
+				</div>
 		<!-- script  -->
 		<th:block layout:fragment="script">
 			<script type="text/javascript" th:src="@{/js/missing.js}"></script>

@@ -104,7 +104,7 @@ public class MissingController {
 
         long missingCount = missingService.countMissing();
         model.addAttribute("missingCount", missingCount);
-        model.addAttribute("maxPage",9);
+        model.addAttribute("maxPage",5);
 
         return "yunhwa/missing";
     }

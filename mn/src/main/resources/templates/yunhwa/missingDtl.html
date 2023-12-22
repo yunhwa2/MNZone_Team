@@ -128,13 +128,13 @@
     <input type="hidden" id="missing_id" th:value="${missing.missingId}">
 
     <div class="dtlTitle">
-            <span th:if="${missing.missingKind == T(com.mn.constant.MissingKind).DISAPPEAR}" class="contentKind" style="color:red;">
+            <span th:if="${missing.missingKind.name() == 'DISAPPEAR'}" class="contentKind" style="color:red;">
                 &nbsp;[실종]&nbsp;
             </span>
-            <span th:if="${missing.missingKind == T(com.mn.constant.MissingKind).WITNESS}" class="contentKind" style="color:#FFBF00;">
+            <span th:if="${missing.missingKind.name() == 'WITNESS'}" class="contentKind" style="color:#FFBF00;">
                 &nbsp;[목격]&nbsp;
             </span>
-            <span th:if="${missing.missingKind == T(com.mn.constant.MissingKind).PROTECT}" class="contentKind" style="color:2E9AFE;">
+            <span th:if="${missing.missingKind.name() == 'PROTECT'}" class="contentKind" style="color:2E9AFE;">
                 &nbsp;[보호]&nbsp;
             </span>
             <span class="missing_title" th:text="${missing.missingTitle}"></span>
@@ -161,8 +161,8 @@
         <p th:text="${missing.missingContent}"></p>
 
         <div class="dtlImgDiv">
-            <div class="dtlImgCard" th:each="missingImg : ${missing.missingImgDTOList}" >
-                <img th:if="${not #strings.isEmpty(missingImg.missingImgUrl)}" th:src="${missingImg.missingImgUrl}">
+            <div th:each="missingImg : ${missing.missingImgDTOList}" >
+                <img class="dtlImgCard" th:if="${not #strings.isEmpty(missingImg.missingImgUrl)}" th:src="${missingImg.missingImgUrl}">
             </div>
         </div>
     </div>

@@ -1,4 +1,7 @@
 @charset "UTF-8";
+#main{
+    font-family: 'Noto Sans KR', sans-serif;
+}
 
 #explain_img{
 	background-image:url("../img/무지개.jpg");
@@ -131,8 +134,6 @@
 	height:2290px;
 	margin:0 auto;
 }
-
-
 .auto_box{
 	display:flex;
 	width:1530px;
@@ -225,16 +226,18 @@
     color: #7a7a7a;
     cursor: pointer;
 }
+.pagination_div{
+    width: 1530px;
+    justify-content: center;
+    display: flex;
+}
 
 .pagination{
-    display:flex;
-    max-width:770px;
-    width:70px;
     margin:10px auto;
 }
 .pageMoveBtn{
     border-radius: 0.25rem;
-    display: block;
+    display: inline-block;
     padding: 0.5rem 0.75rem;
     line-height: 1.25;
     background-color: #fedcda;

@@ -6,7 +6,6 @@ import com.mn.entity.QMissing;
 import com.mn.entity.QMissingImg;
 import com.mn.yunhwa.dto.MissingMainDTO;
 import com.mn.yunhwa.dto.MissingSearchDTO;
-import com.mn.yunhwa.dto.QMissingDTO;
 import com.mn.yunhwa.dto.QMissingMainDTO;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Wildcard;
