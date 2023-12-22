@@ -2,11 +2,12 @@
 #main_div{
 	background-color:#fedcda;
 	max-height:1200px;
+	min-height:800px;
 	width:100%;
 	max-width:1400px;
 	margin:0px auto;
 	display:flex;
-	flex-wrap:wrap;		
+	flex-wrap:wrap;
 }
 #main a{						
 	text-decoration: none;
