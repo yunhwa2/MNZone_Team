@@ -356,8 +356,6 @@ function enter_search(e){
 
 
 
-
-
 //------------로그인-------------------------------------------0810추가
 const log=document.getElementById("logking")
 const other=document.getElementsByClassName("other")
@@ -370,6 +368,7 @@ function login1(){
 //   document.querySelector('body').classList.add("oh")
 
 }
+
 function logout(){
 
    log.classList.add("blind")

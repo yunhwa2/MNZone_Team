@@ -24,7 +24,7 @@
                     <img class ="head2_navBar" th:src="@{/img/navBar.png}" alt="더보기 버튼" sec:authorize="isAnonymous()" onclick="login1()">
                     <img class ="head2_userProfile" th:if="${userName==null}" th:src="@{/img/userProfile.png}" alt="비회원 기본 이미지" sec:authorize="isAnonymous()" onclick="login1()">
                     <a href = "/members/logout"><img class="userDefaultImg" th:src="@{/img/pet_DefaultProfile.png}" alt="회원 기본 이미지" sec:authorize="isAuthenticated()"></a>
-                    <a href = "/members/logout"><span class="userNickName"  alt="로그아웃창" sec:authorize="isAuthenticated()"> [[${userName}]] 님</span></a>
+                    <a href = "/mypage"><span class="userNickName"  alt="로그아웃창" sec:authorize="isAuthenticated()"> [[${session.userName}]] 님</span></a>
                 </div>
 
 

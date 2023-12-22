@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.Optional;
 
@@ -28,12 +30,13 @@ public class MainController {
 
 
     @GetMapping(value = "/")
-    public String main(Model model, Principal principal){
+    public String main(Model model, Principal principal, HttpServletRequest httpServletRequest){
 
         try{
             System.err.println(principal.getName());
             String name = principal.getName();
-            model.addAttribute("userName",name);
+            HttpSession httpSession = httpServletRequest.getSession(true);
+            httpSession.setAttribute("userName",name);
         }catch (Exception e){
             model.addAttribute("memberFormDTO", new MemberFormDTO());
             return "index";

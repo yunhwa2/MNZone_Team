@@ -4,4 +4,5 @@ public enum MissingKind {
     DISAPPEAR,
     WITNESS,
     PROTECT
+
 }

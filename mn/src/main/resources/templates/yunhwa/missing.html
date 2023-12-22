@@ -62,10 +62,11 @@
 						<div class="auto_card" th:each="missing, status: ${missings.getContent()}">
 							<button class="del_btn" id="del_btn">X</button>
 							<div class="contentBorder">
-								<a th:href="'missing/write/' + ${missing.missingId}">
-									<span class="missngKind" th:if="${missing.missingKind == T(com.mn.constant.MissingKind).DISAPPEAR}" style="color:red;">&nbsp;[실종]&nbsp;</span>
-									<span class="missngKind" th:if="${missing.missingKind == T(com.mn.constant.MissingKind).WITNESS}" style="color:#FFBF00;">&nbsp;[목격]&nbsp;</span>
-									<span class="missngKind" th:if="${missing.missingKind == T(com.mn.constant.MissingKind).PROTECT}" style="color:#2E9AFE;">&nbsp;[보호]&nbsp;</span>
+								<a th:href="'missing/' + ${missing.missingId}">
+<!--									<span class="missngKind" th:text="${missing.missingKind}" style="color:red;"></span>-->
+									<span class="missngKind" th:if="${missing.missingKind.name() == 'DISAPPEAR'}" style="color:red;">&nbsp;[실종]&nbsp;</span>
+									<span class="missngKind" th:if="${missing.missingKind.name() == 'WITNESS'}" style="color:#FFBF00;">&nbsp;[목격]&nbsp;</span>
+									<span class="missngKind" th:if="${missing.missingKind.name() == 'PROTECT'}" style="color:#2E9AFE;">&nbsp;[보호]&nbsp;</span>
 
 									<span class="title" th:text="${missing.missingTitle}"></span>
 									<div class="profile">
