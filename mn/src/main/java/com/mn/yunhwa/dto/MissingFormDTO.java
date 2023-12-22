@@ -25,7 +25,9 @@ public class MissingFormDTO {
     @NotBlank(message = "내용을 입력해주세요.")
     private String missingContent;
 
-//    private Member member;
+    private Long memberCode;
+
+    private Member member;
 
     @Column(columnDefinition="default 'DISAPPEAR' not null")
     private MissingKind missingKind;
@@ -37,10 +39,18 @@ public class MissingFormDTO {
     private static ModelMapper modelMapper = new ModelMapper();
 
     public Missing createMissing(){
-        return modelMapper.map(this,Missing.class);
+        Missing missing = modelMapper.map(this, Missing.class);
+        // Member 객체를 가져와서 Missing에 설정
+        Member member = new Member();
+        member.setCode(this.getMemberCode());
+        missing.setMember(member);
+
+        return missing;
     }
 
     public static MissingFormDTO of(Missing missing){
-        return modelMapper.map(missing,MissingFormDTO.class);
+        MissingFormDTO missingFormDTO = modelMapper.map(missing, MissingFormDTO.class);
+        missingFormDTO.setMemberCode(missing.getMember().getCode());
+        return missingFormDTO;
     }
 }

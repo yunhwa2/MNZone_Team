@@ -33,10 +33,10 @@ public class MainController {
     public String main(Model model, Principal principal, HttpServletRequest httpServletRequest){
 
         try{
-            System.err.println(principal.getName());
-            String name = principal.getName();
-            HttpSession httpSession = httpServletRequest.getSession(true);
-            httpSession.setAttribute("userName",name);
+//            System.err.println(principal.getName());
+//            String name = principal.getName();
+//            HttpSession httpSession = httpServletRequest.getSession(true);
+//            httpSession.setAttribute("userName",name);
         }catch (Exception e){
             model.addAttribute("memberFormDTO", new MemberFormDTO());
             return "index";

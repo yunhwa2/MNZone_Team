@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -35,8 +36,9 @@ public class MissingController {
 //    }
 
     @GetMapping("/missing/write")
-    public String missingForm(Model model){
+    public String missingForm(Model model, HttpSession session){
         model.addAttribute("missingFormDTO", new MissingFormDTO());
+        model.addAttribute("memberCode", session.getAttribute("memberCode"));
         return "yunhwa/missingForm";
     }
 

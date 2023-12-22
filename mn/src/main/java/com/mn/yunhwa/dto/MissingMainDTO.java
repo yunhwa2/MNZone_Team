@@ -14,7 +14,7 @@ public class MissingMainDTO {
     private String missingTitle;
     private String missingContent;
     private String missingImgUrl;
-//    private Member member;
+    private Member member;
 
     @QueryProjection
     public MissingMainDTO(Long missingId, MissingKind missingKind, String missingTitle, String missingContent, String missingImgUrl) {

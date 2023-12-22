@@ -61,9 +61,8 @@
 						<input id="title1" type="text" th:field="*{missingTitle}" class="form-control" placeholder="제목">
 					</div>
 					<!-- 여기 수정해야함 -->
-						<input id="img1" type="text" placeholder="프로필 이미지 주소">
-						<input id="title2" type="text" placeholder="닉네임">
-						<input id="img2" type="text" placeholder="이미지 주소">
+					<input id="title2" type="hidden" th:name="memberCode" th:value="${memberCode}">
+
 
 					<div>
 						<p id ="defaultContent"></p>

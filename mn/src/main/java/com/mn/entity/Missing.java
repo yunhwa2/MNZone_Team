@@ -29,16 +29,12 @@ public class Missing extends BaseEntity{
     @Column(nullable = false)
     private String missingContent;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "member_code")
     private Member member;
 
     @Enumerated(EnumType.STRING)
     private MissingKind missingKind;
-
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "member_code")
-//    private MissingImgDTO missingImgUrl;
 
     @OneToMany(mappedBy = "missing", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MissingImg> missingImgs;

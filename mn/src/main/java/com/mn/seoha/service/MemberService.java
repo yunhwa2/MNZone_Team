@@ -3,6 +3,7 @@ package com.mn.seoha.service;
 import com.mn.entity.Member;
 import com.mn.seoha.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,8 +16,11 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class MemberService implements UserDetailsService {
 
-    private final MemberRepository memberRepository;
-
+    private static MemberRepository memberRepository;
+    @Autowired
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     public Member saveMember(Member member){
         validateDuplicateMember(member);
@@ -45,5 +49,9 @@ public class MemberService implements UserDetailsService {
                 .password(member.getPassword())
                 .roles(member.getMemberRole().toString())
                 .build();
+    }
+
+    public static Member findByUsername(String username) {
+        return memberRepository.findById(username);
     }
 }
