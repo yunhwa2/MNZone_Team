@@ -29,7 +29,7 @@ public class Missing extends BaseEntity{
     @Column(nullable = false)
     private String missingContent;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "member_code")
     private Member member;
 

@@ -57,6 +57,7 @@ public class MissingController {
             Long missingId = missingService.saveMissing(missingFormDTO, missingImgFileList);
             return "redirect:/missing";
         }catch (Exception e){
+            e.printStackTrace();
             model.addAttribute("errorMessage","실종글 등록 중에 에러가 발생하였습니다.");
             return "yunhwa/missingForm";
         }
