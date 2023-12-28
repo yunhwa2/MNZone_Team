@@ -36,23 +36,29 @@
 <div layout:fragment="content">
 	<div id="main">
 		<div id="main_div">
-			<div class="main_border" >
-				<a href=""><img id="information_edit_img" th:src="@{/img/pet_DefaultProfile.png}" alt="반려동물 기본 프로필"></a>
-				<p id="information_text"><a href="">내 정보 수정하기</a></p>
+			<a class="main_border" >
+				<img id="information_edit_img" th:src="@{/img/pet_DefaultProfile.png}" alt="반려동물 기본 프로필">
+				<p id="information_text">내 정보 수정하기</p>
 				<div id="myInfo"></div>
-			</div>
-			<div class="main_border">
-				<a href=""><img id="reservation_img" th:src="@{/img/MN_hispital_icon.png}" alt="멍냥 닥터 아이콘 이미지"></a>
-				<p id="reservation_text"><a href="">병원예약현황</a></p>
-			</div>
-			<div class="main_border">
-				<a href = ""><img id="my_writing_img" th:src="@{/img/footprint.png}" alt="발자국 이미지"></a>
-				<p id="my_writing_text"><a href = "">내가 쓴 글보기</a></p>
-			</div>
-			<div class="main_border">
-				<a href="/mypet/register"><img id="mypet1_img" th:src="@{/img/pet_ImgAddIcon.png}" alt="반려동물 이미지 추가 버튼"></a>
-				<p id="mypet1_text"><a href="/mypet/register">반려동물 등록하기</a></p>
-			</div>
+			</a>
+			<a class="main_border">
+				<img id="reservation_img" th:src="@{/img/MN_hispital_icon.png}" alt="멍냥 닥터 아이콘 이미지">
+				<p id="reservation_text">병원예약현황</p>
+			</a>
+			<a class="main_border" href ="/mypage/mypost">
+				<img id="my_writing_img" th:src="@{/img/footprint.png}" alt="발자국 이미지">
+				<p id="my_writing_text">내가 쓴 글보기</p>
+			</a>
+			<a class="main_border" href ="/mypet/diary">
+				<p id="pet_name">이름</p>
+				<img id="pet_img" th:src="@{/img/pet_hodu.jpg}" alt="반려동물">
+				<p id="pet_diary">육아수첩</p>
+			</a>
+
+			<a class="main_border" href="/mypet/register">
+				<img id="register_img" th:src="@{/img/pet_ImgAddIcon.png}" alt="반려동물 이미지 추가 버튼">
+				<p id="register_text">반려동물 등록하기</p>
+			</a>
 		</div>
 	</div>
 </div>

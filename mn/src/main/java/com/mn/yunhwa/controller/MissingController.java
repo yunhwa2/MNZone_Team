@@ -42,9 +42,24 @@ public class MissingController {
     @GetMapping("/missing/write")
     public String missingForm(Model model, HttpSession session){
         model.addAttribute("missingFormDTO", new MissingFormDTO());
-        model.addAttribute("memberCode", session.getAttribute("memberCode"));
+        Object memberCode = session.getAttribute("memberCode");
+
+        if (memberCode != null) {
+            model.addAttribute("memberCode", memberCode);
+        } else {
+            return "/members/login";
+        }
+
         return "yunhwa/missingForm";
     }
+
+
+//    @GetMapping("/missing/write")
+//    public String missingForm(Model model, HttpSession session){
+//        model.addAttribute("missingFormDTO", new MissingFormDTO());
+//        model.addAttribute("memberCode", session.getAttribute("memberCode"));
+//        return "yunhwa/missingForm";
+//    }
 
     @PostMapping("/missing/write")
     public String missingNew(@Valid MissingFormDTO missingFormDTO, BindingResult bindingResult, Model model, @RequestParam("missingImgFile")List<MultipartFile> missingImgFileList){

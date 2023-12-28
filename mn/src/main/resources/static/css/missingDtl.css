@@ -21,7 +21,18 @@
     font-weight:bold;
 }
 .line{
-    margin:20px 0px;
+   margin: 20px 0px 10px 0px;
+}
+.missing_subDtl_div{
+    line-height: 10px;
+    width: 1050px;
+    text-align: right;
+    font-size:15px;
+    font-weight:500;
+    color: #666;
+}
+.author{
+    margin-right:15px;
 }
 
 .dtlSummary{
@@ -39,19 +50,31 @@
     width:400px;
     height:400px;
 }
-.text-right{
+.text_right{
     margin-top: 35px;
-    width: 500px;
+    width: 510px;
     height: 367px;
-    font-size: 20px;
+    font-size: 18px;
     margin-left: 20px;
     float: left;
 }
-.text-right h2{
+.text_right h2{
     margin-bottom:35px;
 }
-.text-right p{
+.default_text{
+    display:flex;
+}
+.default_text p{
+    width:121px;
     margin-bottom:25px;
+    display:inline;
+    text-align: center;
+}
+.letter_space{
+    letter-spacing: 2px;
+}
+.default_text label{
+    margin:0px 10px;
 }
 
 .dtlContent{
@@ -61,10 +84,11 @@
 }
 
 .dtlContent p{
-    margin-bottom:20px;
+    margin:20px 0px;
     width:1050px;
     min-height:200px;
 }
+
 .dtlImgDiv{
     display:flex;
     flex-wrap:wrap;

@@ -32,16 +32,41 @@
     outline: none;
     border-bottom: 1px solid #ddd;
 }
-.defaultLine{
-    display: inline;
-    border: none;
-    width: 500px;
-    height: 40px;
-    margin: 10px 30px;
-    font-size: 15px;
-    outline: none;
-    border-bottom: 1px solid #ddd;
+#defaultContent{
+    margin-bottom:20px;
 }
+#defaultContent td{
+    display:flex;
+}
+#defaultContent p{
+    width:101px;
+    height: 40px;
+    font-size: 15px;
+    line-height: 40px;
+    margin: auto;
+}
+
+#defaultContent span{
+    height: 40px;
+    font-size: 15px;
+    line-height: 40px;
+    margin: auto 10px;
+}
+
+.letter_space{
+    letter-spacing: 2px;
+}
+
+.defaultLine{
+    border: none;
+        width: 500px;
+        height: 40px;
+        margin: 5px 0px;
+        font-size: 15px;
+        outline: none;
+        border-bottom: 1px solid #ddd;
+}
+
 /*
 #imgbtn{
 	width:100px;
