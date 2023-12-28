@@ -48,6 +48,8 @@ public class MissingFormDTO {
 
     private List<Long> missingImgIds = new ArrayList<>();
 
+    private String missingRepImg;
+
     private static ModelMapper modelMapper = new ModelMapper();
 
     public Missing createMissing(){

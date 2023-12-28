@@ -1,6 +1,7 @@
 package com.mn.controller;
 
 import com.google.gson.JsonObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,9 @@ import java.util.UUID;
 @CrossOrigin
 @RequestMapping("/files")
 public class CkeditorFileUploadController {
+
+    @Value("${image.upload.path}")
+    private String uploadPath;
     @PostMapping("/fileupload.do")
 
     public ResponseEntity<String> fileUpload(HttpServletRequest request, MultipartHttpServletRequest multiFile) throws IOException {
@@ -45,7 +49,7 @@ public class CkeditorFileUploadController {
                         // 파일을 바이트 타입으로 변경
                         bytes = file.getBytes();
                         // 파일이 실제로 저장되는 경로
-                        String uploadPath = request.getServletContext().getRealPath("/resources/ckimage/");
+                        //String uploadPath = request.getServletContext().getRealPath("/resources/ckimage/");
                         // 저장되는 파일에 경로 설정
                         File uploadFile = new File(uploadPath);
                         if (!uploadFile.exists()) {
@@ -58,7 +62,7 @@ public class CkeditorFileUploadController {
                         }
 
                         // 파일이 연결되는 Url 주소 설정
-                        String fileUrl = request.getContextPath() + "/resources/ckimage/" + fileName;
+                        String fileUrl = "/missing/post/image/" + fileName;
 
                         // 생성된 json 객체를 이용해 파일 업로드 + 이름 + 주소를 CkEditor에 전송
                         json.addProperty("uploaded", 1);

@@ -46,6 +46,9 @@ public class Missing extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private MissingKind missingKind;
 
+
+    private String missingRepImg;
+
     @OneToMany(mappedBy = "missing", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MissingImg> missingImgs;
 
@@ -57,6 +60,7 @@ public class Missing extends BaseEntity{
         this.sightingDate = missingFormDTO.getSightingDate();
         this.witnessTel = missingFormDTO.getWitnessTel();
         this.feature = missingFormDTO.getFeature();
+        this.missingRepImg=missingFormDTO.getMissingRepImg();
     }
 
 

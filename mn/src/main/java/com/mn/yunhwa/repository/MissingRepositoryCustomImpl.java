@@ -2,6 +2,7 @@ package com.mn.yunhwa.repository;
 
 import com.mn.constant.MissingKind;
 import com.mn.entity.Missing;
+import com.mn.entity.QMember;
 import com.mn.entity.QMissing;
 import com.mn.entity.QMissingImg;
 import com.mn.yunhwa.dto.MissingMainDTO;
@@ -104,7 +105,10 @@ public class MissingRepositoryCustomImpl implements MissingRepositoryCustom{
                                             missing.missingKind,
                                             missing.missingTitle,
                                             missing.missingContent,
-                                            missingImg.missingImgUrl)
+                                            missingImg.missingImgUrl,
+                                            missing.member,
+                                            missing.missingRepImg
+                                            )
                 ).from(missingImg)
                 .join(missingImg.missing,missing)    //itemImg와 item을 조인
                 .where(missingImg.missingRepImgYn.eq("Y"))    //대표 이미지만 불러옴

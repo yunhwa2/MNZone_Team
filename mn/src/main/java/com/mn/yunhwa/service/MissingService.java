@@ -18,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 @Transactional
@@ -29,6 +31,16 @@ public class MissingService {
 
     public Long saveMissing(MissingFormDTO missingFormDTO, List<MultipartFile> missingImgFileList) throws Exception {
         Missing missing = missingFormDTO.createMissing();
+        String input = missing.getMissingContent();
+        Pattern pattern = Pattern.compile("<img[^>]+src\\s*=\\s*\"([^\"]+)\"");
+        Matcher matcher = pattern.matcher(input);
+
+        if (matcher.find()) {
+            String firstImgTag = matcher.group(1);
+            System.out.println(firstImgTag);
+            missing.setMissingRepImg(firstImgTag);
+        }
+
         missingRepository.save(missing);
 
         for (int i = 0; i < missingImgFileList.size(); i++) {

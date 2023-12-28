@@ -38,13 +38,14 @@
             <hr class="line">
         <div class="missing_subDtl_div">
             <span class="author">작성자 : 김땡땡</span>
-            <span>작성일 : 2023-12-28</span>
+<!--            <span>작성일 : </span><span th:text="${missing.regTime}"></span>-->
         </div>
     </div>
 
     <div class="dtlSummary">
         <div class="repImgDiv">
-           <img th:src="${missing.missingImgDTOList[0].missingImgUrl}" class = "repImg" th:alt="${missing.missingTitle}">
+<!--           <img th:src="${missing.missingImgDTOList[0].missingImgUrl}"  th:alt="${missing.missingTitle}">-->
+            <img th:src="@{${missing.missingRepImg}}" class = "repImg" th:alt="${missing.missingTitle}">
         </div>
 
         <div class="text_right">
@@ -74,7 +75,7 @@
 
     <div class="dtlContent">
         <br>
-        <p th:text="${missing.missingContent}"></p>
+        <p th:utext="${missing.missingContent}"></p>
 
         <div class="dtlImgDiv">
             <div th:each="missingImg : ${missing.missingImgDTOList}" >
