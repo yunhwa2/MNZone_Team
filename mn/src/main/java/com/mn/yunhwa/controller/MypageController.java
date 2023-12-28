@@ -13,4 +13,9 @@ public class MypageController {
         return "yunhwa/myPage";
     }
 
+    @GetMapping("/mypage/mypost")
+    public String myPost(){
+        return "yunhwa/myPost";
+    }
+
 }

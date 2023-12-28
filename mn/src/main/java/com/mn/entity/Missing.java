@@ -53,6 +53,10 @@ public class Missing extends BaseEntity{
         this.missingTitle = missingFormDTO.getMissingTitle();
         this.missingContent = missingFormDTO.getMissingContent();
         this.missingKind = missingFormDTO.getMissingKind();
+        this.sightingSpot = missingFormDTO.getSightingSpot();
+        this.sightingDate = missingFormDTO.getSightingDate();
+        this.witnessTel = missingFormDTO.getWitnessTel();
+        this.feature = missingFormDTO.getFeature();
     }
 
 

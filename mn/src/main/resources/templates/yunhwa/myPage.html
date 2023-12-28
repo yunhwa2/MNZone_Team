@@ -13,20 +13,20 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bPopup/0.11.0/jquery.bpopup.min.js"></script>
 
 	<script th:inline="javascript">
-		 let pwdCheck=`
-			<div class="popup">
-				<h3>비밀번호 확인</h3>
-				<div class="popupContent">
-					<p>[[${session.userName}]] 님의 회원 정보를 안전하게 보호하기 위해 비밀번호를 한번 더 확인해 주세요.</p>
-					<form action="" method="post" id="updateForm">
-						<input type="password" id="password" name="password" required>
-						<button type="submit">확인</button>
-					</form>
-				</div>
-			</div>`;
+		let pwdCheck=`
+           <div class="popup">
+               <h3>비밀번호 확인</h3>
+               <div class="popupContent">
+                   <p>[[${session.userName}]] 님의 회원 정보를 안전하게 보호하기 위해 비밀번호를 한번 더 확인해 주세요.</p>
+                   <form action="" method="post" id="updateForm">
+                       <input type="password" id="password" name="password" required>
+                       <button type="submit">확인</button>
+                   </form>
+               </div>
+           </div>`;
 
-		$("#myInfo").html(pwdCheck);
-		$("#myInfo").bPopup();
+       $("#myInfo").html(pwdCheck);
+       $("#myInfo").bPopup();
 
 	</script>
 

@@ -1,5 +1,6 @@
 package com.mn.yunhwa.controller;
 
+import com.google.gson.JsonObject;
 import com.mn.entity.Missing;
 import com.mn.yunhwa.dto.MissingFormDTO;
 import com.mn.yunhwa.dto.MissingMainDTO;
@@ -9,19 +10,27 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.util.StringUtils;
 
 import javax.persistence.EntityNotFoundException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -29,11 +38,6 @@ import java.util.Optional;
 public class MissingController {
 
     private final MissingService missingService;
-
-//    @GetMapping("/missing/main")
-//    public String missingmain(){
-//        return "yunhwa/missing";
-//    }
 
     @GetMapping("/missing/write")
     public String missingForm(Model model, HttpSession session){
@@ -119,6 +123,76 @@ public class MissingController {
         return "yunhwa/missingDtl";
     }
 
+//    @PostMapping("/missing/write/upload")
+//    public ResponseEntity<String> handleFileUpload(@RequestParam("upload") MultipartFile file, HttpServletRequest request, HttpServletResponse response) {
+//        try {
+//            String missingOriImgName = file.getOriginalFilename();
+//            String missingImgName = "";
+//            String missingImgUrl = "";
+//
+//            if (!StringUtils.isEmpty(missingOriImgName)) {
+//                missingImgName = fileService.uploadFile(missingImgLocation, missingOriImgName, file.getBytes());
+//                missingImgUrl = "/images/missing/" + missingImgName;
+//            }
+//
+//            JsonObject outData = new JsonObject();
+//            outData.addProperty("uploaded", true);
+//            outData.addProperty("url", request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/getImage?fileNm=" + missingImgName);
+//            response.setContentType("application/json");
+//            response.setCharacterEncoding("UTF-8");
+//            response.getWriter().print(outData.toString());
+//            return ResponseEntity.ok("파일 '" + missingImgName + "'이(가) 성공적으로 업로드되었습니다.");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("파일 업로드에 실패했습니다.");
+//        }
+//    }
 
+//    @RequestMapping("/getImage")
+//    public void getImageForContents(ModelMap model, @RequestParam Map<String, Object> commandMap, HttpServletResponse response) throws Exception {
+//        String fileNm = (String)commandMap.get("fileNm");
+//        String fileStr = missingImgLocation;
+//
+//        File tmpDir = new File(fileStr);
+//        if(!tmpDir.exists()) {
+//            tmpDir.mkdirs();
+//        }
+//
+//        FileInputStream fis = null;
+//        BufferedInputStream in = null;
+//        ByteArrayOutputStream bStream = null;
+//
+//        try {
+//
+//            fis = new FileInputStream(new File(fileStr, fileNm));
+//            in = new BufferedInputStream(fis);
+//            bStream = new ByteArrayOutputStream();
+//
+//            int imgByte;
+//            while ((imgByte = in.read()) != -1) {
+//                bStream.write(imgByte);
+//            }
+//
+//            String type = "";
+//            String ext = fileNm.substring(fileNm.lastIndexOf(".") + 1).toLowerCase();
+//
+//            if ("jpg".equals(ext)) {
+//                type = "image/jpeg";
+//            } else {
+//                type = "image/" + ext;
+//            }
+//
+//            response.setHeader("Content-Type", type);
+//            response.setContentLength(bStream.size());
+//
+//            bStream.writeTo(response.getOutputStream());
+//
+//            response.getOutputStream().flush();
+//            response.getOutputStream().close();
+//
+//        } finally {
+//            //   EgovResourceCloseHelper.close(bStream, in, fis);
+//        }
+//    }
 
 }
