@@ -1,5 +1,7 @@
 package com.mn.entity;
 
+import com.mn.constant.NoticeKind;
+import com.mn.constant.NoticeStatus;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,15 +16,18 @@ import javax.persistence.*;
 public class Notice extends BaseEntity{
 
     @Id
-    @Column(name = "member_code")
+    @Column(name = "notice_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long noticeId;
 
     private String noticeTitle;
     private String noticeContent;
-    @ManyToOne
-    @JoinColumn(name = "member_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_code")
     private Member member;
+    private NoticeKind noticeKind;
+    private NoticeStatus noticeStatus;
+    private Integer noticeVisitCount;
 
 
 }

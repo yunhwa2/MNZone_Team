@@ -1,0 +1,59 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout1}">
+
+<title>멍냥Zone : 마이페이지</title>
+
+<!--  CSS  -->
+<th:block layout:fragment="css">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/myPage.css}">
+</th:block>
+<!-- script  -->
+<th:block layout:fragment="script">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bPopup/0.11.0/jquery.bpopup.min.js"></script>
+
+	<script th:inline="javascript">
+		 let pwdCheck=`
+			<div class="popup">
+				<h3>비밀번호 확인</h3>
+				<div class="popupContent">
+					<p>[[${session.userName}]] 님의 회원 정보를 안전하게 보호하기 위해 비밀번호를 한번 더 확인해 주세요.</p>
+					<form action="" method="post" id="updateForm">
+						<input type="password" id="password" name="password" required>
+						<button type="submit">확인</button>
+					</form>
+				</div>
+			</div>`;
+
+		$("#myInfo").html(pwdCheck);
+		$("#myInfo").bPopup();
+
+	</script>
+
+</th:block>
+
+<!-- content  -->
+<div layout:fragment="content">
+	<div id="main">
+		<div id="main_div">
+			<div class="main_border" >
+				<a href=""><img id="information_edit_img" th:src="@{/img/pet_DefaultProfile.png}" alt="반려동물 기본 프로필"></a>
+				<p id="information_text"><a href="">내 정보 수정하기</a></p>
+				<div id="myInfo"></div>
+			</div>
+			<div class="main_border">
+				<a href=""><img id="reservation_img" th:src="@{/img/MN_hispital_icon.png}" alt="멍냥 닥터 아이콘 이미지"></a>
+				<p id="reservation_text"><a href="">병원예약현황</a></p>
+			</div>
+			<div class="main_border">
+				<a href = ""><img id="my_writing_img" th:src="@{/img/footprint.png}" alt="발자국 이미지"></a>
+				<p id="my_writing_text"><a href = "">내가 쓴 글보기</a></p>
+			</div>
+			<div class="main_border">
+				<a href="/mypet/register"><img id="mypet1_img" th:src="@{/img/pet_ImgAddIcon.png}" alt="반려동물 이미지 추가 버튼"></a>
+				<p id="mypet1_text"><a href="/mypet/register">반려동물 등록하기</a></p>
+			</div>
+		</div>
+	</div>
+</div>
+</html>

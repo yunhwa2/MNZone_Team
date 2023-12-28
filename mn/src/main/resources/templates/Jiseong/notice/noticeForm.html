@@ -32,52 +32,89 @@
             });
         }
 
+
+
     </script>
 
 </th:block>
 
 <!-- 사용자 CSS 추가 -->
 <th:block layout:fragment="css">
-    <style>
 
+    <style>
+        form{
+            padding : 4px;
+            background : #E0F8E6;
+        }
+        .noticeFormInput{
+            width: 95%;
+            border-radius : 3px;
+            margin : 4px;
+            content-align : center;
+            text-align : center;
+        }
+        #noticeFormClass{
+            background : #E6E6E6;
+            text-align : center;
+
+        }
+        #noticeFormTitle{
+            background : #F2F2F2;
+        }
+        #noticeFormTitleInput{
+            border-radius : 5px;
+            border : 1px solid #D8D8D8;
+            width: 95%;
+            margin: 5px 10px;
+            height : 30px;
+        }
+        textarea{
+        width: 95%;
+        resize: none;
+        border-bottom: 2px solid #0000007e;
+        outline: none;
+        height : 700px;
+        border-radius : 5px;
+        border : 1px solid #D8D8D8;
+        }
+        .btnNotice{
+            background : #A9F5D0;
+            cursor : pointer;
+        }
     </style>
 </th:block>
 
-<div layout:fragment="content1">
+<div layout:fragment="content">
 
     <form role="form" method="post"  th:object="${noticeFormDTO}">
 
-        <p class="h2">
-            공지 등록
-        </p>
 
+        <input type="hidden" value="${author}" th:field="*{noticeAuthor}" />
 
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">제목 : </span>
-            </div>
-            <input type="text" th:field="*{noticeTitle}" class="form-control" placeholder="제목을 입력해주세요">
+        <div class = "noticeFormInput" id = "noticeFormClass">
+            <span >카테고리 설정 :  </span>
+            <select th:field="*{noticeKind}" class="noticeFormSelect" style="width:auto;">
+                <option value="ANNOUNCEMENT">공지</option>
+                <option value="SYSTEM">시스템</option>
+                <option value="SERVICE">서비스</option>
+                <option value="EVENT">이벤트</option>
+            </select>
         </div>
-        <p th:if="${#fields.hasErrors('noticeTitle')}" th:errors="*{noticeTitle}" class="fieldError">Incorrect data</p>
-
-
-
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">공지 내용</span>
-            </div>
-            <textarea class="form-control" aria-label="With textarea" th:field="*{noticeContent}"></textarea>
+        <div class = "noticeFormInput" id="noticeFormTitle">
+            <input type="text" placeholder="글 제목" th:field="*{noticeTitle}" id="noticeFormTitleInput"/>
         </div>
-        <p th:if="${#fields.hasErrors('noticeContent')}" th:errors="*{noticeContent}" class="fieldError">Incorrect data</p>
-
-
-
-
-        <div th:if="${#strings.isEmpty(noticeFormDTO.id)}" style="text-align: center">
-            <button th:formaction="@{/admin/notice/new}" type="submit" class="btn btn-primary">저장</button>
+        <div class = "noticeFormInput" id="noticeFormContent">
+            <textarea placeholder="글 내용" th:field="*{noticeContent}"></textarea>
         </div>
-        <div th:unless="${#strings.isEmpty(itemFormDTO.id)}" style="text-align: center">
-            <button th:formaction="@{'/admin/notice/' + ${noticeFormDTO.id} }" type="submit" class="btn btn-primary">수정</button>
+
+
+
+
+        <div th:if="${#strings.isEmpty(noticeAuthor)}" style="text-align: right">
+            <button th:formaction="@{/admin/notice/new}" type="submit" class="btnNotice">저장</button>
+        </div>
+        <div th:unless="${#strings.isEmpty(noticeAuthor)}" style="text-align: center">
+            <button th:formaction="@{'/admin/notice/' + ${noticeFormDTO.id} }" type="submit" class="btnNotice">수정</button>
         </div>
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 

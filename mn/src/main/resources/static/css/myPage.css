@@ -1,0 +1,123 @@
+
+#main_div{
+	background-color:#fedcda;
+	max-height:1200px;
+	min-height:800px;
+	width:100%;
+	max-width:1400px;
+	margin:0px auto;
+	display:flex;
+	flex-wrap:wrap;
+}
+#main a{						
+	text-decoration: none;
+	color:#353535;
+	display:flex;
+	justify-content: center;
+}
+#main a:visited{
+	color:#353535;
+}
+#main a:active{
+	color:#353535;
+}
+.main_border{
+	height:330px;
+	width:330px;
+  	border-radius: 20px 60px 100px 140px;
+	background-color:white;
+	margin:33px 0px;
+	margin-left:105px;
+}
+#information_edit_img{
+	height: 230px;
+    width: 230px;
+    margin: 7px 21px 0px 25px;
+}
+#information_text{
+	font-size:33px;
+	font-family: 'Black Han Sans', sans-serif;	
+	margin-top:10px;
+}
+.popup{
+    padding: 10px;
+    border: 2px solid #ddd;
+    background-color: #eee;
+    width: 640px;
+    height: 220px;
+    margin:auto 0px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.popup h3{
+     padding: 4px 0px 14px 0px;
+     width: 125px;
+     margin: 0px auto;
+}
+.popupContent{
+    height: 62%;
+    width: 100%;
+    background-color: #fff;
+}
+.popupContent p{
+    padding: 10px;
+    line-height:55px;
+    font-size: 15px;
+    height: 75px;
+}
+.popupContent input{
+    margin-left:15px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+}
+.popupContent  input:focus {
+  border-bottom: 2px solid #bbb; /* 원하는 포커스 시 선 색상으로 변경합니다. */
+}
+.popupContent button{
+    width:50px;
+    height:30px;
+    cursor: pointer;
+    background-color: #fedcda;
+    color: #7a7a7a;
+    border: none;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.popupContent button:hover{
+	background:rgb(222, 222, 222);
+	color:rgb(93, 93, 93);
+}
+
+#reservation_img{
+	height:206px;
+	width:261px;
+	margin:13px 0px 29px 5px;
+}
+#reservation_text{
+	font-size:33px;
+	font-family: 'Black Han Sans', sans-serif;
+	margin:0px;	
+}
+#my_writing_img{
+	height:253px;
+    width:280px;
+    margin:-3px 0px -4px 0px;
+}
+#my_writing_text{
+	font-size:33px;
+	font-family: 'Black Han Sans', sans-serif;
+	margin:0px;	
+}
+#mypet1_img{
+	height:208px;
+    width:235px;
+    margin:15px 0px 11px 26px;
+}
+#mypet1_text{
+	font-size:33px;
+	font-family: 'Black Han Sans', sans-serif;	
+	margin-top:10px;
+}

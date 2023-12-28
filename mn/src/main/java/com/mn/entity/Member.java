@@ -22,23 +22,33 @@ public class Member {
     @Column(name = "member_code")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long code;
+
     @Column (unique = true)
     private String id;
+
     private String password;
+
     private String name;
-    //    닉네임 유니크 설정 여부
+
+    @Column (unique = true)
     private String nickName;
-    //    email 유니크 설정 여부
+
+    @Column (unique = true)
     private String email;
+
     private LocalDateTime birth;
+
     private String ph;
+
     private String address;
+
     @Enumerated(EnumType.STRING)
     private MemberRole memberRole;
 
     public static Member createMember(MemberFormDTO memberFormDTO, PasswordEncoder passwordEncoder){
         Member member = new Member();
         System.out.println("entitiy.createMember(memberFormDTO:) : " + memberFormDTO);
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-ddHHmm");
 
         member.setId(memberFormDTO.getId());

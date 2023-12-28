@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+	<html xmlns:th="http://www.thymeleaf.org"
+		  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		  layout:decorate="~{layouts/layout1}">
+
+<!--사용자 추가 css-->
+	<th:block layout:fragment="css">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/search_error.css}"/>
+		<style>
+			#error_img{width:10px}
+		</style>
+	</th:block>
+
+	<th:block layout:fragment="script">
+		<script type="text/javascript" th:src="@{/js/search_error.js}"></script>
+	</th:block>
+
+	<!-- content -->
+	<div layout:fragment="content">
+		<div id="container">
+			<div id="error_container">
+				<div>
+					<img id="error_img" th:src="@{/img/search_error.png}" alt="검색어를 찾을 수 없습니다">
+				</div>
+				<div id="error_textdiv">
+					<p id="error_text">"<span id="search_item">검색어</span>" 를/을 찾을 수 없습니다.</p>
+				</div>
+			</div>
+		</div>
+	</div>>
+
+</html>

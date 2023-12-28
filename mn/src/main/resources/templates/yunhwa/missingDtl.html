@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+<head>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+
+<!-- 사용자 스크립트 추가 -->
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+
+<!--        function order() {-->
+<!--            //csrf 토큰 가져오기-->
+<!--            var token = $("meta[name='_csrf']").attr("content");-->
+<!--            var header = $("meta[name='_csrf_header']").attr("content");-->
+
+<!--            //주문 처리를 담당하는 서버의 url-->
+<!--            var url = "/order";-->
+
+<!--            //주문에 필요한 데이터를 담은 객체를 생성-->
+<!--            //상품아이디, 수량을 가져옴-->
+<!--            var paramData = {-->
+<!--                itemId : $("#itemId").val(),-->
+<!--                count : $("#count").val()-->
+<!--            };-->
+
+<!--             //데이터 객체를 JSON문자열로 변환-->
+<!--            var param = JSON.stringify(paramData);-->
+
+<!--            //jQuery의 AJax메서드를 사용하여 서버로 비동기 요청을 보냄-->
+<!--            $.ajax({-->
+<!--                url : url,-->
+<!--                type : "POST",-->
+<!--                contentType : "application/json",-->
+<!--                data : param,-->
+<!--                //요청을 처리하기 전에 CSRF 토큰을 헤더에 추가-->
+<!--                beforeSend : function(xhr){-->
+<!--                    /* 데이터를 전송하기 전에 헤더에 csrf 값을 설정 */-->
+<!--                    xhr.setRequestHeader(header, token);-->
+<!--                },-->
+<!--                dataType : "json",-->
+<!--                cache : false,-->
+<!--                //주문이 성공하면 알림을 표시하고 메인 페이지로 이동-->
+<!--                success : function(result, status){-->
+<!--                    alert("주문이 완료되었습니다.");-->
+<!--                    location.href='/';-->
+<!--                },-->
+<!--                //요청에 실패한 경우 실행되는 콜백함수-->
+<!--                //에러 상태에 따라 메시지를 표시-->
+<!--                //jqXHR : jQuery의 구현 객체로 요청과 응답에 대한 정보를 담고 있음-->
+<!--                error : function(jqXHR, status, error) {-->
+<!--                    //'401' : 클라이언트가 권한이 없어서 진행이 불가할 때 발생하는 코드-->
+<!--                    if(jqXHR.status == '401') {-->
+<!--                        alert('로그인 후 이용해 주세요');-->
+<!--                        location.href='/members/login';-->
+<!--                    } else {-->
+<!--                    //기타 에러인 경우 에러메시지 표시-->
+<!--                        alert(jqXHR.responseText);-->
+<!--                    }-->
+<!--                }-->
+<!--            });-->
+<!--        }-->
+
+<!--        function addCart() {-->
+<!--            //csrf 토큰 가져오기-->
+<!--            var token = $("meta[name='_csrf']").attr("content");-->
+<!--            var header = $("meta[name='_csrf_header']").attr("content");-->
+
+<!--            //주문 처리를 담당하는 서버의 url-->
+<!--            var url = "/cart";-->
+
+<!--            //주문에 필요한 데이터를 담은 객체를 생성-->
+<!--            //상품아이디, 수량을 가져옴-->
+<!--            var paramData = {-->
+<!--                itemId : $("#itemId").val(),-->
+<!--                count : $("#count").val()-->
+<!--            };-->
+
+<!--             //데이터 객체를 JSON문자열로 변환-->
+<!--            var param = JSON.stringify(paramData);-->
+
+<!--            //jQuery의 AJax메서드를 사용하여 서버로 비동기 요청을 보냄-->
+<!--            $.ajax({-->
+<!--                url : url,-->
+<!--                type : "POST",-->
+<!--                contentType : "application/json",-->
+<!--                data : param,-->
+<!--                //요청을 처리하기 전에 CSRF 토큰을 헤더에 추가-->
+<!--                beforeSend : function(xhr){-->
+<!--                    /* 데이터를 전송하기 전에 헤더에 csrf 값을 설정 */-->
+<!--                    xhr.setRequestHeader(header, token);-->
+<!--                },-->
+<!--                dataType : "json",-->
+<!--                cache : false,-->
+<!--                //주문이 성공하면 알림을 표시하고 메인 페이지로 이동-->
+<!--                success : function(result, status){-->
+<!--                    alert("상품을 장바구니에 담았습니다");-->
+<!--                    location.href='/';-->
+<!--                },-->
+<!--                //요청에 실패한 경우 실행되는 콜백함수-->
+<!--                //에러 상태에 따라 메시지를 표시-->
+<!--                //jqXHR : jQuery의 구현 객체로 요청과 응답에 대한 정보를 담고 있음-->
+<!--                error : function(jqXHR, status, error) {-->
+<!--                    //'401' : 클라이언트가 권한이 없어서 진행이 불가할 때 발생하는 코드-->
+<!--                    if(jqXHR.status == '401') {-->
+<!--                        alert('로그인 후 이용해 주세요');-->
+<!--                        location.href='/members/login';-->
+<!--                    } else {-->
+<!--                    //기타 에러인 경우 에러메시지 표시-->
+<!--                        alert(jqXHR.responseText);-->
+<!--                    }-->
+<!--                }-->
+<!--            });-->
+<!--        }-->
+    </script>
+</th:block>
+
+<!--  CSS  -->
+<th:block layout:fragment="css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/missingDtl.css}">
+</th:block>
+
+<div class = "container" layout:fragment="content">
+
+    <input type="hidden" id="missing_id" th:value="${missing.missingId}">
+
+    <div class="dtlTitle">
+            <span th:if="${missing.missingKind.name() == 'DISAPPEAR'}" class="contentKind" style="color:red;">
+                &nbsp;[실종]&nbsp;
+            </span>
+            <span th:if="${missing.missingKind.name() == 'WITNESS'}" class="contentKind" style="color:#FFBF00;">
+                &nbsp;[목격]&nbsp;
+            </span>
+            <span th:if="${missing.missingKind.name() == 'PROTECT'}" class="contentKind" style="color:#2E9AFE;">
+                &nbsp;[보호]&nbsp;
+            </span>
+            <span class="missing_title" th:text="${missing.missingTitle}"></span>
+<!--            <div class="missing_author" th:text="작성자 : ${member.memberNickname}"></div>-->
+            <hr class="line">
+    </div>
+
+    <div class="dtlSummary">
+        <div class="repImgDiv">
+           <img th:src="${missing.missingImgDTOList[0].missingImgUrl}" class = "repImg" th:alt="${missing.missingTitle}">
+        </div>
+
+        <div class="text-right">
+            <h2>기본 정보</h2>
+            <p>마지막 목격장소 : </p>
+            <p>마지막 목격날짜  : </p>
+            <p>보호자 연락처 : </p>
+            <p>특징 : </p>
+        </div>
+    </div>
+
+    <div class="dtlContent">
+        <br>
+        <p th:text="${missing.missingContent}"></p>
+
+        <div class="dtlImgDiv">
+            <div th:each="missingImg : ${missing.missingImgDTOList}" >
+                <img class="dtlImgCard" th:if="${not #strings.isEmpty(missingImg.missingImgUrl)}" th:src="${missingImg.missingImgUrl}">
+            </div>
+        </div>
+    </div>
+
+
+    <!--th:if="${member.Id == session.Id}"    세션 연결해서 버튼 숨기고 나타내기 해야함-->
+
+<!--    <form role="form" method="post" enctype="multipart/form-data" th:object="${missingFormDTO}">-->
+<!--        <div class="btn_div" th:if="${missingFormDTO != null && #strings.isNotEmpty(missingFormDTO.missingId)}">-->
+<!--            <button th:formaction="@{'/missing/write/' + ${missingFormDTO.missingId} }" type="submit">수정</button>-->
+<!--            <button type="submit" onclick="">삭제</button>-->
+<!--        </div>-->
+<!--    </form>-->
+    <form>
+        <div class="btn_div" >
+            <button type="submit">수정</button>
+            <button type="submit">삭제</button>
+        </div>
+    </form>
+
+</div>
+
+
+</html>

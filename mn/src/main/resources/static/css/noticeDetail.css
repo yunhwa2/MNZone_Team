@@ -1,0 +1,49 @@
+li{
+    list-style : none;
+}
+#noticeDetailWrapper{
+
+    width : 85%;
+    min - height : 500px;
+    max - height : 1500px;
+
+}
+#noticeDetailTitle{
+    width : 100%;
+    height : 80px
+}
+#noticeDetailSubTitle{
+    width : 100%;
+    height : 100px;
+
+}
+.noticeDetailSpan{
+    opacity : 0.9;
+
+}
+#noticeDetailRegTime{
+
+}
+#noticeDetailNoticeKind{
+
+}
+#noticeDetailCreateBy{
+
+}
+
+#noticeDetailContent{
+    width : 85%;
+    min - height : 40%;
+    height : 500px;
+    max-height : 1200px;
+}
+
+
+
+
+
+
+
+
+
+

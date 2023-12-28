@@ -1,0 +1,48 @@
+
+#main_notice{width:55%; margin:30px auto; padding : auto, 30px }
+#search_input_div{display:inline-block; font-size:40px;height:70px;margin:auto 0}
+#notice_title{text-align : center;}
+#notice_search{text-align : right; margin-bottom : 10px;}
+#search_input_input{height:25px;font-size:15px;}
+#notice_table{width:100%;border-collapse:collapse}
+#notice_table>thead{text-align : center; height : 20px}
+#notice_table>thead>tr>td{font-size:20px;border-top:2px solid black;border-bottom:2px solid silver; height : 20px}
+#notice_table>tbody>tr{height:50px;cursor:pointer;}
+
+.important_tr{background:#f0fffa}
+
+
+#notice_table>tbody>tr>td{padding-left:20px;border:1px solid #e0e0e0; border-style:none none solid none;}
+#notice_table>tbody>tr>td:third-child{text-align : center;}
+#notice_table>tbody>tr:hover{opacity:0.8; background : #E0F7FA}
+#notice_table>thead>tr>td:first-child{inline-size:100px}
+#notice_table>thead>tr>td:third-child{inline-size:100px}
+#notice_table>thead>tr>td:last-child{inline-size:190px}
+
+#opa:hover{opacity:0.5}
+#search_input_input{border-radius:10px}
+#count{text-align:center}
+.pagenum{background:white;border:none;cursor:pointer}
+.pagenum:hover{opacity:0.5}
+
+td{margin:10px}
+
+.noticeTableBodyTitle{color : gray}
+.noticeTableBodyCreateBy{text-align : center}
+.page-item{list-style-type: none;display : inline-block}
+#noticePageController{text-align : center; margin-top : 10px;}
+#noticeMoveToWrite>a{padding : 5px; background : #E0F2F1 ; border-radius : 10px ; border : 1px solid light-gray}
+#noticeMoveToWrite>a:hover{opacity : 0.8}
+
+.page-item:first-child .page-link{margin-left:0;border-top-left-radius:.25rem;border-bottom-left-radius:.25rem}
+.page-item:last-child .page-link{border-top-right-radius:.25rem;border-bottom-right-radius:.25rem}
+.page-item.active .page-link{z-index:3;color:#fff;background-color:#007bff;border-color:#007bff}
+.page-item.disabled .page-link{color:#6c757d;pointer-events:none;cursor:auto;background-color:#fff;border-color:#dee2e6}
+.pagination-lg .page-link{padding:.75rem 1.5rem;font-size:1.25rem;line-height:1.5}
+.pagination-lg .page-item:first-child .page-link{border-top-left-radius:.3rem;border-bottom-left-radius:.3rem}
+.pagination-lg .page-item:last-child .page-link{border-top-right-radius:.3rem;border-bottom-right-radius:.3rem}
+.pagination-sm .page-link{padding:.25rem .5rem;font-size:.875rem;line-height:1.5}
+.pagination-sm .page-item:first-child .page-link{border-top-left-radius:.2rem;border-bottom-left-radius:.2rem}
+.pagination-sm .page-item:last-child .page-link{border-top-right-radius:.2rem;border-bottom-right-radius:.2rem}
+
+

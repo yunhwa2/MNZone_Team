@@ -4,24 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <title>멍냥Zone</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/mainhome.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/headerFooter.css}" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+
     <!-- JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script type="text/javascript" th:src="@{\ckeditor\ckeditor.js}"></script>
 
 
 
     <!-- 아래거, member 자바스크립트인데, 필요 없을거 같아서 일단 주석, 없이 잘 작동 하면, 지움.   -->
-<!--    <script type="text/javascript" src="js/t_member22.js"></script>-->
+<!--    <script type="text/javascript" src="js/memberForm.js"></script>-->
 
 
     <th:block layout:fragment="css"></th:block>
+
 </head>
+
 <body>
 
 <!-- th:replace="[파일 경로 :: 조각 이름]" -->

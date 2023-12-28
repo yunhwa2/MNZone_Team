@@ -1,0 +1,102 @@
+@charset "UTF-8";
+
+.container{
+    max-width:1050px;
+    width:100%;
+    margin:0 auto;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.contentKind{
+    font-size:30px;
+    font-weight:bold;
+}
+
+.dtlTitle{
+    width:1050px;
+    height:50px;
+    margin:0 auto;
+    margin-top: 40px;
+    font-size:30px;
+    font-weight:bold;
+}
+.line{
+    margin:20px 0px;
+}
+
+.dtlSummary{
+    margin-top: 40px;
+}
+
+.repImgDiv{
+    width:400px;
+    height:400px;
+    margin-left: 120px;
+    float:left;
+    overflow: hidden;
+}
+.repImgDiv img{
+    width:400px;
+    height:400px;
+}
+.text-right{
+    margin-top: 35px;
+    width: 500px;
+    height: 367px;
+    font-size: 20px;
+    margin-left: 20px;
+    float: left;
+}
+.text-right h2{
+    margin-bottom:35px;
+}
+.text-right p{
+    margin-bottom:25px;
+}
+
+.dtlContent{
+    clear:both;
+    width:1050px;
+    font-size:15px;
+}
+
+.dtlContent p{
+    margin-bottom:20px;
+    width:1050px;
+    min-height:200px;
+}
+.dtlImgDiv{
+    display:flex;
+    flex-wrap:wrap;
+}
+.dtlImgCard{
+    width:300px;
+    height:300px;
+    overflow: hidden;
+    margin:20px;
+}
+
+.btn_div{
+    width:1050px;
+    height:50px;
+}
+
+.btn_div button{
+	width:50px;
+	height:30px;
+  	cursor: pointer;
+	background-color: #fedcda;
+	color: #7a7a7a;
+	border: none;
+	padding: 5px 8px;
+	border-radius: 5px;
+	font-size: 14px;
+	font-weight: bold;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	margin :20px 0px 20px 10px;
+	float:right;
+}
+.btn_div button:hover{
+	background:rgb(222, 222, 222);
+	color:rgb(93, 93, 93);
+}

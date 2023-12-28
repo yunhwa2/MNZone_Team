@@ -9,26 +9,30 @@
             <div id="headerContent">
                 <div class="head" id="head1">
                     <h3 id="titleH3">
-                        <a>
-                            <img id="main_logo" th:src="@{/img/메인로고회색.png}" alt="멍냥존 로고">
+                        <a href="/">
+                            <img id="main_logo" th:src="@{/img/MN_mainLogo_gray.png}" alt="멍냥존 로고">
                         </a>
                     </h3>
                     <ul>
-                        <li class="headList" id="list0" ><a href="http://www.naver.com">멍냥닥터</a></li>
-                        <li class="headList" id="list1" href="/">멍냥자랑</li>
-                        <li class="headList" id="list2" href="/">멍냥만나</li>
-                        <li class="headList" id="list3" href="/">육아톡톡</li>
-                        <li class="headList" id="list4" href="/">멍냥실종</li>
-                        <li class="headList" id="list5" ><a th:href="@{/notice}">멍냥공지</a></li>
+                        <li><a href="/">멍냥닥터</a></li>
+                        <li><a href="/"></a>멍냥만나</li>
+                        <li><a th:href="@{/missing}">멍냥실종</a></li>
+                        <li><a th:href="@{/notice/list}">멍냥공지</a></li>
                     </ul>
                 </div>
                 <div class="head" id="head2">
-                    <img th:src="@{/img/로그인창.png}" alt="로그인창" sec:authorize="isAnonymous()" onclick="login()">
-                    <a href = "/members/logout"><img th:src="@{/img/로그인창.png}" alt="로그아웃창" sec:authorize="isAuthenticated()"></a>
-
+                    <img class ="head2_navBar" th:src="@{/img/navBar.png}" alt="더보기 버튼" sec:authorize="isAnonymous()" onclick="login1()">
+                    <img class ="head2_userProfile" th:if="${userName==null}" th:src="@{/img/userProfile.png}" alt="비회원 기본 이미지" sec:authorize="isAnonymous()" onclick="login1()">
+                    <a href = "/members/logout"><img class="userDefaultImg" th:src="@{/img/pet_DefaultProfile.png}" alt="회원 기본 이미지" sec:authorize="isAuthenticated()"></a>
+                    <a href = "/mypage"><span class="userNickName"  alt="로그아웃창" sec:authorize="isAuthenticated()"> [[${session.nickname}]] 님</span></a>
                 </div>
-<!--                <form class="" th:action="@{/}" method="get">-->
-<!--                    <input name="searchQuery" class="" type="search" placeholder="Search" aria-label="Search">-->
+
+
+
+
+                        <!--                <form class="" th:action="@{/}" method="get">-->
+<!--                    <input name="searchQuery" class="" type
+="search" placeholder="Search" aria-label="Search">-->
 <!--                    <button class="" type="submit">Search</button>-->
 <!--                </form>-->
             </div>
