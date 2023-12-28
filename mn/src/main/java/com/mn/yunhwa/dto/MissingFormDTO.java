@@ -22,6 +22,18 @@ public class MissingFormDTO {
     @NotBlank(message = "제목을 입력해주세요.")
     private String missingTitle;
 
+    @NotBlank(message = "목격장소를 입력해주세요.")
+    private String sightingSpot;
+
+    @NotBlank(message = "목격날짜를 입력해주세요.")
+    private String sightingDate;
+
+    @NotBlank(message = "연락처를 입력해주세요.")
+    private String witnessTel;
+
+    @NotBlank(message = "특징을 입력해주세요.")
+    private String feature;
+
     @NotBlank(message = "내용을 입력해주세요.")
     private String missingContent;
 

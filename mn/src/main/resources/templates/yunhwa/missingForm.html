@@ -17,7 +17,6 @@
 		var csrfParameter = /*[[${_csrf.parameterName}]]*/ 'csrfParameter';
         var csrfToken = /*[[${_csrf.token}]]*/ 'csrfToken';
 
-
         $(function () {
                  CKEDITOR.replace('ckeditor_write', {
                     filebrowserUploadUrl: '/files/fileupload.do?' + csrfParameter + '=' + csrfToken
@@ -30,11 +29,6 @@
                 alert(errorMessage);
             }
             bindDomEvent();
-
-            let missing_default_content = '<h3>기본 정보</h3><p>마지막 목격장소 : </p><p>마지막 목격날짜  : </p><p>보호자 연락처 : </p><p>특징 : </p>';
-            let targetElement = document.getElementById('defaultContent');
-            targetElement.innerHTML = missing_default_content;
-
         });
 
         //사용자가 이미지파일을 선택하면 이미지인지 확인하고 레이블에 이름 표시
@@ -61,28 +55,31 @@
 	<div id="container">
 		<div id="container1">
 			<form role = "form" method="post" enctype="multipart/form-data" th:object = "${missingFormDTO}" id="form1">
-				<div class="form-group">
-					<select th:field="*{MissingKind}" class="custom-select">
+				<div class="title_div">
+					<select class="missingKind_group" th:field="*{MissingKind}" >
 						<option value="DISAPPEAR">실종</option>
 						<option value="WITNESS">목격</option>
 						<option value="PROTECT">보호</option>
 					</select>
+					<input id="title" type="text" th:field="*{missingTitle}" placeholder="제목">
 				</div>
-				<div class="input_title">
-					<input id="title1" type="text" th:field="*{missingTitle}" class="form-control" placeholder="제목">
-				</div>
+
 				<!-- 여기 수정해야함 -->
-				<input id="title2" type="hidden" th:name="memberCode" th:value="${memberCode}">
-				<textarea id="ckeditor_write">
-						</textarea>
-
 				<div>
-					<p id ="defaultContent"></p>
+					<div id ="defaultContent">
+						<p>마지막 목격장소 : <input class="defaultLine" type="text" th:field="*{sightingSpot}"  placeholder="목격장소를 입력해주세요"></p>
+						<p>마지막 목격날짜  : <input  class="defaultLine"type="text" th:field="*{sightingDate}"  placeholder="목격날짜를 입력해주세요"></p>
+						<!--							<p>보호자 연락처 : <input  class="defaultLine" type="text" th:text="${member.ph}"  placeholder="연락수단을 입력해주세요"></p>-->
+						<p>보호자 연락처 : <input  class="defaultLine" type="text" th:field="*{witnessTel}"  placeholder="연락수단을 입력해주세요"></p>
+						<p>특        징 : <input  class="defaultLine" type="text" th:field="*{feature}"  placeholder="특징을 입력해주세요"></p>
 
-					<textarea id="content1" th:field="*{missingContent}">
+					</div>
+					<textarea id="ckeditor_write" th:field="*{missingContent}">
+
 						</textarea>
+					<p th:if="${#fields.hasErrors('missingContent')}" th:errors="*{missingContent}" class="fieldError">내용을 입력해주세요</p>
 				</div>
-				<p th:if="${#fields.hasErrors('missingContent')}" th:errors="*{missingContent}" class="fieldError">내용을 입력해주세요</p>
+				<input id="title2" type="hidden" th:name="memberCode" th:value="${memberCode}">
 
 				<div th:if="${#lists.isEmpty(missingFormDTO.missingImgDTOList)}">
 					<div class="form-group" th:each="num: ${#numbers.sequence(1,5)}">

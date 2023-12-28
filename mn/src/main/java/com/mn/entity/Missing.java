@@ -1,20 +1,18 @@
 package com.mn.entity;
 
+
 import com.mn.constant.MissingKind;
 import com.mn.yunhwa.dto.MissingFormDTO;
-import com.mn.yunhwa.dto.MissingImgDTO;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name="missing")
-@Getter @Setter
+@Getter
+@Setter
 public class Missing extends BaseEntity{
 
     @Id
@@ -24,6 +22,18 @@ public class Missing extends BaseEntity{
 
     @Column(nullable = false)
     private String missingTitle;
+
+    @Column(nullable = false)
+    private String sightingSpot;
+
+    @Column(nullable = false)
+    private String sightingDate;
+
+    @Column(nullable = false)
+    private String witnessTel;
+
+    @Column(nullable = false)
+    private String feature;
 
     @Lob
     @Column(nullable = false)

@@ -1,0 +1,37 @@
+@charset "UTF-8";
+.wrap{
+    max-width:1300px;
+    width:100%;
+    margin:0 auto;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.showKind{
+    width:300px;
+    height:50px;
+    margin:30px;
+}
+.show_table{
+    width:1300px;
+}
+.line{
+
+}
+.board_name{
+    width:11%;
+}
+.content_num{
+    width:10%;
+}
+.content_title{
+    width:58%;
+}
+.writer{
+    width:11%;
+}
+.reporting_date{
+    width:10%;
+}
+.center{
+    text-aline:center;
+}

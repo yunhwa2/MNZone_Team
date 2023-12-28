@@ -15,7 +15,7 @@ body{
 #header{
 	background:white;
 	height:77px;
-	width:100%; 
+	width:100%;
 	position:sticky;
 	top:0px;
 	z-index: 2; /* 슬라이드 위에 오도록 순서 조정 */
@@ -24,9 +24,9 @@ body{
 	border-style:solid none;
 }
 #headerContent{
-	margin:0px auto; 
+	margin:0px auto;
 	max-width:1200px;
-	display:flex; 
+	display:flex;
 	flex-flow:row nowrap;
 	justify-content:space-between;
 	height:67px;
@@ -41,7 +41,7 @@ body{
 	height:800px;
 }
 .head{
-	display:flex; 
+	display:flex;
 	flex-flow:row;
 }
 #head1{
@@ -80,13 +80,13 @@ input{
 	cursor: pointer;
 	background-color: #f8fbc9;
 	color: #b5b5ff;
-	border: none;	
+	border: none;
 	padding: 5px 8px;
 	border-radius: 5px;
 	font-size: 14px;
 	font-weight: bold;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	text-align: center; 
+	text-align: center;
 	margin :20px 0px 0px 10px;
 }
 
@@ -101,13 +101,13 @@ input{
   	cursor: pointer;
 	background-color: #fedcda;
 	color: #ff8080;
-	border: none;	
+	border: none;
 	padding: 5px 8px;
 	border-radius: 5px;
 	font-size: 14px;
 	font-weight: bold;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);	
-	text-align: center; 
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	text-align: center;
 	margin :20px 0px 0px 10px;
 }
 
@@ -116,8 +116,8 @@ input{
 	color:rgb(93, 93, 93);
 }
 
-.ck-editor__editable { 
-	height: 700px; 
+.ck-editor__editable {
+	height: 700px;
 }
 .ck-content {
 	font-size: 12px;
@@ -137,9 +137,9 @@ input{
  /*띄어쓰기*/
 	margin: 0
 	}
-	
+
 .contentsArea p {margin:0}
-	
+
 #form1{
 	width:1200px;
 	margin:0px auto;
