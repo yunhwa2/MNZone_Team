@@ -60,15 +60,14 @@ public class MissingServiceTest {
         missingFormDTO.setMissingKind(MissingKind.DISAPPEAR);
 
         List<MultipartFile> multipartFileList = createMultipartFiles();
-        Long missingId = missingService.saveMissing(missingFormDTO,multipartFileList);
+        Long missingId = missingService.saveMissing(missingFormDTO);
 
-        List<MissingImg> missingImgList = missingImgRepository.findByMissingMissingIdOrderByMissingImgIdAsc(missingId);
+        //List<MissingImg> missingImgList = missingImgRepository.findByMissingMissingIdOrderByMissingImgIdAsc(missingId);
         Missing missing = missingRepository.findById(missingId).orElseThrow(EntityNotFoundException::new);
 
         assertEquals(missingFormDTO.getMissingTitle(),missing.getMissingTitle());
         assertEquals(missingFormDTO.getMissingContent(),missing.getMissingContent());
         assertEquals(missingFormDTO.getMissingKind(),missing.getMissingKind());
-        assertEquals(multipartFileList.get(0).getOriginalFilename(),missingImgList.get(0).getMissingOriImgName());
 
 
     }

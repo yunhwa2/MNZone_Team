@@ -59,6 +59,9 @@ a{
 	border-style:none none solid none;
 }
 
+#head2{
+    margin-right: -70px;
+}
 #head2 a{
 	color :rgb(184, 184, 184);
 	text-decoration: none;
@@ -101,7 +104,10 @@ a{
 .userNickName{
     display:block;
     font-size:20px;
-    margin: 8px -59px 0px 10px;
+    margin: 8px 0px 0px 10px;
+}
+.logoutBtn{
+    margin-left: 30px;
 }
 
 

@@ -48,9 +48,9 @@ public class MissingFormDTO {
     @Column(columnDefinition="default 'DISAPPEAR' not null")
     private MissingKind missingKind;
 
-    private List<MissingImgDTO> missingImgDTOList = new ArrayList<>();
+//    private List<MissingImgDTO> missingImgDTOList = new ArrayList<>();
 
-    private List<Long> missingImgIds = new ArrayList<>();
+//    private List<Long> missingImgIds = new ArrayList<>();
 
     private String missingRepImg;
 

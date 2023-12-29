@@ -39,18 +39,17 @@ public class Missing extends BaseEntity{
     @Column(nullable = false)
     private String missingContent;
 
+    @Enumerated(EnumType.STRING)
+    private MissingKind missingKind;
+
+    private String missingRepImg;
+
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "member_code")
     private Member member;
 
-    @Enumerated(EnumType.STRING)
-    private MissingKind missingKind;
-
-
-    private String missingRepImg;
-
-    @OneToMany(mappedBy = "missing", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<MissingImg> missingImgs;
+//    @OneToMany(mappedBy = "missing", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<MissingImg> missingImgs;
 
     public void updateMissing(MissingFormDTO missingFormDTO){
         this.missingTitle = missingFormDTO.getMissingTitle();

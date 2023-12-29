@@ -15,7 +15,6 @@ public class MissingMainDTO {
     private MissingKind missingKind;
     private String missingTitle;
     private String missingContent;
-    private String missingImgUrl;
     private Member member;
     private String missingRepImg;
     private String sightingSpot;
@@ -24,13 +23,12 @@ public class MissingMainDTO {
     private String feature;
 
     @QueryProjection
-    public MissingMainDTO(Long missingId, MissingKind missingKind, String missingTitle, String missingContent, String missingImgUrl, Member member,
+    public MissingMainDTO(Long missingId, MissingKind missingKind, String missingTitle, String missingContent, Member member,
                           String missingRepImg,String sightingSpot, String sightingDate, String witnessTel,String feature) {
         this.missingId = missingId;
         this.missingKind = missingKind;
         this.missingTitle = missingTitle;
         this.missingContent = missingContent;
-        this.missingImgUrl = missingImgUrl;
         this.member = member;
         this.missingRepImg=missingRepImg;
         this.sightingSpot = sightingSpot;

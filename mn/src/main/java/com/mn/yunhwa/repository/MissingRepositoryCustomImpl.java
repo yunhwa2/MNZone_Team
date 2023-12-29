@@ -2,9 +2,10 @@ package com.mn.yunhwa.repository;
 
 import com.mn.constant.MissingKind;
 import com.mn.entity.Missing;
+
 import com.mn.entity.QMember;
 import com.mn.entity.QMissing;
-import com.mn.entity.QMissingImg;
+//import com.mn.entity.QMissingImg;
 import com.mn.yunhwa.dto.MissingMainDTO;
 import com.mn.yunhwa.dto.MissingSearchDTO;
 import com.mn.yunhwa.dto.QMissingMainDTO;
@@ -97,7 +98,7 @@ public class MissingRepositoryCustomImpl implements MissingRepositoryCustom{
         System.out.println("missingRepositoryImpl 실행");
 
         QMissing missing = QMissing.missing;
-        QMissingImg missingImg = QMissingImg.missingImg;
+
 
         //MainItemDTO 생성자에 변환할 값을 입력
         List<MissingMainDTO> content =queryFactory.select(
@@ -105,7 +106,6 @@ public class MissingRepositoryCustomImpl implements MissingRepositoryCustom{
                                             missing.missingKind,
                                             missing.missingTitle,
                                             missing.missingContent,
-                                            missingImg.missingImgUrl,
                                             missing.member,
                                             missing.missingRepImg,
                                             missing.sightingSpot,
@@ -113,9 +113,7 @@ public class MissingRepositoryCustomImpl implements MissingRepositoryCustom{
                                             missing.witnessTel,
                                             missing.feature
                                             )
-                ).from(missingImg)
-                .join(missingImg.missing,missing)    //itemImg와 item을 조인
-                .where(missingImg.missingRepImgYn.eq("Y"))    //대표 이미지만 불러옴
+                ).from(missing)
                 .orderBy(missing.missingId.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -123,9 +121,7 @@ public class MissingRepositoryCustomImpl implements MissingRepositoryCustom{
 
         //전체 아이템의 개수를 조회
         long total = queryFactory.select(Wildcard.count)
-                .from(missingImg)
-                .join(missingImg.missing,missing)
-                .where(missingImg.missingRepImgYn.eq("Y"))
+                .from(missing)
                 .where(missingTitleLike(missingSearchDTO.getSearchMissingQuery()))
                 .fetchOne();
 

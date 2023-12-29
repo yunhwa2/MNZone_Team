@@ -62,7 +62,6 @@
 								<button class="del_btn" id="del_btn">X</button>
 								<div class="contentBorder">
 									<a th:href="'missing/' + ${missing.missingId}">
-	<!--									<span class="missngKind" th:text="${missing.missingKind}" style="color:red;"></span>-->
 										<span class="missngKind" th:if="${missing.missingKind.name() == 'DISAPPEAR'}" style="color:red;">&nbsp;[실종]&nbsp;</span>
 										<span class="missngKind" th:if="${missing.missingKind.name() == 'WITNESS'}" style="color:#FFBF00;">&nbsp;[목격]&nbsp;</span>
 										<span class="missngKind" th:if="${missing.missingKind.name() == 'PROTECT'}" style="color:#2E9AFE;">&nbsp;[보호]&nbsp;</span>

@@ -40,18 +40,14 @@ public class MissingController {
     }
 
     @PostMapping("/missing/write")
-    public String missingNew(@Valid MissingFormDTO missingFormDTO, BindingResult bindingResult, Model model, @RequestParam("missingImgFile")List<MultipartFile> missingImgFileList){
+    public String missingNew(@Valid MissingFormDTO missingFormDTO, BindingResult bindingResult, Model model){
             if(bindingResult.hasErrors()){
             return "yunhwa/missingForm";
         }
 
-//        if(missingImgFileList.get(0).isEmpty() && missingFormDTO.getMissingId() == null){
-//            model.addAttribute("errorMessage","사진 한장은 필수입니다.");
-//            return "yunhwa/missingForm";
-//        }
 
         try{
-            Long missingId = missingService.saveMissing(missingFormDTO, missingImgFileList);
+            Long missingId = missingService.saveMissing(missingFormDTO);
             return "redirect:/missing";
         }catch (Exception e){
             e.printStackTrace();
@@ -75,25 +71,19 @@ public class MissingController {
     }
 
     @PostMapping("missing/write/{missingId}")
-    public String missingUpdate(@Valid MissingFormDTO missingFormDTO, BindingResult bindingResult, @RequestParam("missingImgFile") List<MultipartFile> missingImgFileList, Model model){
+    public String missingUpdate(@Valid MissingFormDTO missingFormDTO, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
             return "yunhwa/missingForm";
         }
 
-        if(missingImgFileList.get(0).isEmpty() && missingFormDTO.getMissingId() == null){
-            model.addAttribute("errorMessage","사진 한장은 필수입니다.");
-            return "yunhwa/missingForm";
-        }
-
         try {
-            long updateMissingId = missingService.updateMissing(missingFormDTO,missingImgFileList);
+            long updateMissingId = missingService.updateMissing(missingFormDTO);
             return "redirect:/missing";
         }catch (Exception e){
             model.addAttribute("errorMessage","글 수정 중 에러가 발생하였습니다.");
             return "yunhwa/missingForm";
         }
     }
-
 
     @GetMapping(value = "/missing")
     public String missingMain(MissingSearchDTO missingSearchDTO, Optional<Integer> page, Model model){
@@ -115,6 +105,16 @@ public class MissingController {
         model.addAttribute("missing",missingFormDTO);
         return "yunhwa/missingDtl";
     }
+
+    @DeleteMapping("/missing")
+    public String deleteMissing() {
+//        missingService.deleteByMissingId(id);
+        System.err.println("된당");
+        return "redirect:/yunhwa/missing"; // 삭제 후 리다이렉트
+    }
+
+
+
 
 //    @PostMapping("/missing/write/upload")
 //    public ResponseEntity<String> handleFileUpload(@RequestParam("upload") MultipartFile file, HttpServletRequest request, HttpServletResponse response) {
