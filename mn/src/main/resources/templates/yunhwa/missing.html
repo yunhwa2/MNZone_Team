@@ -76,7 +76,28 @@
 										<div id="contentImg_div">
 											<img id="contentImg" th:src="@{${missing.missingRepImg}}" th:alt="${missing.missingTitle}">
 										</div>
-										<div id="missingContent" th:text="${missing.missingContent}"></div>
+										<div class="missingContent">
+											<div class="default_text">
+												<p>마지막 목격장소</p>
+												<label>:</label>
+												<span th:text="${missing.sightingSpot}"></span>
+											</div>
+											<div class="default_text">
+												<p>마지막 목격날짜</p>
+												<label>:</label>
+												<span th:text="${missing.sightingDate}"></span>
+											</div>
+											<div class="default_text">
+												<p>보호자 연락처</p>
+												<label>:</label>
+												<span th:text="${missing.witnessTel}"></span>
+											</div>
+											<div class="default_text">
+												<p>특이사항</p>
+												<label>:</label>
+												<span th:text="${missing.feature}"></span>
+											</div>
+										</div>
 									</a>
 								</div>
 							</div>

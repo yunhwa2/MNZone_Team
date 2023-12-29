@@ -74,13 +74,15 @@
     </div>
 
     <div class="dtlContent">
-        <br>
-        <p th:utext="${missing.missingContent}"></p>
+        <div calss="ck_div" th:utext="${missing.missingContent}">
+
+        </div>
 
         <div class="dtlImgDiv">
-            <div th:each="missingImg : ${missing.missingImgDTOList}" >
-                <img class="dtlImgCard" th:if="${not #strings.isEmpty(missingImg.missingImgUrl)}" th:src="${missingImg.missingImgUrl}">
-            </div>
+<!--            <div th:each="missingImg : ${missing.missingImgDTOList}" >-->
+<!--                <img class="dtlImgCard" th:if="${not #strings.isEmpty(missingImg.missingImgUrl)}" th:src="${missingImg.missingImgUrl}">-->
+<!--            </div>-->
+            <img class="dtlImgCard" th:src="@{${missing.missingRepImg}}" th:alt="${missing.missingTitle}">
         </div>
     </div>
 

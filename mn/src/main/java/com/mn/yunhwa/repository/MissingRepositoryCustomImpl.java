@@ -107,7 +107,11 @@ public class MissingRepositoryCustomImpl implements MissingRepositoryCustom{
                                             missing.missingContent,
                                             missingImg.missingImgUrl,
                                             missing.member,
-                                            missing.missingRepImg
+                                            missing.missingRepImg,
+                                            missing.sightingSpot,
+                                            missing.sightingDate,
+                                            missing.witnessTel,
+                                            missing.feature
                                             )
                 ).from(missingImg)
                 .join(missingImg.missing,missing)    //itemImg와 item을 조인

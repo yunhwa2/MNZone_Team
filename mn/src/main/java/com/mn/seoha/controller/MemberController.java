@@ -54,14 +54,6 @@ public class MemberController {
         return "index";
     }
 
-
-
-//    @GetMapping(value = "login/error")
-//    public String loginErrorPage(Model model){
-//        model.addAttribute("memberFormDTO",new MemberFormDTO());
-//        return "members/login";
-//    }
-
     @GetMapping(value = "login/error")
     public String loginErrorMsg(Model model){
         model.addAttribute("loginErrorMsg","아이디 또는 비밀번호를 확인해주세요");

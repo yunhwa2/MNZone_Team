@@ -6,6 +6,8 @@ import com.querydsl.core.annotations.QueryProjection;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+
 @Getter@Setter
 public class MissingMainDTO {
 
@@ -16,9 +18,14 @@ public class MissingMainDTO {
     private String missingImgUrl;
     private Member member;
     private String missingRepImg;
+    private String sightingSpot;
+    private String sightingDate;
+    private String witnessTel;
+    private String feature;
 
     @QueryProjection
-    public MissingMainDTO(Long missingId, MissingKind missingKind, String missingTitle, String missingContent, String missingImgUrl, Member member,String missingRepImg) {
+    public MissingMainDTO(Long missingId, MissingKind missingKind, String missingTitle, String missingContent, String missingImgUrl, Member member,
+                          String missingRepImg,String sightingSpot, String sightingDate, String witnessTel,String feature) {
         this.missingId = missingId;
         this.missingKind = missingKind;
         this.missingTitle = missingTitle;
@@ -26,5 +33,9 @@ public class MissingMainDTO {
         this.missingImgUrl = missingImgUrl;
         this.member = member;
         this.missingRepImg=missingRepImg;
+        this.sightingSpot = sightingSpot;
+        this.sightingDate = sightingDate;
+        this.witnessTel = witnessTel;
+        this.feature = feature;
     }
 }
