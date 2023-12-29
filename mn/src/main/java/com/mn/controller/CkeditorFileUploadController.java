@@ -26,8 +26,8 @@ public class CkeditorFileUploadController {
 
     @Value("${image.upload.path}")
     private String uploadPath;
-    @PostMapping("/fileupload.do")
 
+    @PostMapping("/fileupload.do")
     public ResponseEntity<String> fileUpload(HttpServletRequest request, MultipartHttpServletRequest multiFile) throws IOException {
 
         // Json 객체 생성

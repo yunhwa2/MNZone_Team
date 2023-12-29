@@ -36,7 +36,9 @@
 }
 
 .dtlSummary{
-    margin-top: 40px;
+    width: 1050px;
+    height: 400px;
+    margin: 50px 0px;
 }
 
 .repImgDiv{
@@ -84,9 +86,11 @@
 }
 
 .ck_div{
-    margin:20px 0px;
-    width:1050px;
     min-height:200px;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom:30px;
 }
 
 .dtlImgDiv{

@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 //@EntityListeners : 엔티티의 생명주기(생성, 수정, 소멸)에 대한 리스너를 지정
 //@Mappedsuperclass : 부모 클래스로만 사용, 실제 클래스와 매핑 x 엔티티 정의
@@ -24,6 +25,5 @@ public abstract class BaseTimeEntity{
 
     @LastModifiedDate//entity 변경 시 시간 자동 저장
     private LocalDateTime updateTime;
-
 
 }

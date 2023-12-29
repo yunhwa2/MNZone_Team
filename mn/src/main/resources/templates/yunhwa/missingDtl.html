@@ -37,8 +37,8 @@
             <span class="missing_title" th:text="${missing.missingTitle}"></span>
             <hr class="line">
         <div class="missing_subDtl_div">
-            <span class="author">작성자 : 김땡땡</span>
-<!--            <span>작성일 : </span><span th:text="${missing.regTime}"></span>-->
+            <span >작성자 : </span><span class="author" th:text="${missing.member.nickName}"></span>
+            <span>작성일 : </span><span th:text="${missing.formattedRegDate}"></span>
         </div>
     </div>
 
@@ -74,7 +74,7 @@
     </div>
 
     <div class="dtlContent">
-        <div calss="ck_div" th:utext="${missing.missingContent}">
+        <div class="ck_div" th:utext="${missing.missingContent}">
 
         </div>
 
@@ -86,21 +86,23 @@
         </div>
     </div>
 
+<!--    <div th:text="${missing.member.code}" ></div>-->
+    <div th:if="${missing.member.code == session.memberCode}">
+        <form role="form" method="post" enctype="multipart/form-data" th:object="${missingFormDTO}">
+            <div class="btn_div" >
+                <button th:formaction="@{'/missing/write/' + ${missing.missingId} }" type="submit">수정</button>
+                <button type="submit" onclick="">삭제</button>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+            </div>
+        </form>
+<!--        <form role="form" method="post" enctype="multipart/form-data" th:object="${missingFormDTO}">-->
+<!--            <div class="btn_div" th:if="${missingFormDTO != null && #strings.isNotEmpty(missingFormDTO.missingId)}">-->
+<!--                <button th:formaction="@{'/missing/write/' + ${missingFormDTO.missingId} }" type="submit">수정</button>-->
+<!--                <button type="submit" onclick="">삭제</button>-->
+<!--            </div>-->
+<!--        </form>-->
+    </div>
 
-    <!--th:if="${member.Id == session.Id}"    세션 연결해서 버튼 숨기고 나타내기 해야함-->
-
-<!--    <form role="form" method="post" enctype="multipart/form-data" th:object="${missingFormDTO}">-->
-<!--        <div class="btn_div" th:if="${missingFormDTO != null && #strings.isNotEmpty(missingFormDTO.missingId)}">-->
-<!--            <button th:formaction="@{'/missing/write/' + ${missingFormDTO.missingId} }" type="submit">수정</button>-->
-<!--            <button type="submit" onclick="">삭제</button>-->
-<!--        </div>-->
-<!--    </form>-->
-    <form>
-        <div class="btn_div" >
-            <button type="submit">수정</button>
-            <button type="submit">삭제</button>
-        </div>
-    </form>
 
 </div>
 

@@ -11,6 +11,8 @@ import org.modelmapper.ModelMapper;
 
 import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +23,8 @@ public class MissingFormDTO {
 
     @NotBlank(message = "제목을 입력해주세요.")
     private String missingTitle;
+
+    private LocalDateTime regTime;
 
     @NotBlank(message = "목격장소를 입력해주세요.")
     private String sightingSpot;
@@ -67,4 +71,10 @@ public class MissingFormDTO {
         missingFormDTO.setMemberCode(missing.getMember().getCode());
         return missingFormDTO;
     }
+
+    public String getFormattedRegDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd a hh:mm");
+        return regTime.format(formatter);
+    }
+
 }

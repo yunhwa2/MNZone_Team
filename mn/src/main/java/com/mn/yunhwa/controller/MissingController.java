@@ -1,7 +1,5 @@
 package com.mn.yunhwa.controller;
 
-import com.google.gson.JsonObject;
-import com.mn.entity.Missing;
 import com.mn.yunhwa.dto.MissingFormDTO;
 import com.mn.yunhwa.dto.MissingMainDTO;
 import com.mn.yunhwa.dto.MissingSearchDTO;
@@ -10,27 +8,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.thymeleaf.util.StringUtils;
-
 import javax.persistence.EntityNotFoundException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -53,24 +39,16 @@ public class MissingController {
         return "yunhwa/missingForm";
     }
 
-
-//    @GetMapping("/missing/write")
-//    public String missingForm(Model model, HttpSession session){
-//        model.addAttribute("missingFormDTO", new MissingFormDTO());
-//        model.addAttribute("memberCode", session.getAttribute("memberCode"));
-//        return "yunhwa/missingForm";
-//    }
-
     @PostMapping("/missing/write")
     public String missingNew(@Valid MissingFormDTO missingFormDTO, BindingResult bindingResult, Model model, @RequestParam("missingImgFile")List<MultipartFile> missingImgFileList){
             if(bindingResult.hasErrors()){
             return "yunhwa/missingForm";
         }
 
-        if(missingImgFileList.get(0).isEmpty() && missingFormDTO.getMissingId() == null){
-            model.addAttribute("errorMessage","사진 한장은 필수입니다.");
-            return "yunhwa/missingForm";
-        }
+//        if(missingImgFileList.get(0).isEmpty() && missingFormDTO.getMissingId() == null){
+//            model.addAttribute("errorMessage","사진 한장은 필수입니다.");
+//            return "yunhwa/missingForm";
+//        }
 
         try{
             Long missingId = missingService.saveMissing(missingFormDTO, missingImgFileList);
