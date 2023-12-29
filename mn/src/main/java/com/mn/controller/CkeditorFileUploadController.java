@@ -50,14 +50,15 @@ public class CkeditorFileUploadController {
                         bytes = file.getBytes();
                         // 파일이 실제로 저장되는 경로
                         //String uploadPath = request.getServletContext().getRealPath("/resources/ckimage/");
+                        String upload = uploadPath;
                         // 저장되는 파일에 경로 설정
-                        File uploadFile = new File(uploadPath);
+                        File uploadFile = new File(upload);
                         if (!uploadFile.exists()) {
                             uploadFile.mkdirs();
                         }
                         // 업로드 경로 + 파일 이름을 주어 데이터를 서버에 전송
-                        uploadPath = uploadPath + "/" + fileName;
-                        try (OutputStream out = new FileOutputStream(new File(uploadPath))) {
+                        upload = upload + "/" + fileName;
+                        try (OutputStream out = new FileOutputStream(new File(upload))) {
                             out.write(bytes);
                         }
 
