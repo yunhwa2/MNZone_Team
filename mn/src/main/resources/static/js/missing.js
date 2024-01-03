@@ -35,11 +35,11 @@ function keep_box(){
 	}
 }//검색창 인풋시 트랜스레이트 유지
 
-//function enter_search(e){
-//	if(e.keyCode==13){
-//		search_board();
-//	}
-//}//검색창 엔터키 누르면 작동 (13번이 엔터)
+function enter_search(e){
+	if(e.keyCode==13){
+		$("#search_btn").click();
+	}
+}//검색창 엔터키 누르면 작동 (13번이 엔터)
 
 $(document).ready(function(){
     $("#search_btn").on("click",function(e){
@@ -60,7 +60,7 @@ function page(page){
                  +"&searchMissingQuery=" + searchMissingQuery;
 }
 
-//const lists = JSON.parse(localStorage.getItem("missing"));
+
 
 //const list=[
 //	{ num: "0", title:"<span style='color: red;'>[실종]</span> 부산 부암역에서 사라진 강아지 찾아요",					img1: "img/프로필_솜.jpeg",	nickname:"솜사탕",	img2: "img/실종_솜.jpeg",		content: "<b>마지막 목격장소 : 부산 부암역 8번출구<br>마지막 목격날짜 : 2023.07.12 오후 6시경<br>보호자 연락처 : 010-1234-5678<br>비숑 프리제/ 암컷 / 3살 <br>노란 옷 입었고 이름은  '솜'입니다</b> <br><br>발견하시면 꼭 연락부탁드려요ㅠㅠㅠㅠ<br>사례하겠습니다<br>"},
@@ -74,69 +74,4 @@ function page(page){
 //	{ num: "8", title:"<span style='color: red;'>[실종]</span> 하동군 북천면쪽에서 사라진 아기강아지를 찾습니다",			img1: "img/프로필_땡이.jpeg",	nickname:"땡그랑땡",	img2: "img/실종_땡이.jpeg",	content: "<b>마지막 목격장소 : 하동군 북촌면 면사무소 앞<br>마지막 목격날짜 : 2023.08.08 오후 1시<br>보호자 연락처 : 010-1234-5678<br>프렌치 불독 / 암컷 / 3개월 / 이름 : 땡이 </b><br><br>시골이라 마당에 풀어놓고 키우는데 안돌아오네요<br>태어난지 얼마 안된 애기라 겁이 많아요<br>보시면 <b>영상 or 사진</b> 제보해주세요"}
 //	]
 //
-//let result_list;
-//
-//if(!nullcheck(lists)){
-//	result_list = list.concat(lists);
-//}else{
-//	result_list = list;
-//}
-
-
-//function print_cnt(){
-//	cnt = Number(result_list.length)
-//	cnt_index.innerText=cnt+'개의 글'
-//}
-//print_cnt()
-//
-//function gotoMissingForm(){
-//	location.href='\missingForm.html';
-//}
-//
-//function autoinput(){
-//	for(let i=result_list.length-1;i>=0;i--){
-//		const num = result_list[i].num;
-//		const img1 = result_list[i].img1;
-//		const nickname = result_list[i].nickname;
-//		const content=result_list[i].content;
-//		const title = result_list[i].title;
-//		const img2 = result_list[i].img2;
-//		autobox.innerHTML+='<div id="auto_inner'+num+'" class="auto_inner" ><button onclick="click_del(this.id)" class="del_btn" id="del_btn'+num+'">X</button><div id="auto_border"><div id="auto_author"><div id="auto_title">'+title+'</div><div id="auto_profile"><img id="auto_img" src="'+img1+'"><div id="auto_nick">'+nickname+'</div></div></div><div id="auto_contentimg"><img id="auto_img2" src="'+img2+'"></div><div id="auto_content">'+content+'</div></div></div>';
-//	}
-//}
-
-
-//window.addEventListener("load",function(){
-//	autoinput()
-//})
-//
-//
-//function click_del(id){
-//	let id_num = id.substr(7);
-//	let div_id = "#auto_inner"+id_num;
-//	$(div_id).remove();
-//	cnt--;
-//	cnt_index.innerText=cnt+'개의 글'
-//	let new_list= [];
-//
-//	for(let i=0; i<lists.length; i++){
-//		if(id_num==lists[i].num){
-//
-//		}else{
-//			new_list.push({
-//				num: lists[i].num,
-//				title: lists[i].title,
-//				img1: lists[i].img1,
-//				nickname: lists[i].nickname,
-//				img2: lists[i].img2,
-//				content: lists[i].content
-//				});
-//
-//		}
-//	}
-//	localStorage.setItem("missing", JSON.stringify(new_list));
-//
-//}
-//
-
 

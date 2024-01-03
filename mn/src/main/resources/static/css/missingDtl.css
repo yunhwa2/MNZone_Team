@@ -5,8 +5,29 @@
     width:100%;
     margin:0 auto;
     font-family: 'Noto Sans KR', sans-serif;
+    padding-top: 30px;
+}
+.goMissing{
+    width: 115px;
+    height: 20px;
+    cursor: pointer;
+    background-color: #fedcda;
+    color: #7a7a7a;
+    border: none;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    float: right;
+
 }
 
+.goMissing:hover{
+	background:rgb(222, 222, 222);
+	color:rgb(93, 93, 93);
+}
 .contentKind{
     font-size:30px;
     font-weight:bold;

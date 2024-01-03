@@ -53,7 +53,7 @@
 <!-- content  -->
 <div layout:fragment="content">
 	<div class="wrap">
-		<form role = "form" method="post" enctype="multipart/form-data" th:object = "${missingFormDTO}" id="form1">
+		<form role = "form" method="post" enctype="multipart/form-data" th:object = "${missingFormDTO}" >
 			<div class="title_div">
 				<select class="missingKind_group" th:field="*{MissingKind}" >
 					<option value="DISAPPEAR">실종</option>
@@ -102,7 +102,7 @@
 				<p th:if="${#fields.hasErrors('missingContent')}" th:errors="*{missingContent}" class="fieldError">내용을 입력해주세요</p>
 
 			</div>
-			<input id="title2" type="hidden" th:name="memberCode" th:value="${memberCode}">
+			<input type="hidden" th:name="memberCode" th:value="${#session.getAttribute('memberCode')}">
 
 <!--			<div th:if="${#lists.isEmpty(missingFormDTO.missingImgDTOList)}">-->
 <!--				<div class="form-group" th:each="num: ${#numbers.sequence(1,5)}">-->

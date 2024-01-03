@@ -27,16 +27,11 @@ public class MainController {
 
     private final MissingService missingService;
 
-
-
     @GetMapping(value = "/")
     public String main(Model model, Principal principal, HttpServletRequest httpServletRequest){
 
         try{
-//            System.err.println(principal.getName());
-//            String name = principal.getName();
-//            HttpSession httpSession = httpServletRequest.getSession(true);
-//            httpSession.setAttribute("userName",name);
+
         }catch (Exception e){
             model.addAttribute("memberFormDTO", new MemberFormDTO());
             return "index";
@@ -45,8 +40,7 @@ public class MainController {
         return "index";
     }
 
-
-
+    //이거 공지 컨트롤러롤 옮기기
     @GetMapping(value = "/notice")
     public String notice(){
         System.err.println("getmapping notice");
@@ -54,6 +48,6 @@ public class MainController {
                 "";
     }
 
-
+    //
 
 }

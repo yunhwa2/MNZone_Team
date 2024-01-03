@@ -48,8 +48,6 @@ public class Missing extends BaseEntity{
     @JoinColumn(name = "member_code")
     private Member member;
 
-//    @OneToMany(mappedBy = "missing", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<MissingImg> missingImgs;
 
     public void updateMissing(MissingFormDTO missingFormDTO){
         this.missingTitle = missingFormDTO.getMissingTitle();

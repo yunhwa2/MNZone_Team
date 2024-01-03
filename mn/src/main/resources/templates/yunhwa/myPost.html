@@ -39,15 +39,40 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>실종</td>
-                        <td>1</td>
+                        <td class="center">실종</td>
+                        <td class="center">1</td>
                         <td>제목입니다</td>
-                        <td>뽀또맘</td>
-                        <td>2023-12-27</td>
+                        <td class="center">뽀또맘</td>
+                        <td class="center">2023-12-27</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
+
+
+            <div class="pagination_div" >
+
+                <ul class="pagination">
+
+                    <li class="pageMoveBtn pageMoveMargin" >
+                        <a  aria-label='Previous'>
+                            <span aria-hidden='true'>Previous</span>
+                        </a>
+                    </li>
+
+                    <li class="pageMoveBtn" >
+                        <a th:inline="text" >[[${page}]]</a>
+                    </li>
+
+                    <li class="pageMoveBtn" >
+                        <a  aria-label='Next' >
+                            <span aria-hidden='true'>Next</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
 
         </form>
 

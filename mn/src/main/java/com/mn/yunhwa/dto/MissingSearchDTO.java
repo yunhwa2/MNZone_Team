@@ -13,7 +13,7 @@ public class MissingSearchDTO {
 
     private String searchMissingBy;
 
-    private String searchMissingQuery;
+    private String searchMissingQuery="";
 
 
 

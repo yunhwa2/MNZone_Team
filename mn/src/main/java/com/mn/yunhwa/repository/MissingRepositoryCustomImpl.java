@@ -53,12 +53,24 @@ public class MissingRepositoryCustomImpl implements MissingRepositoryCustom{
     }
 
     //검색어가 포함되어 있는 제목 / 내용 / 제목이나 내용
+//    private BooleanExpression searchMissingByLike(String searchMissingBy, String searchMissingQuery) {
+//        if (StringUtils.equals("missingTitle", searchMissingBy) && !StringUtils.isEmptyOrWhitespace(searchMissingQuery)) {
+//            return QMissing.missing.missingTitle.like("%" + searchMissingQuery + "%");
+//        } else if (StringUtils.equals("missingContent", searchMissingBy) && !StringUtils.isEmptyOrWhitespace(searchMissingQuery)) {
+//            return QMissing.missing.missingContent.like("%" + searchMissingQuery + "%");
+//        } else if (StringUtils.equals("missingTitleAndContent", searchMissingBy) && !StringUtils.isEmptyOrWhitespace(searchMissingQuery)) {
+//            return QMissing.missing.missingTitle.like("%" + searchMissingQuery + "%")
+//                    .or(QMissing.missing.missingContent.like("%" + searchMissingQuery + "%"));
+//        }
+//        return null;
+//    }
+
     private BooleanExpression searchMissingByLike(String searchMissingBy, String searchMissingQuery) {
-        if (StringUtils.equals("missingTitle", searchMissingBy) && !StringUtils.isEmptyOrWhitespace(searchMissingQuery)) {
+        if (StringUtils.equals("missingTitle", searchMissingBy) ) {
             return QMissing.missing.missingTitle.like("%" + searchMissingQuery + "%");
-        } else if (StringUtils.equals("missingContent", searchMissingBy) && !StringUtils.isEmptyOrWhitespace(searchMissingQuery)) {
+        } else if (StringUtils.equals("missingContent", searchMissingBy) ) {
             return QMissing.missing.missingContent.like("%" + searchMissingQuery + "%");
-        } else if (StringUtils.equals("missingTitleAndContent", searchMissingBy) && !StringUtils.isEmptyOrWhitespace(searchMissingQuery)) {
+        } else if (StringUtils.equals("missingTitleAndContent", searchMissingBy) ) {
             return QMissing.missing.missingTitle.like("%" + searchMissingQuery + "%")
                     .or(QMissing.missing.missingContent.like("%" + searchMissingQuery + "%"));
         }
@@ -75,7 +87,7 @@ public class MissingRepositoryCustomImpl implements MissingRepositoryCustom{
                 .where(regDtsAfter(missingSearchDTO.getSearchDateType()),
                         searchMissingKindEq(missingSearchDTO.getSearchMissingKind()),
                         searchMissingByLike(missingSearchDTO.getSearchMissingBy(),missingSearchDTO.getSearchMissingQuery()))
-                .orderBy(QMissing.missing.regTime.desc())
+                .orderBy(QMissing.missing.missingId.desc())
                 .offset(pageable.getOffset())   //데이터를 가져오도록 시작 인덱스를 설정
                 .limit(pageable.getPageSize())  //한번에 가져올 페이지의 개수
                 .fetch();
@@ -114,6 +126,9 @@ public class MissingRepositoryCustomImpl implements MissingRepositoryCustom{
                                             missing.feature
                                             )
                 ).from(missing)
+                .where(regDtsAfter(missingSearchDTO.getSearchDateType()),
+                        searchMissingKindEq(missingSearchDTO.getSearchMissingKind()),
+                        searchMissingByLike(missingSearchDTO.getSearchMissingBy(),missingSearchDTO.getSearchMissingQuery()))
                 .orderBy(missing.missingId.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -122,7 +137,9 @@ public class MissingRepositoryCustomImpl implements MissingRepositoryCustom{
         //전체 아이템의 개수를 조회
         long total = queryFactory.select(Wildcard.count)
                 .from(missing)
-                .where(missingTitleLike(missingSearchDTO.getSearchMissingQuery()))
+                .where(regDtsAfter(missingSearchDTO.getSearchDateType()),
+                        searchMissingKindEq(missingSearchDTO.getSearchMissingKind()),
+                        searchMissingByLike(missingSearchDTO.getSearchMissingBy(), missingSearchDTO.getSearchMissingQuery()))
                 .fetchOne();
 
         return new PageImpl<>(content, pageable,total);

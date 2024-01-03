@@ -1,5 +1,6 @@
 package com.mn.yunhwa.controller;
 
+import com.mn.entity.Missing;
 import com.mn.yunhwa.dto.MissingFormDTO;
 import com.mn.yunhwa.dto.MissingMainDTO;
 import com.mn.yunhwa.dto.MissingSearchDTO;
@@ -35,7 +36,6 @@ public class MissingController {
         } else {
             return "/members/login";
         }
-
         return "yunhwa/missingForm";
     }
 
@@ -45,10 +45,14 @@ public class MissingController {
             return "yunhwa/missingForm";
         }
 
-
         try{
-            Long missingId = missingService.saveMissing(missingFormDTO);
-            return "redirect:/missing";
+            String saveYn = missingService.saveMissing(missingFormDTO);
+            if(saveYn=="N"){
+                model.addAttribute("errorMessage","사진 1장은 필수입니다.");
+                return "yunhwa/missingForm";
+            }else {
+                return "redirect:/missing";
+            }
         }catch (Exception e){
             e.printStackTrace();
             model.addAttribute("errorMessage","실종글 등록 중에 에러가 발생하였습니다.");
@@ -77,7 +81,7 @@ public class MissingController {
         }
 
         try {
-            long updateMissingId = missingService.updateMissing(missingFormDTO);
+            String  updateMissingId = missingService.updateMissing(missingFormDTO);
             return "redirect:/missing";
         }catch (Exception e){
             model.addAttribute("errorMessage","글 수정 중 에러가 발생하였습니다.");
@@ -85,13 +89,18 @@ public class MissingController {
         }
     }
 
-    @GetMapping(value = "/missing")
-    public String missingMain(MissingSearchDTO missingSearchDTO, Optional<Integer> page, Model model){
+    @GetMapping(value={"/missing","/missing/{page}"})
+    public String missingMain(MissingSearchDTO missingSearchDTO, @PathVariable("page") Optional<Integer> page, Model model){
+
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0,9);
+//        Page<Missing> missingpage = missingService.getMissingPage(missingSearchDTO,pageable);
+//        model.addAttribute("missing", missingpage);
+//        model.addAttribute("missingSearchDTO", missingSearchDTO);
+
         Page<MissingMainDTO> missingMainDTOS = missingService.getMissingMainPage(missingSearchDTO,pageable);
         model.addAttribute("missings",missingMainDTOS);
         model.addAttribute("missingSearchDTO",missingSearchDTO);
-
+        model.addAttribute("total",missingMainDTOS.getTotalElements());
         long missingCount = missingService.countMissing();
         model.addAttribute("missingCount", missingCount);
         model.addAttribute("maxPage",5);
@@ -99,18 +108,18 @@ public class MissingController {
         return "yunhwa/missing";
     }
 
-    @GetMapping("/missing/{missingId}")
+    @GetMapping("/missing/content/{missingId}")
     public String missingDtl(Model model, @PathVariable("missingId") Long missingId){
         MissingFormDTO missingFormDTO = missingService.getMissingDtl(missingId);
         model.addAttribute("missing",missingFormDTO);
         return "yunhwa/missingDtl";
     }
 
-    @DeleteMapping("/missing")
-    public String deleteMissing() {
-//        missingService.deleteByMissingId(id);
-        System.err.println("된당");
-        return "redirect:/yunhwa/missing"; // 삭제 후 리다이렉트
+    @GetMapping("/missing/delete")
+    public String deleteMissing(@Valid MissingFormDTO missingFormDTO,BindingResult bindingResult, Model model) {
+        System.out.println("삭제 되나");
+        missingService.deleteByMissingId(missingFormDTO.getMissingId());
+        return "redirect:/missing"; // 삭제 후 리다이렉트
     }
 
 

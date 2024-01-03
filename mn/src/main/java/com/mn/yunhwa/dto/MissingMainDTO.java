@@ -22,6 +22,7 @@ public class MissingMainDTO {
     private String witnessTel;
     private String feature;
 
+
     @QueryProjection
     public MissingMainDTO(Long missingId, MissingKind missingKind, String missingTitle, String missingContent, Member member,
                           String missingRepImg,String sightingSpot, String sightingDate, String witnessTel,String feature) {

@@ -2,6 +2,7 @@
 .wrap{
     max-width:1300px;
     width:100%;
+    min-height:800px;
     margin:0 auto;
     font-family: 'Noto Sans KR', sans-serif;
 }
@@ -14,7 +15,10 @@
 .show_table{
     width:1300px;
 }
-.line{
+.show_table td{
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
 
 }
 .board_name{
@@ -33,5 +37,44 @@
     width:10%;
 }
 .center{
-    text-aline:center;
+    text-align: center;
+}
+.pagination_div{
+    width: 1530px;
+    justify-content: center;
+    display: flex;
+}
+
+.pagination{
+    margin:10px auto;
+}
+.pageMoveBtn{
+    border-radius: 0.25rem;
+    display: inline-block;
+    padding: 0.5rem 0.75rem;
+    line-height: 1.25;
+    background-color: #fedcda;
+    border-color: #fedcda;
+    margin:10px auto;
+    margin-bottom:20px;
+    margin-right:10px;
+    cursor: pointer;
+}
+.pageMoveBtn.active {
+    font-weight: bold;
+}
+
+.pageMoveBtn.disabled {
+    color: gray;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+.pageMoveMargin{
+    margin-left:-100px
+}
+
+.pageMoveBtn:hover{
+    background-color: #a5dbdc;
+    border-color: #a5dbdc;
+    cursor: pointer;
 }

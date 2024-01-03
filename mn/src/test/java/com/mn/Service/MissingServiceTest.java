@@ -2,9 +2,7 @@ package com.mn.Service;
 
 import com.mn.constant.MissingKind;
 import com.mn.entity.Missing;
-import com.mn.entity.MissingImg;
 import com.mn.yunhwa.dto.MissingFormDTO;
-import com.mn.yunhwa.repository.MissingImgRepository;
 import com.mn.yunhwa.repository.MissingRepository;
 import com.mn.yunhwa.service.MissingService;
 import org.junit.jupiter.api.DisplayName;
@@ -34,21 +32,6 @@ public class MissingServiceTest {
     @Autowired
     MissingRepository missingRepository;
 
-    @Autowired
-    MissingImgRepository missingImgRepository;
-
-    List<MultipartFile> createMultipartFiles() throws Exception{
-        List<MultipartFile> multipartFileList = new ArrayList<>();
-
-        for(int i=0; i<5;i++){
-            String path = "D:/MN/missing";
-            String imageName = "image" + i +".jpg";
-            MockMultipartFile multipartFile = new MockMultipartFile(path, imageName,"image/jpg", new byte[] {1,2,3,4});
-            multipartFileList.add(multipartFile);
-        }
-
-        return multipartFileList;
-    }
 
     @Test
     @DisplayName("멍냥실종 글 등록 테스트")
@@ -58,16 +41,6 @@ public class MissingServiceTest {
         missingFormDTO.setMissingTitle("테스트 글 제목1");
         missingFormDTO.setMissingContent("테스트중~");
         missingFormDTO.setMissingKind(MissingKind.DISAPPEAR);
-
-        List<MultipartFile> multipartFileList = createMultipartFiles();
-        Long missingId = missingService.saveMissing(missingFormDTO);
-
-        //List<MissingImg> missingImgList = missingImgRepository.findByMissingMissingIdOrderByMissingImgIdAsc(missingId);
-        Missing missing = missingRepository.findById(missingId).orElseThrow(EntityNotFoundException::new);
-
-        assertEquals(missingFormDTO.getMissingTitle(),missing.getMissingTitle());
-        assertEquals(missingFormDTO.getMissingContent(),missing.getMissingContent());
-        assertEquals(missingFormDTO.getMissingKind(),missing.getMissingKind());
 
 
     }

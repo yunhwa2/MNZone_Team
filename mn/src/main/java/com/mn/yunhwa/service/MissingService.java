@@ -26,10 +26,8 @@ import java.util.regex.Pattern;
 @RequiredArgsConstructor
 public class MissingService {
     private final MissingRepository missingRepository;
-    //private final MissingImgRepository missingImgRepository;
-    //private final MissingImgService missingImgService;
 
-    public Long saveMissing(MissingFormDTO missingFormDTO) throws Exception {
+    public String saveMissing(MissingFormDTO missingFormDTO) throws Exception {
         Missing missing = missingFormDTO.createMissing();
         String input = missing.getMissingContent();
         Pattern pattern = Pattern.compile("<img[^>]+src\\s*=\\s*\"([^\"]+)\"");
@@ -39,33 +37,32 @@ public class MissingService {
             String firstImgTag = matcher.group(1);
             System.out.println(firstImgTag);
             missing.setMissingRepImg(firstImgTag);
+        }else{
+            return "N";
         }
 
         missingRepository.save(missing);
 
-//        for (int i = 0; i < missingImgFileList.size(); i++) {
-//            MissingImg missingImg = new MissingImg();
-//            missingImg.setMissing(missing);
-//            if (i == 0)
-//                missingImg.setMissingRepImgYn("Y");
-//             else
-//                missingImg.setMissingRepImgYn("N");
-//
-//            missingImgService.saveMissingImg(missingImg, missingImgFileList.get(i));
-//        }
-            return missing.getMissingId();
+            return "Y";
     }
 
-    public Long updateMissing(MissingFormDTO missingFormDTO) throws Exception{
+    public String updateMissing(MissingFormDTO missingFormDTO) throws Exception{
         Missing missing =missingRepository.findById(missingFormDTO.getMissingId()).orElseThrow(EntityNotFoundException::new);
+        String input = missingFormDTO.getMissingContent();
+        Pattern pattern = Pattern.compile("<img[^>]+src\\s*=\\s*\"([^\"]+)\"");
+        Matcher matcher = pattern.matcher(input);
+
+        if (matcher.find()) {
+            String firstImgTag = matcher.group(1);
+            System.out.println(firstImgTag);
+            missingFormDTO.setMissingRepImg(firstImgTag);
+        }else{
+            return "N";
+        }
         missing.updateMissing(missingFormDTO);
 
-        //List<Long> missingImgIds = missingFormDTO.getMissingImgIds();
 
-//        for(int i=0;i<missingImgFileList.size();i++){
-//            missingImgService.updateMissingImg(missingImgIds.get(i),missingImgFileList.get(i));
-//        }
-        return missing.getMissingId();
+        return "Y";
     }
 
     public long countMissing() {
@@ -74,17 +71,8 @@ public class MissingService {
 
     @Transactional(readOnly = true)
     public MissingFormDTO getMissingDtl(Long missingId){
-//        List<MissingImg> missingImgList = missingImgRepository.findByMissingMissingIdOrderByMissingImgIdAsc(missingId);
-//        List<MissingImgDTO> missingImgDTOList = new ArrayList<>();
-//
-//        for(MissingImg missingImg : missingImgList){
-//            MissingImgDTO missingImgDTO = MissingImgDTO.of(missingImg);
-//            missingImgDTOList.add(missingImgDTO);
-//        }
-
         Missing missing = missingRepository.findById(missingId).orElseThrow(EntityNotFoundException::new);
         MissingFormDTO missingFormDTO = MissingFormDTO.of(missing);
-        //missingFormDTO.setMissingImgDTOList(missingImgDTOList);
         return missingFormDTO;
     }
 
