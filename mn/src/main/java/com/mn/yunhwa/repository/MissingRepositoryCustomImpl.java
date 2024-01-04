@@ -53,31 +53,17 @@ public class MissingRepositoryCustomImpl implements MissingRepositoryCustom{
     }
 
     //검색어가 포함되어 있는 제목 / 내용 / 제목이나 내용
-//    private BooleanExpression searchMissingByLike(String searchMissingBy, String searchMissingQuery) {
-//        if (StringUtils.equals("missingTitle", searchMissingBy) && !StringUtils.isEmptyOrWhitespace(searchMissingQuery)) {
-//            return QMissing.missing.missingTitle.like("%" + searchMissingQuery + "%");
-//        } else if (StringUtils.equals("missingContent", searchMissingBy) && !StringUtils.isEmptyOrWhitespace(searchMissingQuery)) {
-//            return QMissing.missing.missingContent.like("%" + searchMissingQuery + "%");
-//        } else if (StringUtils.equals("missingTitleAndContent", searchMissingBy) && !StringUtils.isEmptyOrWhitespace(searchMissingQuery)) {
-//            return QMissing.missing.missingTitle.like("%" + searchMissingQuery + "%")
-//                    .or(QMissing.missing.missingContent.like("%" + searchMissingQuery + "%"));
-//        }
-//        return null;
-//    }
-
     private BooleanExpression searchMissingByLike(String searchMissingBy, String searchMissingQuery) {
-        if (StringUtils.equals("missingTitle", searchMissingBy) ) {
+        if (StringUtils.equals("missingTitle", searchMissingBy) && !StringUtils.isEmptyOrWhitespace(searchMissingQuery)) {
             return QMissing.missing.missingTitle.like("%" + searchMissingQuery + "%");
-        } else if (StringUtils.equals("missingContent", searchMissingBy) ) {
+        } else if (StringUtils.equals("missingContent", searchMissingBy) && !StringUtils.isEmptyOrWhitespace(searchMissingQuery)) {
             return QMissing.missing.missingContent.like("%" + searchMissingQuery + "%");
-        } else if (StringUtils.equals("missingTitleAndContent", searchMissingBy) ) {
+        } else if (StringUtils.equals("missingTitleAndContent", searchMissingBy) && !StringUtils.isEmptyOrWhitespace(searchMissingQuery)) {
             return QMissing.missing.missingTitle.like("%" + searchMissingQuery + "%")
                     .or(QMissing.missing.missingContent.like("%" + searchMissingQuery + "%"));
         }
         return null;
     }
-
-
 
     @Override
     public Page<Missing> getMissingPage(MissingSearchDTO missingSearchDTO, Pageable pageable) {

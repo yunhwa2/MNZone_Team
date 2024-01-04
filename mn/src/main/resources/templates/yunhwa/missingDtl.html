@@ -10,18 +10,7 @@
 
 <!-- 사용자 스크립트 추가 -->
 <th:block layout:fragment="script">
-    <script th:inline="javascript">
-        /*const $form = document.querySelector("#deleteForm")
-        $form.addEventListener('submit', (e)=>{
-            e.preventDefault();
-            const url = '/'
-            fetch(url)
-            .then(resp=>{
-                console.log(resp);
-            })
-        })
-*/
-    </script>
+
 </th:block>
 
 <!--  CSS  -->
@@ -93,15 +82,10 @@
     </div>
 
     <div th:if="${missing.member.code == session.memberCode}">
-        <form id="deleteForm" role="form" method="post"  th:object="${missingFormDTO}" action="@{'/missing/delete/' + ${missing.missingId}}">
+        <form id="deleteForm" role="form" method="post"  th:object="${missingFormDTO}" >
             <div class="btn_div" >
                 <a th:href="@{'/missing/write/' + ${missing.missingId} }" >수정</a>
-
-                <input type="hidden" id="missing_id" th:value="${missing.missingId}">
-
-                <a onclick="if (confirm('정말로 삭제하시겠습니까?')) document.getElementById('deleteForm').submit();">삭제</a>
-
-<!--                <button type="button" id="delete">삭제</button>-->
+                <a th:href="@{/missing/delete(missingId=${missing.missingId})}" onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
             </div>
         </form>

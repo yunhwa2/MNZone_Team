@@ -27,7 +27,7 @@ public class MissingController {
     private final MissingService missingService;
 
     @GetMapping("/missing/write")
-    public String missingForm(Model model, HttpSession session){
+    public String missingForm(Model model, HttpSession session) {
         model.addAttribute("missingFormDTO", new MissingFormDTO());
         Object memberCode = session.getAttribute("memberCode");
 
@@ -40,161 +40,81 @@ public class MissingController {
     }
 
     @PostMapping("/missing/write")
-    public String missingNew(@Valid MissingFormDTO missingFormDTO, BindingResult bindingResult, Model model){
-            if(bindingResult.hasErrors()){
+    public String missingNew(@Valid MissingFormDTO missingFormDTO, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
             return "yunhwa/missingForm";
         }
 
-        try{
+        try {
             String saveYn = missingService.saveMissing(missingFormDTO);
-            if(saveYn=="N"){
-                model.addAttribute("errorMessage","사진 1장은 필수입니다.");
+            if (saveYn == "N") {
+                model.addAttribute("errorMessage", "사진 1장은 필수입니다.");
                 return "yunhwa/missingForm";
-            }else {
+            } else {
                 return "redirect:/missing";
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            model.addAttribute("errorMessage","실종글 등록 중에 에러가 발생하였습니다.");
+            model.addAttribute("errorMessage", "실종글 등록 중에 에러가 발생하였습니다.");
             return "yunhwa/missingForm";
         }
     }
 
     @GetMapping("/missing/write/{missingId}")
-    public String missingDtl(@PathVariable("missingId") Long missingId, Model model){
+    public String missingDtl(@PathVariable("missingId") Long missingId, Model model) {
 
-        try{
+        try {
             MissingFormDTO missingFormDTO = missingService.getMissingDtl(missingId);
-            model.addAttribute("missingFormDTO",missingFormDTO);
-        }catch (EntityNotFoundException e){
-            model.addAttribute("errorMessage","존재하지 않는 글입니다.");
-            model.addAttribute("missingFormDTO",new MissingFormDTO());
+            model.addAttribute("missingFormDTO", missingFormDTO);
+        } catch (EntityNotFoundException e) {
+            model.addAttribute("errorMessage", "존재하지 않는 글입니다.");
+            model.addAttribute("missingFormDTO", new MissingFormDTO());
             return "yunhwa/missingForm";
         }
         return "yunhwa/missingForm";
     }
 
     @PostMapping("missing/write/{missingId}")
-    public String missingUpdate(@Valid MissingFormDTO missingFormDTO, BindingResult bindingResult, Model model){
-        if(bindingResult.hasErrors()){
+    public String missingUpdate(@Valid MissingFormDTO missingFormDTO, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
             return "yunhwa/missingForm";
         }
 
         try {
-            String  updateMissingId = missingService.updateMissing(missingFormDTO);
+            String updateMissingId = missingService.updateMissing(missingFormDTO);
             return "redirect:/missing";
-        }catch (Exception e){
-            model.addAttribute("errorMessage","글 수정 중 에러가 발생하였습니다.");
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", "글 수정 중 에러가 발생하였습니다.");
             return "yunhwa/missingForm";
         }
     }
 
-    @GetMapping(value={"/missing","/missing/{page}"})
-    public String missingMain(MissingSearchDTO missingSearchDTO, @PathVariable("page") Optional<Integer> page, Model model){
-
-        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0,9);
-//        Page<Missing> missingpage = missingService.getMissingPage(missingSearchDTO,pageable);
-//        model.addAttribute("missing", missingpage);
-//        model.addAttribute("missingSearchDTO", missingSearchDTO);
-
-        Page<MissingMainDTO> missingMainDTOS = missingService.getMissingMainPage(missingSearchDTO,pageable);
-        model.addAttribute("missings",missingMainDTOS);
-        model.addAttribute("missingSearchDTO",missingSearchDTO);
-        model.addAttribute("total",missingMainDTOS.getTotalElements());
+    @GetMapping(value = {"/missing", "/missing/{page}"})
+    public String missingMain(MissingSearchDTO missingSearchDTO, @PathVariable("page") Optional<Integer> page, Model model) {
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 9);
+        Page<MissingMainDTO> missingMainDTOS = missingService.getMissingMainPage(missingSearchDTO, pageable);
+        model.addAttribute("missings", missingMainDTOS);
+        model.addAttribute("missingSearchDTO", missingSearchDTO);
+        model.addAttribute("total", missingMainDTOS.getTotalElements());
         long missingCount = missingService.countMissing();
         model.addAttribute("missingCount", missingCount);
-        model.addAttribute("maxPage",5);
+        model.addAttribute("maxPage", 5);
 
         return "yunhwa/missing";
     }
 
     @GetMapping("/missing/content/{missingId}")
-    public String missingDtl(Model model, @PathVariable("missingId") Long missingId){
+    public String missingDtl(Model model, @PathVariable("missingId") Long missingId) {
         MissingFormDTO missingFormDTO = missingService.getMissingDtl(missingId);
-        model.addAttribute("missing",missingFormDTO);
+        model.addAttribute("missing", missingFormDTO);
         return "yunhwa/missingDtl";
     }
 
+
     @GetMapping("/missing/delete")
-    public String deleteMissing(@Valid MissingFormDTO missingFormDTO,BindingResult bindingResult, Model model) {
-        System.out.println("삭제 되나");
-        missingService.deleteByMissingId(missingFormDTO.getMissingId());
-        return "redirect:/missing"; // 삭제 후 리다이렉트
+    public String missingDelete(Long missingId) {
+        missingService.deleteByMissingId(missingId);
+        return "redirect:/missing";
     }
-
-
-
-
-//    @PostMapping("/missing/write/upload")
-//    public ResponseEntity<String> handleFileUpload(@RequestParam("upload") MultipartFile file, HttpServletRequest request, HttpServletResponse response) {
-//        try {
-//            String missingOriImgName = file.getOriginalFilename();
-//            String missingImgName = "";
-//            String missingImgUrl = "";
-//
-//            if (!StringUtils.isEmpty(missingOriImgName)) {
-//                missingImgName = fileService.uploadFile(missingImgLocation, missingOriImgName, file.getBytes());
-//                missingImgUrl = "/images/missing/" + missingImgName;
-//            }
-//
-//            JsonObject outData = new JsonObject();
-//            outData.addProperty("uploaded", true);
-//            outData.addProperty("url", request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/getImage?fileNm=" + missingImgName);
-//            response.setContentType("application/json");
-//            response.setCharacterEncoding("UTF-8");
-//            response.getWriter().print(outData.toString());
-//            return ResponseEntity.ok("파일 '" + missingImgName + "'이(가) 성공적으로 업로드되었습니다.");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("파일 업로드에 실패했습니다.");
-//        }
-//    }
-
-//    @RequestMapping("/getImage")
-//    public void getImageForContents(ModelMap model, @RequestParam Map<String, Object> commandMap, HttpServletResponse response) throws Exception {
-//        String fileNm = (String)commandMap.get("fileNm");
-//        String fileStr = missingImgLocation;
-//
-//        File tmpDir = new File(fileStr);
-//        if(!tmpDir.exists()) {
-//            tmpDir.mkdirs();
-//        }
-//
-//        FileInputStream fis = null;
-//        BufferedInputStream in = null;
-//        ByteArrayOutputStream bStream = null;
-//
-//        try {
-//
-//            fis = new FileInputStream(new File(fileStr, fileNm));
-//            in = new BufferedInputStream(fis);
-//            bStream = new ByteArrayOutputStream();
-//
-//            int imgByte;
-//            while ((imgByte = in.read()) != -1) {
-//                bStream.write(imgByte);
-//            }
-//
-//            String type = "";
-//            String ext = fileNm.substring(fileNm.lastIndexOf(".") + 1).toLowerCase();
-//
-//            if ("jpg".equals(ext)) {
-//                type = "image/jpeg";
-//            } else {
-//                type = "image/" + ext;
-//            }
-//
-//            response.setHeader("Content-Type", type);
-//            response.setContentLength(bStream.size());
-//
-//            bStream.writeTo(response.getOutputStream());
-//
-//            response.getOutputStream().flush();
-//            response.getOutputStream().close();
-//
-//        } finally {
-//            //   EgovResourceCloseHelper.close(bStream, in, fis);
-//        }
-//    }
 
 }

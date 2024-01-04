@@ -25,11 +25,5 @@ public interface MissingRepository extends JpaRepository<Missing, Long> , Missin
     @Transactional
     void deleteByMissingId(Long missingId);
 
-//    @Query("select i from Item i where i.itemDetail like %:itemDetail% order by i.price desc")
-//    List<Missing> findByItemDetail (@Param("itemDetail") String itemDetail);
-//
-//    @Query(value = "select * from Item i where i.item_Detail like %:itemDetail% order by i.price desc", nativeQuery = true)
-//    List<Missing> findByItemDetailByNative (@Param("itemDetail") String itemDetail);
-
 
 }
