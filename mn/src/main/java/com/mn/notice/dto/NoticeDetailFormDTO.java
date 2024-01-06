@@ -1,4 +1,4 @@
-package com.mn.peter.dto;
+package com.mn.notice.dto;
 
 import com.mn.constant.NoticeKind;
 import lombok.Getter;
@@ -6,7 +6,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @Setter

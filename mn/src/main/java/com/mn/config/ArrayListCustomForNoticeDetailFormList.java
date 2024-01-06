@@ -1,6 +1,6 @@
 package com.mn.config;
 
-import com.mn.peter.dto.NoticeDetailPrevNextDTO;
+import com.mn.notice.dto.NoticeDetailPrevNextDTO;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.mn.peter.dto;
+package com.mn.notice.dto;
 
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Getter;

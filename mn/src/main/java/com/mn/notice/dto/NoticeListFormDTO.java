@@ -1,4 +1,4 @@
-package com.mn.peter.dto;
+package com.mn.notice.dto;
 
 import com.mn.constant.NoticeKind;
 import com.querydsl.core.annotations.QueryProjection;
@@ -20,7 +20,7 @@ public class NoticeListFormDTO {
 
     @QueryProjection
     public NoticeListFormDTO(Long noticeId,String noticeTitle, String noticeContent, String createBy, LocalDateTime regTime, NoticeKind noticeKind){
-        System.err.println("쿼리 주입 : NoticeListFormDTO");
+        System.out.println("쿼리 주입 : NoticeListFormDTO");
         this.noticeId = noticeId;
         this.noticeTitle = noticeTitle;
         this.noticeContent = noticeContent;

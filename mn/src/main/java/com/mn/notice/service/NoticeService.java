@@ -1,10 +1,9 @@
-package com.mn.peter.service;
+package com.mn.notice.service;
 
-import com.mn.config.ArrayListCustomForNoticeDetailFormList;
 import com.mn.constant.NoticeStatus;
 import com.mn.entity.Notice;
-import com.mn.peter.dto.*;
-import com.mn.peter.repository.NoticeRepository;
+import com.mn.notice.dto.*;
+import com.mn.notice.repository.NoticeRepository;
 import com.mn.seoha.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.TreeMap;
 

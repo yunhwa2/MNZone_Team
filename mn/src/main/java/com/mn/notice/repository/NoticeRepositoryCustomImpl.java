@@ -1,11 +1,9 @@
-package com.mn.peter.repository;
+package com.mn.notice.repository;
 
-import com.mn.config.ArrayListCustomForNoticeDetailFormList;
 import com.mn.constant.NoticeKind;
 import com.mn.entity.Notice;
 import com.mn.entity.QNotice;
-import com.mn.peter.dto.*;
-import com.querydsl.core.QueryFactory;
+import com.mn.notice.dto.*;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Wildcard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -15,7 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.thymeleaf.util.StringUtils;
 
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
 import java.util.List;
 
 public class NoticeRepositoryCustomImpl implements NoticeRepositoryCustom{
