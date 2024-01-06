@@ -59,26 +59,26 @@ a{
 	border-style:none none solid none;
 }
 
-#head2{
+.head_navBar{
     margin-right: -70px;
 }
-#head2 a{
+.head_navBar a{
 	color :rgb(184, 184, 184);
 	text-decoration: none;
 }
-#head2 a:visited {
+.head_navBar a:visited {
 	color :rgb(184, 184, 184);
 }
-#head2 a:active {
+.head_navBar a:active {
 	color :rgb(184, 184, 184);
 }
-.head2_navBar{
+.head_Bar{
 	margin :8px 15px;
 	width:40px;
 	height:45px;
 	cursor:pointer;
 }
-.head2_userProfile{
+.head_userProfile{
 	margin :10px 15px;
 	width:45px;
 	height:40px;
@@ -87,14 +87,10 @@ a{
 .head{
 	display:flex;
 	flex-flow:row;
-	margin:auto 0px
-}
-#head1{
-	display:flex;
-	flex-flow:row nowrap;
+	margin:auto 0px;
 }
 
-#titleH3 a{
+.titleH3 a{
 	cursor:pointer;
 }
 .userDefaultImg{
