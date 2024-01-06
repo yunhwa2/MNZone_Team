@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+<title>멍냥Zone : 멍냥일기</title>
+
+<!--  CSS  -->
+<th:block layout:fragment="css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/allDiary.css}">
+</th:block>
+
+<!-- script  -->
+<th:block layout:fragment="script">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bPopup/0.11.0/jquery.bpopup.min.js"></script>
+</th:block>
+
+<!-- content  -->
+<div layout:fragment="content">
+    <div id="wrap">
+        <div id="main_explain">
+            <div id="explain_img">
+                <div id="explain_box">
+                    <p id="explain_title">멍냥일기</p>
+                    <p class="explain_subtitle">멍냥이를 하루일과나 해야할 일을 남겨주세요</p>
+                    <p class="explain_subtitle">멍냥이와의 추억을 쌓아보아요!</p>
+                </div>
+            </div>
+        </div>
+        <div id="main">
+            <input type="hidden" id="userId" th:value="${session.id}">
+            <div id="main_div">
+                <a class="main_border" href ="/mypet/diary">
+                    <p id="pet_name">이름</p>
+                    <img id="pet_img" th:src="@{/img/pet_hodu.jpg}" alt="반려동물">
+                    <p id="pet_diary">육아수첩</p>
+                </a>
+
+                <a class="main_border" href="/mypet/register">
+                    <img id="register_img" th:src="@{/img/pet_ImgAddIcon.png}" alt="반려동물 이미지 추가 버튼">
+                    <p id="register_text">반려동물 등록하기</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

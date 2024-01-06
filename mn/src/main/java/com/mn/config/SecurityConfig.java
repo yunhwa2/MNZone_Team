@@ -37,13 +37,13 @@ public class SecurityConfig  {
 
                     // 여기서 닉네임을 가져오는 로직
                     Member member = MemberService.findByUsername(username); // 멤버서비스에서 유저네임으로 멤버 찾기
-                    //String id = member.getId();
+                    String id = member.getId();
                     String name =member.getName();
                     String nickname = member.getNickName();
                     Long memberCode = member.getCode();
                     String ph = member.getPh();
 
-                    //session.setAttribute("id",id);
+                    session.setAttribute("id",id);
                     session.setAttribute("name",name);
                     session.setAttribute("username", username);
                     session.setAttribute("nickname", nickname);
@@ -62,7 +62,7 @@ public class SecurityConfig  {
                 //모든 사용자가 인증 없이 접근 가능
                 .mvcMatchers("/css/**","/js/**","/img/**").permitAll()
                 .mvcMatchers("/static/**").permitAll()
-                .mvcMatchers("/","/**","/missing/**","/mypet/**","/members/**","/item/**","/images/**","/Jiseong/**","/notice/**").permitAll()
+                .mvcMatchers("/","/**","/missing/**","/mypet/**","/members/**","/item/**","/images/**","/notice/**").permitAll()
                 //admin으로 시작하는 경로는 admin만 가능
                 .mvcMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated();

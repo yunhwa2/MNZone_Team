@@ -8,8 +8,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class PetDiaryController {
 
-    @GetMapping("/mypet/diary")
+    @GetMapping("/mypet/alldiary")
     public String petDiarymain(){
+        return "yunhwa/allDiary";
+    }
+
+    @GetMapping("/mypet/diary")
+    public String petDiaryDtl(){
         return "yunhwa/petDiary";
     }
+
 }
