@@ -122,19 +122,18 @@
 	font-size:33px;
 	font-family: 'Black Han Sans', sans-serif;
 }
-#MNdoctor{
+#MNdiary{
 	height:350px;
 	width:350px;
 	border-radius: 20px 60px 100px 140px;
 	background-color:white;
 	margin:auto 0px;
 }
-#MNdoctor img{
-	height:200px;
-	width:320px;
-	margin:47px 27px;	
+#MNdiary img{
+    height: 295px;
+    width: 320px;
 }
-#hospital_text{
+#diary_text{
 	font-size:33px;
 	font-family: 'Black Han Sans', sans-serif;
 	margin:-20px;
