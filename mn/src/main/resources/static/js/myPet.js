@@ -2,27 +2,68 @@
  * 
  */
 $(document).ready(function(){
-	$("#catkind_box").hide();	
+	$("#catkind_box").hide();
 	$("#dog_check").prop("checked",true);
+	$("#myPetCategory").val("DOG");
 	//묘종선택 숨기기 & 강아지 체크 상태로 시작
 
-    	$("#pet_name").blur(function(){
-    		nameNotEmpty();
-    	});	
+    $("#pet_name").blur(function(){
+        nameNotEmpty();
+    });
+
+    bindDomEvent();
 });
 
-	
-function onClickUpload(){
-	let mypet_img = document.getElementById("mypet_img");
-	mypet_img.click();
-} 
-// 사진 추가
+//사용자가 이미지파일을 선택하면 이미지인지 확인
+function bindDomEvent(){
+    $(".mypet_img").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();  //이미지 파일명
+        var fileExt = fileName.substring(fileName.lastIndexOf(".")+1); // 확장자 추출
+        fileExt = fileExt.toLowerCase(); //소문자 변환
+
+        if(fileExt != "jpg" && fileExt != "jpeg" && fileExt != "gif" && fileExt != "png" && fileExt != "bmp"){
+            alert("이미지 파일만 등록이 가능합니다.");
+            return;
+        }
+
+       //$(this).siblings(".custom-file-label").html(fileName);//이걸 이미지로 바꿔야함
+    });
+}
+
+//function onClickUpload(){
+//	let mypet_img = document.getElementById("fileInput");
+//	mypet_img.click();
+//}//사진추가
+
+function uploadFile() {
+    const fileInput = document.getElementById('fileInput');
+    const previewImage = document.getElementById('previewImage');
+
+    fileInput.onchange = function() {
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            previewImage.src = e.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    };
+}// 사진 미리보기
 
 function orCheck(chk, showSelect){
           let name = $(chk).attr('name');
              $('[name="' + name + '"]').each(function(index, element) {
                  if (element !== chk && $(element).is(':checked')) {
                      $(element).prop('checked', false);
+                 }
+
+                 if (element == chk && $(element).is(':checked')){
+                 console.log( $(element).val() )
+                 console.log(  $('[name="myPet' + name + '"]').val() )
+                 console.log(name)
+
+                    $('[name="myPet' + name + '"]').val( $(element).val() );
                  }
              });
 	if(showSelect == 'dccheck'){
@@ -109,6 +150,29 @@ function checknull(){
 }//나머지 유효성
 
 
+function petKindSet(kind){
+    $("#myPetKind").val( $(kind).val() )
+    let id = $(kind).attr('id');
+    let value = $(kind).val();
+
+    if(id == "dogkind" || id == "catkind"){
+        $("#dog_write").val("");
+        $("#cat_write").val("");
+    }
+
+    if(id == "dogkind" && value != "else_dog"){
+        $("#dog_write").hide();
+    }else if(id == "dogkind" && value == "else_dog"){
+             $("#dog_write").show();
+         }
+
+    if(id == "catkind" && value != "else_cat"){
+        $("#cat_write").hide();
+    }else if(id == "catkind" && value == "else_cat"){
+        $("#cat_write").show();
+    }
+}
+//묘종, 견종 값 가져오기
 
 
 
