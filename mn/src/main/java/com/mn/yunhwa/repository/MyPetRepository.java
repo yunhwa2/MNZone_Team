@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 
-public interface MyPetRepository extends JpaRepository<MyPet, Long> {
+public interface MyPetRepository extends JpaRepository<MyPet, Long> ,MyPetRepositoryCustom{
 
     List<MyPet> findByMember(Member member);
 

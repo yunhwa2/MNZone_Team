@@ -6,7 +6,7 @@
 
 	<!-- CSS  -->
 	<th:block layout:fragment="css">
-		<link rel="stylesheet" type="text/css" th:href="@{/css/myPet.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/myPetForm.css}">
 	</th:block>
 
 	<!-- script  -->
@@ -32,13 +32,10 @@
 
 
 					<div class="main_img">
-<!--						<input id="fileInput" class="mypet_img" type="file"  name="myPetImgFile" onclick="onClickUpload()">-->
-<!--						<input type="hidden" name="myPetImgId" th:value="${myPetImgDTO.myPetImgId}">-->
-						<input id="fileInput"  class="img-button" type="file"  name="myPetImgFile" onclick="uploadFile()">
-							<img th:src="@{/img/pet_ImgAddIcon.png}" alt="반려동물 사진 추가하기">
-							<img id="previewImage" alt="기본 멍냥이미지">
-							<br>사진 추가하기
-
+						<label th:for="fileInput">
+							<img th:src="@{/img/pet_ImgAddIcon.png}" alt="반려동물 사진 추가하기" id="previewImage">
+						</label>
+						<input id="fileInput"  class="img-button" type="file"  name="myPetImgFile" onclick="uploadFile()" style="display: none;" th:style="'display: none;'">
 					</div>
 
 

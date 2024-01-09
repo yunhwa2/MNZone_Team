@@ -48,11 +48,18 @@
 				<img id="my_writing_img" th:src="@{/img/footprint.png}" alt="발자국 이미지">
 				<p id="my_writing_text">내가 쓴 글보기</p>
 			</a>
-			<a class="main_border" href ="/mypet/register">
-				<p id="pet_name">이름</p>
-				<img id="pet_img" th:src="@{/img/pet_hodu.jpg}" alt="반려동물">
-				<p id="pet_diary">정보 수정하기</p>
-			</a>
+
+			<div th:each="pet : ${mypets}" class="main_border">
+				<a th:href="@{'/mypet/register/' + ${pet.myPetId}}">
+					<p id="pet_name" th:text="${pet.myPetName}">이름</p>
+					<img th:if="${pet.myPetImgUrl == null or pet.myPetImgUrl == ''}"
+						 th:src="@{/img/pet_DefaultProfile.png}" th:alt="${pet.myPetName}" class="pet_img">
+					<img th:unless="${pet.myPetImgUrl == null or pet.myPetImgUrl == ''}"
+						 th:src="@{${pet.myPetImgUrl}}" th:alt="${pet.myPetName}" class="pet_img">
+					<p id="pet_diary">정보 수정하기</p>
+				</a>
+			</div>
+
 
 			<a class="main_border" href="/mypet/register">
 				<img id="register_img" th:src="@{/img/pet_ImgAddIcon.png}" alt="반려동물 이미지 추가 버튼">
