@@ -24,8 +24,6 @@ public class MyPetRepositoryCustomImpl implements MyPetRepositoryCustom{
         return memberCode == null ? null : QMyPet.myPet.member.code.eq(memberCode);
     }
 
-
-
     @Override
     public List<MyPetMainDTO> getAllMyPets(MyPetSearchDTO myPetSearchDTO, Long memberCode) {
         QMyPet myPet = QMyPet.myPet;
@@ -38,7 +36,7 @@ public class MyPetRepositoryCustomImpl implements MyPetRepositoryCustom{
                                 myPet.member
                         )
                 ).from(myPet)
-                .where(searchMemberCodeEq(myPetSearchDTO.getMemberCode()))
+                .where(searchMemberCodeEq(memberCode))
                 .fetch();
         return content;
     }
