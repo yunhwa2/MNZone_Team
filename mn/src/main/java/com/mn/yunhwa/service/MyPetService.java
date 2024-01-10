@@ -17,7 +17,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.util.StringUtils;
 
+import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 @Transactional
@@ -29,11 +33,10 @@ public class MyPetService {
 
     private final MyPetRepository myPetRepository;
     private final MemberRepository memberRepository;
-    // private final MyPetImgRepository myPetImgRepository;
-    // private final MyPetImgService myPetImgService;
-
 
     private final FileService fileService;
+
+
 
     public Long savedMyPet(MyPetFormDTO myPetFormDTO, MultipartFile myPetImgFile)throws Exception{
         MyPet myPet = myPetFormDTO.createMyPet();
@@ -53,17 +56,43 @@ public class MyPetService {
         return myPet.getMyPetId();
     }
 
+    @Transactional(readOnly = true)
+    public MyPetFormDTO getMyPetDtl(Long myPetId){
+        MyPet myPet = myPetRepository.findById(myPetId).orElseThrow(EntityNotFoundException::new);
+        MyPetFormDTO myPetFormDTO = MyPetFormDTO.of(myPet);
+        return myPetFormDTO;
+    }
 
-//    private void validateDuplicateMyPet(MyPet myPet){
-//        List<MyPet> findMyPet = myPetRepository.findByMyPetByNative(myPet.getMember());
-//        if(findMyPet.size() >= 7){
-//            throw new IllegalStateException("최대 6마리만 등록할 수 있습니다");
-//        }
-//    }
+    public void updateMyPet(MyPetFormDTO myPetFormDTO,MultipartFile myPetImgFile) throws Exception {
+        MyPet myPet = myPetRepository.findById(myPetFormDTO.getMyPetId())
+                .orElseThrow(EntityNotFoundException::new);
+        myPet.setMyPetCategory(myPetFormDTO.getMyPetCategory());
+        myPet.setMyPetName(myPetFormDTO.getMyPetName());
+        myPet.setMyPetBirth(myPetFormDTO.getMyPetBirth());
+        myPet.setMyPetWeight(myPetFormDTO.getMyPetWeight());
+        myPet.setMyPetGender(myPetFormDTO.getMyPetGender());
+        myPet.setMyPetNeuter(myPetFormDTO.getMyPetNeuter());
+        myPet.setMyPetImgUrl(myPetFormDTO.getMyPetImgUrl());
+        myPet.setMyPetKind(myPetFormDTO.getMyPetKind());
+
+        String oriImgName = myPetImgFile.getOriginalFilename();
+        String imgName = "";
+        String imgUrl = "";
+
+        if(!StringUtils.isEmpty(oriImgName)){
+            imgName = fileService.uploadFile(myPetImgLocation,oriImgName,myPetImgFile.getBytes());
+            imgUrl = "images/mypet/" + imgName;
+            myPet.setMyPetImgUrl(imgUrl);
+        }
+
+        myPetRepository.save(myPet);
+    }
+
 
     @Transactional(readOnly = true)
     public List<MyPetMainDTO> getAllMyPets(MyPetSearchDTO myPetSearchDTO, Long memberCode){
         return myPetRepository.getAllMyPets( myPetSearchDTO,  memberCode);
     }
+
 
 }

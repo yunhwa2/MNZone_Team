@@ -30,10 +30,7 @@ function bindDomEvent(){
     });
 }
 
-//function onClickUpload(){
-//	let mypet_img = document.getElementById("fileInput");
-//	mypet_img.click();
-//}//사진추가
+
 
 function uploadFile() {
     const fileInput = document.getElementById('fileInput');
@@ -77,6 +74,7 @@ function orCheck(chk, showSelect){
 	}
 }
 //체크박스 중복체크 방지  & 묘종견종 요소 하나만 뜨기
+
 
 
 function nameNotEmpty(){

@@ -65,6 +65,7 @@ public class MyPet {
         myPet.setMyPetGender(myPetFormDTO.getMyPetGender());
         myPet.setMyPetNeuter(myPetFormDTO.getMyPetNeuter());
         myPet.setMyPetImgUrl(myPetFormDTO.getMyPetImgUrl());
+        myPet.setMyPetKind(myPetFormDTO.getMyPetKind());
 
         return myPet;
     }

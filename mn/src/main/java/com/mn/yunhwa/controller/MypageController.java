@@ -1,27 +1,23 @@
 package com.mn.yunhwa.controller;
 
-import com.mn.entity.MyPet;
+
 import com.mn.yunhwa.dto.*;
 import com.mn.yunhwa.service.MyPetService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -34,7 +30,7 @@ public class MypageController {
     public String petRegister(Model model, HttpSession session) {
         MyPetFormDTO myPetFormDTO = new MyPetFormDTO();
 
-        model.addAttribute("MyPetFormDTO", myPetFormDTO);
+        model.addAttribute("myPetFormDTO", myPetFormDTO);
         Object memberCode = session.getAttribute("memberCode");
 
         if (memberCode != null) {
@@ -60,7 +56,7 @@ public class MypageController {
         }
 
         try {
-            Long petId = myPetService.savedMyPet(myPetFormDTO,myPetImgFile);
+            myPetService.savedMyPet(myPetFormDTO,myPetImgFile);
 
         }catch (Exception e){
             e.printStackTrace();
@@ -71,17 +67,51 @@ public class MypageController {
     }
 
     @GetMapping("/mypage")
-    public String myPageMain(MyPetSearchDTO myPetSearchDTO, HttpSession session, Model model){
-        System.out.println("여기");
+    public String myPageMain(MyPetSearchDTO myPetSearchDTO, HttpSession session, Model model, @ModelAttribute("error") String errorMessage){
         Object memberCodeObject = session.getAttribute("memberCode");
         Long memberCode = memberCodeObject != null ? Long.valueOf(memberCodeObject.toString()) : null;
 
         List<MyPetMainDTO> myPetList = myPetService.getAllMyPets(myPetSearchDTO,memberCode);
-        System.out.println("MyPetList contents: " + myPetList.toString());
 
         model.addAttribute("mypets",myPetList);
 
+        if (errorMessage != null && !errorMessage.isEmpty()) {
+            model.addAttribute("error", errorMessage);
+        }
+
         return "yunhwa/myPage";
+    }
+
+    @GetMapping("mypet/register/{myPetId}")
+    public String myPetDtl(@PathVariable("myPetId") Long myPetId, Model model){
+        try {
+            MyPetFormDTO myPetFormDTO = myPetService.getMyPetDtl(myPetId);
+            model.addAttribute("myPetFormDTO", myPetFormDTO);
+        } catch (EntityNotFoundException e) {
+            model.addAttribute("errorMessage", "존재하지 않는 반려동물입니다.");
+            model.addAttribute("myPetFormDTO", new MyPetFormDTO());
+            return "yunhwa/myPetForm";
+        }
+        return "yunhwa/myPetForm";
+    }
+
+
+    @PostMapping("mypet/register/{myPetId}")
+    public String myPetUpdate(@Valid MyPetFormDTO myPetFormDTO, BindingResult bindingResult, Model model, @RequestParam("myPetImgFile") MultipartFile myPetImgFile) {
+        if (bindingResult.hasErrors()) {
+            return "yunhwa/myPetForm";
+        }
+
+        try {
+             myPetService.updateMyPet(myPetFormDTO,myPetImgFile);
+            return "redirect:/mypage";
+
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", "반려동물 정보 수정 중 에러가 발생하였습니다.");
+            return "yunhwa/myPetForm";
+        }
+
+
     }
 
 
