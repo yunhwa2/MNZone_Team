@@ -67,6 +67,20 @@ public class SecurityConfig  {
                 .mvcMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated();
 
+        //OAuth2 기반의 로그인을 한 경우
+        http.oauth2Login()
+                //인증이 필요한 url에 접근하면 /loginForm으로 이동
+                .loginPage("/member/login")
+                //로그인 성공시 메인화면
+                .defaultSuccessUrl("/")
+                //로그인 실패시 /loginForm으로 이동
+                .failureUrl("/members/login/error")
+                //로그인 성공 후 사용자 정보를 가져옴
+                .userInfoEndpoint();
+
+
+
+
         http.exceptionHandling()
                 .authenticationEntryPoint(new CustomAuthenticationEntryPoint());
 
