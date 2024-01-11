@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout1}"
 >
 <th:block layout:fragment="css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
 
 </th:block>
 <th:block layout:fragment="script">
@@ -23,17 +24,19 @@
             <img id="titleimg" alt="로그인.png" th:src="@{/img/login_dog.png}">
         </div>
         <form role="form"  id="log_box" method="post" name="form1" action="/members/login">
-            <input class="log_log" id="log_inputid" name="id" type= "text" placeholder="아이디를 입력해주세요.">
-            <input class="log_log" id="log_inputpwd" name="password" type="password" placeholder="비밀번호">
+            <input class="log_log" id="log_inputid" name="id" type= "text" placeholder=" 아이디를 입력해주세요.">
+            <input class="log_log" id="log_inputpwd" name="password" type="password" placeholder=" 비밀번호">
             <p th:if="${loginErrorMsg}" class="error" th:text="${loginErrorMsg}"></p>
             <br>
 
             <input type="submit" id="log_btlog" value="로그인" >
-            <a><img src="/img/kakao_login_btn.png"> </a>
-
-
+            <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=8a6a9e1acd8713b37c12e941dd600605&redirect_uri=http://localhost:8000/members/kakao">
+                <img src="/img/kakao_login_btn.png" id="kakaoBtn"></a>
+            <a href="/oauth2/authorization/google"><img src="/img/google_login_btn.png" ></a>
             <a href="/members/register"><span id="log_join">회원가입</span></a>
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
+
         </form>
 
     </div>

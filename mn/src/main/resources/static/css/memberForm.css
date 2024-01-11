@@ -1,32 +1,21 @@
 @charset "UTF-8";
 
-#t_member_join{
-	width:100px;
-	margin: 4px 170px;
-	padding:5px 19px;
-	display:flex;
-	justify-content:right;
-	font-size:16px;
- 	color:#686868;
+#t_member_container{
+	height:900px;
 }
 
-#t_member_submit{
-     margin-top:-5px;
-}
-
-#t_member_main_head{
-	width :98%;
-	margin:0px auto;
-	background-image:url("../img/join_foot.jpg");
-	background-size:198px 135px;
-	background-repeat: no-repeat;
-	background-position: right center;
+#t_member_join_img{
+	width: 120px;
+    height: 120px;
+    display: block;
+    margin: 0px auto;
+    margin-top: 0px;
+    margin-bottom: -20px;
 }
 
 #t_member_main{
-	width: 610px;
-    height: 730px;
-    padding:10px 10px;
+	width: 600px;
+    height: 650px;
     margin: 0px auto;
     display: flex;
     flex-direction: column;
@@ -38,13 +27,24 @@
     box-sizing: border-box;
 }
 
-#t_member_join_img{
-	width: 120px;
-    height: 120px;
-    display: block;
-    margin: 0px auto;
-    margin-top: 0px;
-    margin-bottom: -20px;
+#t_member_main_head{
+	width :75%;
+	margin:0px auto;
+	background-image:url("../img/join_foot.jpg");
+	background-size:240px 130px;
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+
+#t_member_join{
+	width:100px;
+	margin:0px auto;
+	font-size:25px;
+ 	color:#686868;
+}
+
+#t_member_submit{
+     margin-top:-5px;
 }
 
 #t_member_jointable{
@@ -66,6 +66,7 @@
 #t_member_chkNotice{
 	margin:0px 100px;
 }
+
 #t_member_birth_year,
 #t_member_birth_month,
 #t_member_birth_day {
@@ -132,6 +133,54 @@ td{
 #main input::placeholder {
   font-size: 12px;
 }
+
+#log_join{
+	cursor:pointer;
+}
+
+#t_member_container{
+	height:1000px;
+}
+
+.fieldError {
+    color: red; /* 변경하고자 하는 색상 */
+    font-size: 11px; /* 변경하고자 하는 글자 크기 */
+}
+
+
+---------------------------------회원가입창,로그인창 이동및 크기조정{}
+
+
+#t_member{
+   transition:1s;
+   margin:auto;
+   z-index:11;
+   top:5vw;
+   right:35vw;
+   background:white;
+   width:600px;
+   height:780px;
+   border-radius:10px;
+}
+#logking{
+   transition:1s;
+   position:fixed;
+   z-index:11;
+   top:5vw;
+   right:35vw;
+   background:white;
+   width:600px;
+   height:780px;
+   border-radius:10px;
+}
+
+.logking:focus {
+    border-color:#808080;
+}
+ ----------------------------returnflase클래스 정의, 정규표현식을 불만족할 시 시각적 효과 !important로 덧씌우기 {}
+ .returnfalse{
+    border:2px solid red !important;
+ }
 
 
 

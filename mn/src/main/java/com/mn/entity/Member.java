@@ -2,6 +2,8 @@ package com.mn.entity;
 
 
 import com.mn.constant.MemberRole;
+import com.mn.constant.OAuthType;
+import com.mn.constant.Role;
 import com.mn.seoha.dto.MemberFormDTO;
 import lombok.Getter;
 import lombok.Setter;
@@ -45,6 +47,12 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private MemberRole memberRole;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    @Enumerated(EnumType.STRING)
+    private OAuthType oauth;
+
     public static Member createMember(MemberFormDTO memberFormDTO, PasswordEncoder passwordEncoder){
         Member member = new Member();
         System.out.println("entitiy.createMember(memberFormDTO:) : " + memberFormDTO);
@@ -61,6 +69,8 @@ public class Member {
         member.setEmail(memberFormDTO.getEmail());
         member.setName(memberFormDTO.getName());
         member.setNickName(memberFormDTO.getNickName());
+        //member.setRole(Role.USER);
+        member.setRole(Role.ADMIN);
 
         return member;
     }

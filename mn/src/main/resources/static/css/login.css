@@ -2,18 +2,18 @@
 
 #title{
 	width:100%;
-	
+
 }
 #titleimg{
 	width: 550px;
-	height:240px;	
+	height:240px;
 	margin: 10pX auto;
 	padding:40px;
 	display:flex;
 	justify-content:center;
 }
 #box{
-	width : 300px;
+	width : 310px;
 	padding: 10px 40px;
 	margin: 10pX auto;
 	height:490px;
@@ -28,9 +28,21 @@
     border: 1px solid #606060;
     border-radius: 5px;
 }
+
+#log_join{
+   width:100px;
+   margin: 4px 170px;
+   padding:2px 20px;
+   display:flex;
+   justify-content:right;
+   font-size:14px;
+    color:rgb(122 118 118 / 86%);
+}
+
+
 #log_btlog{
-	width: 100%;
-	height: 45px;
+	width: 300px;
+	height: 38px;
     font-size: 15px;
     font-weight: bold;
     background-color: #a5dbdc;
@@ -40,13 +52,18 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
+
+#kakaoBtn{
+  margin-top: 4px;
+}
+
 #btlog:hover {
     background-color: #fedcda;
 }
 
 
 
-/*이 밑(↓)에 있는거 인덱스에 들어있던 로그인임 여기서 필요없는부분이나 겹치는거 삭제하기*/
+----------------------------------------------------서하로그인{}
 
 .xbutton{
    width:25px;
@@ -101,17 +118,19 @@
 }
 
 #log_box{
-   width : 300px;
+   width : 305px;
    padding: 10px 40px;
    margin: 0pX auto;
    height:400px;
    background-color:white;
+   justify-content:center;
 }
 
 .log_log{
-   width: 92%;
+    width:299px;
+    height: 40px;
     margin-bottom: 20px;
-    padding: 10px;
+
     font-size: 16px;
     color: #606060;
     border: 1px solid #606060;
@@ -123,46 +142,3 @@
     background-color: #fedcda;
 }
 
-#log_join{
-   width:100px;
-   margin: 4px 170px;
-   padding:5px 19px;
-   display:flex;
-   justify-content:right;
-   font-size:16px;
-    color:#686868;
-}
-
---------------------------------------t_member{}
-
----------------------------------회원가입창,로그인창 이동및 크기조정{}
-#t_member{
-   transition:1s;
-    margin:auto;
-   z-index:11;
-   top:5vw;
-   right:35vw;
-   background:white;
-   width:600px;
-   height:780px;
-   border-radius:10px;
-}
-#logking{
-   transition:1s;
-   position:fixed;
-   z-index:11;
-   top:5vw;
-   right:35vw;
-   background:white;
-   width:600px;
-   height:780px;
-   border-radius:10px;
-}
-
-.logking:focus {
-    border-color:#808080;
-}
- ----------------------------returnflase클래스 정의, 정규표현식을 불만족할 시 시각적 효과 !important로 덧씌우기 {}
- .returnfalse{
-    border:2px solid red !important;
- }
