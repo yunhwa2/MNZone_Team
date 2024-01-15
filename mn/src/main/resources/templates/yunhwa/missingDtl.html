@@ -77,9 +77,9 @@
 
         </div>
 
-        <div class="dtlImgDiv">
-            <img class="dtlImgCard" th:src="@{${missing.missingRepImg}}" th:alt="${missing.missingTitle}">
-        </div>
+<!--        <div class="dtlImgDiv">-->
+<!--            <img class="dtlImgCard" th:src="@{${missing.missingRepImg}}" th:alt="${missing.missingTitle}">-->
+<!--        </div>-->
     </div>
 
     <div th:if="${missing.member.code == session.memberCode}">
@@ -90,6 +90,35 @@
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
             </div>
         </form>
+    </div>
+
+    <hr class="line2">
+    <form>
+        <div class="my_comment_div">
+            <img src="/img/pet_simba.jpg">
+            <textarea class="comment_input"></textarea>
+            <button class="comment_btn">댓글쓰기</button>
+        </div>
+    </form>
+    <div>
+        <div class="all_comment_div">
+            <div class="comment_nickName">
+                <img src="/img/pet_simba.jpg">
+                <span>귀염댕댕심바입니다아</span>
+            </div>
+            <div class="comment_content">
+                <span>댓글입니다</span>
+            </div>
+        </div>
+        <div class="all_comment_div">
+            <div class="comment_nickName">
+                <img src="/img/pet_simba.jpg">
+                <span>호두</span>
+            </div>
+            <div class="comment_content">
+                <span>댓글입니다 </span>
+            </div>
+        </div>
     </div>
 
 
