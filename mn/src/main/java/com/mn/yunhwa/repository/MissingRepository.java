@@ -11,9 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public interface MissingRepository extends JpaRepository<Missing, Long> , MissingRepositoryCustom{
 
+    Optional<Missing> findByMissingId(Long missingId);
     List<Missing> findByMissingTitle(String missingTitle);
 
     List<Missing> findByMissingContent (String missingContent);
@@ -25,5 +27,6 @@ public interface MissingRepository extends JpaRepository<Missing, Long> , Missin
     @Transactional
     void deleteByMissingId(Long missingId);
 
-
+//    @Transactional
+//    void deleteByMissingCommentId(Long missingCommentId);
 }

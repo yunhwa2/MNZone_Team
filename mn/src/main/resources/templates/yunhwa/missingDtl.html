@@ -73,13 +73,7 @@
     </div>
 
     <div class="dtlContent">
-        <div class="ck_div" th:utext="${missing.missingContent}">
-
-        </div>
-
-<!--        <div class="dtlImgDiv">-->
-<!--            <img class="dtlImgCard" th:src="@{${missing.missingRepImg}}" th:alt="${missing.missingTitle}">-->
-<!--        </div>-->
+        <div class="ck_div" th:utext="${missing.missingContent}"> </div>
     </div>
 
     <div th:if="${missing.member.code == session.memberCode}">
@@ -93,33 +87,60 @@
     </div>
 
     <hr class="line2">
-    <form>
+    <form th:action="@{/missing/content/{missingId}(missingId=${missing.missingId})}" method="post" th:object="${newComment}" >
+        <input type="hidden" th:name="memberCode" th:value="${#session.getAttribute('memberCode')}">
         <div class="my_comment_div">
             <img src="/img/pet_simba.jpg">
-            <textarea class="comment_input"></textarea>
-            <button class="comment_btn">댓글쓰기</button>
+            <label for="comment_input"></label>
+            <textarea id="comment_input" class="comment_input" name="comment_input" th:field="*{missingComment}" placeholder="내 댓글 남기기"></textarea>
+            <button class="comment_btn" type="submit" >댓글 작성</button>
         </div>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
     </form>
-    <div>
-        <div class="all_comment_div">
+
+    <div id="all_comment_div">
+        <div th:each="comment : ${comments}" class="all_comment_div">
+
             <div class="comment_nickName">
-                <img src="/img/pet_simba.jpg">
-                <span>귀염댕댕심바입니다아</span>
+                <img th:src="${comment.missing.missingRepImg}" alt="Profile Image">
+                <span th:text="${comment.member.nickName}"></span>
             </div>
+
             <div class="comment_content">
-                <span>댓글입니다</span>
+                <div class="comment_updateTime">
+                    <span>작성일 : </span>
+                    <span  th:text="${#temporals.format(comment.updateTime, 'yyyy-MM-dd')}"></span>
+                </div>
+                <span th:text="${comment.missingComment}"></span>
             </div>
+
+            <div th:if="${missing.member.code == session.memberCode}" class="comment_btn_div">
+                <form id="comment_deleteForm" role="form" method="post"  th:object="${missingCommentDTO}" >
+
+                    <a>수정</a>
+                    <a th:href="@{/missing/delete(missingId=${missing.missingId})}" onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
+                </form>
+            </div>
+
         </div>
-        <div class="all_comment_div">
-            <div class="comment_nickName">
-                <img src="/img/pet_simba.jpg">
-                <span>호두</span>
-            </div>
-            <div class="comment_content">
-                <span>댓글입니다 </span>
-            </div>
-        </div>
+
     </div>
+
+
+
+
+<!--        <div class="all_comment_div">-->
+<!--            <div class="comment_nickName">-->
+<!--                <img src="/img/pet_simba.jpg">-->
+<!--                <span>호두</span>-->
+<!--            </div>-->
+<!--            <div class="comment_content">-->
+<!--                <span>댓글입니다 </span>-->
+<!--            </div>-->
+<!--        </div>-->
+
 
 
 </div>
