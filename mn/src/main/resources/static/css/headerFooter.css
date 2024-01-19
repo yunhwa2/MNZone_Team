@@ -61,6 +61,7 @@ a{
 
 .head_navBar{
     margin-right: -70px;
+    display: flex;
 }
 .head_navBar a{
 	color :rgb(184, 184, 184);

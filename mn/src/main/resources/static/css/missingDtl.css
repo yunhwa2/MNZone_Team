@@ -154,3 +154,105 @@
 	background:rgb(222, 222, 222);
 	color:rgb(93, 93, 93);
 }
+.line2{
+   margin: 30px 0px 50px 0px;
+}
+
+.my_comment_div{
+    clear:both;
+    display:flex;
+    margin-bottom:70px;
+}
+.my_comment_div img{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    margin: auto 0px;
+}
+.comment_input{
+    margin-left: 50px;
+    line-height: 20px;
+    width: 770px;
+    min-height:80px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 10px;
+}
+.comment_btn{
+	width: 80px;
+    height: 30px;
+    cursor: pointer;
+    background-color: #fedcda;
+    color: #7a7a7a;
+    border: none;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 14px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 40px 0px 0px 30px;
+    font-weight: 600;
+}
+.comment_btn:hover{
+    background:rgb(222, 222, 222);
+	color:rgb(93, 93, 93);
+}
+.all_comment_div{
+    clear:both;
+    display: flex;
+}
+.comment_nickName{
+    width: 220px;
+    height: 50px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+.comment_nickName img{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+}
+.comment_nickName span{
+    margin-left:15px;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.comment_updateTime{
+    height: 20px;
+    margin-top: -20px;
+    color: #888;
+    font-size: 15px;
+    float: right;
+}
+.comment_content{
+    width: 680px;
+    min-height:50px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom:20px;
+    line-height: 50px;
+}
+.comment_btn_div{
+    height: 70px;
+    line-height: 70px;
+}
+.comment_btn_div a{
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    background:rgb(222, 222, 222);
+	color:rgb(93, 93, 93);
+    border: none;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 14px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 0px 0px 0px 10px;
+    font-weight: 500;
+}
+.comment_btn_div a:hover{
+    background-color: #fedcda;
+    color: #7a7a7a;
+}
