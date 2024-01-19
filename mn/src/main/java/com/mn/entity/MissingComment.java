@@ -1,5 +1,7 @@
 package com.mn.entity;
 
+import com.mn.yunhwa.dto.MissingCommentDTO;
+import com.mn.yunhwa.dto.MissingFormDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,5 +31,9 @@ public class MissingComment extends BaseEntity{
 
     public MissingComment(String missingComment) {
         this.missingComment = missingComment;
+    }
+
+    public void updateMissingComment(MissingCommentDTO missingCommentDTO) {
+        this.missingComment = missingCommentDTO.getMissingComment();
     }
 }

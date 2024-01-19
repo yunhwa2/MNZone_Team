@@ -110,6 +110,16 @@ public class MissingService {
                 .orElseThrow(() -> new EntityNotFoundException("Missing not found with id: " + missingId));
     }
 
+    public void updateComment(Long missingCommentId, MissingCommentDTO missingCommentDTO) {
+        MissingComment existingComment = missingCommentRepository.findById(missingCommentId)
+                .orElseThrow(() -> new EntityNotFoundException("Comment not found with id: " + missingCommentId));
+
+        existingComment.updateMissingComment(missingCommentDTO);
+        missingCommentRepository.save(existingComment);
+    }
+
+
+
 //    public void deleteByMissingCommentId(Long missingCommentId) {
 //        missingRepository.deleteByMissingCommentId(missingCommentId);
 //    }

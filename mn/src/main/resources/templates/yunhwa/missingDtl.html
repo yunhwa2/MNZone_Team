@@ -11,6 +11,42 @@
 
 <!-- 사용자 스크립트 추가 -->
 <th:block layout:fragment="script">
+    <script th:inline="javascript">
+        function updateComment(commentId) {
+            var confirmation = confirm('댓글을 수정하시겠습니까?');
+
+            if (confirmation) {
+                // 사용자가 확인을 눌렀을 때의 동작
+                var url = /*[[@{/missing/content/updateComment}]]*/ '/missing/content/updateComment';
+                var commentText = prompt('수정할 댓글을 입력하세요', '');
+
+                if (commentText !== null) {
+                    // Ajax를 사용하여 댓글 수정 요청을 서버에 보냅니다.
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        data: {
+                            missingCommentId: commentId,
+                            missingComment: commentText
+                        },
+                        success: function (response) {
+                            // 성공 시 동작
+                            alert('댓글이 성공적으로 수정되었습니다.');
+                            // 수정된 내용을 화면에 반영하거나 페이지 리로드 등의 동작을 수행할 수 있습니다.
+                        },
+                        error: function (error) {
+                            // 에러 시 동작
+                            alert('댓글 수정 중 오류가 발생했습니다.');
+                        }
+                    });
+                }
+            } else {
+                // 사용자가 취소를 눌렀을 때의 동작
+                console.log('댓글 수정이 취소되었습니다.');
+            }
+        }
+    </script>
+
 
 </th:block>
 
@@ -79,7 +115,10 @@
     <div th:if="${missing.member.code == session.memberCode}">
         <form id="deleteForm" role="form" method="post"  th:object="${missingFormDTO}" >
             <div class="btn_div" >
-                <a th:href="@{'/missing/write/' + ${missing.missingId} }" >수정</a>
+
+                <a href="#" onclick="updateComment(${comment.missingCommentId})">수정</a>
+
+
                 <a th:href="@{/missing/delete(missingId=${missing.missingId})}" onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
             </div>
@@ -114,34 +153,31 @@
                 <span th:text="${comment.missingComment}"></span>
             </div>
 
-            <div th:if="${missing.member.code == session.memberCode}" class="comment_btn_div">
-                <form id="comment_deleteForm" role="form" method="post"  th:object="${missingCommentDTO}" >
+<!--            <div th:if="${comment.member.code == session.memberCode}" class="comment_btn_div">-->
+<!--                <form id="comment_deleteForm" role="form" method="post"  th:object="${missingCommentDTO}" >-->
 
-                    <a>수정</a>
-                    <a th:href="@{/missing/delete(missingId=${missing.missingId})}" onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
+<!--                    <a>수정</a>-->
+<!--                    <a th:href="@{/missing/delete(missingId=${missing.missingId})}" onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>-->
+<!--                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">-->
+
+<!--                </form>-->
+<!--            </div>-->
+
+            <div th:if="${comment.member.code == session.memberCode}" class="comment_btn_div">
+                <form id="comment_updateForm" role="form" method="post" th:action="@{/missing/content/updateComment}" th:object="${newComment}">
+                    <input type="hidden" th:name="commentId" th:value="${comment.missingCommentId}">
+                    <a href="#" onclick="updateComment('${comment.missingCommentId}')">수정</a>
+                    <a>삭제</a>
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-
                 </form>
             </div>
+
+
+
 
         </div>
 
     </div>
-
-
-
-
-<!--        <div class="all_comment_div">-->
-<!--            <div class="comment_nickName">-->
-<!--                <img src="/img/pet_simba.jpg">-->
-<!--                <span>호두</span>-->
-<!--            </div>-->
-<!--            <div class="comment_content">-->
-<!--                <span>댓글입니다 </span>-->
-<!--            </div>-->
-<!--        </div>-->
-
-
 
 </div>
 
