@@ -25,7 +25,6 @@
 }
 
 #main_div{
-	max-height:1200px;
 	min-height:800px;
 	width:100%;
 	max-width:1400px;
@@ -52,95 +51,8 @@
 	margin:33px 0px;
 	margin-left:105px;
 }
-#information_edit_img{
-	height: 230px;
-    width: 230px;
-    margin: 7px 0px 0px 48px;
-}
-#information_text{
-	font-size:33px;
-	font-family: 'Black Han Sans', sans-serif;	
-	margin-top: 16px;
-	text-align:center
-}
-.popup{
- position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px;
-    border: 2px solid #ddd;
-    background-color: #eee;
-    width: 640px;
-    height: 220px;
-    margin:auto 0px;
-    font-family: 'Noto Sans KR', sans-serif;
-}
-.popup h3{
-     padding: 4px 0px 14px 0px;
-     width: 125px;
-     margin: 0px auto;
-}
-.popupContent{
-    height: 62%;
-    width: 100%;
-    background-color: #fff;
-}
-.popupContent p{
-    padding: 10px;
-    line-height:55px;
-    font-size: 15px;
-    height: 75px;
-}
-.popupContent input{
-    margin-left:15px;
-    border: none;
-    border-bottom: 1px solid #ccc;
-    outline: none;
-}
-.popupContent  input:focus {
-  border-bottom: 2px solid #bbb; /* 원하는 포커스 시 선 색상으로 변경합니다. */
-}
-.popupContent button{
-    width:50px;
-    height:30px;
-    cursor: pointer;
-    background-color: #fedcda;
-    color: #7a7a7a;
-    border: none;
-    padding: 5px 8px;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-.popupContent button:hover{
-	background:rgb(222, 222, 222);
-	color:rgb(93, 93, 93);
-}
 
-#reservation_img{
-	height:206px;
-	width:261px;
-	margin:13px 0px 29px 35px;
-}
-#reservation_text{
-	font-size:33px;
-	font-family: 'Black Han Sans', sans-serif;
-	margin-top: 5px;
-	text-align:center;
-}
-#my_writing_img{
-	height:253px;
-    width:280px;
-    margin:-3px 0px -4px 22px;
-}
-#my_writing_text{
-	font-size:33px;
-	font-family: 'Black Han Sans', sans-serif;
-	margin-top: 7px;
-	text-align:center;
-}
+
 #pet_name{
     font-family: 'Noto Sans KR', sans-serif;
     font-size:20px;
@@ -148,7 +60,7 @@
     text-align:center;
     margin:7px 0px;
 }
-#pet_img{
+.pet_img{
     width: 204px;
     height: 204px;
     margin: 0px 0px 6px 63px;

@@ -2,11 +2,14 @@ package com.mn.yunhwa.service;
 
 import com.mn.entity.Missing;
 //import com.mn.entity.MissingImg;
+import com.mn.entity.MissingComment;
+import com.mn.yunhwa.dto.MissingCommentDTO;
 import com.mn.yunhwa.dto.MissingFormDTO;
 //import com.mn.yunhwa.dto.MissingImgDTO;
 import com.mn.yunhwa.dto.MissingMainDTO;
 import com.mn.yunhwa.dto.MissingSearchDTO;
 //import com.mn.yunhwa.repository.MissingImgRepository;
+import com.mn.yunhwa.repository.MissingCommentRepository;
 import com.mn.yunhwa.repository.MissingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -26,6 +29,7 @@ import java.util.regex.Pattern;
 @RequiredArgsConstructor
 public class MissingService {
     private final MissingRepository missingRepository;
+    private final MissingCommentRepository missingCommentRepository;
 
     public String saveMissing(MissingFormDTO missingFormDTO) throws Exception {
         Missing missing = missingFormDTO.createMissing();
@@ -91,4 +95,32 @@ public class MissingService {
         missingRepository.deleteByMissingId(missingId);
     }
 
+
+    public List<MissingComment> getCommentsByMissingId(Long missingId) {
+        return missingCommentRepository.findByMissingMissingId(missingId);
+    }
+
+    public void saveComment(MissingCommentDTO missingCommentDTO) {
+        MissingComment missingComment = missingCommentDTO.createMissingComment();
+        missingCommentRepository.save(missingComment);
+    }
+
+    public Missing getMissingByMissingId(Long missingId) {
+        return missingRepository.findByMissingId(missingId)
+                .orElseThrow(() -> new EntityNotFoundException("Missing not found with id: " + missingId));
+    }
+
+    public void updateComment(Long missingCommentId, MissingCommentDTO missingCommentDTO) {
+        MissingComment existingComment = missingCommentRepository.findById(missingCommentId)
+                .orElseThrow(() -> new EntityNotFoundException("Comment not found with id: " + missingCommentId));
+
+        existingComment.updateMissingComment(missingCommentDTO);
+        missingCommentRepository.save(existingComment);
+    }
+
+
+
+//    public void deleteByMissingCommentId(Long missingCommentId) {
+//        missingRepository.deleteByMissingCommentId(missingCommentId);
+//    }
 }

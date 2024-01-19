@@ -17,6 +17,7 @@
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
+
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
@@ -26,7 +27,7 @@
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
-			<version>1.4</version>
+			<version>1.5</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->

@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -48,6 +49,8 @@ public class Missing extends BaseEntity{
     @JoinColumn(name = "member_code")
     private Member member;
 
+    @OneToMany(mappedBy = "missing", cascade = CascadeType.ALL)
+    private List<MissingComment> comments = new ArrayList<>();
 
     public void updateMissing(MissingFormDTO missingFormDTO){
         this.missingTitle = missingFormDTO.getMissingTitle();

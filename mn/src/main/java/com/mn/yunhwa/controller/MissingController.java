@@ -1,6 +1,8 @@
 package com.mn.yunhwa.controller;
 
 import com.mn.entity.Missing;
+import com.mn.entity.MissingComment;
+import com.mn.yunhwa.dto.MissingCommentDTO;
 import com.mn.yunhwa.dto.MissingFormDTO;
 import com.mn.yunhwa.dto.MissingMainDTO;
 import com.mn.yunhwa.dto.MissingSearchDTO;
@@ -9,11 +11,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -107,8 +113,48 @@ public class MissingController {
     public String missingDtl(Model model, @PathVariable("missingId") Long missingId) {
         MissingFormDTO missingFormDTO = missingService.getMissingDtl(missingId);
         model.addAttribute("missing", missingFormDTO);
+
+        // 기존 댓글 목록 설정
+        List<MissingComment> comments = missingService.getCommentsByMissingId(missingId);
+        model.addAttribute("comments", comments);
+
+        // 새로운 댓글 객체 생성 (폼 처리용)
+        model.addAttribute("newComment", new MissingComment());
+
+
         return "yunhwa/missingDtl";
     }
+
+
+    @PostMapping("/missing/content/{missingId}")
+    public String addComment(@ModelAttribute("newComment") MissingCommentDTO newComment, @PathVariable Long missingId) {
+        try {
+            // 새로운 댓글을 저장하고, 저장 후 리다이렉트할 페이지 URL 반환
+            Missing missing = missingService.getMissingByMissingId(missingId);
+            newComment.setMissing(missing);
+            missingService.saveComment(newComment);
+            return "redirect:/missing/content/" + missingId;
+
+        }catch (Exception e){
+            System.out.println("실종 댓글 작성중 예외 발생");
+            e.printStackTrace();
+            return "redirect:/missing";
+        }
+
+    }
+
+    @PostMapping("/missing/content/updateComment")
+    public String updateComment(@RequestParam Long missingCommentId, @ModelAttribute("missingCommentDTO") MissingCommentDTO missingCommentDTO, RedirectAttributes redirectAttributes) {
+        try {
+            missingService.updateComment(missingCommentId, missingCommentDTO);
+            System.out.println("댓글 등록완");
+            redirectAttributes.addFlashAttribute("successMessage", "댓글이 성공적으로 수정되었습니다.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "댓글 수정 중 오류가 발생했습니다.");
+        }
+        return "redirect:/missing/content/" + missingCommentDTO.getMissing().getMissingId();
+    }
+
 
 
     @GetMapping("/missing/delete")
@@ -116,5 +162,12 @@ public class MissingController {
         missingService.deleteByMissingId(missingId);
         return "redirect:/missing";
     }
+
+
+//    @GetMapping("/missing/content/comment/delete")
+//    public String missingCommentDelete(Long missingCommentId) {
+//        missingService.deleteByMissingCommentId(missingCommentId);
+//        return "redirect:/missing/content/" + missingId;
+//    }
 
 }

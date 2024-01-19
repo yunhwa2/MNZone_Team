@@ -15,6 +15,4 @@ public class MissingSearchDTO {
 
     private String searchMissingQuery="";
 
-
-
 }
