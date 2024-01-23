@@ -47,5 +47,7 @@ public class MemberFormDTO {
     @NotEmpty
     private String ph;
 
+    private String memberImgUrl;
+
 
 }

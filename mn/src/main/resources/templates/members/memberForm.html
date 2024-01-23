@@ -34,6 +34,14 @@ ymeleaf.org"
 
 				<div id="t_member_jointable">
 					<form action="/members/register" method="post" th:object="${memberFormDTO}">
+
+						<div class="main_img">
+							<label th:for="fileInput">
+								<img th:src="@{/img/member_ImgAddIcon.jpg}" alt="회원 사진 추가하기" id="memberImage">
+							</label>
+							<input id="fileInput"  class="img-button" type="file"  name="memberImgFile" onclick="uploadFile()" style="display: none;" th:style="'display: none;'">
+						</div>
+
 						<table>
 							<tr>
 								<td>아이디: </td>
