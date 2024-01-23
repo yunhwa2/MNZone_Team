@@ -15,7 +15,7 @@
 
 #t_member_main{
 	width: 550px;
-    height: 700px;
+    height: 730px;
     margin: 0px auto;
     display: flex;
     flex-direction: column;
@@ -29,11 +29,13 @@
 
 #t_member_main_head{
 	width :75%;
+	height:87px;
 	margin:0px auto;
 	background-image:url("../img/join_foot.jpg");
-	background-size:240px 130px;
+	background-size:115px 80px;
 	background-repeat: no-repeat;
-	background-position: right center;
+	background-position: right;
+	background-position-y: bottom;
 }
 
 .main_img{
@@ -80,6 +82,7 @@
 
 .t_member_input {
     width: 235px;
+    height: 10px;
     padding: 10px 18px;
     font-size: 14px;
     border-radius: 20px;
@@ -153,6 +156,7 @@
 
 td{
 	font-weight:bold;
+	font-size:14px;
 }
 
 #main input::placeholder {
