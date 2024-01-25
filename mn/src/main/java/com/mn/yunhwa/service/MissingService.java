@@ -95,7 +95,6 @@ public class MissingService {
         missingRepository.deleteByMissingId(missingId);
     }
 
-
     public List<MissingComment> getCommentsByMissingId(Long missingId) {
         return missingCommentRepository.findByMissingMissingId(missingId);
     }
@@ -110,7 +109,17 @@ public class MissingService {
                 .orElseThrow(() -> new EntityNotFoundException("Missing not found with id: " + missingId));
     }
 
-//    public void deleteByMissingCommentId(Long missingCommentId) {
-//        missingRepository.deleteByMissingCommentId(missingCommentId);
-//    }
+    public void deleteByMissingCommentId(Long missingCommentId) {
+        missingCommentRepository.deleteByMissingCommentId(missingCommentId);
+    }
+
+    public void updateByMissingCommentId(Long missingCommentId,String comment) {
+        MissingComment missingComment =missingCommentRepository.findById(missingCommentId).orElseThrow(EntityNotFoundException::new);
+
+        missingComment.updateComment(comment);
+
+
+
+    }
+
 }

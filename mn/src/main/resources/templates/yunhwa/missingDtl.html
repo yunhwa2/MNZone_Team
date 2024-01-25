@@ -11,7 +11,21 @@
 
 <!-- 사용자 스크립트 추가 -->
 <th:block layout:fragment="script">
+    <script th:inline="javascript">
 
+        function showUpdateForm(commentId) {
+            var updateFormId = 'updateForm_' + commentId;
+            var commentId_input = 'missingCommentId_' + commentId;
+            var updateForm = document.getElementById(updateFormId);
+
+            if (updateForm) {
+                updateForm.style.display = 'block';
+                document.getElementById(commentId_input).value = commentId;
+            }
+        }
+
+
+    </script>
 </th:block>
 
 <!--  CSS  -->
@@ -115,11 +129,17 @@
             </div>
 
             <div th:if="${missing.member.code == session.memberCode}" class="comment_btn_div">
-                <form id="comment_deleteForm" role="form" method="post"  th:object="${missingCommentDTO}" >
+                <form id="comment_deleteForm" role="form" method="post"  th:object="${newComment}" >
 
-                    <a>수정</a>
-                    <a th:href="@{/missing/delete(missingId=${missing.missingId})}" onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
+                    <a href="#" th:onclick="'showUpdateForm(\'' + ${comment.missingCommentId} + '\')'">수정</a>
+                    <a th:href="@{/missing/content/comment/delete(missingCommentId=${comment.missingCommentId},missingId=${missing.missingId})}" onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
+                    <div th:id="'updateForm_' + ${comment.missingCommentId}" style="display: none;">
+                        <input type="hidden" th:id="'missingCommentId_'+${comment.missingCommentId}" th:field="*{missingCommentId}">
+                        <textarea th:field="*{missingComment}" placeholder="댓글을 수정하세요"></textarea>
+                        <button th:formaction="@{/missing/content/comment/update(missingId=${missing.missingId})}" type="submit" style="width: 300px;;">댓글 수정</button>
+                    </div>
 
                 </form>
             </div>
@@ -130,20 +150,6 @@
 
 
 
-
-<!--        <div class="all_comment_div">-->
-<!--            <div class="comment_nickName">-->
-<!--                <img src="/img/pet_simba.jpg">-->
-<!--                <span>호두</span>-->
-<!--            </div>-->
-<!--            <div class="comment_content">-->
-<!--                <span>댓글입니다 </span>-->
-<!--            </div>-->
-<!--        </div>-->
-
-
-
 </div>
-
 
 </html>
