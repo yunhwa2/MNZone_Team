@@ -100,4 +100,9 @@ public class MyPetService {
         return myPetDiaryRepository.getMyPetMyPetId(myPetId);
     }
 
+    public void saveMyPetDiary(MyPetDiaryDTO myPetDiaryDTO) {
+        MyPetDiary myPetDiary = myPetDiaryDTO.createMyPetDiary();
+        myPetDiaryRepository.save(myPetDiary);
+    }
+
 }

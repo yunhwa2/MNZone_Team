@@ -4,7 +4,10 @@
 	  layout:decorate="~{layouts/layout1}">
 
 	<title>멍냥Zone : 육아수첩</title>
-
+	<head>
+		<meta name="_csrf" th:content="${_csrf.token}"/>
+		<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+	</head>
 	<!--  CSS  -->
 	<th:block layout:fragment="css">
 		<link rel="stylesheet" type="text/css" th:href="@{/css/petDiary.css}">
@@ -41,6 +44,41 @@
 			var dateString_end = year + '-' + month  + '-' + end_day;
 			var dateString_ko = year + '년 ' + month  + '월 ' + day + '일';
 
+			// 주어진 문자열에서 필요한 필드 값을 추출하는 함수
+			function extractFieldValue(field, str) {
+				var start = str.indexOf(field) + field.length + 1;
+				var end = str.indexOf(",", start);
+				if (end == -1) {
+					end = str.indexOf(")", start);
+				}
+				return str.substring(start, end).trim();
+			}
+
+			var myPetEvents = [];
+
+			// myPetDiaries의 hidden field에서 값을 가져와서 변환하기
+			$("#myPetDiaries input[type='hidden']").each(function() {
+				var value = $(this).val();
+
+				// 각 필드의 값 추출
+				var myPetTitle = extractFieldValue("myPetTitle", value);
+				var myPetStart = extractFieldValue("myPetStart", value);
+				var myPetEnd = extractFieldValue("myPetEnd", value);
+				var myPetContent = extractFieldValue("myPetContent", value);
+
+				// 변환된 데이터 객체 생성
+				var event = {
+					title: myPetTitle,
+					start: myPetStart,
+					end: myPetEnd,
+					description: myPetContent,
+					allDay: true
+				};
+
+				// 변환된 데이터 객체를 myPetEvents 배열에 추가
+				myPetEvents.push(event);
+			});
+
 			$(document).ready(function(){
 				$("#today_date").text(dateString_ko);
 				$("#start_date").val(dateString);
@@ -68,26 +106,10 @@
 					  },
 					  selectable: true,
 					  selectMirror: true,
-						droppable: true,
-						editable: true,
-					  events: [
-							{
-							  title  : '일산지 산책',
-							  start  : '2023-08-11T12:30:00',
-							  end  : '2023-08-11T13:30:00',
-							  description:"오늘은 군이랑 일산지에서 3키로정도 걸었더니 피곤쓰"
-							  ,
-							  allDay : false
-							},
-							{
-								  title  : '새 장난감',
-								  start  : '2023-08-05',
-								  end  : '2023-08-05',
-								  description:"오늘 새로운 장난감을 샀는데 군이가 너무 좋아해서 뿌듯해~~ 누나랑 터그놀이 열심히하쟈아아 키키",
-								  allDay : true
-								}
-						],
-						eventDidMount: function(info) {
+					  droppable: true,
+					  editable: true,
+					  events: myPetEvents,
+					  eventDidMount: function(info) {
 							var title = info.event.title;
 									tippy(info.el, {
 										content: title
@@ -159,8 +181,44 @@
 
 				let start = $("#start_date").val();
 				let end = $("#end_date").val();
+				let myPet_id = $("#myPet_id").val();
+				let member_code = $("#member_code").val();
+
+				var csrfToken = $("meta[name='_csrf']").attr("content");
+  		   		var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+
+				// JSON 형식으로 데이터 생성
+				var diaryData = {
+					myPetTitle: title,
+					myPetContent: content,
+					myPetStart: start,
+					myPetEnd: end,
+					myPetId: myPet_id,
+					memberCode: member_code
+				};
+
 
 				if(!nullcheck(title)){
+					   // AJAX 요청 보내기
+						$.ajax({
+							type: "POST",
+							contentType: "application/json",
+							url: "/saveDiary", // 저장할 컨트롤러 엔드포인트 URL
+							beforeSend: function(xhr) {
+								xhr.setRequestHeader(csrfHeader, csrfToken);
+							},
+							data: JSON.stringify(diaryData),
+							success: function(response) {
+								// 성공적으로 저장되었을 때의 처리
+								console.log("Diary saved successfully:", response);
+								// 성공 메시지 또는 페이지 이동 등 추가 작업 가능
+							},
+							error: function(xhr, status, error) {
+								// 저장 중 오류 발생 시의 처리
+								console.error("Error saving diary:", error);
+								// 오류 메시지 표시 등 추가 작업 가능
+							}
+						});
 					calendar.addEvent({
 						title: title,
 						start: start,
@@ -196,12 +254,14 @@
 	<div layout:fragment="content">
   		<div id="wrap">
 			<div id="title">
-				<span>육아수첩</span>
+				<span th:text="${myPet.myPetName}"></span>
+				<span>의 육아수첩</span>
+				<input type="hidden" th:value="${myPet.myPetId}" id="myPet_id">
+				<input type="hidden" th:value="${myPet.memberCode}" id="member_code">
 			</div>
-
 			<div id="myPetDiaries" th:each="myPetDiary : ${myPetDiaries}">
 				<!-- myPetDiary 데이터를 HTML에 렌더링 -->
-				<span th:text="${myPetDiary.myPetTitle}"></span>
+				<input type="hidden" th:value="${myPetDiary}">
 				<!-- 기타 데이터 필드들을 필요에 따라 렌더링 -->
 			</div>
 
