@@ -198,6 +198,13 @@
 			<div id="title">
 				<span>육아수첩</span>
 			</div>
+
+			<div id="myPetDiaries" th:each="myPetDiary : ${myPetDiaries}">
+				<!-- myPetDiary 데이터를 HTML에 렌더링 -->
+				<span th:text="${myPetDiary.myPetTitle}"></span>
+				<!-- 기타 데이터 필드들을 필요에 따라 렌더링 -->
+			</div>
+
 			<div id="title_border"></div>
 			<div id="main">
 				 <div id='external-events'>
@@ -220,6 +227,7 @@
 						 <input type='checkbox' id='drop-remove' />
 						 <label for='drop-remove'>remove after drop</label>
 					 </p>
+
 				 </div>
 				<div id="calendar">
 				</div>
@@ -229,20 +237,20 @@
 				
 				<div id="today_diary">
 					<div id="diary">
-							  	<div id="today_date">
-								</div>
-							  	<input type="hidden" id="start_date">
-								<input type="hidden" id="end_date">
-								<div id="diary_text">
-									<div id="diary_title_div">
-										<input type = "text" id = "diary_title" placeholder="title">
-									</div>
-									<div id="diary_content">
-										<textarea id = "diary_content_area" placeholder="오늘 하루를 기록해주세요"></textarea>
-										<button id="save_btn" onclick="save_diary()">작성하기</button>
-									</div>
-								</div>
+						<div id="today_date">
+						</div>
+						<input type="hidden" id="start_date">
+						<input type="hidden" id="end_date">
+						<div id="diary_text">
+							<div id="diary_title_div">
+								<input type = "text" id = "diary_title" placeholder="title">
 							</div>
+							<div id="diary_content">
+								<textarea id = "diary_content_area" placeholder="오늘 하루를 기록해주세요"></textarea>
+								<button id="save_btn" onclick="save_diary()">작성하기</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

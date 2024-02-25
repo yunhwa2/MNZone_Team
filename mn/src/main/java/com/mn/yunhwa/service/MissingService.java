@@ -96,7 +96,7 @@ public class MissingService {
     }
 
     public List<MissingComment> getCommentsByMissingId(Long missingId) {
-        return missingCommentRepository.findByMissingMissingId(missingId);
+        return missingCommentRepository.getMissingMissingId(missingId);
     }
 
     public void saveComment(MissingCommentDTO missingCommentDTO) {

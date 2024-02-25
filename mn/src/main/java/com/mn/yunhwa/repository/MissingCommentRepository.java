@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public interface MissingCommentRepository extends JpaRepository<MissingComment,Long> {
+public interface MissingCommentRepository extends JpaRepository<MissingComment,Long> ,MissingCommentRepositoryCustom{
     List<MissingComment> findByMissingMissingId(Long missingId);
 
     @Transactional

@@ -1,5 +1,9 @@
 package com.mn.yunhwa.controller;
 
+import com.mn.entity.MissingComment;
+import com.mn.entity.MyPetDiary;
+import com.mn.yunhwa.dto.MissingFormDTO;
+import com.mn.yunhwa.dto.MyPetDiaryDTO;
 import com.mn.yunhwa.dto.MyPetMainDTO;
 import com.mn.yunhwa.dto.MyPetSearchDTO;
 import com.mn.yunhwa.service.MyPetService;
@@ -8,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -36,8 +42,12 @@ public class PetDiaryController {
 
     }
 
-    @GetMapping("/mypet/diary")
-    public String petDiaryDtl(){
+    @GetMapping("/mypet/diary/{myPetId}")
+    public String petDiaryDtl(@PathVariable("myPetId") Long myPetId, Model model){
+
+        List<MyPetDiary> myPetDiary = myPetService.getMyPetDiaryDtlByMyPetId(myPetId);
+        model.addAttribute("myPetDiaries", myPetDiary);
+
         return "yunhwa/petDiary";
     }
 
