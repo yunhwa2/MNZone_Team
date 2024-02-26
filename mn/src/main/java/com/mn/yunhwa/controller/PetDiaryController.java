@@ -28,9 +28,12 @@ public class PetDiaryController {
         Object memberCodeObject = session.getAttribute("memberCode");
         Long memberCode = memberCodeObject != null ? Long.valueOf(memberCodeObject.toString()) : null;
 
-        List<MyPetMainDTO> myPetList = myPetService.getAllMyPets(myPetSearchDTO,memberCode);
-
-        model.addAttribute("mypets",myPetList);
+        if (memberCode != null) {
+            List<MyPetMainDTO> myPetList = myPetService.getAllMyPets(myPetSearchDTO,memberCode);
+            model.addAttribute("mypets",myPetList);
+        } else {
+            return "/members/login";
+        }
 
         if (errorMessage != null && !errorMessage.isEmpty()) {
             model.addAttribute("error", errorMessage);
@@ -53,7 +56,7 @@ public class PetDiaryController {
 
     @PostMapping("/saveDiary")
     @ResponseBody
-    public String saveDiary(@RequestBody MyPetDiaryDTO myPetDiaryDTO) {
+    public Long saveDiary(@RequestBody MyPetDiaryDTO myPetDiaryDTO) {
         Member member = new Member();
         member.setCode(myPetDiaryDTO.getMemberCode());
         myPetDiaryDTO.setMember(member);
@@ -62,10 +65,30 @@ public class PetDiaryController {
         myPet.setMyPetId(myPetDiaryDTO.getMyPetId());
         myPetDiaryDTO.setMyPet(myPet);
 
-        myPetService.saveMyPetDiary(myPetDiaryDTO);
+        long mypetDiaryId = myPetService.saveMyPetDiary(myPetDiaryDTO);
 
         // 데이터를 저장하고 성공적으로 저장되었다는 응답을 클라이언트에게 전송합니다.
-        return "redirect:/mypet/diary/" + myPetDiaryDTO.getMyPetId();
+        return mypetDiaryId;
+    }
+
+    @PostMapping("/updateDiary")
+    @ResponseBody
+    public Long updateDiary(@RequestBody MyPetDiaryDTO myPetDiaryDTO) {
+
+        long mypetDiaryId = myPetService.updateByMyPetDiaryId(myPetDiaryDTO);
+
+        // 데이터를 저장하고 성공적으로 저장되었다는 응답을 클라이언트에게 전송합니다.
+        return mypetDiaryId;
+    }
+
+    @PostMapping("/deleteDiary")
+    @ResponseBody
+    public String deleteDiary(@RequestBody MyPetDiaryDTO myPetDiaryDTO) {
+
+        myPetService.deleteByMyPetDiaryId(myPetDiaryDTO.getMyPetDiaryId());
+
+        // 데이터를 저장하고 성공적으로 저장되었다는 응답을 클라이언트에게 전송합니다.
+        return "OK";
     }
 
 }

@@ -100,9 +100,21 @@ public class MyPetService {
         return myPetDiaryRepository.getMyPetMyPetId(myPetId);
     }
 
-    public void saveMyPetDiary(MyPetDiaryDTO myPetDiaryDTO) {
+    public Long saveMyPetDiary(MyPetDiaryDTO myPetDiaryDTO) {
         MyPetDiary myPetDiary = myPetDiaryDTO.createMyPetDiary();
         myPetDiaryRepository.save(myPetDiary);
+        return myPetDiary.getMyPetDiaryId();
+    }
+
+    public Long updateByMyPetDiaryId(MyPetDiaryDTO myPetDiaryDTO) {
+        MyPetDiary myPetDiary =myPetDiaryRepository.findById(myPetDiaryDTO.getMyPetDiaryId()).orElseThrow(EntityNotFoundException::new);
+
+        myPetDiary.updateMyPetDiary(myPetDiaryDTO.getMyPetTitle(),myPetDiaryDTO.getMyPetStart(),myPetDiaryDTO.getMyPetEnd(),myPetDiaryDTO.getMyPetContent());
+        return myPetDiary.getMyPetDiaryId();
+    }
+
+    public void deleteByMyPetDiaryId(Long myPetDiaryId) {
+        myPetDiaryRepository.deleteByMyPetDiaryId(myPetDiaryId);
     }
 
 }

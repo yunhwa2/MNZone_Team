@@ -44,6 +44,9 @@
 			var dateString_end = year + '-' + month  + '-' + end_day;
 			var dateString_ko = year + '년 ' + month  + '월 ' + day + '일';
 
+			var csrfToken = $("meta[name='_csrf']").attr("content");
+  		   	var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+
 			// 주어진 문자열에서 필요한 필드 값을 추출하는 함수
 			function extractFieldValue(field, str) {
 				var start = str.indexOf(field) + field.length + 1;
@@ -61,6 +64,7 @@
 				var value = $(this).val();
 
 				// 각 필드의 값 추출
+				var myPetDiaryId = extractFieldValue("myPetDiaryId", value);
 				var myPetTitle = extractFieldValue("myPetTitle", value);
 				var myPetStart = extractFieldValue("myPetStart", value);
 				var myPetEnd = extractFieldValue("myPetEnd", value);
@@ -68,6 +72,7 @@
 
 				// 변환된 데이터 객체 생성
 				var event = {
+				    id : myPetDiaryId,
 					title: myPetTitle,
 					start: myPetStart,
 					end: myPetEnd,
@@ -184,9 +189,6 @@
 				let myPet_id = $("#myPet_id").val();
 				let member_code = $("#member_code").val();
 
-				var csrfToken = $("meta[name='_csrf']").attr("content");
-  		   		var csrfHeader = $("meta[name='_csrf_header']").attr("content");
-
 				// JSON 형식으로 데이터 생성
 				var diaryData = {
 					myPetTitle: title,
@@ -212,6 +214,16 @@
 								// 성공적으로 저장되었을 때의 처리
 								console.log("Diary saved successfully:", response);
 								// 성공 메시지 또는 페이지 이동 등 추가 작업 가능
+								calendar.addEvent({
+								                    id : response,
+													title: title,
+													start: start,
+													end: end,
+													description:content,
+													allDay: true
+												  });
+								$("#diary_title").val("");
+								$("#diary_content_area").val("");
 							},
 							error: function(xhr, status, error) {
 								// 저장 중 오류 발생 시의 처리
@@ -219,22 +231,55 @@
 								// 오류 메시지 표시 등 추가 작업 가능
 							}
 						});
-					calendar.addEvent({
-						title: title,
-						start: start,
-						end: end,
-						description:content,
-						allDay: true
-					  });
-					$("#diary_title").val("");
-					$("#diary_content_area").val("");
 				}
 
+			}
+
+			function update_diary(json_data){
+			// AJAX 요청 보내기
+				$.ajax({
+						    type: "POST",
+							contentType: "application/json",
+							url: "/updateDiary",
+							beforeSend: function(xhr) {
+								xhr.setRequestHeader(csrfHeader, csrfToken);
+							},
+							data: JSON.stringify(json_data),
+							success: function(response) {
+								// 성공적으로 저장되었을 때의 처리
+								console.log("Diary updated successfully:", response);
+								// 성공 메시지 또는 페이지 이동 등 추가 작업 가능
+							},
+							error: function(xhr, status, error) {
+								// 저장 중 오류 발생 시의 처리
+								console.error("Error update diary:", error);
+								// 오류 메시지 표시 등 추가 작업 가능
+							}
+				});
 			}
 
 			function edit_diary(info){
 				let title = $("#popup_title").val();
 				let content = $("#popup_content").val();
+				let start_year = info.event.start.getUTCFullYear();
+			    let start_month = ('0' + (info.event.start.getMonth()+1)).slice(-2);
+				let start_date = ('0' + info.event.start.getDate()).slice(-2);
+				let end_year = info.event.end.getUTCFullYear();
+			    let end_month = ('0' + (info.event.end.getMonth()+1)).slice(-2);
+				let end_date = ('0' + info.event.end.getDate()).slice(-2);
+				let start = start_year+"-"+start_month+"-"+start_date;
+				let end = end_year+"-"+end_month+"-"+end_date;
+				let myPetDiaryId = info.event.id;
+
+				var diaryData = {
+				    myPetDiaryId: myPetDiaryId,
+					myPetStart: start,
+					myPetEnd: end,
+					myPetTitle: title,
+					myPetContent: content
+				};
+
+				update_diary(diaryData);
 
 				info.event.setProp('title',title);
 				info.event.setExtendedProp('description',content);
@@ -242,7 +287,29 @@
 			}//수정하기 버튼
 
 			function del_diary(info){
-				console.log(info);
+			var diaryData = {
+				    myPetDiaryId: info.event.id
+				};
+			// AJAX 요청 보내기
+				$.ajax({
+						    type: "POST",
+							contentType: "application/json",
+							url: "/deleteDiary",
+							beforeSend: function(xhr) {
+								xhr.setRequestHeader(csrfHeader, csrfToken);
+							},
+							data: JSON.stringify(diaryData),
+							success: function(response) {
+								// 성공적으로 저장되었을 때의 처리
+								console.log("Diary delete successfully:", response);
+								// 성공 메시지 또는 페이지 이동 등 추가 작업 가능
+							},
+							error: function(xhr, status, error) {
+								// 저장 중 오류 발생 시의 처리
+								console.error("Error delete diary:", error);
+								// 오류 메시지 표시 등 추가 작업 가능
+							}
+				});
 				info.event.remove();
 				$("#popup").bPopup().close();
 			}//삭제하기 버튼

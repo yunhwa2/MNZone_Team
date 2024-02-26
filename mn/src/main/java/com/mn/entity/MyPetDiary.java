@@ -33,4 +33,11 @@ public class MyPetDiary extends BaseEntity{
     private String myPetContent;
 
     public MyPetDiary(){}
+
+    public void updateMyPetDiary(String myPetTitle,String myPetStart, String myPetEnd,String myPetContent) {
+        this.myPetTitle = myPetTitle;
+        this.myPetStart = myPetStart;
+        this.myPetEnd = myPetEnd;
+        this.myPetContent = myPetContent;
+    }
 }

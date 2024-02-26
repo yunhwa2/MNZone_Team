@@ -23,10 +23,7 @@ public class NoticeService {
     private static TreeMap<Long,NoticeDetailPrevNextDTO> noticePrevNextMap = new TreeMap<>();
 
     public Notice saveNotice(NoticeFormDTO noticeFormDTO){
-        System.err.println("noticeService.saveNotice 진입");
-        System.err.println("noteiceFormDTO.gettitle : " + noticeFormDTO.getNoticeTitle());
         Notice notice = new Notice();
-        System.err.println("saveNotice.noticeFormDTO.getNoticeContent : " + noticeFormDTO.getNoticeContent());
         notice.setNoticeContent(noticeFormDTO.getNoticeContent());
         notice.setNoticeTitle(noticeFormDTO.getNoticeTitle());
         notice.setMember(memberRepository.findById(noticeFormDTO.getNoticeAuthor()));
@@ -48,7 +45,6 @@ public class NoticeService {
     @Transactional(readOnly = true)
     public Page<NoticeListFormDTO> getNoticePage(NoticeSearchDTO noticeSearchDTO,
                                                  Pageable pageable){
-        System.err.println("NoticeService.getNoticePage");
         List<NoticeDetailPrevNextDTO> list = noticeRepository.getNoticeDetailPrevNextDTOList(noticeSearchDTO);
         for(NoticeDetailPrevNextDTO noticeDetailPrevNextDTO : list){
             noticePrevNextMap.put(noticeDetailPrevNextDTO.getNoticeId(),noticeDetailPrevNextDTO);
@@ -61,7 +57,6 @@ public class NoticeService {
     @Transactional(readOnly = true)
     public Page<Notice> getNoticePage2(NoticeSearchDTO noticeSearchDTO,
                                                  Pageable pageable){
-        System.err.println("NoticeService.getNoticePage");
         return noticeRepository.getNoticePage2(noticeSearchDTO,pageable);
 
     }
@@ -91,10 +86,7 @@ public class NoticeService {
             if(!noticePrevNextMap.lastKey().equals(id)){
                 noticeDetailFormDTO.setPrevDTO(noticePrevNextMap.higherEntry(id).getValue());
             }
-            System.err.println("getPrevDTO : " + noticeDetailFormDTO.getPrevDTO());
-            System.err.println("getNextDTO : " + noticeDetailFormDTO.getNextDTO());
         }catch (Exception e){
-            System.err.println("NoticeService.getNoticeDetail 중 예외 발생");
             e.printStackTrace();
         }
         return noticeDetailFormDTO;
