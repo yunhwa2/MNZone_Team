@@ -33,7 +33,7 @@ ymeleaf.org"
 				</div>
 
 				<div id="t_member_jointable">
-					<form action="/members/register" method="post" th:object="${memberFormDTO}">
+					<form action="/members/register" method="post" enctype="multipart/form-data" th:object="${memberFormDTO}">
 
 						<div class="main_img">
 							<label th:for="fileInput">

@@ -38,7 +38,7 @@ public class KakaoLoginController {
         Member kakaoMember = kakaoLoginService.getMemberInfo(accessToken);
 
         try {
-            Member findMember = memberService.saveMember(kakaoMember);
+           // Member findMember = memberService.saveMember(kakaoMember);
         } catch (IllegalStateException e) {
             memberService.loadUserByUsername(kakaoMember.getEmail());
         }

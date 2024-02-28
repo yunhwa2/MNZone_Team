@@ -10,10 +10,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 
@@ -32,14 +30,15 @@ public class MemberController {
     }
 
     @PostMapping(value = "/register")
-    public String signIn(Model model,@Valid MemberFormDTO memberFormDTO, BindingResult bindingResult){
+    public String signIn(Model model,@Valid MemberFormDTO memberFormDTO, BindingResult bindingResult, @RequestParam("memberImgFile") MultipartFile memberImgFile){
 
             if(bindingResult.hasErrors()){
                 return "members/memberForm";
             }
         try{
             Member member = Member.createMember(memberFormDTO,passwordEncoder);
-            Member savedMember = memberService.saveMember(member);
+            Member savedMember = memberService.saveMember(member,memberImgFile);
+
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("MemberController./register 중 예외 발생");
