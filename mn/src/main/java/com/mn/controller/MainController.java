@@ -43,7 +43,6 @@ public class MainController {
     //이거 공지 컨트롤러롤 옮기기
     @GetMapping(value = "/notice")
     public String notice(){
-        System.err.println("getmapping notice");
         return "Jiseong/notice/notice." +
                 "";
     }

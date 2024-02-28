@@ -20,6 +20,28 @@
 	    });
 	});
 
+//사진 미리보기
+function uploadFile() {
+    const fileInput = document.getElementById('fileInput');
+    const memberImage = document.getElementById('memberImage');
+
+    fileInput.onchange = function() {
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            memberImage.src = e.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    };
+}
+
+
+
+
+
+
 //도시
 	$(document).ready(function() {
 		 var area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];

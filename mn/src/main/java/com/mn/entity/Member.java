@@ -53,6 +53,15 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private OAuthType oauth;
 
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "parent_member_code")
+    private Member member;
+
+    @Column
+    private String memberImgUrl;
+
+
+
     public static Member createMember(MemberFormDTO memberFormDTO, PasswordEncoder passwordEncoder){
         Member member = new Member();
         System.out.println("entitiy.createMember(memberFormDTO:) : " + memberFormDTO);
@@ -69,6 +78,7 @@ public class Member {
         member.setEmail(memberFormDTO.getEmail());
         member.setName(memberFormDTO.getName());
         member.setNickName(memberFormDTO.getNickName());
+        member.setMemberImgUrl(memberFormDTO.getMemberImgUrl());
         //member.setRole(Role.USER);
         member.setRole(Role.ADMIN);
 

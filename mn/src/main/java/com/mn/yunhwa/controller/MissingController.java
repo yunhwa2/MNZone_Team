@@ -143,20 +143,6 @@ public class MissingController {
 
     }
 
-    @PostMapping("/missing/content/updateComment")
-    public String updateComment(@RequestParam Long missingCommentId, @ModelAttribute("missingCommentDTO") MissingCommentDTO missingCommentDTO, RedirectAttributes redirectAttributes) {
-        try {
-            missingService.updateComment(missingCommentId, missingCommentDTO);
-            System.out.println("댓글 등록완");
-            redirectAttributes.addFlashAttribute("successMessage", "댓글이 성공적으로 수정되었습니다.");
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "댓글 수정 중 오류가 발생했습니다.");
-        }
-        return "redirect:/missing/content/" + missingCommentDTO.getMissing().getMissingId();
-    }
-
-
-
     @GetMapping("/missing/delete")
     public String missingDelete(Long missingId) {
         missingService.deleteByMissingId(missingId);
@@ -164,10 +150,19 @@ public class MissingController {
     }
 
 
-//    @GetMapping("/missing/content/comment/delete")
-//    public String missingCommentDelete(Long missingCommentId) {
-//        missingService.deleteByMissingCommentId(missingCommentId);
-//        return "redirect:/missing/content/" + missingId;
-//    }
+    @GetMapping("/missing/content/comment/delete")
+    public String missingCommentDelete(Long missingCommentId, Long missingId) {
+        missingService.deleteByMissingCommentId(missingCommentId);
+        return "redirect:/missing/content/" + missingId;
+    }
+
+    @PostMapping("/missing/content/comment/update")
+    public String missingCommentUpdate(@Valid MissingCommentDTO missingCommentDTO, BindingResult bindingResult, Model model, Long missingId) {
+        missingService.updateByMissingCommentId(missingCommentDTO.getMissingCommentId(),missingCommentDTO.getMissingComment());
+        return "redirect:/missing/content/" + missingId;
+    }
+
+
+
 
 }

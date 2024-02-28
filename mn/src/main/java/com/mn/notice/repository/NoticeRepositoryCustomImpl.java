@@ -23,7 +23,6 @@ public class NoticeRepositoryCustomImpl implements NoticeRepositoryCustom{
     }
 
     private BooleanExpression searchNoticeKind(String noticeKind){
-        System.err.println("repository.ItemRepositoryCustomImpl.searchNoticeKind");
         NoticeKind noticeKind1;
         if(StringUtils.equals("ALL",noticeKind)||noticeKind==null){
              return null;
@@ -41,7 +40,6 @@ public class NoticeRepositoryCustomImpl implements NoticeRepositoryCustom{
     }
     private BooleanExpression searchByLike(String searchQuery){
 
-        System.err.println("repository.ItemRepositoryCustomImpl.searchByLike");
 
         return QNotice.notice.noticeTitle.like("%"+searchQuery+"%");
     }
@@ -81,7 +79,6 @@ public class NoticeRepositoryCustomImpl implements NoticeRepositoryCustom{
     }
     @Override
     public Page<Notice> getNoticePage2(NoticeSearchDTO noticeSearchDTO, Pageable pageable) {
-        System.err.println("NoticeRepositoryCustomImpl.getNoticePage()");
         List<Notice> content = queryFactory
                 .selectFrom(QNotice.notice)
                 .where(searchNoticeKind(noticeSearchDTO.getNoticeSearchKind()),
