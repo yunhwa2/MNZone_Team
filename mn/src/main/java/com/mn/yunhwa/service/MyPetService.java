@@ -5,6 +5,7 @@ import com.mn.constant.MissingKind;
 import com.mn.entity.*;
 import com.mn.seoha.repository.MemberRepository;
 import com.mn.yunhwa.dto.*;
+import com.mn.yunhwa.repository.MyPetDiaryRepository;
 import com.mn.yunhwa.repository.MyPetRepository;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -33,6 +34,7 @@ public class MyPetService {
 
     private final MyPetRepository myPetRepository;
     private final MemberRepository memberRepository;
+    private final MyPetDiaryRepository myPetDiaryRepository;
 
     private final FileService fileService;
 
@@ -94,5 +96,25 @@ public class MyPetService {
         return myPetRepository.getAllMyPets( myPetSearchDTO,  memberCode);
     }
 
+    public List<MyPetDiary> getMyPetDiaryDtlByMyPetId(Long myPetId) {
+        return myPetDiaryRepository.getMyPetMyPetId(myPetId);
+    }
+
+    public Long saveMyPetDiary(MyPetDiaryDTO myPetDiaryDTO) {
+        MyPetDiary myPetDiary = myPetDiaryDTO.createMyPetDiary();
+        myPetDiaryRepository.save(myPetDiary);
+        return myPetDiary.getMyPetDiaryId();
+    }
+
+    public Long updateByMyPetDiaryId(MyPetDiaryDTO myPetDiaryDTO) {
+        MyPetDiary myPetDiary =myPetDiaryRepository.findById(myPetDiaryDTO.getMyPetDiaryId()).orElseThrow(EntityNotFoundException::new);
+
+        myPetDiary.updateMyPetDiary(myPetDiaryDTO.getMyPetTitle(),myPetDiaryDTO.getMyPetStart(),myPetDiaryDTO.getMyPetEnd(),myPetDiaryDTO.getMyPetContent());
+        return myPetDiary.getMyPetDiaryId();
+    }
+
+    public void deleteByMyPetDiaryId(Long myPetDiaryId) {
+        myPetDiaryRepository.deleteByMyPetDiaryId(myPetDiaryId);
+    }
 
 }

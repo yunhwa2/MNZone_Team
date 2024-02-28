@@ -27,23 +27,18 @@ public class MemberController {
 
     @GetMapping(value = "/register")
     public String memberForm(Model model){
-        System.err.println("get방식 - memberFormDTO view에 전달");
         model.addAttribute("memberFormDTO", new MemberFormDTO());
         return "members/memberForm";
     }
 
     @PostMapping(value = "/register")
     public String signIn(Model model,@Valid MemberFormDTO memberFormDTO, BindingResult bindingResult){
-        System.err.println("memberController.register()진입");
-        System.err.println(memberFormDTO);
 
             if(bindingResult.hasErrors()){
-                System.err.println("mainhomeerr");
                 return "members/memberForm";
             }
         try{
             Member member = Member.createMember(memberFormDTO,passwordEncoder);
-            System.err.println(member);
             Member savedMember = memberService.saveMember(member);
         }catch (Exception e){
             e.printStackTrace();
