@@ -164,10 +164,19 @@ public class MissingController {
     }
 
 
-//    @GetMapping("/missing/content/comment/delete")
-//    public String missingCommentDelete(Long missingCommentId) {
-//        missingService.deleteByMissingCommentId(missingCommentId);
-//        return "redirect:/missing/content/" + missingId;
-//    }
+    @GetMapping("/missing/content/comment/delete")
+    public String missingCommentDelete(Long missingCommentId, Long missingId) {
+        missingService.deleteByMissingCommentId(missingCommentId);
+        return "redirect:/missing/content/" + missingId;
+    }
+
+    @PostMapping("/missing/content/comment/update")
+    public String missingCommentUpdate(@Valid MissingCommentDTO missingCommentDTO, BindingResult bindingResult, Model model, Long missingId) {
+        missingService.updateByMissingCommentId(missingCommentDTO.getMissingCommentId(),missingCommentDTO.getMissingComment());
+        return "redirect:/missing/content/" + missingId;
+    }
+
+
+
 
 }

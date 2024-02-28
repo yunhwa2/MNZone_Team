@@ -4,7 +4,10 @@
 	  layout:decorate="~{layouts/layout1}">
 
 	<title>멍냥Zone : 육아수첩</title>
-
+	<head>
+		<meta name="_csrf" th:content="${_csrf.token}"/>
+		<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+	</head>
 	<!--  CSS  -->
 	<th:block layout:fragment="css">
 		<link rel="stylesheet" type="text/css" th:href="@{/css/petDiary.css}">
@@ -41,6 +44,46 @@
 			var dateString_end = year + '-' + month  + '-' + end_day;
 			var dateString_ko = year + '년 ' + month  + '월 ' + day + '일';
 
+			var csrfToken = $("meta[name='_csrf']").attr("content");
+  		   	var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+
+			// 주어진 문자열에서 필요한 필드 값을 추출하는 함수
+			function extractFieldValue(field, str) {
+				var start = str.indexOf(field) + field.length + 1;
+				var end = str.indexOf(",", start);
+				if (end == -1) {
+					end = str.indexOf(")", start);
+				}
+				return str.substring(start, end).trim();
+			}
+
+			var myPetEvents = [];
+
+			// myPetDiaries의 hidden field에서 값을 가져와서 변환하기
+			$("#myPetDiaries input[type='hidden']").each(function() {
+				var value = $(this).val();
+
+				// 각 필드의 값 추출
+				var myPetDiaryId = extractFieldValue("myPetDiaryId", value);
+				var myPetTitle = extractFieldValue("myPetTitle", value);
+				var myPetStart = extractFieldValue("myPetStart", value);
+				var myPetEnd = extractFieldValue("myPetEnd", value);
+				var myPetContent = extractFieldValue("myPetContent", value);
+
+				// 변환된 데이터 객체 생성
+				var event = {
+				    id : myPetDiaryId,
+					title: myPetTitle,
+					start: myPetStart,
+					end: myPetEnd,
+					description: myPetContent,
+					allDay: true
+				};
+
+				// 변환된 데이터 객체를 myPetEvents 배열에 추가
+				myPetEvents.push(event);
+			});
+
 			$(document).ready(function(){
 				$("#today_date").text(dateString_ko);
 				$("#start_date").val(dateString);
@@ -51,8 +94,7 @@
 				  itemSelector: '.fc-event',
 				  eventData: function(eventEl) {
 					return {
-					  title: eventEl.innerText.trim(),
-					  description: eventEl.innerText.trim()
+				      create: false
 					}
 				  }
 				});
@@ -68,26 +110,10 @@
 					  },
 					  selectable: true,
 					  selectMirror: true,
-						droppable: true,
-						editable: true,
-					  events: [
-							{
-							  title  : '일산지 산책',
-							  start  : '2023-08-11T12:30:00',
-							  end  : '2023-08-11T13:30:00',
-							  description:"오늘은 군이랑 일산지에서 3키로정도 걸었더니 피곤쓰"
-							  ,
-							  allDay : false
-							},
-							{
-								  title  : '새 장난감',
-								  start  : '2023-08-05',
-								  end  : '2023-08-05',
-								  description:"오늘 새로운 장난감을 샀는데 군이가 너무 좋아해서 뿌듯해~~ 누나랑 터그놀이 열심히하쟈아아 키키",
-								  allDay : true
-								}
-						],
-						eventDidMount: function(info) {
+					  droppable: true,
+					  editable: true,
+					  events: myPetEvents,
+					  eventDidMount: function(info) {
 							var title = info.event.title;
 									tippy(info.el, {
 										content: title
@@ -106,15 +132,23 @@
 						$("#today_date").text(start);
 						$("#start_date").val(arg.startStr);
 						$("#end_date").val(arg.endStr);
-							  },
+					},
+					eventDrop: function (info){
+							var diaryData = {
+								myPetDiaryId: info.event.id,
+								myPetStart: info.event.startStr,
+								myPetEnd: info.event.endStr,
+								myPetTitle: info.event.title,
+								myPetContent: info.event.extendedProps.description
+							};
+							update_diary(diaryData);
+
+                      },
 					  eventClick: function(info){
+					  console.log(info);
 						  let start_year = info.event.start.getUTCFullYear();
 						  let start_month = ('0' + (info.event.start.getMonth()+1)).slice(-2);
 						  let start_date = ('0' + info.event.start.getDate()).slice(-2);
-						 // let start_hour = info.event.start.getHours();
-						 // let start_minute = info.event.start.getMinutes();
-						 // let start_second = info.event.start.getSeconds();
-						 // let end_hour = info.event.end.getHours();
 
 						  let start = start_year+"년 "+start_month+"월 "+start_date+"일 "+'<br>';
 
@@ -144,9 +178,49 @@
 					});
 					},
 					drop: function(arg) {
-						  if (document.getElementById('drop-remove').checked) {
-							arg.draggedEl.parentNode.removeChild(arg.draggedEl);
-						  }
+					     let end_year = arg.date.getUTCFullYear();
+						 let end_month = ('0' + (arg.date.getMonth()+1)).slice(-2);
+						 let end_date = ('0' + (arg.date.getDate()+1)).slice(-2);
+						 let end = end_year+"-"+end_month+"-"+end_date;
+						 let myPet_id = $("#myPet_id").val();
+						 let member_code = $("#member_code").val();
+
+						var diaryData = {
+							myPetTitle: arg.draggedEl.innerText.trim(),
+							myPetContent: arg.draggedEl.innerText.trim(),
+							myPetStart: arg.dateStr,
+							myPetEnd: end,
+							myPetId: myPet_id,
+							memberCode: member_code
+						};
+						  // AJAX 요청 보내기
+						$.ajax({
+							type: "POST",
+							contentType: "application/json",
+							url: "/saveDiary", // 저장할 컨트롤러 엔드포인트 URL
+							beforeSend: function(xhr) {
+								xhr.setRequestHeader(csrfHeader, csrfToken);
+							},
+							data: JSON.stringify(diaryData),
+							success: function(response) {
+								// 성공적으로 저장되었을 때의 처리
+								console.log("Diary saved successfully:", response);
+								// 성공 메시지 또는 페이지 이동 등 추가 작업 가능
+								calendar.addEvent({
+								                    id : response,
+													title: arg.draggedEl.innerText.trim(),
+													start: arg.dateStr,
+													end: end,
+													description:arg.draggedEl.innerText.trim(),
+													allDay: true
+												  });
+							},
+							error: function(xhr, status, error) {
+								// 저장 중 오류 발생 시의 처리
+								console.error("Error saving diary:", error);
+								// 오류 메시지 표시 등 추가 작업 가능
+							}
+						});
 					}
 				});
 				calendar.render();
@@ -159,24 +233,92 @@
 
 				let start = $("#start_date").val();
 				let end = $("#end_date").val();
+				let myPet_id = $("#myPet_id").val();
+				let member_code = $("#member_code").val();
+
+				// JSON 형식으로 데이터 생성
+				var diaryData = {
+					myPetTitle: title,
+					myPetContent: content,
+					myPetStart: start,
+					myPetEnd: end,
+					myPetId: myPet_id,
+					memberCode: member_code
+				};
+
 
 				if(!nullcheck(title)){
-					calendar.addEvent({
-						title: title,
-						start: start,
-						end: end,
-						description:content,
-						allDay: true
-					  });
-					$("#diary_title").val("");
-					$("#diary_content_area").val("");
+					   // AJAX 요청 보내기
+						$.ajax({
+							type: "POST",
+							contentType: "application/json",
+							url: "/saveDiary", // 저장할 컨트롤러 엔드포인트 URL
+							beforeSend: function(xhr) {
+								xhr.setRequestHeader(csrfHeader, csrfToken);
+							},
+							data: JSON.stringify(diaryData),
+							success: function(response) {
+								// 성공적으로 저장되었을 때의 처리
+								console.log("Diary saved successfully:", response);
+								// 성공 메시지 또는 페이지 이동 등 추가 작업 가능
+								calendar.addEvent({
+								                    id : response,
+													title: title,
+													start: start,
+													end: end,
+													description:content,
+													allDay: true
+												  });
+								$("#diary_title").val("");
+								$("#diary_content_area").val("");
+							},
+							error: function(xhr, status, error) {
+								// 저장 중 오류 발생 시의 처리
+								console.error("Error saving diary:", error);
+								// 오류 메시지 표시 등 추가 작업 가능
+							}
+						});
 				}
 
+			}
+
+			function update_diary(json_data){
+			// AJAX 요청 보내기
+				$.ajax({
+						    type: "POST",
+							contentType: "application/json",
+							url: "/updateDiary",
+							beforeSend: function(xhr) {
+								xhr.setRequestHeader(csrfHeader, csrfToken);
+							},
+							data: JSON.stringify(json_data),
+							success: function(response) {
+								// 성공적으로 저장되었을 때의 처리
+								console.log("Diary updated successfully:", response);
+								// 성공 메시지 또는 페이지 이동 등 추가 작업 가능
+							},
+							error: function(xhr, status, error) {
+								// 저장 중 오류 발생 시의 처리
+								console.error("Error update diary:", error);
+								// 오류 메시지 표시 등 추가 작업 가능
+							}
+				});
 			}
 
 			function edit_diary(info){
 				let title = $("#popup_title").val();
 				let content = $("#popup_content").val();
+				let myPetDiaryId = info.event.id;
+
+				var diaryData = {
+				    myPetDiaryId: myPetDiaryId,
+					myPetStart: info.event.startStr,
+					myPetEnd: info.event.endStr,
+					myPetTitle: title,
+					myPetContent: content
+				};
+
+				update_diary(diaryData);
 
 				info.event.setProp('title',title);
 				info.event.setExtendedProp('description',content);
@@ -184,7 +326,29 @@
 			}//수정하기 버튼
 
 			function del_diary(info){
-				console.log(info);
+			var diaryData = {
+				    myPetDiaryId: info.event.id
+				};
+			// AJAX 요청 보내기
+				$.ajax({
+						    type: "POST",
+							contentType: "application/json",
+							url: "/deleteDiary",
+							beforeSend: function(xhr) {
+								xhr.setRequestHeader(csrfHeader, csrfToken);
+							},
+							data: JSON.stringify(diaryData),
+							success: function(response) {
+								// 성공적으로 저장되었을 때의 처리
+								console.log("Diary delete successfully:", response);
+								// 성공 메시지 또는 페이지 이동 등 추가 작업 가능
+							},
+							error: function(xhr, status, error) {
+								// 저장 중 오류 발생 시의 처리
+								console.error("Error delete diary:", error);
+								// 오류 메시지 표시 등 추가 작업 가능
+							}
+				});
 				info.event.remove();
 				$("#popup").bPopup().close();
 			}//삭제하기 버튼
@@ -196,8 +360,17 @@
 	<div layout:fragment="content">
   		<div id="wrap">
 			<div id="title">
-				<span>육아수첩</span>
+				<span th:text="${myPet.myPetName}"></span>
+				<span>의 육아수첩</span>
+				<input type="hidden" th:value="${myPet.myPetId}" id="myPet_id">
+				<input type="hidden" th:value="${myPet.memberCode}" id="member_code">
 			</div>
+			<div id="myPetDiaries" th:each="myPetDiary : ${myPetDiaries}">
+				<!-- myPetDiary 데이터를 HTML에 렌더링 -->
+				<input type="hidden" th:value="${myPetDiary}">
+				<!-- 기타 데이터 필드들을 필요에 따라 렌더링 -->
+			</div>
+
 			<div id="title_border"></div>
 			<div id="main">
 				 <div id='external-events'>
@@ -216,10 +389,7 @@
 							<div class='fc-event-main'> ✔ 귓청소하는 날</div>
 						</div>
 					 </div>
-					 <p>
-						 <input type='checkbox' id='drop-remove' />
-						 <label for='drop-remove'>remove after drop</label>
-					 </p>
+
 				 </div>
 				<div id="calendar">
 				</div>
@@ -229,20 +399,20 @@
 				
 				<div id="today_diary">
 					<div id="diary">
-							  	<div id="today_date">
-								</div>
-							  	<input type="hidden" id="start_date">
-								<input type="hidden" id="end_date">
-								<div id="diary_text">
-									<div id="diary_title_div">
-										<input type = "text" id = "diary_title" placeholder="title">
-									</div>
-									<div id="diary_content">
-										<textarea id = "diary_content_area" placeholder="오늘 하루를 기록해주세요"></textarea>
-										<button id="save_btn" onclick="save_diary()">작성하기</button>
-									</div>
-								</div>
+						<div id="today_date">
+						</div>
+						<input type="hidden" id="start_date">
+						<input type="hidden" id="end_date">
+						<div id="diary_text">
+							<div id="diary_title_div">
+								<input type = "text" id = "diary_title" placeholder="title">
 							</div>
+							<div id="diary_content">
+								<textarea id = "diary_content_area" placeholder="오늘 하루를 기록해주세요"></textarea>
+								<button id="save_btn" onclick="save_diary()">작성하기</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
