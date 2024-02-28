@@ -94,8 +94,7 @@
 				  itemSelector: '.fc-event',
 				  eventData: function(eventEl) {
 					return {
-					  title: eventEl.innerText.trim(),
-					  description: eventEl.innerText.trim()
+				      create: false
 					}
 				  }
 				});
@@ -133,15 +132,23 @@
 						$("#today_date").text(start);
 						$("#start_date").val(arg.startStr);
 						$("#end_date").val(arg.endStr);
-							  },
+					},
+					eventDrop: function (info){
+							var diaryData = {
+								myPetDiaryId: info.event.id,
+								myPetStart: info.event.startStr,
+								myPetEnd: info.event.endStr,
+								myPetTitle: info.event.title,
+								myPetContent: info.event.extendedProps.description
+							};
+							update_diary(diaryData);
+
+                      },
 					  eventClick: function(info){
+					  console.log(info);
 						  let start_year = info.event.start.getUTCFullYear();
 						  let start_month = ('0' + (info.event.start.getMonth()+1)).slice(-2);
 						  let start_date = ('0' + info.event.start.getDate()).slice(-2);
-						 // let start_hour = info.event.start.getHours();
-						 // let start_minute = info.event.start.getMinutes();
-						 // let start_second = info.event.start.getSeconds();
-						 // let end_hour = info.event.end.getHours();
 
 						  let start = start_year+"년 "+start_month+"월 "+start_date+"일 "+'<br>';
 
@@ -171,9 +178,49 @@
 					});
 					},
 					drop: function(arg) {
-						  if (document.getElementById('drop-remove').checked) {
-							arg.draggedEl.parentNode.removeChild(arg.draggedEl);
-						  }
+					     let end_year = arg.date.getUTCFullYear();
+						 let end_month = ('0' + (arg.date.getMonth()+1)).slice(-2);
+						 let end_date = ('0' + (arg.date.getDate()+1)).slice(-2);
+						 let end = end_year+"-"+end_month+"-"+end_date;
+						 let myPet_id = $("#myPet_id").val();
+						 let member_code = $("#member_code").val();
+
+						var diaryData = {
+							myPetTitle: arg.draggedEl.innerText.trim(),
+							myPetContent: arg.draggedEl.innerText.trim(),
+							myPetStart: arg.dateStr,
+							myPetEnd: end,
+							myPetId: myPet_id,
+							memberCode: member_code
+						};
+						  // AJAX 요청 보내기
+						$.ajax({
+							type: "POST",
+							contentType: "application/json",
+							url: "/saveDiary", // 저장할 컨트롤러 엔드포인트 URL
+							beforeSend: function(xhr) {
+								xhr.setRequestHeader(csrfHeader, csrfToken);
+							},
+							data: JSON.stringify(diaryData),
+							success: function(response) {
+								// 성공적으로 저장되었을 때의 처리
+								console.log("Diary saved successfully:", response);
+								// 성공 메시지 또는 페이지 이동 등 추가 작업 가능
+								calendar.addEvent({
+								                    id : response,
+													title: arg.draggedEl.innerText.trim(),
+													start: arg.dateStr,
+													end: end,
+													description:arg.draggedEl.innerText.trim(),
+													allDay: true
+												  });
+							},
+							error: function(xhr, status, error) {
+								// 저장 중 오류 발생 시의 처리
+								console.error("Error saving diary:", error);
+								// 오류 메시지 표시 등 추가 작업 가능
+							}
+						});
 					}
 				});
 				calendar.render();
@@ -261,20 +308,12 @@
 			function edit_diary(info){
 				let title = $("#popup_title").val();
 				let content = $("#popup_content").val();
-				let start_year = info.event.start.getUTCFullYear();
-			    let start_month = ('0' + (info.event.start.getMonth()+1)).slice(-2);
-				let start_date = ('0' + info.event.start.getDate()).slice(-2);
-				let end_year = info.event.end.getUTCFullYear();
-			    let end_month = ('0' + (info.event.end.getMonth()+1)).slice(-2);
-				let end_date = ('0' + info.event.end.getDate()).slice(-2);
-				let start = start_year+"-"+start_month+"-"+start_date;
-				let end = end_year+"-"+end_month+"-"+end_date;
 				let myPetDiaryId = info.event.id;
 
 				var diaryData = {
 				    myPetDiaryId: myPetDiaryId,
-					myPetStart: start,
-					myPetEnd: end,
+					myPetStart: info.event.startStr,
+					myPetEnd: info.event.endStr,
 					myPetTitle: title,
 					myPetContent: content
 				};
@@ -350,10 +389,6 @@
 							<div class='fc-event-main'> ✔ 귓청소하는 날</div>
 						</div>
 					 </div>
-					 <p>
-						 <input type='checkbox' id='drop-remove' />
-						 <label for='drop-remove'>remove after drop</label>
-					 </p>
 
 				 </div>
 				<div id="calendar">
